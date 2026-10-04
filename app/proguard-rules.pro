@@ -1,0 +1,3 @@
+-keep class dev.ffmpegkit.llama.** { *; }
+-keep class dev.ffmpegkit.whisper.** { *; }
+-dontwarn org.apache.**
