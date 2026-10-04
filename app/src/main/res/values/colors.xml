@@ -1,0 +1,7 @@
+<resources>
+    <color name="jarvis_bg">#020A10</color>
+    <color name="jarvis_panel">#061923</color>
+    <color name="jarvis_cyan">#53E6FF</color>
+    <color name="jarvis_text">#EAFCFF</color>
+    <color name="jarvis_muted">#8BA8B4</color>
+</resources>
