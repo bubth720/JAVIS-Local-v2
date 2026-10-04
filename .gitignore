@@ -1,0 +1,9 @@
+.gradle/
+.idea/
+local.properties
+build/
+app/build/
+*.iml
+app/src/main/assets/models/*.gguf
+app/src/main/assets/models/*.bin
+!app/src/main/assets/models/README.txt
