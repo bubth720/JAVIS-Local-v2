@@ -1,89 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/jarvis_bg"
-    android:padding="12dp">
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="12dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
-        <TextView
+        android:gravity="center_vertical"
+        android:paddingTop="14dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="J.A.R.V.I.S LOCAL"
-            android:textColor="@color/jarvis_text"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
-        <TextView
-            android:id="@+id/statusText"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JARVIS"
+                android:textColor="@color/jarvis_text"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:letterSpacing="0.08"/>
+
+            <TextView
+                android:id="@+id/modelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Initialisation locale…"
+                android:textColor="@color/jarvis_muted"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CORE READY"
-            android:textColor="@color/jarvis_cyan"
-            android:textSize="11sp"/>
+            app:cardBackgroundColor="@color/jarvis_surface_2"
+            app:cardCornerRadius="18dp"
+            app:strokeColor="@color/jarvis_border"
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:text="PRÊT"
+                android:textColor="@color/jarvis_green"
+                android:textStyle="bold"
+                android:textSize="11sp"/>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/modelText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:text="Modèles : préparation…"
-        android:textColor="@color/jarvis_muted"
-        android:textSize="11sp"/>
-
-    <TextView
-        android:id="@+id/history"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="8dp"
-        android:textColor="@color/jarvis_text"
-        android:textSize="14sp"
-        android:gravity="bottom"
-        android:scrollbars="vertical"/>
+        app:cardBackgroundColor="@color/jarvis_surface"
+        app:cardCornerRadius="22dp"
+        app:strokeColor="@color/jarvis_border"
+        app:strokeWidth="1dp"
+        app:cardElevation="0dp">
+
+        <TextView
+            android:id="@+id/history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="18dp"
+            android:textColor="@color/jarvis_text"
+            android:textSize="15sp"
+            android:lineSpacingExtra="3dp"
+            android:gravity="bottom"
+            android:scrollbars="vertical"/>
+    </com.google.android.material.card.MaterialCardView>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:scrollbars="none">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button android:id="@+id/importPdf" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PDF"/>
-            <Button android:id="@+id/mic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎙 Voix"/>
-            <Button android:id="@+id/memory" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mémoire"/>
-            <Button android:id="@+id/settings" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Personnalité"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/importPdf"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:text="PDF"
+                android:textAllCaps="false"
+                android:textColor="@color/jarvis_cyan"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/jarvis_border"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mic"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:text="🎙  Voix"
+                android:textAllCaps="false"
+                android:textColor="@color/jarvis_cyan"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/jarvis_border"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/memory"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:text="Mémoire"
+                android:textAllCaps="false"
+                android:textColor="@color/jarvis_cyan"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/jarvis_border"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/settings"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="Personnalité"
+                android:textAllCaps="false"
+                android:textColor="@color/jarvis_cyan"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/jarvis_border"/>
         </LinearLayout>
     </HorizontalScrollView>
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/input"
-            android:layout_width="0dp"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="@color/jarvis_surface_2"
+        app:cardCornerRadius="20dp"
+        app:strokeColor="@color/jarvis_border"
+        app:strokeWidth="1dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="52dp"
-            android:maxLines="5"
-            android:hint="Parle à JARVIS…"
-            android:textColor="@color/jarvis_text"
-            android:textColorHint="@color/jarvis_muted"
-            android:backgroundTint="@color/jarvis_cyan"
-            android:inputType="textCapSentences|textMultiLine"/>
-        <Button
-            android:id="@+id/send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ENVOYER"/>
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="14dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingEnd="6dp">
+
+            <EditText
+                android:id="@+id/input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:maxLines="4"
+                android:hint="Écris à JARVIS…"
+                android:textColor="@color/jarvis_text"
+                android:textColorHint="@color/jarvis_muted"
+                android:background="@android:color/transparent"
+                android:inputType="textCapSentences|textMultiLine"
+                android:paddingStart="2dp"
+                android:paddingEnd="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="➜"
+                android:textSize="22sp"
+                android:textColor="@color/jarvis_bg"
+                app:backgroundTint="@color/jarvis_cyan"
+                app:cornerRadius="16dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>
