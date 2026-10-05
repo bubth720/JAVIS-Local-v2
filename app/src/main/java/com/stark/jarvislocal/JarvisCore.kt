@@ -37,6 +37,24 @@ class JarvisCore(
 
         db.addMessage(ChatMessage(role = "user", text = user))
 
+        // Pour une recherche factuelle dans un PDF, on montre d'abord la preuve exacte
+        // plutôt que d'attendre une inférence longue.
+        val evidence = rag.bestEvidence(user)
+        if (evidence != null && looksLikeDocumentLookup(user)) {
+            val answer = buildString {
+                append("J'ai retrouvé ce passage dans « ")
+                append(evidence.documentName)
+                append(" » :\n\n")
+                append(evidence.text)
+                append("\n\nSi tu veux, je peux ensuite l'interpréter avec le modèle local.")
+            }
+            return ChatMessage(
+                role = "assistant",
+                text = answer,
+                source = evidence.documentName
+            ).also(db::addMessage)
+        }
+
         val settings = settingsStore.load()
         val hits = rag.retrieve(user, settings.topKDocuments)
         val memories = rag.relevantMemories(user)
@@ -51,6 +69,19 @@ class JarvisCore(
             text = raw,
             source = hits.firstOrNull()?.chunk?.documentName
         ).also(db::addMessage)
+    }
+
+    private fun looksLikeDocumentLookup(input: String): Boolean {
+        val s = normalize(input)
+        return s.contains("quel") ||
+            s.contains("quelle") ||
+            s.contains("combien") ||
+            s.contains("chrono") ||
+            s.contains("score") ||
+            s.contains("resultat") ||
+            s.contains("résultat") ||
+            s.contains("document") ||
+            s.contains("pdf")
     }
 
     private fun fastLocalReply(input: String): String? {
