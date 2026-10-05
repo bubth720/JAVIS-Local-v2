@@ -1,7 +1,13 @@
 <resources>
-    <color name="jarvis_bg">#020A10</color>
-    <color name="jarvis_panel">#061923</color>
-    <color name="jarvis_cyan">#53E6FF</color>
-    <color name="jarvis_text">#EAFCFF</color>
-    <color name="jarvis_muted">#8BA8B4</color>
+    <color name="jarvis_bg">#071017</color>
+    <color name="jarvis_surface">#0D1922</color>
+    <color name="jarvis_surface_2">#122632</color>
+    <color name="jarvis_panel">#0B1B24</color>
+    <color name="jarvis_cyan">#61E7FF</color>
+    <color name="jarvis_cyan_soft">#9FF2FF</color>
+    <color name="jarvis_text">#F2FBFF</color>
+    <color name="jarvis_muted">#91A9B5</color>
+    <color name="jarvis_green">#65E89A</color>
+    <color name="jarvis_red">#FF6B78</color>
+    <color name="jarvis_border">#1E4050</color>
 </resources>
