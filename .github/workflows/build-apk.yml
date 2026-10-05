@@ -35,9 +35,39 @@ jobs:
       - name: Rename APK
         run: cp app/build/outputs/apk/debug/app-debug.apk JARVIS-Local-v2.apk
 
+      - name: Verify final APK permissions
+        run: |
+          set -euo pipefail
+          APK="JARVIS-Local-v2.apk"
+          ANALYZER="$(find "$ANDROID_HOME" -type f -name apkanalyzer 2>/dev/null | head -n 1 || true)"
+          if [ -n "$ANALYZER" ]; then
+            "$ANALYZER" manifest permissions "$APK" | tee apk-permissions.txt
+          else
+            AAPT="$(find "$ANDROID_HOME/build-tools" -type f -name aapt 2>/dev/null | sort | tail -n 1 || true)"
+            if [ -z "$AAPT" ]; then
+              echo "Impossible de trouver apkanalyzer ou aapt."
+              exit 1
+            fi
+            "$AAPT" dump permissions "$APK" | tee apk-permissions.txt
+          fi
+
+          if grep -q "android.permission.INTERNET" apk-permissions.txt; then
+            echo "ERREUR: permission INTERNET détectée dans l'APK finale."
+            exit 1
+          fi
+          if grep -q "android.permission.ACCESS_NETWORK_STATE" apk-permissions.txt; then
+            echo "ERREUR: permission ACCESS_NETWORK_STATE détectée dans l'APK finale."
+            exit 1
+          fi
+
+          echo "OK: aucune permission réseau détectée."
+          sha256sum "$APK" | tee JARVIS-Local-v2.sha256
+
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="jarvis-v2-build-${{ github.run_number }}"
-          gh release create "$TAG" JARVIS-Local-v2.apk             --title "JARVIS Local v2 - build ${{ github.run_number }}"             --notes "APK autonome : Qwen3 1.7B GGUF + Whisper base embarqués. Le noyau ne demande aucune permission Internet."
+          gh release create "$TAG" JARVIS-Local-v2.apk JARVIS-Local-v2.sha256 apk-permissions.txt \
+            --title "JARVIS Local v2 - build ${{ github.run_number }}" \
+            --notes "APK autonome. Vérification CI: aucune permission INTERNET ni ACCESS_NETWORK_STATE dans l'APK finale. Le fichier SHA-256 et la liste réelle des permissions sont joints à la release."
