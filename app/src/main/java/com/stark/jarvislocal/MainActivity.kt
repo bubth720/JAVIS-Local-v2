@@ -3,16 +3,9 @@ package com.stark.jarvislocal
 import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.method.ScrollingMovementMethod
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
-import android.graphics.Typeface
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -24,6 +17,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
@@ -37,7 +32,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var input: EditText
     private lateinit var status: TextView
     private lateinit var modelText: TextView
-    private lateinit var history: TextView
+    private lateinit var messages: RecyclerView
+    private val adapter = MessageAdapter()
 
     private val pdfPicker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) importPdf(uri)
@@ -57,8 +53,12 @@ class MainActivity : AppCompatActivity() {
         input = findViewById(R.id.input)
         status = findViewById(R.id.statusText)
         modelText = findViewById(R.id.modelText)
-        history = findViewById(R.id.history)
-        history.movementMethod = ScrollingMovementMethod()
+        messages = findViewById(R.id.messages)
+
+        messages.layoutManager = LinearLayoutManager(this).apply {
+            stackFromEnd = true
+        }
+        messages.adapter = adapter
 
         findViewById<Button>(R.id.send).setOnClickListener { send() }
         findViewById<Button>(R.id.importPdf).setOnClickListener {
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.memory).setOnClickListener { showMemoryDialog() }
         findViewById<Button>(R.id.settings).setOnClickListener { showSettingsDialog() }
 
-        refreshHistory()
+        refreshMessages()
         prepareModels()
     }
 
@@ -96,6 +96,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun prepareModels() {
         setStatus("PRÉPARATION", false)
+
         lifecycleScope.launch {
             try {
                 withContext(Dispatchers.IO) {
@@ -109,7 +110,6 @@ class MainActivity : AppCompatActivity() {
 
                 modelText.text = modelSummary("Chargement du cerveau local…")
 
-                // Précharge une seule fois le LLM en arrière-plan.
                 withContext(Dispatchers.Default) {
                     graph.llm.warmUp(graph.settings.load())
                 }
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                             text = "Noyau local initialisé. Le modèle est chargé et prêt à répondre."
                         )
                     )
-                    refreshHistory()
+                    refreshMessages()
                 }
             } catch (e: Exception) {
                 setStatus("ERREUR", false)
@@ -136,25 +136,33 @@ class MainActivity : AppCompatActivity() {
     private fun send(text: String? = null) {
         val q = (text ?: input.text.toString()).trim()
         if (q.isEmpty()) return
+
         input.setText("")
         setStatus("RÉFLEXION", false)
 
         lifecycleScope.launch {
             try {
                 val answer = withTimeout(90_000L) {
-                    withContext(Dispatchers.Default) { graph.core.chat(q) }
+                    withContext(Dispatchers.Default) {
+                        graph.core.chat(q)
+                    }
                 }
-                refreshHistory()
-                if (graph.settings.load().speakReplies) graph.tts.speak(answer.text)
+
+                refreshMessages()
+
+                if (graph.settings.load().speakReplies) {
+                    graph.tts.speak(answer.text)
+                }
+
                 setStatus("PRÊT", true)
             } catch (_: TimeoutCancellationException) {
                 graph.db.addMessage(
                     ChatMessage(
                         role = "assistant",
-                        text = "La génération a dépassé 90 secondes. Le modèle a été interrompu pour éviter un blocage. Réessaie avec une question plus courte."
+                        text = "La génération a dépassé 90 secondes. J'ai arrêté l'attente pour éviter un blocage."
                     )
                 )
-                refreshHistory()
+                refreshMessages()
                 setStatus("TIMEOUT", false)
             } catch (e: Exception) {
                 graph.db.addMessage(
@@ -163,7 +171,7 @@ class MainActivity : AppCompatActivity() {
                         text = "Erreur locale : " + (e.message ?: "erreur inconnue")
                     )
                 )
-                refreshHistory()
+                refreshMessages()
                 setStatus("ERREUR", false)
             }
         }
@@ -171,19 +179,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun importPdf(uri: Uri) {
         setStatus("PDF", false)
+
         lifecycleScope.launch {
             try {
                 val info = fileInfo(uri)
                 val count = withContext(Dispatchers.IO) {
                     graph.pdf.import(uri, info.first, info.second)
                 }
+
                 graph.db.addMessage(
                     ChatMessage(
                         role = "assistant",
-                        text = "PDF « " + info.first + " » indexé localement : " + count + " passages."
+                        text = "PDF « " + info.first + " » indexé localement : " + count + " passages. Tu peux maintenant me poser une question factuelle sur son contenu.",
+                        source = info.first
                     )
                 )
-                refreshHistory()
+
+                refreshMessages()
                 setStatus("PRÊT", true)
             } catch (e: Exception) {
                 toast("PDF : " + (e.message ?: "erreur"))
@@ -212,6 +224,7 @@ class MainActivity : AppCompatActivity() {
                             graph.whisper.transcribe(audio.absolutePath)
                         }
                     }
+
                     if (text.isNotBlank()) {
                         input.setText(text)
                         send(text)
@@ -231,7 +244,9 @@ class MainActivity : AppCompatActivity() {
         val edit = EditText(this).apply {
             hint = "Ex. Mon projet principal s'appelle Orion."
         }
-        val current = graph.db.allMemories().take(12)
+
+        val current = graph.db.allMemories()
+            .take(12)
             .joinToString("\n") { "• " + it.text }
             .ifBlank { "Aucune mémoire." }
 
@@ -252,6 +267,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSettingsDialog() {
         val settings = graph.settings.load()
+
         val edit = EditText(this).apply {
             setText(settings.systemPrompt)
             minLines = 7
@@ -262,58 +278,36 @@ class MainActivity : AppCompatActivity() {
             .setTitle("Personnalité de JARVIS")
             .setView(edit)
             .setPositiveButton("Enregistrer") { _, _ ->
-                graph.settings.save(settings.copy(systemPrompt = edit.text.toString()))
+                graph.settings.save(
+                    settings.copy(systemPrompt = edit.text.toString())
+                )
                 toast("Personnalité enregistrée.")
             }
-            .setNeutralButton(if (settings.speakReplies) "Couper voix" else "Activer voix") { _, _ ->
-                graph.settings.save(settings.copy(speakReplies = !settings.speakReplies))
+            .setNeutralButton(
+                if (settings.speakReplies) "Couper voix" else "Activer voix"
+            ) { _, _ ->
+                graph.settings.save(
+                    settings.copy(speakReplies = !settings.speakReplies)
+                )
             }
             .setNegativeButton("Annuler", null)
             .show()
     }
 
-    private fun refreshHistory() {
-        val builder = SpannableStringBuilder()
-        graph.db.recentMessages(80).forEachIndexed { index, message ->
-            if (index > 0) builder.append("\n\n")
-            val who = if (message.role == "user") "VOUS" else "JARVIS"
-            val start = builder.length
-            builder.append(who)
-            builder.setSpan(
-                StyleSpan(Typeface.BOLD),
-                start,
-                builder.length,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            builder.setSpan(
-                ForegroundColorSpan(
-                    if (message.role == "user")
-                        ContextCompat.getColor(this, R.color.jarvis_cyan)
-                    else
-                        ContextCompat.getColor(this, R.color.jarvis_green)
-                ),
-                start,
-                builder.length,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            builder.append("\n").append(message.text)
-            message.source?.let {
-                val sourceStart = builder.length
-                builder.append("\nSource locale : ").append(it)
-                builder.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.jarvis_muted)),
-                    sourceStart,
-                    builder.length,
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
+    private fun refreshMessages() {
+        val list = graph.db.recentMessages(100)
+        adapter.submit(list)
+        if (list.isNotEmpty()) {
+            messages.post {
+                messages.scrollToPosition(list.size - 1)
             }
         }
-        history.text = builder
-        history.post { history.scrollTo(0, history.layout?.height ?: 0) }
     }
 
     private fun refreshModelStatus() {
-        modelText.text = modelSummary(if (graph.llm.isLoaded()) "LLM chargé" else "LLM prêt")
+        modelText.text = modelSummary(
+            if (graph.llm.isLoaded()) "LLM chargé" else "LLM prêt"
+        )
     }
 
     private fun modelSummary(prefix: String): String {
@@ -334,6 +328,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fileInfo(uri: Uri): Pair<String, String?> {
         var name = "document.pdf"
+
         contentResolver.query(
             uri,
             arrayOf(OpenableColumns.DISPLAY_NAME),
@@ -341,8 +336,11 @@ class MainActivity : AppCompatActivity() {
             null,
             null
         )?.use { cursor ->
-            if (cursor.moveToFirst()) name = cursor.getString(0) ?: name
+            if (cursor.moveToFirst()) {
+                name = cursor.getString(0) ?: name
+            }
         }
+
         return name to contentResolver.getType(uri)
     }
 
@@ -353,7 +351,9 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 
     override fun onDestroy() {
-        if (graph.recorder.isRecording()) graph.recorder.stop()
+        if (graph.recorder.isRecording()) {
+            graph.recorder.stop()
+        }
         graph.tts.shutdown()
         super.onDestroy()
     }
