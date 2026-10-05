@@ -1,10 +1,15 @@
 <resources>
     <style name="Theme.JarvisLocal" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/jarvis_cyan</item>
+        <item name="colorPrimaryVariant">@color/jarvis_surface_2</item>
+        <item name="colorSecondary">@color/jarvis_cyan</item>
         <item name="colorOnPrimary">@color/jarvis_bg</item>
+        <item name="colorOnSurface">@color/jarvis_text</item>
         <item name="android:windowBackground">@color/jarvis_bg</item>
         <item name="android:navigationBarColor">@color/jarvis_bg</item>
         <item name="android:statusBarColor">@color/jarvis_bg</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.OutlinedButton</item>
     </style>
 </resources>
