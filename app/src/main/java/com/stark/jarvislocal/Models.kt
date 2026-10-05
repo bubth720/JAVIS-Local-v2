@@ -24,6 +24,12 @@ data class DocumentChunk(
 
 data class RetrievalHit(val chunk: DocumentChunk, val score: Double)
 
+data class DocumentEvidence(
+    val documentName: String,
+    val text: String,
+    val score: Double
+)
+
 data class JarvisSettings(
     val systemPrompt: String = DEFAULT_SYSTEM_PROMPT,
     val contextSize: Int = 2048,
