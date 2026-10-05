@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class LocalDatabase(context: Context) : SQLiteOpenHelper(context, "jarvis_local_v2.db", null, 1) {
+class LocalDatabase(context: Context) : SQLiteOpenHelper(context, "jarvis_local_v2.db", null, 2) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("CREATE TABLE messages(id INTEGER PRIMARY KEY AUTOINCREMENT, role TEXT NOT NULL, text TEXT NOT NULL, source TEXT, created_at INTEGER NOT NULL)")
         db.execSQL("CREATE TABLE memories(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NOT NULL, created_at INTEGER NOT NULL)")
@@ -14,7 +14,12 @@ class LocalDatabase(context: Context) : SQLiteOpenHelper(context, "jarvis_local_
         db.execSQL("CREATE INDEX idx_chunks_doc ON chunks(document_id)")
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        if (oldVersion < 2) {
+            db.execSQL("DELETE FROM chunks")
+            db.execSQL("DELETE FROM documents")
+        }
+    }
 
     fun addMessage(m: ChatMessage): Long = writableDatabase.insert("messages", null, ContentValues().apply {
         put("role", m.role); put("text", m.text); put("source", m.source); put("created_at", m.createdAt)
