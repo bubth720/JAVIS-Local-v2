@@ -26,9 +26,9 @@ data class RetrievalHit(val chunk: DocumentChunk, val score: Double)
 
 data class JarvisSettings(
     val systemPrompt: String = DEFAULT_SYSTEM_PROMPT,
-    val contextSize: Int = 4096,
-    val maxTokens: Int = 512,
-    val topKDocuments: Int = 5,
+    val contextSize: Int = 2048,
+    val maxTokens: Int = 256,
+    val topKDocuments: Int = 4,
     val speakReplies: Boolean = false
 ) {
     companion object {
