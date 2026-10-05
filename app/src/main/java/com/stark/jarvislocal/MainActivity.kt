@@ -3,10 +3,16 @@ package com.stark.jarvislocal
 import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.method.ScrollingMovementMethod
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
+import android.graphics.Typeface
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,10 +20,15 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +49,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_main)
+        applySystemInsets()
 
         input = findViewById(R.id.input)
         status = findViewById(R.id.statusText)
@@ -66,32 +80,55 @@ class MainActivity : AppCompatActivity() {
         prepareModels()
     }
 
+    private fun applySystemInsets() {
+        val root = findViewById<android.view.View>(R.id.root)
+        ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                view.paddingLeft,
+                bars.top,
+                view.paddingRight,
+                bars.bottom + dp(8)
+            )
+            insets
+        }
+    }
+
     private fun prepareModels() {
-        status.text = "PRÉPARATION…"
+        setStatus("PRÉPARATION", false)
         lifecycleScope.launch {
             try {
                 withContext(Dispatchers.IO) {
                     graph.models.ensureBundledModels { label ->
                         runOnUiThread {
-                            status.text = label
+                            setStatus("PRÉPARATION", false)
                             modelText.text = label
                         }
                     }
                 }
+
+                modelText.text = modelSummary("Chargement du cerveau local…")
+
+                // Précharge une seule fois le LLM en arrière-plan.
+                withContext(Dispatchers.Default) {
+                    graph.llm.warmUp(graph.settings.load())
+                }
+
                 refreshModelStatus()
-                status.text = "CORE READY"
+                setStatus("PRÊT", true)
+
                 if (graph.db.recentMessages(1).isEmpty()) {
                     graph.db.addMessage(
                         ChatMessage(
                             role = "assistant",
-                            text = "Noyau local initialisé. LLM, mémoire, PDF/RAG et voix hors ligne sont prêts."
+                            text = "Noyau local initialisé. Le modèle est chargé et prêt à répondre."
                         )
                     )
                     refreshHistory()
                 }
             } catch (e: Exception) {
-                status.text = "ERREUR MODÈLE"
-                modelText.text = "Modèles indisponibles : " + (e.message ?: "erreur inconnue")
+                setStatus("ERREUR", false)
+                modelText.text = "Initialisation incomplète : " + (e.message ?: "erreur inconnue")
             }
         }
     }
@@ -100,15 +137,25 @@ class MainActivity : AppCompatActivity() {
         val q = (text ?: input.text.toString()).trim()
         if (q.isEmpty()) return
         input.setText("")
-        status.text = "RÉFLEXION…"
+        setStatus("RÉFLEXION", false)
 
         lifecycleScope.launch {
             try {
-                val answer = withContext(Dispatchers.IO) { graph.core.chat(q) }
-                refreshHistory()
-                if (graph.settings.load().speakReplies) {
-                    graph.tts.speak(answer.text)
+                val answer = withTimeout(90_000L) {
+                    withContext(Dispatchers.Default) { graph.core.chat(q) }
                 }
+                refreshHistory()
+                if (graph.settings.load().speakReplies) graph.tts.speak(answer.text)
+                setStatus("PRÊT", true)
+            } catch (_: TimeoutCancellationException) {
+                graph.db.addMessage(
+                    ChatMessage(
+                        role = "assistant",
+                        text = "La génération a dépassé 90 secondes. Le modèle a été interrompu pour éviter un blocage. Réessaie avec une question plus courte."
+                    )
+                )
+                refreshHistory()
+                setStatus("TIMEOUT", false)
             } catch (e: Exception) {
                 graph.db.addMessage(
                     ChatMessage(
@@ -117,14 +164,13 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
                 refreshHistory()
-            } finally {
-                status.text = "CORE READY"
+                setStatus("ERREUR", false)
             }
         }
     }
 
     private fun importPdf(uri: Uri) {
-        status.text = "INDEXATION PDF…"
+        setStatus("PDF", false)
         lifecycleScope.launch {
             try {
                 val info = fileInfo(uri)
@@ -138,10 +184,10 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
                 refreshHistory()
+                setStatus("PRÊT", true)
             } catch (e: Exception) {
                 toast("PDF : " + (e.message ?: "erreur"))
-            } finally {
-                status.text = "CORE READY"
+                setStatus("ERREUR", false)
             }
         }
     }
@@ -153,27 +199,29 @@ class MainActivity : AppCompatActivity() {
         if (!graph.recorder.isRecording()) {
             graph.recorder.start(audio)
             button.text = "■ Stop"
-            status.text = "ÉCOUTE…"
+            setStatus("ÉCOUTE", false)
         } else {
             graph.recorder.stop()
-            button.text = "🎙 Voix"
-            status.text = "TRANSCRIPTION…"
+            button.text = "🎙  Voix"
+            setStatus("TRANSCRIPTION", false)
 
             lifecycleScope.launch {
                 try {
-                    val text = withContext(Dispatchers.IO) {
-                        graph.whisper.transcribe(audio.absolutePath)
+                    val text = withTimeout(60_000L) {
+                        withContext(Dispatchers.Default) {
+                            graph.whisper.transcribe(audio.absolutePath)
+                        }
                     }
                     if (text.isNotBlank()) {
                         input.setText(text)
                         send(text)
                     } else {
                         toast("Aucune parole reconnue.")
+                        setStatus("PRÊT", true)
                     }
                 } catch (e: Exception) {
                     toast("Voix : " + (e.message ?: "erreur"))
-                } finally {
-                    status.text = "CORE READY"
+                    setStatus("ERREUR", false)
                 }
             }
         }
@@ -206,15 +254,16 @@ class MainActivity : AppCompatActivity() {
         val settings = graph.settings.load()
         val edit = EditText(this).apply {
             setText(settings.systemPrompt)
-            minLines = 8
-            maxLines = 14
+            minLines = 7
+            maxLines = 12
         }
 
         AlertDialog.Builder(this)
-            .setTitle("Personnalité / instruction système")
+            .setTitle("Personnalité de JARVIS")
             .setView(edit)
             .setPositiveButton("Enregistrer") { _, _ ->
                 graph.settings.save(settings.copy(systemPrompt = edit.text.toString()))
+                toast("Personnalité enregistrée.")
             }
             .setNeutralButton(if (settings.speakReplies) "Couper voix" else "Activer voix") { _, _ ->
                 graph.settings.save(settings.copy(speakReplies = !settings.speakReplies))
@@ -224,22 +273,63 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshHistory() {
-        val text = graph.db.recentMessages(80).joinToString("\n\n") { message ->
+        val builder = SpannableStringBuilder()
+        graph.db.recentMessages(80).forEachIndexed { index, message ->
+            if (index > 0) builder.append("\n\n")
             val who = if (message.role == "user") "VOUS" else "JARVIS"
-            who + "\n" + message.text +
-                (message.source?.let { "\nSource locale : " + it } ?: "")
+            val start = builder.length
+            builder.append(who)
+            builder.setSpan(
+                StyleSpan(Typeface.BOLD),
+                start,
+                builder.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            builder.setSpan(
+                ForegroundColorSpan(
+                    if (message.role == "user")
+                        ContextCompat.getColor(this, R.color.jarvis_cyan)
+                    else
+                        ContextCompat.getColor(this, R.color.jarvis_green)
+                ),
+                start,
+                builder.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            builder.append("\n").append(message.text)
+            message.source?.let {
+                val sourceStart = builder.length
+                builder.append("\nSource locale : ").append(it)
+                builder.setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.jarvis_muted)),
+                    sourceStart,
+                    builder.length,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
         }
-        history.text = text
+        history.text = builder
         history.post { history.scrollTo(0, history.layout?.height ?: 0) }
     }
 
     private fun refreshModelStatus() {
-        val llm = if (graph.models.hasLlm()) {
-            "LLM ✓ " + (graph.models.llmFile.length() / 1024 / 1024) + " Mo"
-        } else "LLM absent"
+        modelText.text = modelSummary(if (graph.llm.isLoaded()) "LLM chargé" else "LLM prêt")
+    }
 
+    private fun modelSummary(prefix: String): String {
+        val mb = graph.models.llmFile.length() / 1024 / 1024
         val whisper = if (graph.models.hasWhisper()) "Whisper ✓" else "Whisper absent"
-        modelText.text = llm + " · " + whisper + " · noyau hors réseau"
+        return "$prefix · $mb Mo · $whisper · hors réseau"
+    }
+
+    private fun setStatus(label: String, ready: Boolean) {
+        status.text = label
+        status.setTextColor(
+            ContextCompat.getColor(
+                this,
+                if (ready) R.color.jarvis_green else R.color.jarvis_cyan
+            )
+        )
     }
 
     private fun fileInfo(uri: Uri): Pair<String, String?> {
@@ -255,6 +345,9 @@ class MainActivity : AppCompatActivity() {
         }
         return name to contentResolver.getType(uri)
     }
+
+    private fun dp(value: Int): Int =
+        (value * resources.displayMetrics.density).toInt()
 
     private fun toast(message: String) =
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
