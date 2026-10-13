@@ -3,6 +3,7 @@ package com.stark.jarvislocal
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 
 class LocalDatabase(context: Context) : SQLiteOpenHelper(context, "jarvis_local_v2.db", null, 2) {
@@ -15,13 +16,14 @@ class LocalDatabase(context: Context) : SQLiteOpenHelper(context, "jarvis_local_
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        if (oldVersion < 2) {
-            db.execSQL("DELETE FROM chunks")
-            db.execSQL("DELETE FROM documents")
+        if (oldVersion != 1 || newVersion != 2) {
+            throw SQLiteException("Migration SQLite non prise en charge : $oldVersion -> $newVersion")
         }
+        // Versions 1 and 2 have the same schema. Keep all existing rows and IDs.
+        // SQLiteOpenHelper updates the version in its own migration transaction.
     }
 
-    fun addMessage(m: ChatMessage): Long = writableDatabase.insert("messages", null, ContentValues().apply {
+    fun addMessage(m: ChatMessage): Long = writableDatabase.insertChecked("messages", ContentValues().apply {
         put("role", m.role); put("text", m.text); put("source", m.source); put("created_at", m.createdAt)
     })
 
@@ -36,7 +38,7 @@ class LocalDatabase(context: Context) : SQLiteOpenHelper(context, "jarvis_local_
         return out.reversed()
     }
 
-    fun addMemory(text: String): Long = writableDatabase.insert("memories", null, ContentValues().apply {
+    fun addMemory(text: String): Long = writableDatabase.insertChecked("memories", ContentValues().apply {
         put("text", text); put("created_at", System.currentTimeMillis())
     })
 
@@ -52,17 +54,24 @@ class LocalDatabase(context: Context) : SQLiteOpenHelper(context, "jarvis_local_
         val db = writableDatabase
         db.beginTransaction()
         return try {
-            val docId = db.insert("documents", null, ContentValues().apply {
+            val docId = db.insertChecked("documents", ContentValues().apply {
                 put("name", name); put("mime", mime); put("created_at", System.currentTimeMillis())
             })
             chunks.forEachIndexed { index, text ->
-                db.insert("chunks", null, ContentValues().apply {
+                db.insertChecked("chunks", ContentValues().apply {
                     put("document_id", docId); put("document_name", name); put("chunk_index", index); put("text", text)
                 })
             }
             db.setTransactionSuccessful()
             docId
         } finally { db.endTransaction() }
+    }
+
+    private fun SQLiteDatabase.insertChecked(table: String, values: ContentValues): Long {
+        val id = insertOrThrow(table, null, values)
+        // A trigger using RAISE(IGNORE) can return -1 without throwing.
+        if (id == -1L) throw SQLiteException("Insertion SQLite sans identifiant dans $table")
+        return id
     }
 
     fun allChunks(): List<DocumentChunk> {
