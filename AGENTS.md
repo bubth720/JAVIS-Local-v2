@@ -144,6 +144,7 @@ propres à une machine.
 Depuis la racine du dépôt :
 
 ```sh
+gradle :app:testDebugUnitTest --no-daemon
 gradle :app:assembleDebug --no-daemon
 gradle :app:lintDebug --no-daemon
 ```
@@ -171,6 +172,11 @@ concernés, prévoir notamment des tests de commandes, prompts, découpage,
 recherche, migrations, modèles incomplets, concurrence et annulation, ainsi
 que des essais audio/TTS et Android ARM64. Valider spécifiquement la variante
 release si elle change.
+
+Depuis la mission 003, `LocalTimeReplyTest` couvre le format de la réponse
+d’heure, les fuseaux, le passage à l’heure d’été et la locale. Exécuter cette
+suite et Lint lors des changements concernés ; les tests JVM seuls ne
+démontrent pas l’exécution sur Android API 24/25.
 
 Rapporter distinctement les vérifications réussies, échouées, non exécutées
 et bloquées. Ne pas décrire un résultat ancien comme une nouvelle validation.

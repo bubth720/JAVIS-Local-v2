@@ -1,8 +1,10 @@
 package com.stark.jarvislocal
 
 import java.text.Normalizer
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class JarvisCore(
     private val db: LocalDatabase,
@@ -97,7 +99,7 @@ class JarvisCore(
                 "Je suis JARVIS, ton assistant local. Mon modèle, ma mémoire et tes documents restent sur cet appareil."
 
             s.contains("quelle heure") || s == "heure" ->
-                "Il est " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + "."
+                localTimeReply()
 
             else -> null
         }
@@ -108,4 +110,15 @@ class JarvisCore(
             .replace(Regex("\\p{M}+"), "")
             .replace(Regex("[^a-z0-9 -]+"), "")
             .trim()
+}
+
+internal fun localTimeReply(
+    now: Date = Date(),
+    timeZone: TimeZone = TimeZone.getDefault()
+): String {
+    // java.time requires API 26; use a fresh formatter for API 24/25 and thread safety.
+    val formatter = SimpleDateFormat("HH:mm", Locale.ROOT).apply {
+        this.timeZone = timeZone
+    }
+    return "Il est " + formatter.format(now) + "."
 }

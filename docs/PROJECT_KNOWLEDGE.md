@@ -440,3 +440,36 @@ données, identité de signature et obligations de licence.
 Ces questions ne sont pas résolues par la compilation historique. Actualiser
 les sections risques et priorités après chaque validation, en conservant
 la distinction entre constat de code, reproduction et hypothèse.
+
+## Actualisation — Mission 003 : réponse d’heure sur API 24/25
+
+Base de la correction : `main` au commit
+`57c87e953f4a6e36b8068a4d3b4c4c510df14d91`. Les constats d’audit ci-dessus
+restent historiques ; l’incompatibilité `java.time` est corrigée par cette
+mission, sans modification du SDK minimum.
+
+`JarvisCore.kt` utilise désormais un `SimpleDateFormat` créé à chaque appel,
+avec `Date`, le fuseau par défaut et `Locale.ROOT`. Ces API sont disponibles
+sur API 24/25. La réponse reste `Il est HH:mm.`, en format 24 heures avec
+chiffres ASCII. L’horodatage et le fuseau sont injectables dans la fonction
+interne `localTimeReply` pour les tests, sans changer le routage des commandes.
+
+`LocalTimeReplyTest` ajoute sept tests JVM : minuit, zéros initiaux et absence
+de secondes, format 24 heures, fuseau à demi-heure, transition d’heure d’été,
+changement du fuseau par défaut et locale non latine. JUnit 4.13.2 est ajouté
+uniquement via `testImplementation`.
+
+Validations exécutées pour cette correction :
+
+- Avant correction, `lintDebug` reproduit 3 erreurs `NewApi` et 34 avertissements.
+- Après correction, les 7 tests passent, sans échec ni test ignoré.
+- `assembleDebug` réussit ; `lintDebug` réussit avec 0 erreur `NewApi` et
+  34 avertissements restant hors du périmètre de cette mission.
+- Signature et absence de permissions réseau vérifiées sur l’APK construit ;
+  7 bibliothèques ARM64 présentes.
+- Aucun essai sur appareil ou émulateur API 24/25 ; les tests JVM et Lint
+  ne remplacent pas cette validation. Les deux modèles restent absents de
+  l’APK local, donc le fonctionnement IA complet n’a pas été vérifié.
+
+Le premier défaut de compatibilité est traité. Les priorités relatives aux
+migrations, au cycle de vie et aux autres risques restent ouvertes.
