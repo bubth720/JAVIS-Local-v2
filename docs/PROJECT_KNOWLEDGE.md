@@ -473,3 +473,85 @@ Validations exécutées pour cette correction :
 
 Le premier défaut de compatibilité est traité. Les priorités relatives aux
 migrations, au cycle de vie et aux autres risques restent ouvertes.
+
+## Actualisation — Mission 004 : conservation des données SQLite
+
+Base de la correction : `main` au commit
+`a610382229ccaeffc7cc76ac390b60f0ee2771d7`.
+
+### Preuves historiques et stratégie
+
+L’historique Git complet du fichier `LocalDatabase.kt` établit deux versions :
+
+- Version 1 : commit `5c7375c0deb4209bff1a4895356967e3927b59ca`.
+- Version 2 : commit `e1541151a8ff7a4f2f499b95a2926286e0d083c7`.
+
+Les quatre tables et l’index de `onCreate` sont identiques. Le changement de
+version avait seulement ajouté la suppression des documents et passages pour
+forcer une réindexation. Aucune transformation de schéma n’est nécessaire.
+
+La migration 1 vers 2 ne modifie désormais aucune table ni ligne.
+`SQLiteOpenHelper` actualise le numéro de version dans sa transaction.
+Le nom `jarvis_local_v2.db`, la version cible 2, les identifiants, le schéma et
+les données des installations déjà en version 2 restent inchangés. Une
+transition non prévue est refusée par une exception, sans réinitialisation.
+Le refus de downgrade par défaut est conservé.
+
+Cette correction empêche les suppressions futures. Elle ne peut pas restaurer
+des documents déjà supprimés par l’ancienne migration, sans source de données
+ou sauvegarde externe. Elle ne prétend pas migrer des schémas inconnus.
+
+### Insertions et atomicité
+
+Les insertions de messages, souvenirs, documents et passages passent par une
+fonction commune utilisant `insertOrThrow`, puis vérifiant explicitement
+l’identifiant retourné. Le résultat `-1`, possible avec un trigger
+`RAISE(IGNORE)`, provoque aussi une `SQLiteException`.
+
+La transaction documentaire n’est déclarée réussie qu’après toutes les
+insertions. Une erreur annule le nouveau document et tous ses nouveaux
+passages, sans modifier les données préexistantes. Les erreurs remontent aux
+appelants ; aucun comportement d’interface n’est modifié dans cette mission.
+
+### Tests et validations effectués
+
+`LocalDatabaseTest` ajoute 11 scénarios exécutés sous Robolectric 4.14.1 en
+mode SQLite natif pour API 24, 25 et 35, soit 33 cas. Une `Application` neutre
+évite le démarrage des moteurs. Toutes les bases manipulées sont synthétiques
+et isolées ; aucune base d’utilisateur réel n’est ouverte.
+
+La fixture `app/src/test/resources/sqlite/schema-v1-v2.sql` reproduit le
+schéma historique indépendamment de `onCreate` et contient des messages,
+souvenirs, documents et passages avec identifiants, dates et valeurs nulles.
+Les tests couvrent :
+
+- Création, écritures et relecture après réouverture.
+- Migration d’une base version 1 et ouverture d’une base version 2.
+- Conservation exacte des lignes des quatre tables et de `sqlite_sequence`.
+- Conservation des compteurs d’auto-incrémentation et nouvelles écritures.
+- Insertions rejetées ou ignorées, avec propagation des erreurs.
+- Annulation de tout l’import lorsque le deuxième passage échoue, puis reprise.
+- Refus d’une migration non prévue et d’un downgrade, avec conservation du
+  numéro de version et des lignes. La version 3 de ces tests est une fixture
+  synthétique de refus, pas une version historique connue de JARVIS.
+
+Après résolution d’un problème local de cache Robolectric non accessible en
+écriture, les tests avant correction ont reproduit 24 échecs sur 33 cas.
+Après correction :
+
+- 33 cas SQLite réussis ; 7 tests d’heure existants réussis ; aucun échec,
+  erreur ou test ignoré.
+- `assembleDebug` et `lintDebug` réussis ; 0 erreur et 34 avertissements Lint
+  préexistants, hors du périmètre de cette correction.
+- Signature de l’APK et absence de permissions réseau vérifiées.
+
+Robolectric exécute ces tests sur JVM avec SQLite natif ; ce n’est pas un essai
+sur appareil ni émulateur Android. La qualification sur une installation
+réelle reste à effectuer avec des données de test sauvegardées. Les modèles
+ne sont pas nécessaires à cette validation de persistance ; le fonctionnement
+IA complet n’est pas validé par cette mission.
+
+Les défauts historiques de migration destructrice et d’insertions silencieuses
+sont traités. Les priorités de cycle de vie, concurrence et ressources des
+autres composants restent ouvertes. Le corpus existant est conservé avec son
+ancien découpage ; aucune réindexation automatique n’est imposée.

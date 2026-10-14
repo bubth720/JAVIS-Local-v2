@@ -178,6 +178,19 @@ d’heure, les fuseaux, le passage à l’heure d’été et la locale. Exécute
 suite et Lint lors des changements concernés ; les tests JVM seuls ne
 démontrent pas l’exécution sur Android API 24/25.
 
+Depuis la mission 004, `LocalDatabaseTest` utilise Robolectric et SQLite natif
+sur API 24, 25 et 35. Sa fixture historique indépendante est
+`app/src/test/resources/sqlite/schema-v1-v2.sql`. Ne pas remplacer cette
+fixture par le schéma courant : elle protège la compatibilité des migrations.
+Les tests utilisent uniquement des bases synthétiques isolées et une
+`Application` neutre, sans initialiser les moteurs IA ou la voix. Robolectric
+nécessite des artefacts Android Maven et un répertoire utilisateur JVM
+accessible en écriture pour son cache. Pour une validation ciblée :
+
+```sh
+gradle :app:testDebugUnitTest --tests '*LocalDatabaseTest*' --no-daemon
+```
+
 Rapporter distinctement les vérifications réussies, échouées, non exécutées
 et bloquées. Ne pas décrire un résultat ancien comme une nouvelle validation.
 Une compilation réussie ou une exécution sans tests ne valide pas l’assistant.
