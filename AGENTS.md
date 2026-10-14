@@ -68,6 +68,9 @@ Sources : `app/src/main/java/com/stark/jarvislocal/`.
 | `WavRecorder` | Capture PCM et écrit un WAV |
 | `WhisperLocalEngine` | Transcrit localement l’audio |
 | `LocalTts` | Lit les réponses avec le moteur Android |
+| `SessionCoordinator` | Single-flight, état observable, rotation et drainage des opérations |
+| `LocalLanguageModel` | Interface de test du moteur local existant |
+| `WavFiles` | Validation du WAV du recorder et nettoyage de son cache réservé |
 
 ## Fonctionnalités à préserver
 
@@ -190,6 +193,16 @@ accessible en écriture pour son cache. Pour une validation ciblée :
 ```sh
 gradle :app:testDebugUnitTest --tests '*LocalDatabaseTest*' --no-daemon
 ```
+
+Depuis la mission 005, conserver la coordination applicative : un timeout ou
+une annulation ne prouve pas l’arrêt d’un appel JNI. Ne libérer le verrou ni
+les fichiers audio tant que leur utilisateur effectif n’a pas terminé.
+Une rotation ne doit pas détruire le moteur TTS partagé ni relancer la préparation.
+Tester les moteurs et périphériques via les interfaces injectables, sans
+charger de grands modèles. Les tests d’activité utilisent Robolectric avec
+les ressources Android incluses. Une défaillance de libération audio impose
+une mise en quarantaine et un redémarrage du processus, pas une réutilisation
+aveugle du périphérique.
 
 Rapporter distinctement les vérifications réussies, échouées, non exécutées
 et bloquées. Ne pas décrire un résultat ancien comme une nouvelle validation.

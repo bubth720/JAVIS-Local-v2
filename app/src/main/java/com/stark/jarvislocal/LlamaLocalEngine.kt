@@ -5,26 +5,28 @@ import dev.ffmpegkit.llama.LlamaConfig
 import dev.ffmpegkit.llama.LlamaModel
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
 import kotlin.math.max
 
 /**
  * Le modèle reste chargé en mémoire entre les messages.
  * La V2 rechargeait ~1,2 Go à chaque requête, ce qui provoquait le blocage apparent.
  */
-class LlamaLocalEngine(private val modelManager: ModelManager) {
+class LlamaLocalEngine(private val modelManager: ModelManager) : LocalLanguageModel {
     private val lock = Mutex()
-    private var model: LlamaModel? = null
+    @Volatile private var model: LlamaModel? = null
     private var loadedContextSize: Int = 0
 
-    suspend fun warmUp(settings: JarvisSettings) = lock.withLock {
-        ensureLoaded(settings)
+    override suspend fun warmUp(settings: JarvisSettings) {
+        withContext(NonCancellable) { lock.withLock { ensureLoaded(settings) } }
     }
 
-    suspend fun generate(
+    override suspend fun generate(
         prompt: String,
         systemPrompt: String,
         settings: JarvisSettings
-    ): String = lock.withLock {
+    ): String = withContext(NonCancellable) { lock.withLock {
         val activeModel = ensureLoaded(settings)
         try {
             Llama.complete(
@@ -42,9 +44,9 @@ class LlamaLocalEngine(private val modelManager: ModelManager) {
             }
             throw e
         }
-    }
+    } }
 
-    fun isLoaded(): Boolean = model != null
+    override fun isLoaded(): Boolean = model != null
 
     private suspend fun ensureLoaded(settings: JarvisSettings): LlamaModel {
         require(modelManager.hasLlm()) { "Le modèle jarvis.gguf n'est pas prêt." }

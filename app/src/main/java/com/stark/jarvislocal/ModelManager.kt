@@ -2,13 +2,16 @@ package com.stark.jarvislocal
 
 import android.content.Context
 import java.io.File
+import java.io.InputStream
 
-class ModelManager(private val context: Context) {
-    private val modelDir = File(context.filesDir, "models").apply { mkdirs() }
+class ModelManager internal constructor(private val modelDir: File, private val openAsset: (String) -> InputStream) {
+    constructor(context: Context) : this(File(context.applicationContext.filesDir, "models"), assetOpener(context.applicationContext))
+    init { modelDir.mkdirs() }
 
     val llmFile: File get() = File(modelDir, "jarvis.gguf")
     val whisperFile: File get() = File(modelDir, "whisper.bin")
 
+    @Synchronized
     fun ensureBundledModels(onProgress: ((String) -> Unit)? = null) {
         copyAssetIfNeeded("models/jarvis.gguf", llmFile, onProgress)
         copyAssetIfNeeded("models/whisper.bin", whisperFile, onProgress)
@@ -21,7 +24,7 @@ class ModelManager(private val context: Context) {
         if (dst.exists() && dst.length() > 1024 * 1024) return
         val tmp = File(dst.parentFile, dst.name + ".part")
         onProgress?.invoke("Préparation de " + dst.name + "…")
-        context.assets.open(assetPath).use { input ->
+        openAsset(assetPath).use { input ->
             tmp.outputStream().buffered(1024 * 1024).use { output ->
                 input.copyTo(output, 1024 * 1024)
             }
@@ -30,3 +33,6 @@ class ModelManager(private val context: Context) {
         check(tmp.renameTo(dst)) { "Impossible d'installer " + dst.name }
     }
 }
+
+private fun assetOpener(applicationContext: Context): (String) -> InputStream =
+    { path -> applicationContext.assets.open(path) }
