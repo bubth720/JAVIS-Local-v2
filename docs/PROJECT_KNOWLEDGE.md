@@ -814,3 +814,26 @@ est implémentée et testée. Consulter le [rapport](mission-004b/REPORT.md), la
 [correspondance à valider](mission-004b/LLM_003D_MAPPING.md) et les
 [vérifications](mission-004b/VALIDATION.md). Ne pas annoncer une intégration LLM
 opérationnelle ni une coordination entre APK à partir de ces tests locaux.
+
+
+### Complément 004B — sélection exclusive dans le processus
+
+La livraison `mission-004b-core-backend-lifecycle` réutilise `07cd282` et ajoute
+ProcessInferenceAdmission. L'ancienne limite « par contrôleur » est renforcée :
+les factories de production et les instances historiques réservent le même
+propriétaire de backend avant allocation. Les contrôleurs indépendants ne
+peuvent pas charger un autre moteur avant déchargement confirmé. Une libération
+inconnue/échouée conserve la réservation, même après remplacement du contrôleur.
+Le repli historique reste explicite et nécessite une libération attestée ;
+aucun reset global ou contournement des limites Android n'est livré. Les tests
+multicontrôleurs restent des simulations, pas une qualification native ou une
+coordination inter-APK. Les résultats actuels figurent dans
+`docs/mission-004b/VALIDATION.md` ; les 174 cas mentionnés ci-dessus décrivent
+la première livraison 004B, avant ce complément.
+
+
+Validation finale du complément : 185 tests réussis, 0 échec/erreur/ignoré,
+build debug et Lint réussis (0 erreur, 30 avertissements). Les 11 nouveaux
+scénarios vérifient l'admission partagée, sa conservation après erreur/délai,
+le repli explicite après déchargement et les confirmations tardives. Aucun
+résultat CI distant ni exécution native réelle ne sont revendiqués.

@@ -17,7 +17,7 @@ class InferenceControllerTest {
     private val settings = JarvisSettings()
     private fun request(id: String = "r1", session: String = "s1") = InferenceRequest(session, id, "system only", "question", "context\n")
     private fun controller(engine: SimulatedEngine = SimulatedEngine()): InferenceController =
-        InferenceController(InferenceEngineFactory({ engine })).also { it.openSession("s1") }
+        InferenceController(isolatedInferenceFactory({ engine })).also { it.openSession("s1") }
     private fun refused(reason: InferenceRefusal, block: () -> Unit) {
         val error = assertThrows(InferenceRejected::class.java, block)
         assertEquals(reason, error.reason)
@@ -30,7 +30,7 @@ class InferenceControllerTest {
     @Test fun selectionHappensBeforeAnyConstructionOrWarmup() = runTest {
         var historicalCreated = 0; var delegatedCreated = 0
         val historical = SimulatedEngine(); val delegated = SimulatedEngine()
-        val manager = InferenceController(InferenceEngineFactory({ historicalCreated++; historical }, { delegatedCreated++; delegated }))
+        val manager = InferenceController(isolatedInferenceFactory({ historicalCreated++; historical }, { delegatedCreated++; delegated }))
         manager.select(InferenceMode.DELEGATED_SIMULATOR)
         assertEquals(0, historicalCreated); assertEquals(0, delegatedCreated)
         manager.warmUp(settings)
@@ -49,7 +49,7 @@ class InferenceControllerTest {
     @Test fun simultaneousPreparationAndSelectionCannotDoubleLoad() = runTest {
         val engine = SimulatedEngine().apply { preparation = CompletableDeferred() }
         var delegates = 0
-        val manager = InferenceController(InferenceEngineFactory({ engine }, { delegates++; SimulatedEngine() }))
+        val manager = InferenceController(isolatedInferenceFactory({ engine }, { delegates++; SimulatedEngine() }))
         manager.openSession("s1")
         val preparing = launch { manager.warmUp(settings) }; runCurrent()
         refused(InferenceRefusal.BUSY) { manager.select(InferenceMode.DELEGATED_SIMULATOR) }
@@ -62,7 +62,7 @@ class InferenceControllerTest {
 
     @Test fun cancellationBeforeDispatchDoesNotConstructOrLoadAnything() = runTest {
         var creations = 0
-        val manager = InferenceController(InferenceEngineFactory({ creations++; SimulatedEngine() }))
+        val manager = InferenceController(isolatedInferenceFactory({ creations++; SimulatedEngine() }))
         manager.openSession("s1")
         val job = launch { manager.infer(request()) }
         job.cancel(); runCurrent()
@@ -99,7 +99,7 @@ class InferenceControllerTest {
             override suspend fun generate(prompt: String, systemPrompt: String, settings: JarvisSettings) = "answer"
             override fun isLoaded() = false
         }
-        val manager = InferenceController(InferenceEngineFactory({ backend }))
+        val manager = InferenceController(isolatedInferenceFactory({ backend }))
         manager.warmUp(settings)
         assertFalse(manager.state.value.modelUnloaded)
         refused(InferenceRefusal.RELEASE_UNCONFIRMED) { manager.select(InferenceMode.HISTORICAL) }
@@ -118,7 +118,7 @@ class InferenceControllerTest {
                 throw InferenceFailure("release uncertain", nativeDone = true, releaseUnconfirmed = true)
             }
         }
-        val manager = InferenceController(InferenceEngineFactory({ backend })).also { it.openSession("s1") }
+        val manager = InferenceController(isolatedInferenceFactory({ backend })).also { it.openSession("s1") }
         val job = launch { manager.infer(request()) }; runCurrent()
         job.cancel(); runCurrent(); completion.complete(Unit); runCurrent()
         assertTrue(job.isCompleted); assertTrue(manager.state.value.nativeDone)
@@ -197,7 +197,7 @@ class InferenceControllerTest {
 
     @Test fun explicitHistoricalReturnRequiresConfirmedUnload() = runTest {
         val historical = SimulatedEngine(); val delegated = SimulatedEngine()
-        val manager = InferenceController(InferenceEngineFactory({ historical }, { delegated }))
+        val manager = InferenceController(isolatedInferenceFactory({ historical }, { delegated }))
         manager.select(InferenceMode.DELEGATED_SIMULATOR); manager.warmUp(settings)
         refused(InferenceRefusal.RELEASE_UNCONFIRMED) { manager.select(InferenceMode.HISTORICAL) }
         assertEquals(UnloadResult.CONFIRMED, manager.unload())

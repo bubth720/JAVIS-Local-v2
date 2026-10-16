@@ -13,7 +13,7 @@ import org.junit.Test
 class SessionInferenceLifecycleTest {
     @Test fun timeoutRequestsStopButKeepsSessionBusyAndRejectsTheLateAnswer() = runTest {
         val engine = SimulatedEngine().apply { answer = CompletableDeferred() }
-        val manager = InferenceController(InferenceEngineFactory({ engine })).also { it.openSession("session") }
+        val manager = InferenceController(isolatedInferenceFactory({ engine })).also { it.openSession("session") }
         val fake = FakeSessionActions().apply {
             chatBlock = { question -> ChatMessage(role = "assistant", text = manager.infer(
                 InferenceRequest("session", "request", "system", question, "")).text) }
@@ -40,7 +40,7 @@ class SessionInferenceLifecycleTest {
 
     @Test fun closureDuringUnknownCompletionCannotDisplayReadyOrUnloaded() = runTest {
         val engine = SimulatedEngine().apply { answer = CompletableDeferred(); nativeDone = false }
-        val manager = InferenceController(InferenceEngineFactory({ engine })).also { it.openSession("s") }
+        val manager = InferenceController(isolatedInferenceFactory({ engine })).also { it.openSession("s") }
         val fake = FakeSessionActions().apply {
             chatBlock = { ChatMessage(role = "assistant", text = manager.infer(InferenceRequest("s", "r", "system", it, "")).text) }
         }

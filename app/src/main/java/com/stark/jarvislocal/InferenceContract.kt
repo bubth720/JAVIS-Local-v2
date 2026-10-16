@@ -27,7 +27,7 @@ data class EngineCompletion(val nativeDone: Boolean, val modelUnloaded: Boolean)
 data class InferenceResponse(val sessionId: String, val requestId: String, val text: String, val nativeDone: Boolean = true)
 enum class StopResult { REQUESTED, UNSUPPORTED, NOT_RUNNING }
 enum class UnloadResult { CONFIRMED, UNKNOWN, FAILED }
-enum class InferenceRefusal { BUSY, CONTRACT, SYSTEM_PROMPT, BUDGET, STALE_RESPONSE, STOP_REQUESTED, RELEASE_UNCONFIRMED, DELEGATE_DISABLED }
+enum class InferenceRefusal { BUSY, CONTRACT, SYSTEM_PROMPT, BUDGET, STALE_RESPONSE, STOP_REQUESTED, RELEASE_UNCONFIRMED, DELEGATE_DISABLED, PROCESS_ENGINE_HELD }
 class InferenceRejected(val reason: InferenceRefusal) : IllegalStateException("Inférence refusée : $reason")
 
 /** An exception alone does not prove that a backend has stopped. */

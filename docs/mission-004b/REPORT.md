@@ -5,7 +5,10 @@
 Dépôt unique : `bubth720/JAVIS-Local-v2`. Branche de départ
 `mission-004a-core-stability`, commit vérifié localement et via FETCH_HEAD :
 `306a89b7cc33803aba9b7af9c6a553f1bc40f08f`.
-Branche de travail/livraison : `mission-004b-inference-contract`.
+Branche de livraison demandée : `mission-004b-core-backend-lifecycle`.
+Le commit 004B existant `07cd282603205d57f3d2ded1b14d5d95e68989e2`
+est réutilisé depuis la base 004A, puis complété par l'admission partagée du
+processus. L'ancienne branche reste conservée ; le travail n'est pas recréé.
 Le remote ne créait pas automatiquement de référence de suivi pour la branche
 004A lors du fetch ; c'est son FETCH_HEAD, et non une référence supposée, qui a
 été vérifié. Aucune modification ou fusion de main n'est effectuée.
@@ -97,10 +100,23 @@ processus. Aucun mécanisme de reset forcé de quarantaine n'est livré.
 
 Pour changer : attendre la fin, appeler unload, exiger CONFIRMED, sélectionner
 explicitement le mode puis seulement préparer. Aucun fallback automatique.
-Même le retour au mode historique exige cette libération. Un contrôleur local
-ne coordonne ni deux contrôleurs indépendants ni deux applications Android.
-Conserver une seule composition de production dans AppGraph ; aucune garantie
-inter-APK n'est revendiquée.
+Même le retour au mode historique exige cette libération. `ProcessInferenceAdmission` réserve le processus pour un backend avant tout
+appel susceptible d'allouer. La réservation est commune par défaut aux factories
+et au constructeur de production de LlamaLocalEngine, même si un deuxième
+contrôleur ou moteur historique est créé. Elle ne se libère que sur déchargement
+confirmé ; une erreur/inconnue conserve son propriétaire et sa quarantaine,
+y compris après remplacement du contrôleur. Aucun reset de production n'est
+exposé. Une confirmation d'un ancien propriétaire ne libère pas le suivant.
+La réservation reste détenue pendant un redimensionnement de contexte.
+
+Cette admission suit les backends LLM gérés dans ce processus ; elle ne mesure
+pas les octets réellement rendus à l'OS et ne remplace pas les protections
+mémoire/batterie/température Android. Whisper garde son comportement historique.
+Elle ne coordonne pas d'autres processus ni d'autres APK. Une instance partagée
+d'un même backend n'est pas deux moteurs lourds ; son exclusion d'opération
+reste à la charge du contrôleur et, pour Llama, du mutex natif local. Conserver
+la composition de production dans AppGraph ; aucune garantie inter-APK n'est
+revendiquée.
 
 ## Fichiers et justification du périmètre
 
@@ -113,11 +129,13 @@ inter-APK n'est revendiquée.
 | SessionCoordinator.kt | Transmet la demande d'arrêt, conserve le drainage, distingue erreur de moteur/quarantaine d'un état prêt |
 | PromptBuilder.kt | Nécessaire en plus des cinq fichiers prioritaires : expose le contexte sans question et les références incluses, sans modifier le budget/rendu 004A |
 | InferenceContract.kt | Nouveau : structures et refus testables sans Android |
-| InferenceController.kt | Nouveau : factory, exclusivité, états, corrélation et drainage |
+| InferenceController.kt | Nouveau : factory, exclusivité, états, corrélation, drainage et admission partagée |
+| ProcessInferenceAdmission.kt | Nouveau : réservation forte par identité de backend dans tout le processus, conservée en quarantaine |
 | InferenceControllerTest.kt | Nouveau : sélection, concurrence, arrêts, erreurs, refus et corrélation |
 | LlamaLifecycleTest.kt | Nouveau : vraie classe historique avec faux backend, réutilisation/échecs de release/load et annulation |
 | SessionInferenceLifecycleTest.kt | Nouveau : coordinateur relié au contrôleur simulé, délai et fermeture |
 | CoreInferenceContractTest.kt | Nouveau : Core et SQLite natif Robolectric sur API 24/25/35, contrat et absence d'assistant tardif |
+| ProcessInferenceAdmissionTest.kt / IsolatedInferenceFactory.kt | Nouveaux : plusieurs contrôleurs/moteurs, erreurs/fallback, confirmations tardives et admission isolée pour chaque simulation, sans reset global |
 | docs/mission-004b/* | Rapport, correspondance documentaire et validation |
 | AGENTS.md / docs/PROJECT_KNOWLEDGE.md | Actualisation requise des connaissances et invariants |
 
@@ -129,7 +147,7 @@ Les seules migrations exécutées sont les tests synthétiques déjà autorisés
 
 ## Vérifications, risques et prochaine action
 
-[VALIDATION.md](VALIDATION.md) détaille les 174 cas, compilation et Lint.
+[VALIDATION.md](VALIDATION.md) détaille les cas exécutés, compilation et Lint.
 Les tests du backend Llama sont des simulations : aucune inférence JNI réelle,
 aucun chargement GGUF ou déchargement matériel n'est revendiqué. L'observation
 du retour d'une API est le signal de fin utilisable ici ; elle ne prouve pas
@@ -146,3 +164,17 @@ cette branche et validation utilisateur requises avant une suite ; aucune fusion
 L'identifiant du commit livré et le résultat effectif du push sont fournis
 avec le bilan final et les artefacts de livraison, sans prétendre que ce fichier
 peut contenir son propre hash de commit.
+
+## CI et livraison contrôlée
+
+Le workflow suivi reste celui de construction/publication manuelle d'APK et
+n'exécute pas les tests ou Lint. Il n'est pas déclenché : il téléchargerait de
+gros modèles et publierait un APK. Les résultats de cette mission sont locaux,
+reproductibles par les commandes documentées ; aucun résultat CI distant n'est
+revendiqué. La branche dédiée est destinée à la revue, sans fusion ni déploiement.
+
+Le repli est explicite : une erreur de chargement attestée comme terminée
+permet de tenter un déchargement contrôlé, puis d'exiger CONFIRMED avant de
+sélectionner le mode historique. Si la libération est inconnue, même un nouveau
+contrôleur ne peut pas charger son backend. Aucun fallback automatique ne
+contourne la réservation, les limites système ou le prompt système séparé.

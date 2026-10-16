@@ -27,7 +27,8 @@ data class InferenceLifecycle(
 /** No discovery, IPC or production delegate. Suppliers construct without warming up. */
 class InferenceEngineFactory internal constructor(
     private val historical: () -> LocalLanguageModel,
-    private val delegatedSimulator: (() -> LocalLanguageModel)? = null
+    private val delegatedSimulator: (() -> LocalLanguageModel)? = null,
+    internal val admission: ProcessInferenceAdmission = ProcessInferenceAdmission.process
 ) {
     internal fun supports(mode: InferenceMode) = mode == InferenceMode.HISTORICAL || delegatedSimulator != null
     internal fun create(mode: InferenceMode): LocalLanguageModel = when (mode) {
@@ -37,7 +38,7 @@ class InferenceEngineFactory internal constructor(
     }
 }
 
-/** Exclusivity applies to this controller in this process, never to another APK. */
+/** Local operation gate plus shared process admission; never coordinates another APK. */
 class InferenceController(private val factory: InferenceEngineFactory) : LocalLanguageModel {
     private val gate = Mutex()
     private val mutableState = MutableStateFlow(InferenceLifecycle())
@@ -83,6 +84,7 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
             val completion = drain { beginNative(mayAllocate = true); it.prepare(settings).also { result ->
                 mark { copy(nativeDone = result.nativeDone, modelUnloaded = result.modelUnloaded,
                     quarantined = !result.nativeDone) }
+                if (result.nativeDone && result.modelUnloaded) factory.admission.confirmRelease(it)
             } }
             if (!completion.nativeDone) throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
         }
@@ -121,6 +123,7 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
         return operate { backend ->
             // A returned inference/load is distinct from a confirmed release.
             val result = drain { beginNative(mayAllocate = false); backend.unload().also { release ->
+                if (release == UnloadResult.CONFIRMED) factory.admission.confirmRelease(backend)
                 mark { copy(nativeDone = true, modelUnloaded = release == UnloadResult.CONFIRMED,
                     quarantined = release != UnloadResult.CONFIRMED,
                     error = if (release == UnloadResult.CONFIRMED) null else "Libération du moteur non attestée") }
@@ -143,8 +146,10 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
             return block(backend)
         } catch (cancel: CancellationException) { throw cancel }
         catch (failure: Throwable) {
+            val unconfirmed = failure is InferenceRejected && failure.reason == InferenceRefusal.RELEASE_UNCONFIRMED
             mark { copy(nativeDone = if (failure is InferenceFailure) failure.nativeDone else nativeDone,
-                quarantined = quarantined || (failure is InferenceFailure && (!failure.nativeDone || failure.releaseUnconfirmed)) ||
+                modelUnloaded = if (unconfirmed) false else modelUnloaded,
+                quarantined = quarantined || unconfirmed || (failure is InferenceFailure && (!failure.nativeDone || failure.releaseUnconfirmed)) ||
                     (failure !is InferenceFailure && !nativeDone), error = failure.message) }
             throw failure
         } finally {
@@ -184,11 +189,14 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
 
     @Synchronized private fun beginNative(mayAllocate: Boolean) {
         if (mutableState.value.stopRequested) throw InferenceRejected(InferenceRefusal.STOP_REQUESTED)
+        if (mayAllocate) factory.admission.acquire(requireNotNull(engine))
         mutableState.value = mutableState.value.copy(nativeDone = false,
             modelUnloaded = if (mayAllocate) false else mutableState.value.modelUnloaded)
     }
 
     @Synchronized private fun mark(change: InferenceLifecycle.() -> InferenceLifecycle) {
-        mutableState.value = mutableState.value.change()
+        val next = mutableState.value.change()
+        if (next.quarantined) engine?.let(factory.admission::quarantine)
+        mutableState.value = next
     }
 }

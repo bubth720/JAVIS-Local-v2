@@ -17,7 +17,7 @@ O4 ne sont pas déduits de leurs seuls numéros.
 
 | Besoin de la mission CORE | Réalisation locale 004B | Vérification requise dans LLM 003D / D4-02 |
 |---|---|---|
-| Choix exclusif avant préchauffage | Factory et sélection, historique par défaut, simulateur injecté inactif en production | Noms/modes officiels, propriétaire de la sélection, coordination globale éventuelle |
+| Choix exclusif avant préchauffage | Factory, sélection et admission partagée dans le processus, historique par défaut, simulateur injecté inactif en production | Noms/modes officiels, propriétaire de la sélection, coordination globale éventuelle |
 | Système distinct, stratégie P2 | `InferenceRequest.systemPrompt` → argument système historique ; capacité requise | Support réel du backend/format de chat et refus officiel en cas d'incompatibilité |
 | Question et contexte distincts | Champs `question` et `context` ; rendu uniquement à la frontière historique | Schéma exact, ordre et règles de confiance/normalisation du protocole cible |
 | Sources | IDs document/passage, nom et index des seuls passages inclus | Format officiel, pages, provenance et politique de citations ; aucun transfert actuel |
@@ -44,3 +44,15 @@ permissions inter-APK, version distante, streaming ou transport réseau.
    l'ordonnancement local, pas le comportement d'un autre APK ou ses ressources.
 4. Autoriser séparément un futur adaptateur et sa coordination entre processus.
    Garder jusque-là le moteur historique et les données locales en place.
+
+## Garantie locale complémentaire
+
+L'admission ProcessInferenceAdmission est partagée par les factories de
+production et les instances historiques, sans dépendre de la durée de vie d'un
+contrôleur. Elle interdit un autre backend tant que le propriétaire précédent
+n'a pas confirmé son déchargement. En tests, une admission privée est injectée
+pour chaque processus simulé ; le singleton de production n'est jamais réinitialisé.
+Cette garantie ne peut pas arbitrer la RAM ou l'exécution de JARVIS LLM dans un
+autre processus. Un arbitre interprocessus, ses permissions, ses attestations et
+sa politique mémoire/batterie/température restent à spécifier et qualifier ;
+aucun contournement ni transport ne sont ajoutés ici.

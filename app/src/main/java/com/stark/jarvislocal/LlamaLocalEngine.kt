@@ -19,9 +19,11 @@ internal interface LlamaBackend {
 class LlamaLocalEngine internal constructor(
     private val modelReady: () -> Boolean,
     private val modelPath: String,
-    private val backend: LlamaBackend
+    private val backend: LlamaBackend,
+    private val admission: ProcessInferenceAdmission
 ) : LocalLanguageModel {
-    constructor(modelManager: ModelManager) : this({ modelManager.hasLlm() }, modelManager.llmFile.absolutePath, AndroidLlamaBackend())
+    constructor(modelManager: ModelManager) : this({ modelManager.hasLlm() }, modelManager.llmFile.absolutePath,
+        AndroidLlamaBackend(), ProcessInferenceAdmission.process)
 
     private val lock = Mutex()
     @Volatile private var model: Any? = null
@@ -52,7 +54,7 @@ class LlamaLocalEngine internal constructor(
 
     override suspend fun unload(): UnloadResult = withContext(NonCancellable) { lock.withLock {
         if (releaseUncertain) return@withLock UnloadResult.UNKNOWN
-        try { releaseInternal(); UnloadResult.CONFIRMED }
+        try { releaseInternal(); admission.confirmRelease(this@LlamaLocalEngine); UnloadResult.CONFIRMED }
         catch (error: InferenceFailure) { UnloadResult.FAILED }
     } }
 
@@ -60,6 +62,7 @@ class LlamaLocalEngine internal constructor(
         if (releaseUncertain) throw InferenceFailure("Libération du modèle non attestée ; redémarrage du processus nécessaire",
             nativeDone = true, releaseUnconfirmed = true)
         if (!modelReady()) throw InferenceFailure("Le modèle jarvis.gguf n'est pas prêt.", nativeDone = true)
+        admission.acquire(this)
         val existing = model
         if (existing != null && loadedContextSize == settings.contextSize) return existing
         releaseInternal()
@@ -67,6 +70,7 @@ class LlamaLocalEngine internal constructor(
         catch (error: Throwable) {
             // A failed load provides no handle with which to attest resource release.
             releaseUncertain = true
+            admission.quarantine(this)
             throw InferenceFailure("Chargement du modèle échoué ; ressources non attestées", nativeDone = true,
                 cause = error, releaseUnconfirmed = true)
         }
@@ -80,6 +84,7 @@ class LlamaLocalEngine internal constructor(
             try { backend.release(it) }
             catch (error: Throwable) {
                 releaseUncertain = true
+                admission.quarantine(this)
                 // Keep the handle: an exception is not proof of release.
                 throw InferenceFailure("Déchargement du modèle échoué ; changement de moteur interdit", nativeDone = true,
                     cause = error, releaseUnconfirmed = true)

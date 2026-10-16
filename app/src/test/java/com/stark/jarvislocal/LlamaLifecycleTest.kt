@@ -10,7 +10,7 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LlamaLifecycleTest {
-    private fun engine(backend: FakeLlamaBackend) = LlamaLocalEngine({ true }, "synthetic.gguf", backend)
+    private fun engine(backend: FakeLlamaBackend) = LlamaLocalEngine({ true }, "synthetic.gguf", backend, ProcessInferenceAdmission())
 
     @Test fun warmupAndGenerationReuseTheHistoricalModelAndKeepSystemSeparate() = runTest {
         val backend = FakeLlamaBackend(); val engine = engine(backend)
@@ -63,7 +63,7 @@ class LlamaLifecycleTest {
 
     @Test fun memoryFailureWithFailedReleaseKeepsControllerQuarantined() = runTest {
         val backend = FakeLlamaBackend().apply { failRelease = true; completionError = OutOfMemoryError("synthetic") }
-        val manager = InferenceController(InferenceEngineFactory({ engine(backend) }))
+        val manager = InferenceController(isolatedInferenceFactory({ engine(backend) }))
         manager.openSession("s")
         assertTrue(runCatching { manager.infer(InferenceRequest("s", "r", "system", "question", "")) }.isFailure)
         assertTrue(manager.state.value.nativeDone); assertTrue(manager.state.value.quarantined)

@@ -264,3 +264,17 @@ Le mode délégué est désactivé dans AppGraph, seulement simulé par injectio
 dans les tests. Aucune coordination inter-APK n'est implémentée. Les textes
 D4-02/003D étant absents lors de cette mission, vérifier leur version officielle
 avant toute affirmation de conformité ou futur raccordement.
+
+
+### Complément 004B — admission du processus
+
+Branche de livraison : `mission-004b-core-backend-lifecycle`. Le commit 004B
+`07cd282` est réutilisé puis complété. Les factories de production et le
+constructeur historique partagent ProcessInferenceAdmission.process. Réserver
+avant toute allocation et conserver la réservation pendant un rechargement de
+contexte. Seul un déchargement confirmé la libère ; une inconnue/erreur la
+conserve même après recréation du contrôleur. Ne pas ajouter de reset ou de
+nouvelle admission privée dans la composition de production. Les admissions
+privées sont réservées aux tests synthétiques. Cette protection n'arbitre ni
+un autre processus ni les ressources d'un autre APK, et ne remplace aucune
+protection mémoire, thermique ou batterie du système.
