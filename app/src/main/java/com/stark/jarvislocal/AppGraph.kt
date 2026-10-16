@@ -15,7 +15,7 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
     val models = ModelManager(appContext)
     val rag = RagEngine(db)
     val pdf = PdfImporter(appContext, db)
-    val llm = LlamaLocalEngine(models)
+    val llm = InferenceController(InferenceEngineFactory(historical = { LlamaLocalEngine(models) }))
     val core = JarvisCore(db, rag, llm, settings)
     val whisper = WhisperLocalEngine(appContext, models)
     val tts = LocalTts(appContext)
@@ -37,6 +37,8 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
         }
 
         override suspend fun chat(text: String): ChatMessage = core.chat(text)
+        override fun requestInferenceStop() { llm.requestStop() }
+        override fun inferenceReleaseUnconfirmed(): Boolean = llm.state.value.quarantined
 
         override suspend fun importPdf(uri: String) {
             val document = Uri.parse(uri)

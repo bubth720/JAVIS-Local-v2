@@ -781,3 +781,36 @@ préférences invalides, erreurs de lecture DB dans l'observateur UI, absence
 d'export/restauration, CI sans tests/Lint et distribution debug. Les propositions
 d'interfaces sont documentaires ; aucun composant externe n'est rendu nécessaire
 pour le fonctionnement historique. Actualiser cette synthèse après chaque évolution.
+
+## Actualisation — Mission 004B : contrat local d'inférence
+
+Base : `mission-004a-core-stability`, commit
+`306a89b7cc33803aba9b7af9c6a553f1bc40f08f`. Le port LocalLanguageModel
+conserve ses méthodes historiques et ajoute contrat structuré, préparation,
+demande d'arrêt et déchargement. AppGraph utilise une factory paresseuse et un
+InferenceController exclusif, moteur historique par défaut. Aucun autre moteur
+installé ou connecté ; délégué désactivé hors simulateur injecté.
+
+Le Core transmet séparément système configurable, question, contexte, sources
+avec IDs de passages, limites, session et requête. Il refuse les mauvaises
+corrélations et fins non attestées avant d'enregistrer la réponse assistant.
+Le contrôleur refuse contrat/capacités/budget incompatibles, invalide une
+réponse après arrêt ou changement de session et draine les opérations après
+annulation. Stop demandé, fin observable et modèle déchargé sont distincts.
+Le backend historique reste sans arrêt JNI attesté. Une release échouée ne
+perd plus son handle et bloque toute nouvelle opération moteur. Un changement
+exige unload confirmé puis sélection explicite ; pas de fallback automatique.
+
+Validation exécutée : 174 cas réussis (140 cas 004A inchangés + 34 nouveaux),
+0 échec/erreur/ignoré, debug et Lint réussis (0 erreur, 30 avertissements).
+Signature, minSdk24 et absence de permissions réseau vérifiés sur l'APK.
+Moteurs natifs simulés pour les nouveaux tests ; aucune recette JNI ou Android
+matérielle, aucun modèle téléchargé, aucun transport intermodule ni migration
+ou modification de schéma. Les limites 004A restent applicables.
+
+Les textes officiels D4-02 et LLM 003D ne sont pas dans les documents disponibles :
+conformité complète non attestée ; seule la règle P2 explicitée dans la mission
+est implémentée et testée. Consulter le [rapport](mission-004b/REPORT.md), la
+[correspondance à valider](mission-004b/LLM_003D_MAPPING.md) et les
+[vérifications](mission-004b/VALIDATION.md). Ne pas annoncer une intégration LLM
+opérationnelle ni une coordination entre APK à partir de ces tests locaux.

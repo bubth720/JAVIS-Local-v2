@@ -31,6 +31,8 @@ data class SessionState(
 )
 
 internal interface SessionActions {
+    fun requestInferenceStop() { }
+    fun inferenceReleaseUnconfirmed(): Boolean = false
     suspend fun prepare(progress: (String) -> Unit)
     suspend fun chat(text: String): ChatMessage
     suspend fun importPdf(uri: String)
@@ -157,6 +159,7 @@ class SessionCoordinator internal constructor(
     @Synchronized
     fun cancelCurrent() {
         stopRecording(discard = true)
+        actions.requestInferenceStop()
         currentJob?.cancel()
     }
 
@@ -177,11 +180,13 @@ class SessionCoordinator internal constructor(
         try {
             try { withTimeout(timeoutMillis) { work.await() } }
             catch (e: TimeoutCancellationException) {
+                if (phase == SessionPhase.THINKING) actions.requestInferenceStop()
                 update(SessionPhase.TIMEOUT, "Délai dépassé. Opération encore active ; nouvelle demande bloquée jusqu’à sa fin.")
                 work.await()
             }
         } finally {
             if (!work.isCompleted) {
+                if (phase == SessionPhase.THINKING) actions.requestInferenceStop()
                 update(SessionPhase.TIMEOUT, "Arrêt demandé. Attente de la fin effective de l’opération…")
                 withContext(NonCancellable) { work.join() }
             }
@@ -210,11 +215,12 @@ class SessionCoordinator internal constructor(
                 throw fatal
             } finally {
                 synchronized(this@SessionCoordinator) {
+                    if (actions.inferenceReleaseUnconfirmed()) failure = failure ?: "État natif ou libération du moteur non attesté ; moteur bloqué."
                     val previous = mutableState.value
                     mutableState.value = previous.copy(
                         phase = if (failure != null || !previous.prepared) SessionPhase.ERROR else SessionPhase.READY,
                         busy = false,
-                        detail = failure ?: if (cancelled) "Opération annulée ; ressources libérées." else if (previous.phase == SessionPhase.READY && previous.prepared) previous.detail else if (previous.prepared) "Noyau local prêt." else "Modèles indisponibles ; préparation à réessayer.",
+                        detail = failure ?: if (cancelled) "Demande annulée ; fin du traitement observée, modèle non nécessairement déchargé." else if (previous.phase == SessionPhase.READY && previous.prepared) previous.detail else if (previous.prepared) "Noyau local prêt." else "Modèles indisponibles ; préparation à réessayer.",
                         revision = previous.revision + 1
                     )
                     currentJob = null

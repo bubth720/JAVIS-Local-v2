@@ -239,3 +239,28 @@ conclure que rien n'a été enregistré. Ne pas ajouter de mémorisation automat
 Les frontières intermodules sont uniquement documentées : aucune intégration
 CORE–LLM, VOICE, NEXUS ou INTERFACE sans mission autorisée, et aucun remplacement
 d'une implémentation historique par un composant indisponible.
+
+## Actualisation — Mission 004B
+
+Lire `docs/mission-004b/REPORT.md`, `LLM_003D_MAPPING.md` et `VALIDATION.md`.
+Base vérifiée : 004A `306a89b7cc33803aba9b7af9c6a553f1bc40f08f`.
+Le contrat local d'inférence version 1 conserve système, question, contexte,
+sources, limites et identifiants séparés. Ne jamais convertir silencieusement
+le prompt système en message utilisateur ; refuser une capacité incompatible.
+
+AppGraph compose un seul InferenceController avec le fournisseur historique.
+Choisir avant préparation ; après chargement, exiger un unload CONFIRMED avant
+sélection, y compris pour revenir au moteur historique. Une release UNKNOWN
+ou FAILED impose quarantaine, pas un nouveau moteur ni un fallback. Un retour
+`isLoaded=false` ne prouve pas une libération. Ne pas contourner le contrôleur
+par une seconde instance de moteur dans la composition de production.
+
+Distinguer stopRequested, nativeDone et modelUnloaded. Le moteur historique ne
+fournit pas d'arrêt JNI attesté ; attendre son retour observable et rejeter les
+réponses invalidées avant persistance. La fin d'une génération ne décharge pas
+le modèle. Ne pas effacer un handle après une release échouée.
+
+Le mode délégué est désactivé dans AppGraph, seulement simulé par injection
+dans les tests. Aucune coordination inter-APK n'est implémentée. Les textes
+D4-02/003D étant absents lors de cette mission, vérifier leur version officielle
+avant toute affirmation de conformité ou futur raccordement.

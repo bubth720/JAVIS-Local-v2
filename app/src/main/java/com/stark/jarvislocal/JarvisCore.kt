@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import java.util.UUID
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Mutex
@@ -16,6 +17,8 @@ class JarvisCore(
     private val settingsStore: SettingsStore
 ) {
     private val conversationLock = Mutex()
+    private val inferenceSessionId = UUID.randomUUID().toString()
+    init { llm.openSession(inferenceSessionId) }
 
     suspend fun chat(userText: String): ChatMessage {
         check(conversationLock.tryLock()) { "JARVIS est occupé. Réessaie après la réponse en cours." }
@@ -75,8 +78,13 @@ class JarvisCore(
         val history = db.recentMessages(12).dropLast(1)
         val prompt = PromptBuilder.prepare(user, history, hits, memories, settings)
 
-        val raw = llm.generate(prompt.text, settings.systemPrompt, settings)
-            .ifBlank { "Le modèle n'a produit aucune réponse." }
+        val request = InferenceRequest(inferenceSessionId, UUID.randomUUID().toString(), settings.systemPrompt,
+            user, prompt.context, prompt.sources, GenerationLimits(settings.contextSize, settings.maxTokens))
+        val response = llm.infer(request)
+        if (!response.nativeDone) throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
+        if (response.sessionId != request.sessionId || response.requestId != request.requestId)
+            throw InferenceRejected(InferenceRefusal.STALE_RESPONSE)
+        val raw = response.text.ifBlank { "Le modèle n'a produit aucune réponse." }
 
         currentCoroutineContext().ensureActive()
 

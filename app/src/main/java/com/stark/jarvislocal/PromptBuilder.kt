@@ -1,7 +1,8 @@
 package com.stark.jarvislocal
 
 object PromptBuilder {
-    data class Prepared(val text: String, val documentNames: List<String>)
+    data class Prepared(val text: String, val documentNames: List<String>, val context: String = "",
+        val sources: List<InferenceSource> = emptyList())
 
     /** Conservative UTF-8 byte budget, not a model tokenizer. Never truncate the question. */
     fun prepare(
@@ -25,12 +26,14 @@ object PromptBuilder {
         }
         val documents = StringBuilder()
         val names = mutableListOf<String>()
+        val sources = mutableListOf<InferenceSource>()
         hits.forEach { hit ->
             val block = "[SOURCE ${names.size + 1}: ${hit.chunk.documentName}]\n${hit.chunk.text}\n\n"
             val header = if (documents.isEmpty()) "DOCUMENTS LOCAUX PERTINENTS:\n" else ""
             if (fits(header + block)) {
                 documents.append(header).append(block)
                 names += hit.chunk.documentName
+                sources += InferenceSource(hit.chunk.documentId, hit.chunk.id, hit.chunk.documentName, hit.chunk.chunkIndex)
             }
         }
         val memory = StringBuilder()
@@ -46,7 +49,8 @@ object PromptBuilder {
             if (fits(header + block)) selected += block
         }
         val recent = if (selected.isEmpty()) "" else "HISTORIQUE RÉCENT:\n" + selected.asReversed().joinToString("")
-        return Prepared(memory.toString() + documents + recent + question, names.distinct())
+        val context = memory.toString() + documents + recent
+        return Prepared(context + question, names.distinct(), context, sources.toList())
     }
 
     fun build(
