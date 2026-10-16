@@ -21,6 +21,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -153,25 +154,33 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.importPdf).isEnabled = !session.busy
     }
 
-    private fun showMemoryDialog() {
-        val edit = EditText(this).apply {
+    private fun showMemoryDialog() = lifecycleScope.launch {
+        val edit = EditText(this@MainActivity).apply {
             hint = "Ex. Mon projet principal s'appelle Orion."
         }
 
-        val current = graph.db.allMemories()
-            .take(12)
-            .joinToString("\n") { "• " + it.text }
-            .ifBlank { "Aucune mémoire." }
+        val current = try {
+            withContext(Dispatchers.IO) {
+                graph.db.allMemories().take(12).joinToString("\n") { "• " + it.text }.ifBlank { "Aucune mémoire." }
+            }
+        } catch (cancelled: CancellationException) { throw cancelled }
+        catch (error: Exception) { toast("Lecture de la mémoire impossible."); return@launch }
+        if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@launch
 
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(this@MainActivity)
             .setTitle("Mémoire locale")
             .setMessage(current)
             .setView(edit)
             .setPositiveButton("Ajouter") { _, _ ->
                 val value = edit.text.toString().trim()
                 if (value.isNotEmpty()) {
-                    graph.db.addMemory(value)
-                    toast("Mémoire enregistrée.")
+                    lifecycleScope.launch {
+                        try {
+                            withContext(Dispatchers.IO) { graph.db.addMemory(value) }
+                            toast("Mémoire enregistrée.")
+                        } catch (cancelled: CancellationException) { throw cancelled }
+                        catch (error: Exception) { toast("Mémoire non confirmée. Vérifie la liste avant de réessayer.") }
+                    }
                 }
             }
             .setNegativeButton("Fermer", null)

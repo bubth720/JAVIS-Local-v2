@@ -26,11 +26,7 @@ class PdfImporter(private val context: Context, private val db: LocalDatabase) {
                         .trim()
 
                     if (pageText.isNotBlank()) {
-                        val pageChunks = TextChunker.chunk(
-                            text = "[PAGE $page]\n$pageText",
-                            targetChars = 1000,
-                            overlapChars = 180
-                        )
+                        val pageChunks = chunksForPage(page, pageText)
                         allChunks += pageChunks
                     }
                 }
@@ -45,3 +41,6 @@ class PdfImporter(private val context: Context, private val db: LocalDatabase) {
         return allChunks.size
     }
 }
+
+internal fun chunksForPage(page: Int, text: String): List<String> =
+    TextChunker.chunk(text, targetChars = 1000, overlapChars = 180).map { "[PAGE $page]\n$it" }

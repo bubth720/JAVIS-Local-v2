@@ -730,3 +730,54 @@ ne démontrent ni une inférence réelle ni une capture/synthèse matérielle.
   redémarrage automatique des opérations ou de la capture.
 - Les autres limites documentaires, de budget du prompt et de distribution
   restent hors du périmètre ; aucune nouvelle release n’est publiée pour valider.
+
+## Actualisation — Mission 004A : intégrité et préparation du CORE
+
+Référence `main` vérifiée pendant la mission :
+`226e2e8cc3eebd479805b89d035eb5c1cbcad540`. La branche
+`mission-004a-core-stability` conserve le commit local 005 `3ca1ec5` comme
+ancêtre et ajoute les compléments ci-dessous. Le `main` distant vérifié ne
+contient pas encore ce commit 005. Ne pas traiter sa validation locale comme
+une fusion GitHub ou une qualification sur appareil.
+
+- SQLite et schéma v2 inchangés : les corrections historiques sont conservées.
+  Tests supplémentaires d'interruption dans la transaction de migration,
+  rollback exact puis réouverture/reprise, et refus d'une base existante
+  non versionnée sans suppression. Aucune réinitialisation ajoutée.
+- Installation des modèles : longueur exacte des assets non compressés, seuils
+  historiques et magic, copie `.part`, fsync, renommage local sans supprimer
+  préalablement la destination ; reprise par nouvelle copie après échec/crash.
+  Ni authentification par hash, ni preuve de complétude interne des tenseurs.
+- Contexte LLM borné en octets UTF-8 avec réserve, système pris en compte et
+  question trop longue refusée plutôt que coupée. Tous les noms des passages
+  inclus sont conservés, sans attribuer au modèle une citation prouvée.
+- Chaque nouveau chunk PDF reçoit sa page ; aucun ancien document ou passage
+  n'est réécrit. Tests d'import d'un PDF réel synthétique et relecture SQLite.
+- Dialogue mémoire : lecture/écriture sur IO, erreur contrôlée, confirmation
+  uniquement après insertion réussie. `/remember` conserve son protocole
+  historique et ses écritures séparées ; la mémoire peut persister sans
+  confirmation si l'historique échoue. Aucun enregistrement automatique.
+- SharedPreferences inchangé : tests de conservation et plafonds historiques,
+  sans garantie nouvelle de persistance après arrêt brutal (`apply`).
+
+Résultats exécutés le 16 octobre 2026 : 140 cas réussis, 0 échec/erreur/ignoré,
+compilation debug et Lint réussis (0 erreur, 30 avertissements), signature,
+SDK minimum 24 et absence de permissions réseau vérifiés dans l'APK.
+Ces résultats incluent la réexécution des tests 005 ; ce ne sont pas des
+validations Android matérielles. Modèles absents de l'APK local, aucun essai
+LLM/Whisper réel, micro/TTS physique ou sauvegarde/restauration réelle.
+
+Les livrables actuels, qui précisent les anciens constats devenus obsolètes :
+
+- [Audit et priorités](mission-004a/AUDIT.md).
+- [Préservation et stratégie de restauration](mission-004a/DATA_PRESERVATION.md).
+- [Matrice et recette Android restante](mission-004a/COMPATIBILITY.md).
+- [Contrats futurs, sans intégration](mission-004a/MODULARITY.md).
+- [Résultats et limites des vérifications](mission-004a/VALIDATION.md).
+
+Risques persistants : vrais modèles et budget tokenizer à qualifier, sources
+sémantiques non garanties, volume PDF/RAG et pression mémoire, `apply` et
+préférences invalides, erreurs de lecture DB dans l'observateur UI, absence
+d'export/restauration, CI sans tests/Lint et distribution debug. Les propositions
+d'interfaces sont documentaires ; aucun composant externe n'est rendu nécessaire
+pour le fonctionnement historique. Actualiser cette synthèse après chaque évolution.

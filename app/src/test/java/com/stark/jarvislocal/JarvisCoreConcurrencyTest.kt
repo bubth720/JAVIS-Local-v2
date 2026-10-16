@@ -63,6 +63,39 @@ class JarvisCoreConcurrencyTest {
         assertEquals(listOf("alpha", "merci", "Avec plaisir."), db.recentMessages().map { it.text })
     }
 
+    @Test fun explicitRememberConfirmsOnlySuccessfulMemoryInsertAndNeverCallsTheModel() = runTest {
+        val answer = core.chat("/remember Mon projet est Orion")
+        assertEquals("Mémoire enregistrée localement.", answer.text)
+        assertEquals(listOf("Mon projet est Orion"), db.allMemories().map { it.text })
+        assertEquals(listOf("user", "assistant"), db.recentMessages().map { it.role })
+        assertTrue(engine.prompts.isEmpty())
+        db.writableDatabase.execSQL("CREATE TRIGGER ignore_memory BEFORE INSERT ON memories BEGIN SELECT RAISE(IGNORE); END")
+        try { core.chat("/remember Ne pas confirmer"); fail("Expected failed memory insert") }
+        catch (e: android.database.sqlite.SQLiteException) { }
+        assertEquals(1, db.allMemories().size)
+        assertEquals(2, db.recentMessages().size)
+        assertTrue(engine.prompts.isEmpty())
+    }
+
+    @Test fun rememberCanPersistEvenIfTheSeparateHistoryWriteFails() = runTest {
+        db.writableDatabase.execSQL("CREATE TRIGGER reject_history BEFORE INSERT ON messages BEGIN SELECT RAISE(ABORT, 'synthetic failure'); END")
+        try { core.chat("/remember Mémoire persistée"); fail("History failure must propagate") }
+        catch (e: android.database.sqlite.SQLiteException) { }
+        assertEquals(listOf("Mémoire persistée"), db.allMemories().map { it.text })
+        assertTrue(db.recentMessages().isEmpty())
+        // Historical contract: separate writes; lack of confirmation does not prove lack of memory.
+    }
+
+    @Test fun generationKeepsAllIncludedPdfNamesInPersistedSource() = runTest {
+        db.addDocument("A.pdf", "application/pdf", listOf("alpha première preuve"))
+        db.addDocument("B.pdf", "application/pdf", listOf("alpha seconde preuve"))
+        val answer = core.chat("résume alpha")
+        assertTrue(engine.prompts.single().contains("A.pdf"))
+        assertTrue(engine.prompts.single().contains("B.pdf"))
+        assertEquals(setOf("A.pdf", "B.pdf"), answer.source!!.split(", ").toSet())
+        assertEquals(answer.source, db.recentMessages().last().source)
+    }
+
     @Test fun cancellationKeepsLockUntilNativeReturnAndAddsNoErrorOrDuplicateAnswer() = runTest {
         engine.pending = CompletableDeferred()
         val first = launch { core.chat("alpha") }

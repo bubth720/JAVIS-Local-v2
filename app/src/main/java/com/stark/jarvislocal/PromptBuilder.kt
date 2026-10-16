@@ -1,6 +1,54 @@
 package com.stark.jarvislocal
 
 object PromptBuilder {
+    data class Prepared(val text: String, val documentNames: List<String>)
+
+    /** Conservative UTF-8 byte budget, not a model tokenizer. Never truncate the question. */
+    fun prepare(
+        user: String,
+        history: List<ChatMessage>,
+        hits: List<RetrievalHit>,
+        memories: List<MemoryItem>,
+        settings: JarvisSettings
+    ): Prepared {
+        val available = settings.contextSize - settings.maxTokens - 128 - settings.systemPrompt.toByteArray(Charsets.UTF_8).size
+        val question = "UTILISATEUR: $user\nASSISTANT:"
+        require(available > 0 && question.toByteArray(Charsets.UTF_8).size <= available) {
+            "Question ou prompt système trop long pour le contexte local. Réduis sa longueur."
+        }
+        var remaining = available - question.toByteArray(Charsets.UTF_8).size
+        fun fits(block: String): Boolean {
+            val size = block.toByteArray(Charsets.UTF_8).size
+            if (size > remaining) return false
+            remaining -= size
+            return true
+        }
+        val documents = StringBuilder()
+        val names = mutableListOf<String>()
+        hits.forEach { hit ->
+            val block = "[SOURCE ${names.size + 1}: ${hit.chunk.documentName}]\n${hit.chunk.text}\n\n"
+            val header = if (documents.isEmpty()) "DOCUMENTS LOCAUX PERTINENTS:\n" else ""
+            if (fits(header + block)) {
+                documents.append(header).append(block)
+                names += hit.chunk.documentName
+            }
+        }
+        val memory = StringBuilder()
+        memories.forEach {
+            val block = (if (memory.isEmpty()) "MÉMOIRE LOCALE PERTINENTE:\n" else "") + "- ${it.text}\n"
+            if (fits(block)) memory.append(block)
+        }
+        // Select newest entries first, render them in chronological order.
+        val selected = mutableListOf<String>()
+        history.takeLast(12).asReversed().forEach {
+            val block = "${it.role.uppercase()}: ${it.text.take(1400)}\n"
+            val header = if (selected.isEmpty()) "HISTORIQUE RÉCENT:\n" else ""
+            if (fits(header + block)) selected += block
+        }
+        val recent = if (selected.isEmpty()) "" else "HISTORIQUE RÉCENT:\n" + selected.asReversed().joinToString("")
+        return Prepared(memory.toString() + documents + recent + question, names.distinct())
+    }
+
     fun build(
         user: String,
         history: List<ChatMessage>,

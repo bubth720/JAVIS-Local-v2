@@ -2,6 +2,7 @@ package com.stark.jarvislocal
 
 import android.content.res.Configuration
 import android.os.Looper
+import android.app.AlertDialog
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.Lifecycle
@@ -18,11 +19,50 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.LooperMode
+import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowToast
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [24, 35], application = LifecycleTestApplication::class)
 @LooperMode(LooperMode.Mode.PAUSED)
 class MainActivityLifecycleTest {
+    @Test fun memoryDialogPersistsOnWorkerAndReportsRejectedInsertWithoutSuccess() {
+        val app = RuntimeEnvironment.getApplication() as LifecycleTestApplication
+        app.prepared.complete(Unit)
+        val controller = Robolectric.buildActivity(MainActivity::class.java).setup()
+        try {
+            val activity = controller.get()
+            fun submit(text: String) {
+                activity.findViewById<Button>(R.id.memory).performClick()
+                awaitCondition { ShadowAlertDialog.getLatestAlertDialog()?.isShowing == true }
+                val dialog = ShadowAlertDialog.getLatestAlertDialog()
+                findEdit(dialog.window!!.decorView).setText(text)
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            }
+            submit("souvenir synthétique")
+            awaitCondition { ShadowToast.getTextOfLatestToast() == "Mémoire enregistrée." }
+            assertEquals(listOf("souvenir synthétique"), app.graph.db.allMemories().map { it.text })
+            app.graph.db.writableDatabase.execSQL("CREATE TRIGGER reject_memory BEFORE INSERT ON memories BEGIN SELECT RAISE(ABORT, 'synthetic rejection'); END")
+            submit("échec synthétique")
+            awaitCondition { ShadowToast.getTextOfLatestToast()?.toString()?.startsWith("Mémoire non confirmée") == true }
+            assertEquals(listOf("souvenir synthétique"), app.graph.db.allMemories().map { it.text })
+        } finally { controller.pause().stop().destroy(); idle() }
+    }
+
+    private fun findEdit(view: android.view.View): EditText {
+        if (view is EditText) return view
+        if (view is android.view.ViewGroup) for (i in 0 until view.childCount) {
+            try { return findEdit(view.getChildAt(i)) } catch (ignored: NoSuchElementException) { }
+        }
+        throw NoSuchElementException("Dialog input absent")
+    }
+
+    private fun awaitCondition(condition: () -> Boolean) {
+        val deadline = System.nanoTime() + 5_000_000_000L
+        while (!condition() && System.nanoTime() < deadline) { idle(); Thread.sleep(5) }
+        idle(); assertTrue(condition())
+    }
+
     @Test fun rotationKeepsPreparationAndDestroysOldObserver() {
         val app = RuntimeEnvironment.getApplication() as LifecycleTestApplication
         app.actions.prepareBlock = { app.prepared.await() }

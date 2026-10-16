@@ -73,9 +73,9 @@ class JarvisCore(
         val hits = rag.retrieve(user, settings.topKDocuments)
         val memories = rag.relevantMemories(user)
         val history = db.recentMessages(12).dropLast(1)
-        val prompt = PromptBuilder.build(user, history, hits, memories)
+        val prompt = PromptBuilder.prepare(user, history, hits, memories, settings)
 
-        val raw = llm.generate(prompt, settings.systemPrompt, settings)
+        val raw = llm.generate(prompt.text, settings.systemPrompt, settings)
             .ifBlank { "Le modèle n'a produit aucune réponse." }
 
         currentCoroutineContext().ensureActive()
@@ -83,7 +83,7 @@ class JarvisCore(
         return ChatMessage(
             role = "assistant",
             text = raw,
-            source = hits.firstOrNull()?.chunk?.documentName
+            source = prompt.documentNames.takeIf { it.isNotEmpty() }?.joinToString(", ")
         ).also(db::addMessage)
     }
 
