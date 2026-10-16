@@ -4,23 +4,26 @@ package com.stark.jarvislocal
 internal class ProcessInferenceAdmission {
     private var owner: Any? = null
     private var quarantined = false
+    private var generation = 0L
 
-    @Synchronized fun acquire(backend: Any) {
+    @Synchronized fun acquire(backend: Any): Long {
         if (owner != null && owner !== backend) throw InferenceRejected(InferenceRefusal.PROCESS_ENGINE_HELD)
         if (quarantined) throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
+        if (owner == null) generation++
         owner = backend
+        return generation
     }
 
-    @Synchronized fun confirmRelease(backend: Any) {
+    @Synchronized fun confirmRelease(backend: Any, token: Long) {
         // A stale confirmation must never free a newer owner's reservation.
-        if (owner === backend) {
+        if (owner === backend && token == generation) {
             if (quarantined) throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
             owner = null
         }
     }
 
-    @Synchronized fun quarantine(backend: Any) {
-        if (owner === backend) quarantined = true
+    @Synchronized fun quarantine(backend: Any, token: Long) {
+        if (owner === backend && token == generation) quarantined = true
     }
 
     companion object {

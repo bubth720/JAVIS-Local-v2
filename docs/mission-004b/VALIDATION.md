@@ -4,16 +4,16 @@
 
 Branche `mission-004b-core-backend-lifecycle`, depuis 004A `306a89b`, avec
 réutilisation du commit `07cd282` puis complément d'admission process-wide.
-Exécution finale du 16 octobre 2026 (XML de 20:31:19 à 20:31:46 UTC) :
+Exécution finale du 16 octobre 2026 (XML de 20:34:18 à 20:34:43 UTC) :
 
 ```sh
 gradle :app:testDebugUnitTest :app:assembleDebug :app:lintDebug --no-daemon --max-workers=4
 ```
 
-**BUILD SUCCESSFUL**, 52 secondes ; 53 tâches, 15 exécutées, 38 à jour. La tâche
-de tests est exécutée, les 19 suites XML contrôlées : **185 tests réussis,
+**BUILD SUCCESSFUL**, 47 secondes ; 53 tâches, 15 exécutées, 38 à jour. La tâche
+de tests est exécutée, les 19 suites XML contrôlées : **187 tests réussis,
 0 échec, 0 erreur, 0 ignoré**. Cela comprend les 140 tests 004A inchangés,
-les 34 tests de la première livraison 004B et 11 scénarios supplémentaires.
+les 34 tests de la première livraison 004B et 13 scénarios supplémentaires.
 
 ProcessInferenceAdmissionTest couvre : plusieurs contrôleurs avec une même
 admission, réservation avant préparation concurrente, délai/annulation sans
@@ -22,7 +22,10 @@ du contrôleur (y compris même backend), chargement aux ressources inconnues
 sans repli, repli explicite après échec de préparation et unload confirmé,
 instances historiques directes, échecs natifs simulés de load/release,
 réservation continue pendant changement de contexte, confirmation d'un ancien
-propriétaire sans effet sur le nouveau et admission commune par défaut aux factories.
+propriétaire sans effet sur le nouveau et admission commune par défaut aux factories. Deux cas supplémentaires protègent
+la réutilisation de la même instance avec un nouveau jeton : un ancien accusé de
+libération/quarantaine reste sans effet, y compris lors de la double confirmation
+du moteur historique et du contrôleur après un rechargement intermédiaire.
 
 Les tests 004B existants injectent désormais une admission privée par processus
 simulé ; leurs assertions restent actives. Aucun reset du singleton de
@@ -30,8 +33,9 @@ production n'est ajouté. Les 140 tests/fixtures 004A restent identiques octet
 pour octet à la référence. Tous les moteurs natifs restent simulés.
 
 Première passe du complément : 184 cas réussis, build et Lint réussis ; la
-passe finale ajoute le cas de redimensionnement et précise le test de repli
-après échec de chargement. Aucune assertion supprimée, aucun échec masqué.
+passe intermédiaire à 185 ajoute le cas de redimensionnement et précise le
+repli après échec de chargement. La passe finale à 187 protège également les
+réservations successives du même backend identifiées lors de la revue finale. Aucune assertion supprimée, aucun échec masqué.
 
 APK actuel : signature vérifiée, 7 bibliothèques ARM64, aucun modèle embarqué,
 permissions INTERNET/ACCESS_NETWORK_STATE absentes. Lint : 0 erreur et 30

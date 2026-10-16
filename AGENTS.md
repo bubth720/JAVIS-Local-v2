@@ -278,3 +278,7 @@ nouvelle admission privée dans la composition de production. Les admissions
 privées sont réservées aux tests synthétiques. Cette protection n'arbitre ni
 un autre processus ni les ressources d'un autre APK, et ne remplace aucune
 protection mémoire, thermique ou batterie du système.
+
+Les confirmations/quarantaines d'admission portent le jeton de la réservation
+concernée. Ne pas confirmer en recherchant seulement le backend courant :
+la même instance peut avoir été rechargée entre deux accusés de libération.

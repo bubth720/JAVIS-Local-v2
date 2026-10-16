@@ -832,8 +832,18 @@ coordination inter-APK. Les résultats actuels figurent dans
 la première livraison 004B, avant ce complément.
 
 
-Validation finale du complément : 185 tests réussis, 0 échec/erreur/ignoré,
+Validation intermédiaire du complément : 185 tests réussis, 0 échec/erreur/ignoré,
 build debug et Lint réussis (0 erreur, 30 avertissements). Les 11 nouveaux
 scénarios vérifient l'admission partagée, sa conservation après erreur/délai,
 le repli explicite après déchargement et les confirmations tardives. Aucun
 résultat CI distant ni exécution native réelle ne sont revendiqués.
+
+Un identifiant monotone de réservation protège également le rechargement de
+la même instance contre une confirmation de libération ou quarantaine tardive.
+Le contrôleur et le moteur historique confirment leur réservation capturée,
+sans libérer celle d'une opération ultérieure.
+
+La dernière validation inclut les deux cas de confirmation tardive sur la même
+instance : **187 tests réussis**, 0 échec/erreur/ignoré, compilation et Lint
+réussis (0 erreur, 30 avertissements). Il s'agit de la livraison actuelle,
+les nombres 174/185 ci-dessus décrivant les étapes précédentes.

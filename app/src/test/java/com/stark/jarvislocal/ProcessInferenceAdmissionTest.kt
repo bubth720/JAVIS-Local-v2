@@ -157,9 +157,23 @@ class ProcessInferenceAdmissionTest {
     @Test fun staleReleaseCannotReleaseTheNextOwner() {
         val admission = ProcessInferenceAdmission()
         val first = Any(); val second = Any(); val third = Any()
-        admission.acquire(first); admission.confirmRelease(first); admission.acquire(second)
-        admission.confirmRelease(first)
+        val token = admission.acquire(first); admission.confirmRelease(first, token); admission.acquire(second)
+        admission.confirmRelease(first, token)
         val failure = assertThrows(InferenceRejected::class.java) { admission.acquire(third) }
+        assertEquals(InferenceRefusal.PROCESS_ENGINE_HELD, failure.reason)
+    }
+
+    @Test fun staleConfirmationForSameBackendCannotFreeItsNewReservation() {
+        val admission = ProcessInferenceAdmission()
+        val backend = Any()
+        val oldToken = admission.acquire(backend)
+        admission.confirmRelease(backend, oldToken)
+        val newToken = admission.acquire(backend)
+        assertNotEquals(oldToken, newToken)
+        admission.confirmRelease(backend, oldToken)
+        admission.quarantine(backend, oldToken)
+        assertEquals(newToken, admission.acquire(backend))
+        val failure = assertThrows(InferenceRejected::class.java) { admission.acquire(Any()) }
         assertEquals(InferenceRefusal.PROCESS_ENGINE_HELD, failure.reason)
     }
 
@@ -168,5 +182,25 @@ class ProcessInferenceAdmissionTest {
         val second = InferenceEngineFactory({ SimulatedEngine() })
         assertSame(ProcessInferenceAdmission.process, first.admission)
         assertSame(first.admission, second.admission)
+    }
+
+    @Test fun controllerConfirmationCannotFreeReservationReacquiredDuringUnload() = runTest {
+        val admission = ProcessInferenceAdmission()
+        val backend = object : LocalLanguageModel {
+            override suspend fun warmUp(settings: JarvisSettings) = Unit
+            override fun isLoaded() = true
+            override suspend fun generate(prompt: String, systemPrompt: String, settings: JarvisSettings) = "answer"
+            override suspend fun unload(): UnloadResult {
+                // Reproduce native release, another caller reloading the same instance,
+                // then the controller receiving the previous release's acknowledgement.
+                val old = admission.acquire(this)
+                admission.confirmRelease(this, old)
+                admission.acquire(this)
+                return UnloadResult.CONFIRMED
+            }
+        }
+        val manager = controller(backend, admission)
+        manager.warmUp(settings); manager.unload()
+        held { controller(SimulatedEngine(), admission).warmUp(settings) }
     }
 }

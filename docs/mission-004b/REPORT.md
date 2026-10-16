@@ -106,7 +106,11 @@ et au constructeur de production de LlamaLocalEngine, même si un deuxième
 contrôleur ou moteur historique est créé. Elle ne se libère que sur déchargement
 confirmé ; une erreur/inconnue conserve son propriétaire et sa quarantaine,
 y compris après remplacement du contrôleur. Aucun reset de production n'est
-exposé. Une confirmation d'un ancien propriétaire ne libère pas le suivant.
+exposé. Une confirmation d'un ancien propriétaire ne libère pas le suivant. Chaque
+nouvelle réservation porte un jeton monotone : un acquittement ou une
+quarantaine tardive ne s'applique pas à une réservation ultérieure, même si
+l'instance de backend est réutilisée. Cela protège aussi la double confirmation
+du backend historique puis du contrôleur face à un rechargement intermédiaire.
 La réservation reste détenue pendant un redimensionnement de contexte.
 
 Cette admission suit les backends LLM gérés dans ce processus ; elle ne mesure

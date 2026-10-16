@@ -46,6 +46,7 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
     private var engine: LocalLanguageModel? = null
     private var sessionId: String? = null
     private var epoch = 0L
+    private var admissionToken: Long? = null
 
     @Synchronized fun select(mode: InferenceMode) {
         val current = mutableState.value
@@ -84,7 +85,10 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
             val completion = drain { beginNative(mayAllocate = true); it.prepare(settings).also { result ->
                 mark { copy(nativeDone = result.nativeDone, modelUnloaded = result.modelUnloaded,
                     quarantined = !result.nativeDone) }
-                if (result.nativeDone && result.modelUnloaded) factory.admission.confirmRelease(it)
+                if (result.nativeDone && result.modelUnloaded) {
+                    admissionToken?.let { token -> factory.admission.confirmRelease(it, token) }
+                    admissionToken = null
+                }
             } }
             if (!completion.nativeDone) throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
         }
@@ -123,7 +127,10 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
         return operate { backend ->
             // A returned inference/load is distinct from a confirmed release.
             val result = drain { beginNative(mayAllocate = false); backend.unload().also { release ->
-                if (release == UnloadResult.CONFIRMED) factory.admission.confirmRelease(backend)
+                if (release == UnloadResult.CONFIRMED) {
+                    admissionToken?.let { token -> factory.admission.confirmRelease(backend, token) }
+                    admissionToken = null
+                }
                 mark { copy(nativeDone = true, modelUnloaded = release == UnloadResult.CONFIRMED,
                     quarantined = release != UnloadResult.CONFIRMED,
                     error = if (release == UnloadResult.CONFIRMED) null else "Libération du moteur non attestée") }
@@ -189,14 +196,16 @@ class InferenceController(private val factory: InferenceEngineFactory) : LocalLa
 
     @Synchronized private fun beginNative(mayAllocate: Boolean) {
         if (mutableState.value.stopRequested) throw InferenceRejected(InferenceRefusal.STOP_REQUESTED)
-        if (mayAllocate) factory.admission.acquire(requireNotNull(engine))
+        if (mayAllocate) admissionToken = factory.admission.acquire(requireNotNull(engine))
         mutableState.value = mutableState.value.copy(nativeDone = false,
             modelUnloaded = if (mayAllocate) false else mutableState.value.modelUnloaded)
     }
 
     @Synchronized private fun mark(change: InferenceLifecycle.() -> InferenceLifecycle) {
         val next = mutableState.value.change()
-        if (next.quarantined) engine?.let(factory.admission::quarantine)
+        if (next.quarantined) engine?.let { backend ->
+            admissionToken?.let { token -> factory.admission.quarantine(backend, token) }
+        }
         mutableState.value = next
     }
 }
