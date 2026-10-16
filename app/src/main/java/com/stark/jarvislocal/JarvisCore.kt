@@ -5,14 +5,26 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.sync.Mutex
 
 class JarvisCore(
     private val db: LocalDatabase,
     private val rag: RagEngine,
-    private val llm: LlamaLocalEngine,
+    private val llm: LocalLanguageModel,
     private val settingsStore: SettingsStore
 ) {
+    private val conversationLock = Mutex()
+
     suspend fun chat(userText: String): ChatMessage {
+        check(conversationLock.tryLock()) { "JARVIS est occupé. Réessaie après la réponse en cours." }
+        return try { chatExclusive(userText) }
+        finally { conversationLock.unlock() }
+    }
+
+    private suspend fun chatExclusive(userText: String): ChatMessage {
+        currentCoroutineContext().ensureActive()
         val user = userText.trim()
         require(user.isNotEmpty())
 
@@ -61,15 +73,17 @@ class JarvisCore(
         val hits = rag.retrieve(user, settings.topKDocuments)
         val memories = rag.relevantMemories(user)
         val history = db.recentMessages(12).dropLast(1)
-        val prompt = PromptBuilder.build(user, history, hits, memories)
+        val prompt = PromptBuilder.prepare(user, history, hits, memories, settings)
 
-        val raw = llm.generate(prompt, settings.systemPrompt, settings)
+        val raw = llm.generate(prompt.text, settings.systemPrompt, settings)
             .ifBlank { "Le modèle n'a produit aucune réponse." }
+
+        currentCoroutineContext().ensureActive()
 
         return ChatMessage(
             role = "assistant",
             text = raw,
-            source = hits.firstOrNull()?.chunk?.documentName
+            source = prompt.documentNames.takeIf { it.isNotEmpty() }?.joinToString(", ")
         ).also(db::addMessage)
     }
 

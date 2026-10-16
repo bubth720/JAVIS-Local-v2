@@ -162,6 +162,39 @@ class LocalDatabaseTest {
     }
 
     @Test
+    fun interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry() {
+        val before = createHistoricalDatabase(1)
+        val interrupted = object : SQLiteOpenHelper(context, databaseName, null, 2) {
+            override fun onCreate(db: SQLiteDatabase) = error("Existing fixture expected")
+            override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+                helper.onUpgrade(db, oldVersion, newVersion)
+                db.execSQL("INSERT INTO memories(text,created_at) VALUES('not committed',123)")
+                throw SQLiteException("synthetic migration interruption")
+            }
+        }
+        try { assertThrows(SQLiteException::class.java) { interrupted.writableDatabase } }
+        finally { interrupted.close() }
+        openRawDatabase().use { db ->
+            assertEquals(1, db.version)
+            assertEquals(before, snapshot(db))
+        }
+        assertEquals(2, helper.writableDatabase.version)
+        assertEquals(before, snapshot(helper.readableDatabase))
+        reopenHelper()
+        assertEquals(before, snapshot(helper.readableDatabase))
+    }
+
+    @Test
+    fun unversionedExistingDatabaseIsRefusedWithoutDeletingItsData() {
+        val before = createHistoricalDatabase(0)
+        assertThrows(SQLiteException::class.java) { helper.writableDatabase }
+        openRawDatabase().use { db ->
+            assertEquals(0, db.version)
+            assertEquals(before, snapshot(db))
+        }
+    }
+
+    @Test
     fun unsupportedDowngradeKeepsTheOriginalVersionAndData() {
         // Synthetic future version: verify SQLiteOpenHelper's non-destructive refusal.
         val before = createHistoricalDatabase(3)

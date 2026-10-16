@@ -555,3 +555,229 @@ Les défauts historiques de migration destructrice et d’insertions silencieuse
 sont traités. Les priorités de cycle de vie, concurrence et ressources des
 autres composants restent ouvertes. Le corpus existant est conservé avec son
 ancien découpage ; aucune réindexation automatique n’est imposée.
+
+## Actualisation — Mission 005
+
+Référence : mission complète fournie dans `JARVIS_CORE_MISSION_005_Complete.pdf`.
+Base : `main` au commit `226e2e8cc3eebd479805b89d035eb5c1cbcad540`, contenant
+les missions 003 et 004 et la fusion de la PR #3. Branche de travail :
+`fix/mission-005-lifecycle-concurrency`.
+
+### Défauts confirmés dans cette base
+
+Les tâches de `MainActivity` appartenaient à `lifecycleScope`, alors que les
+moteurs appartenaient à `AppGraph`. Les envois successifs n’étaient pas exclus
+au niveau du noyau ; le mutex LLM ne protégeait pas les écritures et la
+construction du contexte. Une rotation arrêtait le TTS partagé, relançait la
+préparation et annulait les tâches de l’écran. Le recorder pouvait abandonner
+son worker après un `join(2000)` sans confirmer sa fin et sans remise en état
+fiable après erreur. Le TTS pouvait conserver une voix réseau si aucune voix
+locale française n’était trouvée. Les annulations étaient capturées comme
+des erreurs ordinaires.
+
+### Coordination et responsabilités
+
+`SessionCoordinator`, détenu par le graphe applicatif, possède un `StateFlow`
+et une portée `SupervisorJob`, sans `Activity`, vue ou callback d’écran.
+`MainActivity` observe cet état uniquement pendant son cycle STARTED.
+L’accès aux dépendances est normalisé sur le contexte Application.
+`JarvisApplication.createGraph()` permet une application neutre de test.
+
+Politique single-flight : préparation, conversation, import documentaire et
+chaîne capture/transcription/conversation partagent une seule réservation.
+La seconde demande est refusée explicitement. Une saisie n’est vidée que
+si sa demande est acceptée. Les boutons incompatibles sont désactivés, mais
+la sécurité repose aussi sur le coordinateur et sur un `Mutex.tryLock` couvrant
+tout `JarvisCore.chat`, y compris le routage, SQLite, le RAG et le prompt.
+Les erreurs et annulations libèrent la réservation après le drainage du travail.
+Une annulation avant le premier lancement ne laisse pas de verrou bloqué.
+
+`SessionActions` sépare la politique et les opérations réelles pour les tests.
+`LocalLanguageModel`, `SpeechEngine`, `AudioInput` et `WhisperBackend` sont
+des interfaces légères de substitution en test. Les bibliothèques et formats
+LLM/Whisper de production sont conservés. Aucun service Android, module Gradle,
+index vectoriel ou moteur distant n’est ajouté.
+
+### Rotation, arrière-plan et destruction
+
+- Préparation, conversation et transcription déjà acceptées survivent à une
+  rotation dans le graphe Application. Le nouvel écran retrouve l’état courant
+  et l’historique. Il ne relance pas ces opérations.
+- Une capture micro est arrêtée et abandonnée dès `onStop`, y compris lors
+  d’une rotation ; elle n’est pas transcrite ni relancée automatiquement.
+- En arrière-plan, une génération/transcription déjà acceptée peut terminer,
+  mais aucune réponse vocale n’est déclenchée. Le TTS en cours est arrêté.
+- Une destruction hors changement de configuration demande l’annulation du
+  travail et libère le TTS. Les appels natifs déjà entrés sont drainés ; aucune
+  étape suivante de la chaîne ne démarre après cette annulation.
+- Une future entrée dans l’écran peut réinitialiser le TTS de façon contrôlée.
+  Le modèle LLM peut rester en mémoire dans le graphe Application.
+- Après échec de préparation, l’état reste ERREUR et le statut est cliquable
+  pour réessayer. PRÊT suppose un préchargement LLM terminé et la présence
+  basique du fichier Whisper ; ce n’est pas une vérification complète des modèles.
+
+Une réponse LLM déjà engagée sous protection non annulable peut être persistée
+avant la fin de l’annulation du coordinateur. Elle n’est pas doublée ni lue
+à voix haute après le départ de l’écran. La mort du processus ne conserve pas
+les tâches ; SQLite reste persistant.
+
+### TTS
+
+`LocalTts` initialise paresseusement un seul moteur, expose STOPPED,
+INITIALIZING, READY ou UNAVAILABLE et ignore les callbacks d’une génération
+déjà libérée. Seule une voix française déclarée sans réseau peut être choisie ;
+l’absence de voix ou l’échec d’initialisation/synthèse rend la voix indisponible.
+Le texte de la conversation reste disponible. `speakReplies` est conservé.
+La rotation arrête la lecture mais ne détruit pas le moteur partagé.
+La capture micro commence après l’arrêt de la synthèse pour limiter le retour
+de la voix de JARVIS dans son propre enregistrement.
+
+Cette sélection de métadonnées de voix ne démontre pas le comportement réseau
+du moteur TTS installé : un essai réel hors ligne reste obligatoire.
+
+### Recorder, WAV et confidentialité
+
+États : IDLE, STARTING, RECORDING, STOPPING, ERROR. Une seule capture est
+réservée. Le worker vérifie l’initialisation, le démarrage et les lectures du
+périphérique ; les erreurs sont transmises via des résultats asynchrones.
+La permission est contrôlée et une révocation lors de la construction du
+périphérique est traitée comme une erreur, sans désactiver Lint.
+
+L’arrêt demande `AudioRecord.stop()` hors du thread d’interface pour débloquer
+la lecture. Le résultat n’est disponible qu’après fermeture, finalisation,
+libération et terminaison confirmée du worker. Aucun `join(timeout)` n’est
+utilisé comme preuve de fin. Un arrêt répété est sûr. Une défaillance de
+libération place le recorder en quarantaine : aucune nouvelle capture n’est
+autorisée avant redémarrage du processus.
+
+Chaque capture utilise un fichier cache unique. `WavFiles` vérifie le format
+interne PCM mono 16 kHz / 16 bits, les marqueurs, tailles et présence de données.
+Un fichier vide, tronqué, incompatible ou non finalisé n’est pas transmis à
+Whisper. Les captures abandonnées/erronées sont supprimées ; le fichier valide
+est supprimé après la fin effective de son utilisation par Whisper.
+La préparation nettoie les anciens fichiers cache réservés `jarvis_input.wav`
+et `jarvis_input_*.wav`, sans supprimer d’autres fichiers ni toucher SQLite.
+
+### Whisper, deadlines et limites natives
+
+Whisper vérifie modèle et WAV avant chargement. Un mutex refuse les tentatives
+concurrentes ; tout modèle chargé est libéré dans `finally` après retour natif.
+Une erreur récupérable permet une nouvelle tentative. La transcription vide
+est signalée sans lancer de conversation vide.
+
+Les API publiques inspectées dans les AAR `llama-android:0.1.1` et
+`whisper-android:1.0.0` n’exposent pas d’annulation. Le bytecode de leurs wrappers
+appelle synchroniquement `nativeComplete` et `nativeTranscribe` avant de retourner.
+Les sections natives et leur attente de fin sont donc protégées par
+`NonCancellable` ; les verrous restent détenus jusqu’à leur retour réel.
+
+Les seuils de 90 secondes (conversation) et 60 secondes (transcription) sont
+conservés. Un seuil de 5 secondes signale également un démarrage/arrêt audio
+anormalement long. TIMEOUT est une alerte : `busy` reste vrai, les nouvelles
+opérations sont bloquées et la précédente continue à être drainée. Ce n’est
+pas une promesse d’interruption du JNI. Une annulation du coordinateur ne crée
+pas de message d’erreur applicative. Les erreurs fatales ne sont pas transformées
+en succès ; le traitement existant de l’OOM LLM reste une erreur explicite.
+
+Si un appel JNI ou un pilote ne retourne jamais, aucune libération forcée
+ou nouvelle inférence n’est tentée. Il faut arrêter réellement le processus
+via Android puis rouvrir JARVIS. Une réouverture d’activité seule ne suffit
+pas à réinitialiser une ressource audio mise en quarantaine.
+
+### Tests et validations
+
+Suite : 106 cas réussis, 0 échec, 0 erreur et 0 ignoré lors de la validation
+de cette mission. Les 40 cas existants et la fixture SQLite sont inchangés.
+
+| Suite | Cas | Portée |
+|---|---:|---|
+| LocalDatabaseTest | 33 | Régression SQLite natif, API 24/25/35 |
+| LocalTimeReplyTest | 7 | Régression du format d’heure |
+| JarvisCoreConcurrencyTest | 6 | Noyau réel, SQLite natif et LLM simulé, API 24/35 |
+| SessionCoordinatorTest | 17 | Single-flight, rotation, erreurs, annulation, délais, voix et import |
+| WavRecorderTest | 16 | Périphérique simulé, vrai worker/fichier WAV, erreurs et confidentialité |
+| WhisperLocalEngineTest | 9 | Backend simulé, WAV réel, concurrence, annulation et libération |
+| LocalTtsTest | 9 | Backend simulé, callbacks et cycle de vie |
+| OfflineVoiceTest | 3 | Sélection de métadonnées Android, API 24 |
+| ModelManagerConcurrencyTest | 2 | Copie de petits assets simulés, fichiers réels et concurrence |
+| MainActivityLifecycleTest | 4 | Recréation réelle sous Robolectric, actions simulées, API 24/35 |
+
+Commandes exécutées : `gradle :app:testDebugUnitTest :app:assembleDebug
+:app:lintDebug --no-daemon --max-workers=4` et `git diff --check`.
+Ressources Android incluses pour les tests d’activité ; `kotlinx-coroutines-test`
+1.9.0 ajouté uniquement aux dépendances de test. Aucun modèle volumineux chargé
+ou téléchargé pour ces tests. Aucune dépendance cloud ajoutée.
+
+La compilation et Lint réussissent : 0 erreur, 30 avertissements, contre
+34 historiques. Signature de l’APK vérifiée ; 7 bibliothèques ARM64 présentes ;
+permissions `INTERNET` et `ACCESS_NETWORK_STATE` absentes. Aucun appareil réel
+ni émulateur Android n’a été utilisé : Robolectric et les doubles de test
+ne démontrent ni une inférence réelle ni une capture/synthèse matérielle.
+
+### Risques résiduels et mission 006
+
+- Vérifier sur appareil : pilote micro bloqué, révocation de permission,
+  rotation/arrière-plan, fin de transcription, moteur TTS installé hors ligne,
+  température, RAM, consommation et latence avec les modèles complets.
+- Annulation native indisponible : les protections empêchent le chevauchement,
+  mais ne peuvent garantir la fin d’un appel JNI défaillant.
+- SHA-256, références immuables, validation complète et réparation des modèles
+  restent à la mission 006 ; les seuils de taille historiques sont inchangés.
+- Le cache peut conserver un fichier après arrêt brutal jusqu’à la prochaine
+  préparation, ou si la suppression échoue. Le nettoyage n’est pas un effacement
+  cryptographique ; aucun chiffrement audio n’est ajouté.
+- La conservation après mort du processus repose sur SQLite, pas sur un
+  redémarrage automatique des opérations ou de la capture.
+- Les autres limites documentaires, de budget du prompt et de distribution
+  restent hors du périmètre ; aucune nouvelle release n’est publiée pour valider.
+
+## Actualisation — Mission 004A : intégrité et préparation du CORE
+
+Référence `main` vérifiée pendant la mission :
+`226e2e8cc3eebd479805b89d035eb5c1cbcad540`. La branche
+`mission-004a-core-stability` conserve le commit local 005 `3ca1ec5` comme
+ancêtre et ajoute les compléments ci-dessous. Le `main` distant vérifié ne
+contient pas encore ce commit 005. Ne pas traiter sa validation locale comme
+une fusion GitHub ou une qualification sur appareil.
+
+- SQLite et schéma v2 inchangés : les corrections historiques sont conservées.
+  Tests supplémentaires d'interruption dans la transaction de migration,
+  rollback exact puis réouverture/reprise, et refus d'une base existante
+  non versionnée sans suppression. Aucune réinitialisation ajoutée.
+- Installation des modèles : longueur exacte des assets non compressés, seuils
+  historiques et magic, copie `.part`, fsync, renommage local sans supprimer
+  préalablement la destination ; reprise par nouvelle copie après échec/crash.
+  Ni authentification par hash, ni preuve de complétude interne des tenseurs.
+- Contexte LLM borné en octets UTF-8 avec réserve, système pris en compte et
+  question trop longue refusée plutôt que coupée. Tous les noms des passages
+  inclus sont conservés, sans attribuer au modèle une citation prouvée.
+- Chaque nouveau chunk PDF reçoit sa page ; aucun ancien document ou passage
+  n'est réécrit. Tests d'import d'un PDF réel synthétique et relecture SQLite.
+- Dialogue mémoire : lecture/écriture sur IO, erreur contrôlée, confirmation
+  uniquement après insertion réussie. `/remember` conserve son protocole
+  historique et ses écritures séparées ; la mémoire peut persister sans
+  confirmation si l'historique échoue. Aucun enregistrement automatique.
+- SharedPreferences inchangé : tests de conservation et plafonds historiques,
+  sans garantie nouvelle de persistance après arrêt brutal (`apply`).
+
+Résultats exécutés le 16 octobre 2026 : 140 cas réussis, 0 échec/erreur/ignoré,
+compilation debug et Lint réussis (0 erreur, 30 avertissements), signature,
+SDK minimum 24 et absence de permissions réseau vérifiés dans l'APK.
+Ces résultats incluent la réexécution des tests 005 ; ce ne sont pas des
+validations Android matérielles. Modèles absents de l'APK local, aucun essai
+LLM/Whisper réel, micro/TTS physique ou sauvegarde/restauration réelle.
+
+Les livrables actuels, qui précisent les anciens constats devenus obsolètes :
+
+- [Audit et priorités](mission-004a/AUDIT.md).
+- [Préservation et stratégie de restauration](mission-004a/DATA_PRESERVATION.md).
+- [Matrice et recette Android restante](mission-004a/COMPATIBILITY.md).
+- [Contrats futurs, sans intégration](mission-004a/MODULARITY.md).
+- [Résultats et limites des vérifications](mission-004a/VALIDATION.md).
+
+Risques persistants : vrais modèles et budget tokenizer à qualifier, sources
+sémantiques non garanties, volume PDF/RAG et pression mémoire, `apply` et
+préférences invalides, erreurs de lecture DB dans l'observateur UI, absence
+d'export/restauration, CI sans tests/Lint et distribution debug. Les propositions
+d'interfaces sont documentaires ; aucun composant externe n'est rendu nécessaire
+pour le fonctionnement historique. Actualiser cette synthèse après chaque évolution.

@@ -68,6 +68,9 @@ Sources : `app/src/main/java/com/stark/jarvislocal/`.
 | `WavRecorder` | Capture PCM et écrit un WAV |
 | `WhisperLocalEngine` | Transcrit localement l’audio |
 | `LocalTts` | Lit les réponses avec le moteur Android |
+| `SessionCoordinator` | Single-flight, état observable, rotation et drainage des opérations |
+| `LocalLanguageModel` | Interface de test du moteur local existant |
+| `WavFiles` | Validation du WAV du recorder et nettoyage de son cache réservé |
 
 ## Fonctionnalités à préserver
 
@@ -191,6 +194,48 @@ accessible en écriture pour son cache. Pour une validation ciblée :
 gradle :app:testDebugUnitTest --tests '*LocalDatabaseTest*' --no-daemon
 ```
 
+Depuis la mission 005, conserver la coordination applicative : un timeout ou
+une annulation ne prouve pas l’arrêt d’un appel JNI. Ne libérer le verrou ni
+les fichiers audio tant que leur utilisateur effectif n’a pas terminé.
+Une rotation ne doit pas détruire le moteur TTS partagé ni relancer la préparation.
+Tester les moteurs et périphériques via les interfaces injectables, sans
+charger de grands modèles. Les tests d’activité utilisent Robolectric avec
+les ressources Android incluses. Une défaillance de libération audio impose
+une mise en quarantaine et un redémarrage du processus, pas une réutilisation
+aveugle du périphérique.
+
 Rapporter distinctement les vérifications réussies, échouées, non exécutées
 et bloquées. Ne pas décrire un résultat ancien comme une nouvelle validation.
 Une compilation réussie ou une exécution sans tests ne valide pas l’assistant.
+
+## Actualisation — Mission 004A
+
+Consulter `docs/mission-004a/AUDIT.md`, `DATA_PRESERVATION.md`,
+`COMPATIBILITY.md`, `MODULARITY.md` et `VALIDATION.md`. La référence de départ
+vérifiée est `226e2e8cc3eebd479805b89d035eb5c1cbcad540`. Cette livraison
+réutilise le commit local 005 `3ca1ec5` ; sa présence dans la branche ne prouve
+pas sa fusion sur main. Vérifier l'historique distant avant chaque mission.
+
+Préserver la migration sans mutation et la fixture SQL historique. Les tests
+de migration interrompue sont des injections d'exception, pas des coupures
+électriques. Ne pas revendiquer d'export/restauration Android : il n'existe
+pas de mécanisme applicatif livré.
+
+Pour les modèles embarqués, conserver la destination jusqu'au renommage du
+fichier temporaire validé. Le contrôle taille exacte d'asset + signature est
+une protection contre les copies incomplètes, pas une authentification de
+modèle. Les tests de copie utilisent de petits faux assets explicitement
+configurés ; ne pas abaisser les seuils de production pour ces tests.
+
+Le chemin de génération utilise `PromptBuilder.prepare` : budget UTF-8
+conservateur, question non tronquée, sources limitées aux passages inclus.
+Ce budget ne remplace pas un tokenizer réel. Les noms affichés décrivent le
+contexte fourni au modèle, sans prouver une citation sémantique.
+
+`/remember` reste explicite ; l'écriture mémoire et les messages sont séparés.
+En cas d'erreur après la mémoire, l'absence de confirmation ne permet pas de
+conclure que rien n'a été enregistré. Ne pas ajouter de mémorisation automatique.
+
+Les frontières intermodules sont uniquement documentées : aucune intégration
+CORE–LLM, VOICE, NEXUS ou INTERFACE sans mission autorisée, et aucun remplacement
+d'une implémentation historique par un composant indisponible.
