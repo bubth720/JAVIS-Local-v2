@@ -27,3 +27,13 @@ Les modèles historiques conservent leurs limites : releaseInternal masque l'err
 Une mission dédiée doit fournir drainage et déchargement réellement observables des deux moteurs, preuve d'échec propagée, persistance/récupération des réservations et autorité Binder qualifiée. Puis revoir le complément profil/session/bail avec VOICE et exécuter les fixtures Android sur émulateur. Garder le pilote inactif tant que ces conditions ne sont pas remplies.
 
 PR **brouillon uniquement** vers main, sans fusion ; publication Git et création PR vérifiées séparément. Aucun workflow manuel de téléchargement/publication de modèles déclenché, aucune installation Xiaomi.
+
+## Publication et coordination vérifiées
+
+Commits publiés : C1 `05c087b`, C2/tests/contrat `ee4a1bf3b8af9e07ed95d58040af248713ceb14c`. VOICEV1 publiée `242eb651df8c1d9d2020fb4f83f963d16d8988b5`. Les deux côtés ont le même hash de fixture ; aucune connexion de production n'est revendiquée.
+
+La tentative `gh pr create --draft --base main --head feat/core-voice-pilot` échoue : `Post https://api.github.com/graphql: Forbidden`. **Aucune PR créée et aucun statut CI obtenu par API.** Git push fonctionne séparément. api.github.com est absent de la liste réseau active ; un ajout non destructif est préparé dans le brouillon de configuration cloud, avec conservation des domaines existants. Ce brouillon n'applique pas les droits runtime et ne prouve pas un scope de token manquant ; après application, revérifier l'API et les droits Pull requests.
+
+Branche : <https://github.com/bubth720/JAVIS-Local-v2/tree/feat/core-voice-pilot>.
+Comparaison pour créer manuellement une PR **brouillon** : <https://github.com/bubth720/JAVIS-Local-v2/compare/main...feat/core-voice-pilot?expand=1>.
+Le lien de comparaison n'est pas une PR existante. Aucune fusion/installation.
