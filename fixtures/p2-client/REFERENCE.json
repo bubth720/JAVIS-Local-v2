@@ -1,0 +1,13 @@
+{
+  "repository": "bubth720/JARVIS-LLM",
+  "commit": "5751646acd4a7bb13caaea4b96a4ab3a68ec6adb",
+  "branch": "fixture/003e-p2-secure-endpoint",
+  "contract_sha256": "fab6a66a6b99302884849cd1d8aef97cd761082dc20680a4b036d7bc99d5c3c9",
+  "canonical_files": {
+    "CONTRACT.txt": "7a850a58aed04511fb3104931e4109f76b87a13304222f5197c14d9b7c403cb6",
+    "src/main/aidl/fr/jarvis/fixture/p2/IP2Arbiter.aidl": "088fb472e7ef8072906b1305bd1317cb679fb8dea2574ba8f47e164595efdf6a",
+    "src/main/aidl/fr/jarvis/fixture/p2/IP2AuthorizationCallback.aidl": "0d132b9034aeb076636f4c85e5869f9752848824b719d04d1e0a2f19282d7cf5",
+    "src/main/aidl/fr/jarvis/fixture/p2/IP2Endpoint.aidl": "2a52d720e93e7781fd7828ca5a0928d1acf94c11c61b18ab5a3de68286b976bc"
+  },
+  "codec": "Wire.kt is the domain-independent prefix of the canonical codec; package relocated, domain-dependent parsers excluded."
+}

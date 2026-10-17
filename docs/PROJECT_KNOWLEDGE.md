@@ -847,3 +847,27 @@ La dernière validation inclut les deux cas de confirmation tardive sur la même
 instance : **187 tests réussis**, 0 échec/erreur/ignoré, compilation et Lint
 réussis (0 erreur, 30 avertissements). Il s'agit de la livraison actuelle,
 les nombres 174/185 ci-dessus décrivant les étapes précédentes.
+
+## Actualisation — CORE 004C, fixture indépendante
+
+Base `29646448c80568d868a702192df761fc9d7a896d`. Lire
+`docs/mission-004c/REPORT.md`, `PROTOCOL.md`, `VALIDATION.md` et `QUALIFICATION.md`.
+LLM003E publié vérifié en lecture : `5751646acd4a7bb13caaea4b96a4ab3a68ec6adb` ;
+D4-02C : `0dbb978994994fa3210124f1e150ca23426d410d`. Les sources `app/`, les
+moteurs historiques, SQLite, préférences et protections de processus 004B
+ne changent pas. Seule l'inclusion Gradle optionnelle ajoute l'APK expérimental.
+
+La fixture contient le transport AIDL, un service arbitre à permission signature,
+un mapping synthétique P2 strict et un journal de bail atomique sans contenu
+personnel. Ses tests injectent des endpoints et preuves simulés ; ils ne
+valident pas l'inférence interprocessus native. Le serveur doit avoir un
+certificat dédié identique à celui de la fixture CORE, sans UID partagé ou
+rotation. Les clés ne sont pas livrées dans Git.
+
+Limite confirmée à la lecture de 003E : aucun reçu initial/de reprise ne fournit
+l'attestation nécessaire pour réconcilier un arbitre fraîchement lancé. La
+production reste donc bloquée RECOVERY_REQUIRED ; hello seul ne déverrouille
+pas la génération. Pas de reset, pas de fallback, pas de basculement réel vers
+l'application historique. Aucun émulateur/appareil ni GGUF réel vérifié utilisé ;
+E2E Android/JNI non exécuté. Actualiser ces constats et les résultats à chaque
+évolution du contrat, sans transformer les validations simulées en preuve physique.

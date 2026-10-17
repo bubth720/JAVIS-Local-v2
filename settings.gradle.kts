@@ -7,3 +7,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "JARVISLocalV2"
 include(":app")
+if (providers.gradleProperty("includeP2Fixture").orNull == "true") {
+    include(":p2-client")
+    project(":p2-client").projectDir = file("fixtures/p2-client")
+}

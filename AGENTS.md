@@ -282,3 +282,28 @@ protection mémoire, thermique ou batterie du système.
 Les confirmations/quarantaines d'admission portent le jeton de la réservation
 concernée. Ne pas confirmer en recherchant seulement le backend courant :
 la même instance peut avoir été rechargée entre deux accusés de libération.
+
+## Actualisation — Mission 004C
+
+Lire `docs/mission-004c/REPORT.md`, `PROTOCOL.md`, `VALIDATION.md` et
+`QUALIFICATION.md`. La fixture indépendante est incluse uniquement avec
+`-PincludeP2Fixture=true` ; minSdk29, applicationId `fr.jarvis.fixture.core`.
+Le CORE historique demeure minSdk24, moteur historique par défaut, sans
+service ajouté à son manifeste ni modification de ses données.
+
+Le contrat canonique 003E et sa provenance sont dans
+`fixtures/p2-client/REFERENCE.json`. Exécuter `python3 tools/check-004c.py`
+puis les tâches `:p2-client:testDebugUnitTest`, `:p2-client:assembleDebug`,
+`:p2-client:lintDebug` avec l'opt-in, et la non-régression historique.
+Ne jamais copier un contrat d'une autre révision sans vérifier son empreinte.
+
+L'Activity ne permet que l'inspection/hello. L'admission de production reste
+RECOVERY_REQUIRED : 003E n'expose pas de preuve initiale/reprise suffisante.
+Ne pas injecter les preuves synthétiques des tests pour la débloquer, ni
+réinitialiser/effacer son journal. Timeout, décès Binder et retour de coroutine
+ne sont pas des attestations de déchargement. Pas de fallback inter-APK.
+
+Sans clé de laboratoire explicitement provisionnée, l'APK fixture est non
+signé. Ne pas employer la clé historique ou la clé éphémère d'un ancien job.
+Aucune preuve Binder entre deux APK ou JNI Android n'est acquise par cette
+livraison ; distinguer Robolectric/JVM, Linux natif, émulateur et appareil.

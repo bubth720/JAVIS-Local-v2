@@ -1,0 +1,5 @@
+<resources>
+    <string name="pilot_initial">CORE 004C — contrat 003E épinglé.\nGénération bloquée : réconciliation native initiale non attestée. Aucun modèle chargé.</string>
+    <string name="pilot_inspect">Vérifier la fixture LLM (sans génération)</string>
+    <string name="pilot_refused">Vérification refusée : %1$s</string>
+</resources>

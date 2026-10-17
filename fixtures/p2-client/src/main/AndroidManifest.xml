@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
+    <uses-permission android:name="fr.jarvis.fixture.llm.permission.BIND_P2" />
+    <queries><package android:name="fr.jarvis.fixture.llm" /></queries>
+    <application android:allowBackup="false" android:fullBackupContent="false" android:dataExtractionRules="@xml/pilot_data_extraction" android:icon="@drawable/pilot_icon" android:label="JARVIS CORE 004C — expérimental" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <service android:name="fr.jarvis.fixture.core.P2ArbiterService" android:exported="true" android:permission="fr.jarvis.fixture.llm.permission.BIND_P2" />
+        <activity android:name=".FixtureActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

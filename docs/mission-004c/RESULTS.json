@@ -1,0 +1,38 @@
+{
+  "historical_core_unchanged": true,
+  "unified_commit": "0dbb978994994fa3210124f1e150ca23426d410d",
+  "llm_commit": "5751646acd4a7bb13caaea4b96a4ab3a68ec6adb",
+  "contract_sha256": "fab6a66a6b99302884849cd1d8aef97cd761082dc20680a4b036d7bc99d5c3c9",
+  "modules": {
+    "core": {
+      "tests": 187,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "lint": {
+        "Error": 0,
+        "Warning": 30,
+        "Fatal": 0
+      },
+      "apk_sha256": "ecedbdec2e7ea8e29eccf8ad240b3c6d89a3991e1aa3f24b59f269d61b15ebea"
+    },
+    "fixture": {
+      "tests": 36,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "lint": {
+        "Error": 0,
+        "Warning": 0,
+        "Fatal": 0
+      },
+      "apk_sha256": "cef49399d4e90f2494b8723bae03bcab0c309ac56047136392b567586d936be3"
+    }
+  },
+  "native_android_e2e": "NOT_EXECUTED",
+  "linux_native": "NOT_EXECUTED",
+  "physical_device": "NOT_EXECUTED",
+  "instrumentation": "NOT_EXECUTED",
+  "production_admission": "BLOCKED_RECOVERY_REQUIRED",
+  "fixture_signing": "UNSIGNED_NO_LAB_KEY_PROVISIONED"
+}
