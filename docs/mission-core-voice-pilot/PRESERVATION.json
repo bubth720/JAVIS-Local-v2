@@ -1,0 +1,8 @@
+{
+  "base": "115dd3fe9b8e82b295b076dc045601a04d21a06f",
+  "protected_core_unchanged": true,
+  "fixture_contract_sha256": "cfbdff471ed0403113803a0f4c86ec75c57f723cc828f5af3c13fb3ef8042cf2",
+  "cross_repository_checked": true,
+  "native_handoff": "UNQUALIFIED_BLOCKED",
+  "binder_client_in_core": false
+}

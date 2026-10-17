@@ -555,3 +555,22 @@ Les défauts historiques de migration destructrice et d’insertions silencieuse
 sont traités. Les priorités de cycle de vie, concurrence et ressources des
 autres composants restent ouvertes. Le corpus existant est conservé avec son
 ancien découpage ; aucune réindexation automatique n’est imposée.
+
+## Pilote CORE–VOICE — base115dd3f/226e2e8
+
+Voir `docs/mission-core-voice-pilot/` pour les preuves actualisées. C1 ajoute un
+port de sortie conservant le texte historique exact et LocalTts inchangé ;
+MainActivity et AppGraph ne changent que le passage par ce port. Session,
+corrélation et annulation filtrent les retours obsolètes, sans attester une
+lecture ou une fin native. Pilote désactivé et API24/25 conservée.
+
+C2 est bloquée : Llama reste résident, sa libération masque les exceptions,
+Whisper n'a pas de protocole d'admission global et timeout n'est pas fin JNI.
+Le modèle NativeHandoffGate est simulé, son fournisseur par défaut indisponible.
+C3 n'est pas implémentée. Les travaux004A/B/C sur d'autres branches ne sont pas
+présumés fusionnés. Les bases, migrations et tests historiques de cette branche
+sont conservés.
+
+Le contrat fixture `voice.bridge.fixture/1`, distinct de005K/UNIFIED, est épinglé
+et identique dans la branche VOICE sœur. Il teste l'authentification et les
+refus, pas la synthèse. Aucun profil personnel ni rendu natif Android qualifié.
