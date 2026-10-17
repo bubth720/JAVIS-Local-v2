@@ -1,0 +1,15 @@
+{
+  "version": "jarvis.identity/1",
+  "schema_revision": "001B.1-candidate",
+  "max_wire_bytes": 32768,
+  "max_depth": 8,
+  "max_nodes": 1024,
+  "max_array_items": 16,
+  "max_string_utf8_bytes": 8192,
+  "schema_maxLength_also_bounds_utf8_bytes": true,
+  "max_integer": 9007199254740991,
+  "manifest_total_bytes": 4096,
+  "max_persona_fragment_utf8_bytes": 2048,
+  "private_writes_enabled": false,
+  "fixtures_p2_allowed": false
+}

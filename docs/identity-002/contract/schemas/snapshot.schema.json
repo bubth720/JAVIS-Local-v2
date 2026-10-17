@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:jarvis:identity:001b:snapshot",
+  "title": "snapshot",
+  "type": "object",
+  "properties": {
+    "version": {
+      "const": "jarvis.identity/1"
+    },
+    "schema_revision": {
+      "const": "001B.1-candidate"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "maxLength": 36
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "kind": {
+      "const": "snapshot"
+    },
+    "session_id": {
+      "type": "string",
+      "format": "uuid",
+      "maxLength": 36
+    },
+    "manifest_ref": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "maxLength": 36
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "sha256": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "policy_revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "consent_revision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "composer_revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "jarvis_preferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "maxLength": 36
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "sha256": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 16,
+      "uniqueItems": true
+    },
+    "personal_preferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "maxLength": 36
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "sha256": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 16,
+      "uniqueItems": true
+    },
+    "consents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "maxLength": 36
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "sha256": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 16,
+      "uniqueItems": true
+    },
+    "styles": {
+      "type": "object",
+      "properties": {
+        "assertiveness": {
+          "type": "string",
+          "enum": [
+            "ASSERTIVE",
+            "CALM"
+          ],
+          "maxLength": 64
+        },
+        "warmth": {
+          "type": "string",
+          "enum": [
+            "WARM",
+            "NEUTRAL"
+          ],
+          "maxLength": 64
+        },
+        "verbosity": {
+          "type": "string",
+          "enum": [
+            "CONCISE",
+            "BALANCED",
+            "DETAILED"
+          ],
+          "maxLength": 64
+        },
+        "humour": {
+          "type": "string",
+          "enum": [
+            "OFF",
+            "LIGHT"
+          ],
+          "maxLength": 64
+        },
+        "critical_thinking": {
+          "type": "string",
+          "enum": [
+            "EVIDENCE_FIRST"
+          ],
+          "maxLength": 64
+        },
+        "addressing": {
+          "type": "string",
+          "enum": [
+            "VOUS",
+            "TU"
+          ],
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "assertiveness",
+        "warmth",
+        "verbosity",
+        "humour",
+        "critical_thinking",
+        "addressing"
+      ],
+      "additionalProperties": false
+    },
+    "created_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "expires_ms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "version",
+    "schema_revision",
+    "id",
+    "revision",
+    "kind",
+    "session_id",
+    "manifest_ref",
+    "policy_revision",
+    "consent_revision",
+    "composer_revision",
+    "jarvis_preferences",
+    "personal_preferences",
+    "consents",
+    "styles",
+    "created_ms",
+    "expires_ms"
+  ],
+  "additionalProperties": false
+}

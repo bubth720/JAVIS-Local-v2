@@ -307,3 +307,26 @@ Sans clé de laboratoire explicitement provisionnée, l'APK fixture est non
 signé. Ne pas employer la clé historique ou la clé éphémère d'un ancien job.
 Aucune preuve Binder entre deux APK ou JNI Android n'est acquise par cette
 livraison ; distinguer Robolectric/JVM, Linux natif, émulateur et appareil.
+
+## Actualisation — CORE IDENTITY 002
+
+Lire `docs/identity-002/REPORT.md` et `VALIDATION.md`. Base 004C
+`da40ed7155409b85860a22c1dbbfe35029cea29a`, contrat UNIFIED
+`d7c90785ae4263892a6c96e140cfa88206cb4197`, bundle
+`431b5212f742bd9028477a6a603acf328c414801873efdd529f45b6ed5e619de`.
+Socle `identity/` optionnel : codec Android, manifeste B technique, snapshot
+immuable, politique hôte et port strictement en lecture seule. Ne jamais
+désérialiser une autorisation depuis le manifeste. Désactivé par défaut.
+Le backend historique n'expose pas le tokenizer/template réel : aucune injection
+dans AppGraph/chat, aucune personnalité runtime validée. La composition exige
+un port natif qualifié ; les doubles des tests ne sont pas une attestation.
+Ne pas introduire IDENTITY dans la fixture /2. Préserver ses fichiers et les
+84 fichiers historiques contrôlés par `python3 tools/check-identity-002.py`.
+
+En cloud : `python3 tools/setup-identity-cloud.py` installe les outils épinglés
+hors checkout, puis `bash tools/identity-cloud-env.sh gradle ...` fournit Java17,
+Gradle8.10.2, SDK35, CA et proxy hérités aux workers Robolectric. Aucun modèle
+ni APK installé. Exécuter les tests app et p2-client avec
+`-PincludeP2Fixture=true`, ainsi que les builds, Lint et `tools/check-004c.py`.
+Validation actuelle : 226 tests app (dont39 IDENTITY API24/25/35) et36 fixture,
+0 échec, erreur ou ignoré ; aucune preuve Android physique/native.

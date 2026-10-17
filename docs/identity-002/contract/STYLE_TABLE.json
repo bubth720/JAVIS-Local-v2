@@ -1,0 +1,26 @@
+{
+  "assertiveness": [
+    "ASSERTIVE",
+    "CALM"
+  ],
+  "warmth": [
+    "WARM",
+    "NEUTRAL"
+  ],
+  "verbosity": [
+    "CONCISE",
+    "BALANCED",
+    "DETAILED"
+  ],
+  "humour": [
+    "OFF",
+    "LIGHT"
+  ],
+  "critical_thinking": [
+    "EVIDENCE_FIRST"
+  ],
+  "addressing": [
+    "VOUS",
+    "TU"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "status": "CANDIDATE_REVIEW_REQUIRED",
+  "version": "jarvis.identity/1",
+  "schema_revision": "001B.1-candidate",
+  "algorithm": "sha256(sorted(relative-path UTF8,NUL,exact bytes,NUL))",
+  "bundle_sha256": "431b5212f742bd9028477a6a603acf328c414801873efdd529f45b6ed5e619de",
+  "files": [
+    {
+      "path": "CONTRACT.md",
+      "sha256": "bf6c9841f2dba3a1cbb2be18139f70cb9460c981526b9e85fe197c25c4125e37"
+    },
+    {
+      "path": "CORPUS_PERSONA.json",
+      "sha256": "e933b40c120e0ededd9a5a44e11f9db0c46825d5b9a2459e95554c6531ae5a8e"
+    },
+    {
+      "path": "IdentityPort.md",
+      "sha256": "a8cb8c601860d0a2d33d85b9406a1b90aedbc44ec17fdda2d53a5cfe7f85fd67"
+    },
+    {
+      "path": "STYLE_TABLE.json",
+      "sha256": "68b55277fc700f93e02b32c8fcc582058fa14b5732a802821593d50eee559227"
+    },
+    {
+      "path": "limits.json",
+      "sha256": "1b2378070cbaeb9c91a027cd02be5ade7e9db8fe4dcdea737db599cde1335c88"
+    },
+    {
+      "path": "schemas/application.schema.json",
+      "sha256": "e8ad93076457c49eb98be554e923b6d012621945442cd98aeebd77f9313738bc"
+    },
+    {
+      "path": "schemas/change-proposal.schema.json",
+      "sha256": "48e98cf70d41bb97fd5d4aec338417d7b4bd9e5286e85cd95c48fcae9f3d2f24"
+    },
+    {
+      "path": "schemas/consent.schema.json",
+      "sha256": "f111c0c174bf940e6c99cf550ed2c028f10f37c0d36bd9236b867cb1356522fe"
+    },
+    {
+      "path": "schemas/decision.schema.json",
+      "sha256": "e7ff8978aeec0d98d85fbf93c7dd12cd0ddfe4cf43ed2dc0baa5f3c4f5de2d88"
+    },
+    {
+      "path": "schemas/jarvis-preference.schema.json",
+      "sha256": "b4b0765965ee525af020a7c74a2ea98b755491ac0767e85bd552a1f9e58a64d0"
+    },
+    {
+      "path": "schemas/manifest.schema.json",
+      "sha256": "f5971f3c48c6863ecf837a976af601ca5ebf00da361664fef8d1047ff369ce82"
+    },
+    {
+      "path": "schemas/personal-preference.schema.json",
+      "sha256": "f338fb9df908f4fc94330a817b5b3df350e15a2e2ecb4c1a75753d9121037c9d"
+    },
+    {
+      "path": "schemas/snapshot.schema.json",
+      "sha256": "003aa4bffd85d2ace25c9a77606c5effef33cda813063bd9c2f069659a545b23"
+    },
+    {
+      "path": "vectors.json",
+      "sha256": "7df8d5c493834f520db60d6da900c1e689fc19a21af6202c67ca6e891773168f"
+    }
+  ],
+  "validator_file": "scripts/identity_contracts.py",
+  "validator_sha256": "01d0237afb4226088bb005fabd28b4471cccdc514d4e2fb22f4573af5f3b7c1e",
+  "android_codec_sha256": null,
+  "notes": "BUNDLE, SOURCES, reports, tools and examples excluded to avoid self-reference; vectors and eight schemas included. No runtime approval."
+}

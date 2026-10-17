@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:jarvis:identity:001b:change-proposal",
+  "title": "change-proposal",
+  "type": "object",
+  "properties": {
+    "version": {
+      "const": "jarvis.identity/1"
+    },
+    "schema_revision": {
+      "const": "001B.1-candidate"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "maxLength": 36
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "kind": {
+      "const": "change-proposal"
+    },
+    "target_kind": {
+      "type": "string",
+      "enum": [
+        "manifest",
+        "jarvis-preference",
+        "personal-preference"
+      ],
+      "maxLength": 64
+    },
+    "base_ref": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "maxLength": 36
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "sha256": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "proposer": {
+      "type": "string",
+      "enum": [
+        "USER",
+        "CORE",
+        "EVOLUTION"
+      ],
+      "maxLength": 64
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": [
+        "TECHNICAL",
+        "PERSONAL"
+      ],
+      "maxLength": 64
+    },
+    "storage": {
+      "type": "string",
+      "enum": [
+        "TECHNICAL_CONFIG",
+        "EPHEMERAL_ONLY"
+      ],
+      "maxLength": 64
+    },
+    "decision_state": {
+      "const": "PENDING"
+    },
+    "patch": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "assertiveness",
+              "warmth",
+              "verbosity",
+              "humour",
+              "critical_thinking",
+              "addressing"
+            ],
+            "maxLength": 64
+          },
+          "old_value": {
+            "type": "string",
+            "enum": [
+              "ASSERTIVE",
+              "BALANCED",
+              "CALM",
+              "CONCISE",
+              "DETAILED",
+              "EVIDENCE_FIRST",
+              "LIGHT",
+              "NEUTRAL",
+              "OFF",
+              "TU",
+              "VOUS",
+              "WARM"
+            ],
+            "maxLength": 64
+          },
+          "new_value": {
+            "type": "string",
+            "enum": [
+              "ASSERTIVE",
+              "BALANCED",
+              "CALM",
+              "CONCISE",
+              "DETAILED",
+              "EVIDENCE_FIRST",
+              "LIGHT",
+              "NEUTRAL",
+              "OFF",
+              "TU",
+              "VOUS",
+              "WARM"
+            ],
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "key",
+          "old_value",
+          "new_value"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 6,
+      "uniqueItems": true
+    },
+    "rationale_ref": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid",
+          "maxLength": 36
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "expires_ms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "version",
+    "schema_revision",
+    "id",
+    "revision",
+    "kind",
+    "target_kind",
+    "base_ref",
+    "proposer",
+    "sensitivity",
+    "storage",
+    "decision_state",
+    "patch",
+    "rationale_ref",
+    "created_ms",
+    "expires_ms"
+  ],
+  "additionalProperties": false
+}
