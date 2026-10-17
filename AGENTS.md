@@ -194,3 +194,17 @@ gradle :app:testDebugUnitTest --tests '*LocalDatabaseTest*' --no-daemon
 Rapporter distinctement les vérifications réussies, échouées, non exécutées
 et bloquées. Ne pas décrire un résultat ancien comme une nouvelle validation.
 Une compilation réussie ou une exécution sans tests ne valide pas l’assistant.
+
+## Pilote CORE–VOICE C-VOICE-001
+
+Lire `docs/mission-core-voice-pilot/MISSION.md`, `ARCHITECTURE.md`,
+`SECURITE-RESSOURCES.md`, `CONTRAT-SHA.md`, `TESTS.md` et `RESULTATS.md`.
+Base115dd3f au-dessus de main226e2e8 ; ne pas supposer que004A/B/C sont fusionnées.
+Le chemin vocal passe par SpeechOutputSession vers LocalTts inchangé, par défaut.
+Le pilote reste désactivé : C2 ne dispose pas d'attestation native fiable ;
+aucun client Binder CORE C3 n'est autorisé à contourner cette barrière.
+NativeHandoffGate est un modèle de tests isolés, pas un arbitre Android global.
+Ne jamais injecter des preuves synthétiques en production, assimiler annulation
+à fin JNI ou effacer une réservation inconnue. Aucune activation/installation
+Xiaomi, aucun accès au profil B. Vérifier la préservation et le contrat avec
+`python3 tools/check-core-voice-pilot.py`, puis tests/assembleDebug/lintDebug.

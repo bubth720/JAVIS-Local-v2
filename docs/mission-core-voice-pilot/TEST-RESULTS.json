@@ -1,0 +1,17 @@
+{
+  "base": "115dd3fe9b8e82b295b076dc045601a04d21a06f",
+  "tests": {
+    "tests": 57,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 34
+  },
+  "android_instrumentation": "NOT_EXECUTED",
+  "jni_handoff": "UNQUALIFIED_BLOCKED",
+  "core_binder_client": "NOT_IMPLEMENTED_C2_STOP"
+}

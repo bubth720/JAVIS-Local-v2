@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
                 refreshMessages()
 
                 if (graph.settings.load().speakReplies) {
-                    graph.tts.speak(answer.text)
+                    graph.speechOutput.speak(answer.text)
                 }
 
                 setStatus("PRÊT", true)

@@ -12,5 +12,6 @@ class AppGraph(context: Context) {
     val core = JarvisCore(db, rag, llm, settings)
     val whisper = WhisperLocalEngine(context, models)
     val tts = LocalTts(context)
+    val speechOutput = SpeechOutputSession(HistoricalSpeechOutput(tts::speak))
     val recorder = WavRecorder(context)
 }
