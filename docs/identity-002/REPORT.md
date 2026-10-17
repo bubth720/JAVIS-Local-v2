@@ -121,3 +121,25 @@ physiques. ID-002 n'autorise aucune modification des fixtures /2, aucun débloca
 CORE 004D et aucune fusion dans main.
 
 Résultats exécutés : [VALIDATION.md](VALIDATION.md).
+
+## Publication et contrôle de clôture
+
+Commit d'implémentation : `0866abffbb7fd51814c8032c94f3fbaa98bfb0c5`.
+Push HTTPS réussi sans forçage vers la seule branche
+[feature/identity-002-core-runtime](https://github.com/bubth720/JAVIS-Local-v2/tree/feature/identity-002-core-runtime).
+Le SHA distant a été comparé au SHA local. Un commit documentaire de clôture
+complète ce rapport ; `git rev-parse HEAD` identifie son SHA sans auto-référence.
+Aucune PR créée ou fusionnée. Le refus HTTP403 historique n'a pas été reproduit
+pour cette publication ; cela ne garantit pas toutes les permissions API GitHub.
+
+`main` reste `226e2e8cc3eebd479805b89d035eb5c1cbcad540` et la base 004C reste
+`da40ed7155409b85860a22c1dbbfe35029cea29a`. Le contrôle après push constate
+un déplacement de `feat/core-voice-pilot` vers
+`115dd3fe9b8e82b295b076dc045601a04d21a06f` depuis l'inventaire initial.
+Cette référence est hors du refspec publié par cette mission ; aucun changement
+de cette branche n'a été demandé ou effectué ici. L'auteur de ce déplacement
+n'est pas déterminé. Aucune reprise/fusion de ce nouveau travail dans ID-002.
+Une prochaine mission devra examiner ce SHA si elle choisit la branche pilote
+comme base. Les autres branches antérieures de l'inventaire sont identiques.
+UNIFIED est resté sur d7c90785 avec un arbre de travail propre ; aucun dépôt LLM
+n'a été modifié. L'arbre CORE est propre après les commits de cette mission.
