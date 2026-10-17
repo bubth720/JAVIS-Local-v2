@@ -52,3 +52,25 @@ Une assertion initiale attendait à tort la propagation d'une exception depuis u
 ## Livraison GitHub
 
 La lecture Git fonctionne. La requête API `gh api repos/bubth720/JAVIS-Local-v2` reçoit `Forbidden` dans cette session : lecture Git et accès API sont distincts. Aucun token n'a été extrait ou remplacé. La publication Git est vérifiée séparément après création du commit. Les liens de branche/comparaison seront fournis ; ne pas présenter une URL de préparation comme une PR créée. Aucun workflow de publication de modèles lancé et aucune fusion.
+
+### Publication effectivement vérifiée
+
+Le commit de code `71be9ef6d3ee632c95ff9c74ffe76ede2734eb03` est publié sur
+`origin/fixture/004c-p2-client` ; l'égalité locale/distante a été vérifiée par
+`git ls-remote`. Une clôture documentaire peut suivre ce commit sans changement
+applicatif. Le workflow existant est uniquement `workflow_dispatch` : aucun job
+n'a été déclenché par ce push et aucun dispatch n'a été demandé.
+
+Création de PR brouillon tentée avec `gh pr create`, base
+`mission-004b-core-backend-lifecycle` pour isoler cette mission de la base 004B
+encore non fusionnée sur main. Résultat : `Post https://api.github.com/graphql:
+Forbidden`. **Aucune PR créée**, aucun lien de CI disponible. Le push Git réussi
+ne démontre pas un accès API ; ce refus ne permet pas d'identifier un scope de
+token manquant ou de conclure à l'absence de droits d'écriture du dépôt.
+
+Branche publiée : <https://github.com/bubth720/JAVIS-Local-v2/tree/fixture/004c-p2-client>.
+Préparation manuelle de PR incrémentale :
+<https://github.com/bubth720/JAVIS-Local-v2/compare/mission-004b-core-backend-lifecycle...fixture/004c-p2-client?expand=1>.
+Ce lien ouvre une comparaison, pas une PR existante. La base main doit être
+choisie explicitement lors d'une future revue d'ensemble si les livraisons
+précédentes ne sont toujours pas fusionnées. Ne rien fusionner automatiquement.
