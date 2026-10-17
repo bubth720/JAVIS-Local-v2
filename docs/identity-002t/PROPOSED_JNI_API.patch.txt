@@ -1,9 +1,6 @@
 --- a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
 +++ b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
-@@ -27,5 +27,21 @@
- 
-     external fun nativeReleaseModel(handle: Long)
- 
+@@ -29,0 +30,16 @@
 +    // ID-002T PROPOSED ONLY: new opt-in ABI, no implementation or caller approved.
 +    // Same owned model/context. No decode, KV clear, model load or sampler during prepare.
 +    external fun nativePrepareMeasured(
@@ -20,5 +17,3 @@
 +    // Frees only prepared buffers; NEVER confirms native completion/model release.
 +    external fun nativeDiscardPrepared(handle: Long, preparedTicket: String)
 +
-     external fun nativeGetSystemInfo(): String
- }

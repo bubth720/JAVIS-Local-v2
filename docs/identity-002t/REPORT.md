@@ -77,3 +77,12 @@ gates séparés. Persona toujours désactivée par défaut. Aucun merge main.
 Le SHA de livraison peut être obtenu par `git rev-parse HEAD` sur cette branche ;
 le compte rendu de publication donne le SHA distant vérifié, sans auto-référence
 circulaire dans ce document.
+
+## Publication contrôlée
+
+Commit de livraison : `0c934464e891987e61094b4c2466832231c6029b`, publié sans forçage et SHA distant vérifié.
+Un complément documentaire corrige la présentation du diff proposé, sans changer
+les signatures ou le runtime. Dernier SHA : `git rev-parse HEAD` sur
+[feature/identity-002t-tokenizer-port](https://github.com/bubth720/JAVIS-Local-v2/tree/feature/identity-002t-tokenizer-port).
+Aucune PR créée ni fusion effectuée. Main reste226e2e8, la branche ID-002 reste8adec3e
+et CORE–VOICE reste7426665 lors du contrôle de clôture. Arbre UNIFIED propre.
