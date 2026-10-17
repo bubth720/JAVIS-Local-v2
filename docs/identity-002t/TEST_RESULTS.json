@@ -1,0 +1,202 @@
+{
+  "kind": "local_cloud_static_and_robolectric_not_native",
+  "base": "8adec3e0e8dfdce685a33ef796fc3150facc7f0a",
+  "suites": {
+    "app": [
+      {
+        "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.InferenceControllerTest",
+        "tests": 20,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LocalDatabaseTest",
+        "tests": 39,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LocalTtsTest",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.ModelInstallationTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.ModelManagerConcurrencyTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.OfflineVoiceTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.PdfImporterTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.PromptBudgetTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+        "tests": 17,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.SessionInferenceLifecycleTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.SettingsStoreTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.WavRecorderTest",
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+        "tests": 39,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "fixture": [
+      {
+        "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+        "tests": 17,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "lint": {
+    "app": {
+      "Error": 0,
+      "Warning": 25
+    },
+    "fixture": {
+      "Error": 0,
+      "Warning": 0
+    }
+  },
+  "not_executed": [
+    "native_token_count",
+    "native_measure_generate_model_change",
+    "native_worker_lease_identity",
+    "android_physical"
+  ],
+  "legacy_check_004c": "FAIL_PREEXISTING_BASELINE_DIFF_ID002_ADDITIONS"
+}

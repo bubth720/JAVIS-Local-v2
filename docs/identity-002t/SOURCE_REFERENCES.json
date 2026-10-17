@@ -1,0 +1,23 @@
+{
+  "upstream_commit": "823d1de2b3ef85ba9ef4847a03bac423f4aa1c44",
+  "tag": "v0.1.1",
+  "binary_reproducibility_proven": false,
+  "sources": {
+    "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt": {
+      "sha256": "7f70c634d8e766be9a262ce9e832b04306b3518a3200a421a179521709e9844a",
+      "url": "https://github.com/ffmpegkit-maintained/llama-android/blob/823d1de2b3ef85ba9ef4847a03bac423f4aa1c44/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt"
+    },
+    "library/src/main/jni/llama_jni.cpp": {
+      "sha256": "a1f5c8bd8e68b83f6bbd1f1eee5a52170ea3c3f7123b22989e52cebda803b31f",
+      "url": "https://github.com/ffmpegkit-maintained/llama-android/blob/823d1de2b3ef85ba9ef4847a03bac423f4aa1c44/library/src/main/jni/llama_jni.cpp"
+    },
+    "library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt": {
+      "sha256": "0bc8141ff99c334d1bad547af8b42077a5615801b4683d4346f0021b30ddf859",
+      "url": "https://github.com/ffmpegkit-maintained/llama-android/blob/823d1de2b3ef85ba9ef4847a03bac423f4aa1c44/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt"
+    },
+    "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaResult.kt": {
+      "sha256": "c1480b9ff12374e3fb31a3faf62e68ab66e576ca497aec72fb3265b12f791e41",
+      "url": "https://github.com/ffmpegkit-maintained/llama-android/blob/823d1de2b3ef85ba9ef4847a03bac423f4aa1c44/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaResult.kt"
+    }
+  }
+}

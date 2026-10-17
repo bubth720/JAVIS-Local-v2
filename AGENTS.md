@@ -330,3 +330,23 @@ ni APK installé. Exécuter les tests app et p2-client avec
 `-PincludeP2Fixture=true`, ainsi que les builds, Lint et `tools/check-004c.py`.
 Validation actuelle : 226 tests app (dont39 IDENTITY API24/25/35) et36 fixture,
 0 échec, erreur ou ignoré ; aucune preuve Android physique/native.
+
+## Actualisation — IDENTITY ID-002T
+
+Base `8adec3e0e8dfdce685a33ef796fc3150facc7f0a`. Lire
+`docs/identity-002t/REPORT.md`, AUDIT.md et EXACT_PORT.md. AAR0.1.1 inspecté
+par javap/nm : tokenizer C présent, aucune mesure JNI préalable ; compteur
+promptTokens post-calcul non exposé par LlamaResult. Aucun port natif exact
+implémenté : extension JNI/transaction protégée suspendue avant application.
+Le diff proposé est uniquement documentaire, non compilé, non installable seul.
+Persona désactivée, code runtime et fixtures inchangés. Ne pas mesurer via
+complete(maxTokens=0) ou embeddings : ces appels modifient l'état natif.
+
+`tools/audit-identity-tokenizer.py --aar ...` (via identity-cloud-env.sh pour
+JAVA_HOME) inspecte l'artefact existant et vérifie les fichiers de la base.
+Nouvelle suite de séparation des sources : IdentityTokenizerBoundaryTest ;
+6 cas API24/25/35 sans comptage natif fabriqué. Validation :268 tests réussis,
+0 échec/erreur/ignoré ; builds/Lint réussis. check-004c.py reste en échec car sa
+règle contre004B refuse déjà les ajouts ID-002 de8adec3e ; ne pas le masquer,
+voir RESULTS.md. Les autres contrôles de préservation passent. Même modèle,
+worker, bail, template et IDs de tokens doivent être qualifiés avant activation.
