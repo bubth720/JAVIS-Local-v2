@@ -81,3 +81,13 @@ d'artefact ne doit être annoncé comme créé avant observation de sa publicati
 La grille TESTS-POCO.md sépare l'essai d'accueil possible et les tests GGUF bloqués.
 L'autorisation demandée concerne seulement une installation manuelle de cette APK
 sans poids, sans migration, remplacement d'application ou modification des modèles.
+
+## Premier passage Actions et correction
+
+Exécution39123128198, commit d5381b095d37da80aa084a46d45e8b70388e10e3 :
+étape « Android build tools only » en échec, annotation exit127 ; tests et upload
+non exécutés. La commande sdkmanager n'était pas préparée explicitement dans le
+workflow. Ajout de android-actions/setup-android@v3 pour installer/configurer les
+outils et leur PATH avant leur utilisation. Cette correction ne touche pas l'APK.
+Le statut de la nouvelle exécution et le lien de l'artefact sont donnés dans le
+compte rendu final ; ne pas télécharger un kit supposé issu de la première.
