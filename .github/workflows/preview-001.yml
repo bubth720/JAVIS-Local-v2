@@ -7,6 +7,7 @@ on:
       - 'app/**'
       - 'tools/preview_kit.py'
       - 'tools/check-preview-001.py'
+      - 'tools/setup-preview-android.py'
       - '.github/workflows/preview-001.yml'
   workflow_dispatch:
 
@@ -26,9 +27,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
-      - uses: android-actions/setup-android@v3
       - name: Android build tools only — no model downloads
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+        run: python3 tools/setup-preview-android.py
       - name: Verify scope and preservation
         run: |
           git fetch --no-tags --depth=1 origin b2ec98238f70e89edc636c1c671f2ddf1b957d74

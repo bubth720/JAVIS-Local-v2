@@ -91,3 +91,12 @@ workflow. Ajout de android-actions/setup-android@v3 pour installer/configurer le
 outils et leur PATH avant leur utilisation. Cette correction ne touche pas l'APK.
 Le statut de la nouvelle exécution et le lien de l'artefact sont donnés dans le
 compte rendu final ; ne pas télécharger un kit supposé issu de la première.
+
+Deuxième exécution39123203246 : l'action setup-android a échoué avant tests/upload ;
+seuls son statut et les annotations publiques sont accessibles (journaux détaillés
+non accessibles anonymement, endpoint de logs404). Pas de cause supplémentaire
+inventée. Remplacement par tools/setup-preview-android.py : archive officielle
+11076708 avec SHA-256 épinglé, SDK dans RUNNER_TEMP, Java17 existant, export des
+chemins pour Gradle. Le script a été exécuté ici sur le SDK vérifié ; il conserve
+proxy et TLS et installe seulement SDK35/build-tools35, aucun modèle/émulateur/APK.
+Les deux premières exécutions n'ont publié aucun kit.

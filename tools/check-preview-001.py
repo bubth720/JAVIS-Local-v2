@@ -9,7 +9,7 @@ BASE = 'b2ec98238f70e89edc636c1c671f2ddf1b957d74'
 ALLOWED = {'AGENTS.md', 'docs/PROJECT_KNOWLEDGE.md', 'app/build.gradle.kts',
            'app/src/main/java/com/stark/jarvislocal/MainActivity.kt'}
 NEW = {'app/src/main/res/values/preview.xml', '.github/workflows/preview-001.yml',
-       'tools/check-preview-001.py', 'tools/preview_kit.py'}
+       'tools/check-preview-001.py', 'tools/preview_kit.py', 'tools/setup-preview-android.py'}
 
 
 def git(*args):
