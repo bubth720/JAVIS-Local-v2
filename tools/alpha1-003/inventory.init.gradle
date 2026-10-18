@@ -1,0 +1,42 @@
+// Observer only: no project source/dependency change and no publication task.
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+import java.security.MessageDigest
+
+gradle.projectsEvaluated {
+    def library = gradle.rootProject.project(':library')
+    def snapshot = {
+            def records = []
+            def collect = { String scope, configuration ->
+                configuration.resolvedConfiguration.resolvedArtifacts.each { a ->
+                    records.add([scope: scope, coordinate: a.moduleVersion.id.toString(),
+                        file: a.file.name, sha256: MessageDigest.getInstance('SHA-256')
+                            .digest(a.file.bytes).encodeHex().toString()])
+                }
+            }
+            ['releaseCompileClasspath', 'releaseRuntimeClasspath'].each { name ->
+                collect(name, library.configurations.getByName(name))
+            }
+            [gradle.rootProject, library].each { p ->
+                collect(p.path + ':buildscript', p.buildscript.configurations.getByName('classpath'))
+            }
+            records.unique().sort { a, b -> (a.scope + a.coordinate + a.file) <=> (b.scope + b.coordinate + b.file) }
+    }
+    // Optional observed lock: refusal before ANY build task, without changing upstream files.
+    gradle.taskGraph.whenReady {
+        def lock = System.getenv('ALPHA1_DEPENDENCY_LOCK')
+        if (lock) {
+            def expected = new JsonSlurper().parse(new File(lock))
+            if (expected instanceof Map) expected = expected.dependencyLock
+            if (snapshot() != expected) throw new GradleException('ALPHA1 dependency lock mismatch')
+        }
+    }
+    library.tasks.register('alpha1DependencyInventory') {
+        doLast {
+            def destination = System.getenv('ALPHA1_INVENTORY')
+            if (!destination) throw new GradleException('ALPHA1_INVENTORY required (outside checkout)')
+            new File(destination).text = JsonOutput.prettyPrint(JsonOutput.toJson(
+                snapshot())) + '\n'
+        }
+    }
+}

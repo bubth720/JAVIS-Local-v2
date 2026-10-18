@@ -1,0 +1,31 @@
+test_cancel_before_admission (__main__.OracleTests.test_cancel_before_admission) ... ok
+test_cancel_does_not_end_native_call (__main__.OracleTests.test_cancel_does_not_end_native_call) ... ok
+test_cancelled_output (__main__.OracleTests.test_cancelled_output) ... ok
+test_changed_token_id (__main__.OracleTests.test_changed_token_id) ... ok
+test_context_exceeded (__main__.OracleTests.test_context_exceeded) ... ok
+test_copy_not_private (__main__.OracleTests.test_copy_not_private) ... ok
+test_discard_does_not_unload (__main__.OracleTests.test_discard_does_not_unload) ... ok
+test_double_consume (__main__.OracleTests.test_double_consume) ... ok
+test_double_model (__main__.OracleTests.test_double_model) ... ok
+test_expiration (__main__.OracleTests.test_expiration) ... ok
+test_hash_not_verified (__main__.OracleTests.test_hash_not_verified) ... ok
+test_missing_prefill (__main__.OracleTests.test_missing_prefill) ... ok
+test_no_unload_during_native (__main__.OracleTests.test_no_unload_during_native) ... ok
+test_prepare_mutated_kv (__main__.OracleTests.test_prepare_mutated_kv) ... ok
+test_second_render (__main__.OracleTests.test_second_render) ... ok
+test_second_tokenization (__main__.OracleTests.test_second_tokenization) ... ok
+test_stale_generation (__main__.OracleTests.test_stale_generation) ... ok
+test_system_not_distinct (__main__.OracleTests.test_system_not_distinct) ... ok
+test_unknown_blocks_new_load (__main__.OracleTests.test_unknown_blocks_new_load) ... ok
+test_unknown_blocks_release (__main__.OracleTests.test_unknown_blocks_release) ... ok
+test_valid_batched_sequence (__main__.OracleTests.test_valid_batched_sequence) ... ok
+test_wrong_binding (__main__.OracleTests.test_wrong_binding) ... ok
+test_wrong_lease (__main__.OracleTests.test_wrong_lease) ... ok
+test_wrong_ticket (__main__.OracleTests.test_wrong_ticket) ... ok
+test_wrong_worker (__main__.OracleTests.test_wrong_worker) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.001s
+
+OK
+{"scope": "synthetic-specification-oracle-only", "tests": 25, "failures": 0, "errors": 0, "jni_executed": false}

@@ -1,0 +1,2024 @@
+{
+  "module": "JARVIS CORE / isolated upstream llama-android",
+  "mission": "ALPHA1-003",
+  "phase": "A_ONLY",
+  "date": "2026-10-18",
+  "branch": "feature/alpha1-003-native-validation",
+  "sourceCommit": "d2a677bb35e63ee94db9dfa4edcaa97036b45dce",
+  "labReference": "b2ec98238f70e89edc636c1c671f2ddf1b957d74",
+  "deliveryCommitResolution": "git log -1 --format=%H -- docs/alpha1-003/RAPPORT.md",
+  "upstreamCommit": "823d1de2b3ef85ba9ef4847a03bac423f4aa1c44",
+  "llamaCppCommit": "2da668617612d2df773f966e3b0ee22dc2beef7b",
+  "phaseBStarted": false,
+  "patchApplied": false,
+  "candidateCompiled": false,
+  "candidateJniExecuted": false,
+  "GGUFDownloaded": false,
+  "nativeModelExecuted": false,
+  "deviceInstalled": false,
+  "AthenaActivated": false,
+  "productionDependenciesChanged": false,
+  "core004DUnblocked": false,
+  "provenance": {
+    "base": "d2a677bb35e63ee94db9dfa4edcaa97036b45dce",
+    "protected_tracked_files": 167,
+    "source_files_verified": 31,
+    "llama_headers_verified": 23,
+    "aar_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+    "aar_components_verified": 7,
+    "patch_sha256": "94f06d0179b95c332f5842b73b69d103e09ca319befc319a0aeca341735c6df7",
+    "sensitive_files": {
+      "upstream/library/src/main/jni/llama_jni.cpp": {
+        "base_sha256": "a1f5c8bd8e68b83f6bbd1f1eee5a52170ea3c3f7123b22989e52cebda803b31f",
+        "proposed_sha256": "fbe60387d85dcd276cdfa0f62aafbad09749be4098ec59053855c78388dfdf59"
+      },
+      "upstream/library/src/main/jni/measured.inc": {
+        "base_sha256": null,
+        "proposed_sha256": "2e8e4c2402c01877298c78121554520ba0353c9758d591d861140baedee4dd50"
+      },
+      "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt": {
+        "base_sha256": "7f70c634d8e766be9a262ce9e832b04306b3518a3200a421a179521709e9844a",
+        "proposed_sha256": "5a1147d4d876a49b03af8be751eb491eab5cb570062341cb580d960287da0c39"
+      },
+      "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt": {
+        "base_sha256": "fe77030dc4d8584304b8054a17525797def495eac63d9597922dd123e530ec11",
+        "proposed_sha256": "e7c47595bcccd77aa3440939392a65ad63aafc288bf4a987f2d7770a815301ee"
+      },
+      "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt": {
+        "base_sha256": "0bc8141ff99c334d1bad547af8b42077a5615801b4683d4346f0021b30ddf859",
+        "proposed_sha256": "7930af5ca762814617c600646506d2a8107df3e8024194cb0fe4d6a7af077c8f"
+      },
+      "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt": {
+        "base_sha256": null,
+        "proposed_sha256": "4c605e72af69e5805692f022e9c8a45b04f37c56adcd976a62bcf3b69f46dc46"
+      },
+      "upstream/library/build.gradle.kts": {
+        "base_sha256": "7900cf39711dd91f63d77d23adba60d94d2599f6de3e41b0f37bf08dd0db5a46",
+        "proposed_sha256": "dfcc8423ef88b231f2f7cf9d22c3f2f106c8b9754a613b84b118453906806c93"
+      },
+      "core/app/src/main/java/com/stark/jarvislocal/ExactLocalInference.kt": {
+        "base_sha256": null,
+        "proposed_sha256": "9270222aade5945d703a05edb77f643bf57abc23212ea8a85910783f435b1b5e"
+      },
+      "core/app/src/main/java/com/stark/jarvislocal/ExactAndroidBackend.kt": {
+        "base_sha256": null,
+        "proposed_sha256": "77f35c904ab7de5bd0b947d3b78ebc7ecfb8e19e417855741260bd404e09e5db"
+      },
+      "core/app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt": {
+        "base_sha256": "94eef86357b1e6985785cea540395ca30640e1ca8c5ce4b6d001671195ef81d9",
+        "proposed_sha256": "c615c5a88ca09fcb1ede9b8c6cc16fe8632da2af7fe2b44e6a11af77cddf1e63"
+      },
+      "core/app/src/main/java/com/stark/jarvislocal/InferenceController.kt": {
+        "base_sha256": "488a79c5fe28df0279f9d16af9783f3b2184029fa773ab94c550eb1ef6b0c3e5",
+        "proposed_sha256": "1d234121957cb3171acffab98b39b50a9e3fc38ecf7d1c85926df96e38520e58"
+      },
+      "core/app/build.gradle.kts": {
+        "base_sha256": "d9aa6132f694b11eb2a8edae2e30b7b5396f0727b5a4f185ae0e11485833977e",
+        "proposed_sha256": "7298647af2fa4153734dfb6c9b3bcf9b87b916fd7221d3d298a3fbf2187cf067"
+      }
+    },
+    "licences": {
+      "llama-android": {
+        "sha256": "e10e3d37bbc2731fe88c808d998f6b5d840bd94d30b4651dd79381f69c93730a",
+        "license": "MIT",
+        "notice_required": true
+      },
+      "llama.cpp": {
+        "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+        "license": "MIT",
+        "notice_required": true
+      }
+    },
+    "candidate_materialized": false,
+    "patch_applied": false,
+    "jni_executed": false,
+    "static_separation_only": true
+  },
+  "toolchain": {
+    "jdk": "Temurin 17.0.16+8",
+    "gradle_upstream": "8.9",
+    "gradle_core": "8.10.2",
+    "agp": "8.7.3",
+    "kotlin": "2.0.21",
+    "ndk": "27.2.12479018",
+    "cmake": "3.22.1",
+    "compileSdk": 35,
+    "minSdk": 24,
+    "abi": [
+      "arm64-v8a"
+    ],
+    "java_target": "11",
+    "cxx": "C++17",
+    "upstream_coroutines": "1.9.0",
+    "coreKtx": "1.13.1",
+    "maven_publish_plugin": "0.34.0",
+    "gradle_distribution_sha256": "d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab",
+    "files_sha256": {
+      "jdk-17.0.16+8/release": "35587a2f13d017ea30a860d31493e660e6983ee8869f0f20cef76e976dca8da0",
+      "jdk-17.0.16+8/bin/java": "1c7e3313ab05bef3da61d7659a12cc50622ddc41b6db2b3a88d480445bf9619f",
+      "android-sdk/platforms/android-35/android.jar": "4566663c3876e022b4fa4ced8c8697c4ab1688267f090114fd92d027b32e619b",
+      "android-sdk/build-tools/34.0.0/source.properties": "c727885baf3695c8fe4fbe566f092e8e114c6cee35ecb9fa95a7ff2ef058de04",
+      "android-sdk/build-tools/35.0.0/source.properties": "084847d70abc41284feee7ea717e7c92eab0d1be05f048c27445a359cfe109d8",
+      "android-sdk/ndk/27.2.12479018/source.properties": "70f1c5165e6d997b18782a49cff71da7a3caacd0c4cd811da24c43359fb83cf6",
+      "android-sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/bin/clang": "a871130d810536f7bb924c8aeaff57c66de27bed9b13d0ccafba25fdcc8bd02d",
+      "android-sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip": "31a3cb87fbf7c040aa82e853458cc6dc6dd95526123fc33c88ee8116a0c91c32",
+      "android-sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf": "a8bd1b1d548f30cf582a025bf42d63ce225a861e8ad35006a722c27e0a4b3a8c",
+      "android-sdk/cmake/3.22.1/source.properties": "3f61a0382a6c9d14b1d2bbef580f5c058b9281babbc0d36b18e5c36aa9a0b5dc",
+      "android-sdk/cmake/3.22.1/bin/cmake": "c8c39aee0443330e9b1866e1d85cc2405a4eec5dfbb468c5017c3eaecb4964f5",
+      "android-sdk/cmake/3.22.1/bin/ninja": "6fa84be1efc3ab25d1cf397d0bb35891e5f99316a35d89cd8c04be5898730174"
+    },
+    "host": "Linux-6.18.55-x86_64-with-glibc2.41",
+    "clean_source_archives": true,
+    "shared_dependency_cache": true,
+    "build_cache": false,
+    "ndk_official_archive_sha1": "090e8083a715fdb1a3e402d0763c388abb03fb4e",
+    "cmake_official_archive_sha1": "fd0a48b4a758310df8c7aa51f59840ed48fe7ed8",
+    "jdk_distribution_sha256": "166774efcf0f722f2ee18eba0039de2d685b350ee14d7b69e6f83437dafd2af1",
+    "commandline_tools_sha256": "2d2d50857e4eb553af5a6dc3ad507a17adf43d115264b1afc116f95c92e5e258",
+    "buildTools": "34.0.0 (AGP default; 35.0.0 also installed)",
+    "commandline_installed_files_verified": 104
+  },
+  "dependencyLock": [
+    {
+      "scope": "::buildscript",
+      "coordinate": "androidx.databinding:databinding-common:8.7.3",
+      "file": "databinding-common-8.7.3.jar",
+      "sha256": "66cab82639dac0f6c2433464c093b074d608c4bb887ec38a9b8bc4ac98126732"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "androidx.databinding:databinding-compiler-common:8.7.3",
+      "file": "databinding-compiler-common-8.7.3.jar",
+      "sha256": "b2431cbbe38d0a31e001b7c34f52f69a323fc9ec573b6afe5893daced5ab3285"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.databinding:baseLibrary:8.7.3",
+      "file": "baseLibrary-8.7.3.jar",
+      "sha256": "794113709dab21b06c262b3795e73cb708fbacae61715f34361e1af6237a1870"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.analytics-library:crash:31.7.3",
+      "file": "crash-31.7.3.jar",
+      "sha256": "cca97ac29a1329bd310a3e832b6e57f46227e501aa529c00a63df217c5d7df41"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.analytics-library:protos:31.7.3",
+      "file": "protos-31.7.3.jar",
+      "sha256": "692cf981395fe171a2f229ff70cc6cc1ddf9e2261b28eadda2269d66e5509786"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.analytics-library:shared:31.7.3",
+      "file": "shared-31.7.3.jar",
+      "sha256": "cad7bb8f96a047a5ef7a13b1c8303414229e9d507209646ec3b63a64861e1ce1"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.analytics-library:tracker:31.7.3",
+      "file": "tracker-31.7.3.jar",
+      "sha256": "e1f954973a4733f76027a5f96fa45472dc3cc22d27b1dc93f3fe6a46a75681be"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta10",
+      "file": "jetifier-core-1.0.0-beta10.jar",
+      "sha256": "26abb4a13927d9062169c504c9e94fe80e9ae3a4f7b5ab8875ab007536a91f5e"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta10",
+      "file": "jetifier-processor-1.0.0-beta10.jar",
+      "sha256": "c5067a7b928237a1271a5e9cb5710e9f80b4973293945bc51e3a4c864ea4bfed"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:aapt2-proto:8.7.3-12006047",
+      "file": "aapt2-proto-8.7.3-12006047.jar",
+      "sha256": "b32f7d4b2975ac9ee7f06054c18f1fea9da045dc1a61ff436ecf543480036302"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:aaptcompiler:8.7.3",
+      "file": "aaptcompiler-8.7.3.jar",
+      "sha256": "47062eb9e5497e0742946528fd93c3886773dd2339059315f6316d5c05d7cdaf"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:apksig:8.7.3",
+      "file": "apksig-8.7.3.jar",
+      "sha256": "c070ed1394629d74641aa0906f60b2ffa1ee77e6366a1f93437f59717b1aeb89"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:apkzlib:8.7.3",
+      "file": "apkzlib-8.7.3.jar",
+      "sha256": "1c1a67d6f4f186427ac166ebaa0dd867f595d5144fc925252b05ffb9d1a156b7"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:builder-model:8.7.3",
+      "file": "builder-model-8.7.3.jar",
+      "sha256": "0018c7dd2cab696e07f140bb1dc8c0b0ec93b6bf195e9387043010ac894db7d7"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:builder-test-api:8.7.3",
+      "file": "builder-test-api-8.7.3.jar",
+      "sha256": "778dd9c17e559401c80db08ebcab67cb773a43de6657417b4320960d296b9b40"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:builder:8.7.3",
+      "file": "builder-8.7.3.jar",
+      "sha256": "2d0ac036986c0f256b9f327810c25c1dde6d5839956580d3283e0e0f146cb926"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:bundletool:1.17.1",
+      "file": "bundletool-1.17.1.jar",
+      "sha256": "392fd3b099bd82b116c8772ab8fc4139984a91108a643f8dfc9ee29648818ad8"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:gradle-api:8.7.3",
+      "file": "gradle-api-8.7.3.jar",
+      "sha256": "869adf75ea8f5be7677850f4e70f221a407e7ef28934c58b1d8d1eb21d7fba45"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:gradle-settings-api:8.7.3",
+      "file": "gradle-settings-api-8.7.3.jar",
+      "sha256": "8a8711ba27e0e8b725bd4b92b16b08d0ea364133364fdd2fd9b6be05f2aa8438"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:gradle:8.7.3",
+      "file": "gradle-8.7.3.jar",
+      "sha256": "abb4f9e92c9838bd9989ba05968ec892189e16e23f42adba2e063843da04070d"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:manifest-merger:31.7.3",
+      "file": "manifest-merger-31.7.3.jar",
+      "sha256": "f1a6e56adbd557d6bf34447a62ff4680642c799c397a4bc14a81256bd961e6ab"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api",
+      "file": "transform-api-2.0.0-deprecated-use-gradle-api.jar",
+      "sha256": "4de4a3d05e1c534c2db9e4588bf34082bb2bd232d8abb9727c430290ce225740"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.ddms:ddmlib:31.7.3",
+      "file": "ddmlib-31.7.3.jar",
+      "sha256": "0d7ef53823f6a21b807f398f0d039a5dde184b58c5589625626ca4aa3d6108ed"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.layoutlib:layoutlib-api:31.7.3",
+      "file": "layoutlib-api-31.7.3.jar",
+      "sha256": "98bae36ff051e114dd4eef5effa80fbe5e552944f4233ce892160da2cd9eeaed"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.lint:lint-model:31.7.3",
+      "file": "lint-model-31.7.3.jar",
+      "sha256": "9f4c087a199174521d1bc7b8ff05ff1484f770f4518b7fd9f6dae6c261882dbd"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.lint:lint-typedef-remover:31.7.3",
+      "file": "lint-typedef-remover-31.7.3.jar",
+      "sha256": "5b4f485215ca4d86ef2319fc398b5f2251e62f5446bc5fd0e00653648ddde318"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-device-provider-ddmlib-proto:31.7.3",
+      "file": "android-device-provider-ddmlib-proto-31.7.3.jar",
+      "sha256": "da9f3f3dae26544c90668549584765d5854a87c425d2cfe577cd34d3600ea097"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-device-provider-gradle-proto:31.7.3",
+      "file": "android-device-provider-gradle-proto-31.7.3.jar",
+      "sha256": "ad2342bb1d6f95563400a322493ea1c229cb93df3944f1261b7399f718494049"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-device-provider-profile-proto:31.7.3",
+      "file": "android-device-provider-profile-proto-31.7.3.jar",
+      "sha256": "10d100ced5d083714c1c68bbbb10bb375e8546f92ab0e4219c0e4a5ff298115e"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-test-plugin-host-additional-test-output-proto:31.7.3",
+      "file": "android-test-plugin-host-additional-test-output-proto-31.7.3.jar",
+      "sha256": "38450694de6328c2c4cba696f9c04ecdd5ce6952355f68c3a22f9541d1d6546f"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-test-plugin-host-apk-installer-proto:31.7.3",
+      "file": "android-test-plugin-host-apk-installer-proto-31.7.3.jar",
+      "sha256": "543eb6c8d72b2ed7451f8e939d5d80890566f14bc26b7df9c8347506b258d7ae"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-test-plugin-host-coverage-proto:31.7.3",
+      "file": "android-test-plugin-host-coverage-proto-31.7.3.jar",
+      "sha256": "efb4d7014aaa7355246a07c2e437a2231fb252540ff1bce6872c88dc8da89d12"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-test-plugin-host-emulator-control-proto:31.7.3",
+      "file": "android-test-plugin-host-emulator-control-proto-31.7.3.jar",
+      "sha256": "aedec5ec4627d898cccdf42d8038db20eba4495753c53d1b0b378734491caf5f"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-test-plugin-host-logcat-proto:31.7.3",
+      "file": "android-test-plugin-host-logcat-proto-31.7.3.jar",
+      "sha256": "9129024bd8e38353bca3eb26dfd8e3628e058d57d6e9d8451ffc35f016751e63"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-test-plugin-host-retention-proto:31.7.3",
+      "file": "android-test-plugin-host-retention-proto-31.7.3.jar",
+      "sha256": "3db8ed38ef49b694caea466ae22e3b36cedc9557b3589d0e07c0cdd83294591c"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools.utp:android-test-plugin-result-listener-gradle-proto:31.7.3",
+      "file": "android-test-plugin-result-listener-gradle-proto-31.7.3.jar",
+      "sha256": "cbdf71bca60e14c30e7b2cf4b90f0f0a3e8c138f7cadd874b0d9c0ae082e0274"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools:annotations:31.7.3",
+      "file": "annotations-31.7.3.jar",
+      "sha256": "b25995fa7b220d35fbb8e325df071f8291691bfbaff9734c98e38f45ec2a73ee"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools:common:31.7.3",
+      "file": "common-31.7.3.jar",
+      "sha256": "abb5b2f28954ac09dcfb5d192e355af41236c8337afc08b16aa1adc0e8aebf63"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools:dvlib:31.7.3",
+      "file": "dvlib-31.7.3.jar",
+      "sha256": "8fd3495a2ebb50b1aacb1b4362dc4a471b87462c1eaec43691bb56f895e9c636"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools:repository:31.7.3",
+      "file": "repository-31.7.3.jar",
+      "sha256": "169c2e7a77aa30978879dbf8b30436671165872fcbdfdda6c735aaddb6710340"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools:sdk-common:31.7.3",
+      "file": "sdk-common-31.7.3.jar",
+      "sha256": "4fa44a7d9675df13da614dee512df90ad3e4308d0addb32ead99f57ce58f675f"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android.tools:sdklib:31.7.3",
+      "file": "sdklib-31.7.3.jar",
+      "sha256": "0a3f7097a4a00b384046b783b7053a59ec0bd92256ab84baa6bd807aa02858b3"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android:signflinger:8.7.3",
+      "file": "signflinger-8.7.3.jar",
+      "sha256": "c1dca2c683634ee1a294298f9c7179578af6a86e080bdc40f961915bc5c8142f"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.android:zipflinger:8.7.3",
+      "file": "zipflinger-8.7.3.jar",
+      "sha256": "81dd485618a509a3235929b9eb13091d884452661de6ce5a45cc38b1c555421c"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.android:annotations:4.1.1.4",
+      "file": "annotations-4.1.1.4.jar",
+      "sha256": "ba734e1e84c09d615af6a09d33034b4f0442f8772dec120efb376d86a565ae15"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.api.grpc:proto-google-common-protos:2.17.0",
+      "file": "proto-google-common-protos-2.17.0.jar",
+      "sha256": "4ef1fe0c327fc1521d1d753b0b1c4a875a54bd14ebded3afff0ca395320b6ea9"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.auto.value:auto-value-annotations:1.6.2",
+      "file": "auto-value-annotations-1.6.2.jar",
+      "sha256": "b48b04ddba40e8ac33bf036f06fc43995fc5084bd94bdaace807ce27d3bea3fb"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.code.findbugs:jsr305:3.0.2",
+      "file": "jsr305-3.0.2.jar",
+      "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.code.gson:gson:2.10.1",
+      "file": "gson-2.10.1.jar",
+      "sha256": "4241c14a7727c34feea6507ec801318a3d4a90f070e4525681079fb94ee4c593"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.crypto.tink:tink:1.7.0",
+      "file": "tink-1.7.0.jar",
+      "sha256": "88970a456a08ba4c66b01b23e5846ca1095cc14e54cb48363e5d2e15a1307308"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.dagger:dagger:2.28.3",
+      "file": "dagger-2.28.3.jar",
+      "sha256": "f1dd23f8ae34a8e91366723991ead0d6499d1a3e9163ce550c200b02d76a872b"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.errorprone:error_prone_annotations:2.18.0",
+      "file": "error_prone_annotations-2.18.0.jar",
+      "sha256": "9e6814cb71816988a4fd1b07a993a8f21bb7058d522c162b1de849e19bea54ae"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.flatbuffers:flatbuffers-java:1.12.0",
+      "file": "flatbuffers-java-1.12.0.jar",
+      "sha256": "3f8c088b4dd04a9858721f2e162508c94db0dd86f961e306ee63ef2eda871bf7"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.guava:failureaccess:1.0.1",
+      "file": "failureaccess-1.0.1.jar",
+      "sha256": "a171ee4c734dd2da837e4b16be9df4661afab72a41adaf31eb84dfdaf936ca26"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.guava:guava:32.0.1-jre",
+      "file": "guava-32.0.1-jre.jar",
+      "sha256": "bd7fa227591fb8509677d0d1122cf95158f3b8a9f45653f58281d879f6dc48c5"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava",
+      "file": "listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
+      "sha256": "b372a037d4230aa57fbeffdef30fd6123f9c0c2db85d0aced00c91b974f33f99"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.j2objc:j2objc-annotations:2.8",
+      "file": "j2objc-annotations-2.8.jar",
+      "sha256": "f02a95fa1a5e95edb3ed859fd0fb7df709d121a35290eff8b74dce2ab7f4d6ed"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.jimfs:jimfs:1.1",
+      "file": "jimfs-1.1.jar",
+      "sha256": "c4828e28d7c0a930af9387510b3bada7daa5c04d7c25a75c7b8b081f1c257ddd"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.protobuf:protobuf-java-util:3.22.3",
+      "file": "protobuf-java-util-3.22.3.jar",
+      "sha256": "c615f76879dc5c303e4df5b94a6afa39534058c7545db2d483fd95d9f63c8bfe"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.protobuf:protobuf-java:3.22.3",
+      "file": "protobuf-java-3.22.3.jar",
+      "sha256": "59d388ea6a2d2d76ae8efff7fd4d0c60c6f0f464c3d3ab9be8e5add092975708"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.google.testing.platform:core-proto:0.0.9-alpha02",
+      "file": "core-proto-0.0.9-alpha02.jar",
+      "sha256": "6d8a8906774150f43a8fad08ca64e25c6070c39bd8a6fc13b2593f289242fe95"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.googlecode.juniversalchardet:juniversalchardet:1.0.3",
+      "file": "juniversalchardet-1.0.3.jar",
+      "sha256": "757bfe906193b8b651e79dc26cd67d6b55d0770a2cdfb0381591504f779d4a76"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.squareup.okhttp3:okhttp-jvm:5.1.0",
+      "file": "okhttp-jvm-5.1.0.jar",
+      "sha256": "a6aac7f15d3c2c3cbd2af7ecf56f97407164a604b2db879529950e31cea699b2"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.squareup.okio:okio-jvm:3.15.0",
+      "file": "okio-jvm-3.15.0.jar",
+      "sha256": "483dc383b1049d220892322a0d6a4308425f09bb05b48c43d4eaa9ff82b1cd16"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.squareup.retrofit2:converter-scalars:3.0.0",
+      "file": "converter-scalars-3.0.0.jar",
+      "sha256": "b97cf06929a80d49bc632e44f219cf0a7185fc4cee861ec90ad1d0e482084023"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.squareup.retrofit2:retrofit:3.0.0",
+      "file": "retrofit-3.0.0.jar",
+      "sha256": "69c6a2d3451b6df9549a93fab744094ebf07a4b0ce4f453d6c8f575ef0fec9a1"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.squareup:javapoet:1.10.0",
+      "file": "javapoet-1.10.0.jar",
+      "sha256": "20ef4b82e43ff7c652281a21313cf3b941092467add3fa73509c26f6969efdab"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.squareup:javawriter:2.5.0",
+      "file": "javawriter-2.5.0.jar",
+      "sha256": "fcfb09fb0ea0aa97d3cfe7ea792398081348e468f126b3603cb3803f240197f0"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.sun.activation:javax.activation:1.2.0",
+      "file": "javax.activation-1.2.0.jar",
+      "sha256": "993302b16cd7056f21e779cc577d175a810bb4900ef73cd8fbf2b50f928ba9ce"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.sun.istack:istack-commons-runtime:3.0.8",
+      "file": "istack-commons-runtime-3.0.8.jar",
+      "sha256": "4ffabb06be454a05e4398e20c77fa2b6308d4b88dfbef7ca30a76b5b7d5505ef"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.sun.xml.fastinfoset:FastInfoset:1.2.16",
+      "file": "FastInfoset-1.2.16.jar",
+      "sha256": "056f3a1e144409f21ed16afc26805f58e9a21f3fce1543c42d400719d250c511"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.vanniktech:central-portal:0.34.0",
+      "file": "central-portal-0.34.0.jar",
+      "sha256": "f47c96df5e76fae4351f8e8ef2a0054ed4cabef7f3373260c0f56fef263d2136"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "com.vanniktech:gradle-maven-publish-plugin:0.34.0",
+      "file": "gradle-maven-publish-plugin-0.34.0.jar",
+      "sha256": "1b304ae327d7034de19511f77ad227ba59d7358e8b51d18b09da7a253fec4c05"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "commons-codec:commons-codec:1.11",
+      "file": "commons-codec-1.11.jar",
+      "sha256": "e599d5318e97aa48f42136a2927e6dfa4e8881dff0e6c8e3109ddbbff51d7b7d"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "commons-io:commons-io:2.13.0",
+      "file": "commons-io-2.13.0.jar",
+      "sha256": "671eaa39688dac2ffaa4645b3c9980ae2d0ea2471e4ae6a5da199cd15ae23666"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "commons-logging:commons-logging:1.2",
+      "file": "commons-logging-1.2.jar",
+      "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.grpc:grpc-api:1.57.0",
+      "file": "grpc-api-1.57.0.jar",
+      "sha256": "8d2c384299f84ee8aa7f670f00e7cb26b87e231cf3091474307b32b76910f71c"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.grpc:grpc-context:1.57.0",
+      "file": "grpc-context-1.57.0.jar",
+      "sha256": "953fcacd82f531e69b76e3834f5830bad4c22ae84144e058d71dc80a7430275d"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.grpc:grpc-core:1.57.0",
+      "file": "grpc-core-1.57.0.jar",
+      "sha256": "3bee48c73bc4c5b55bed79be0e484adf26ba56bebbe5798ddbf34714ef1e1cea"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.grpc:grpc-netty:1.57.0",
+      "file": "grpc-netty-1.57.0.jar",
+      "sha256": "81d43f2d4ed18fa341bd840a3735f1403a70074a046e157e27f679b721b4c9ad"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.grpc:grpc-protobuf-lite:1.57.0",
+      "file": "grpc-protobuf-lite-1.57.0.jar",
+      "sha256": "2c507c02d981b84a21763d44e09af4f279881dd3e25be3080f6361258607f198"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.grpc:grpc-protobuf:1.57.0",
+      "file": "grpc-protobuf-1.57.0.jar",
+      "sha256": "49f986d4eab12610fdba4a6890fca52d5eb653598916fdb863a366d5e28eecf7"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.grpc:grpc-stub:1.57.0",
+      "file": "grpc-stub-1.57.0.jar",
+      "sha256": "6e6ee141539fa14d9fa479f7f511605544443c7e011e78e273cf9468aa183060"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-buffer:4.1.93.Final",
+      "file": "netty-buffer-4.1.93.Final.jar",
+      "sha256": "007c7d9c378df02d390567d0d7ddf542ffddb021b7313dbf502392113ffabb08"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-codec-http2:4.1.93.Final",
+      "file": "netty-codec-http2-4.1.93.Final.jar",
+      "sha256": "d96cc09045a1341c6d47494352aa263b87b72fb1d2ea9eca161aa73820bfe8bb"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-codec-http:4.1.93.Final",
+      "file": "netty-codec-http-4.1.93.Final.jar",
+      "sha256": "dacf78ce78ab2d29570325db4cd2451ea589639807de95881a0fa7155a9e6b55"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-codec-socks:4.1.93.Final",
+      "file": "netty-codec-socks-4.1.93.Final.jar",
+      "sha256": "0ea47b5ba23ca1da8eb9146c8fc755c1271414633b1e2be2ce1df764ba0fff2a"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-codec:4.1.93.Final",
+      "file": "netty-codec-4.1.93.Final.jar",
+      "sha256": "990c378168dc6364c6ff569701f4f2f122fffe8998b3e189eba4c4d868ed1084"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-common:4.1.93.Final",
+      "file": "netty-common-4.1.93.Final.jar",
+      "sha256": "443bb316599fb16e3baeba2fb58881814d7ff0b7af176fe76e38071a6e86f8c0"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-handler-proxy:4.1.93.Final",
+      "file": "netty-handler-proxy-4.1.93.Final.jar",
+      "sha256": "2ac5f7fbefa0b73ef783889069344d5515505a14b2303be693c5002c486df2b4"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-handler:4.1.93.Final",
+      "file": "netty-handler-4.1.93.Final.jar",
+      "sha256": "4e5f563ae14ed713381816d582f5fcfd0615aefb29203486cdfb782d8a00a02b"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-resolver:4.1.93.Final",
+      "file": "netty-resolver-4.1.93.Final.jar",
+      "sha256": "e59770b66e81822e5d111ac4e544d7eb0c543e0a285f52628e53941acd8ed759"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-transport-native-unix-common:4.1.93.Final",
+      "file": "netty-transport-native-unix-common-4.1.93.Final.jar",
+      "sha256": "774165a1c4dbaacb17f9c1ad666b3569a6a59715ae828e7c3d47703f479a53e7"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.netty:netty-transport:4.1.93.Final",
+      "file": "netty-transport-4.1.93.Final.jar",
+      "sha256": "a5a78019bc1cd43dbc3c7b7cdd3801912ca26d1f498fb560514fee497864ba96"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "io.perfmark:perfmark-api:0.26.0",
+      "file": "perfmark-api-0.26.0.jar",
+      "sha256": "b7d23e93a34537ce332708269a0d1404788a5b5e1949e82f5535fce51b3ea95b"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "jakarta.activation:jakarta.activation-api:1.2.1",
+      "file": "jakarta.activation-api-1.2.1.jar",
+      "sha256": "8b0a0f52fa8b05c5431921a063ed866efaa41dadf2e3a7ee3e1961f2b0d9645b"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2",
+      "file": "jakarta.xml.bind-api-2.3.2.jar",
+      "sha256": "69156304079bdeed9fc0ae3b39389f19b3cc4ba4443bc80508995394ead742ea"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "javax.annotation:javax.annotation-api:1.3.2",
+      "file": "javax.annotation-api-1.3.2.jar",
+      "sha256": "e04ba5195bcd555dc95650f7cc614d151e4bcd52d29a10b8aa2197f3ab89ab9b"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "javax.inject:javax.inject:1",
+      "file": "javax.inject-1.jar",
+      "sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "net.java.dev.jna:jna-platform:5.6.0",
+      "file": "jna-platform-5.6.0.jar",
+      "sha256": "9ecea8bf2b1b39963939d18b70464eef60c508fed8820f9dcaba0c35518eabf7"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "net.java.dev.jna:jna:5.6.0",
+      "file": "jna-5.6.0.jar",
+      "sha256": "5557e235a8aa2f9766d5dc609d67948f2a8832c2d796cea9ef1d6cbe0b3b7eaf"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "net.sf.jopt-simple:jopt-simple:4.9",
+      "file": "jopt-simple-4.9.jar",
+      "sha256": "26c5856e954b5f864db76f13b86919b59c6eecf9fd930b96baa8884626baf2f5"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "net.sf.kxml:kxml2:2.3.0",
+      "file": "kxml2-2.3.0.jar",
+      "sha256": "f264dd9f79a1fde10ce5ecc53221eff24be4c9331c830b7d52f2f08a7b633de2"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.apache.commons:commons-compress:1.21",
+      "file": "commons-compress-1.21.jar",
+      "sha256": "6aecfd5459728a595601cfa07258d131972ffc39b492eb48bdd596577a2f244a"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.apache.httpcomponents:httpclient:4.5.14",
+      "file": "httpclient-4.5.14.jar",
+      "sha256": "c8bc7e1c51a6d4ce72f40d2ebbabf1c4b68bfe76e732104b04381b493478e9d6"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.apache.httpcomponents:httpcore:4.4.16",
+      "file": "httpcore-4.4.16.jar",
+      "sha256": "6c9b3dd142a09dc468e23ad39aad6f75a0f2b85125104469f026e52a474e464f"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.apache.httpcomponents:httpmime:4.5.6",
+      "file": "httpmime-4.5.6.jar",
+      "sha256": "0b2b1102c18d3c7e05a77214b9b7501a6f6056174ae5604e0e256776eda7553e"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.bitbucket.b_c:jose4j:0.9.5",
+      "file": "jose4j-0.9.5.jar",
+      "sha256": "808fb3166f3e67dad9811c331029ab1681242fd52b735bc3f33f281167fcc72e"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.bouncycastle:bcpkix-jdk18on:1.77",
+      "file": "bcpkix-jdk18on-1.77.jar",
+      "sha256": "1ac7fe8efd5b2f38cdc165be5a0675734fe44808dab92707201f03a535d6f1b8"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.bouncycastle:bcprov-jdk18on:1.77",
+      "file": "bcprov-jdk18on-1.77.jar",
+      "sha256": "dabb98c24d72c9b9f585633d1df9c5cd58d9ad373d0cd681367e6a603a495d58"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.bouncycastle:bcutil-jdk18on:1.77",
+      "file": "bcutil-jdk18on-1.77.jar",
+      "sha256": "947673bcbc5a8dde2d2fa688a5b7598d0ca6e2a74a7ea30cd93f04f6b3ad68f8"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.checkerframework:checker-qual:3.33.0",
+      "file": "checker-qual-3.33.0.jar",
+      "sha256": "e316255bbfcd9fe50d165314b85abb2b33cb2a66a93c491db648e498a82c2de1"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.codehaus.mojo:animal-sniffer-annotations:1.23",
+      "file": "animal-sniffer-annotations-1.23.jar",
+      "sha256": "9ffe526bf43a6348e9d8b33b9cd6f580a7f5eed0cf055913007eda263de974d0"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.glassfish.jaxb:jaxb-runtime:2.3.2",
+      "file": "jaxb-runtime-2.3.2.jar",
+      "sha256": "e6e0a1e89fb6ff786279e6a0082d5cef52dc2ebe67053d041800737652b4fd1b"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.glassfish.jaxb:txw2:2.3.2",
+      "file": "txw2-2.3.2.jar",
+      "sha256": "4a6a9f483388d461b81aa9a28c685b8b74c0597993bf1884b04eddbca95f48fe"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jdom:jdom2:2.0.6",
+      "file": "jdom2-2.0.6.jar",
+      "sha256": "1345f11ba606d15603d6740551a8c21947c0215640770ec67271fe78bea97cf5"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.intellij.deps:trove4j:1.0.20200330",
+      "file": "trove4j-1.0.20200330.jar",
+      "sha256": "c5fd725bffab51846bf3c77db1383c60aaaebfe1b7fe2f00d23fe1b7df0a439d"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-build-statistics:2.0.21",
+      "file": "kotlin-build-statistics-2.0.21.jar",
+      "sha256": "80120b74df03633d6f79e08864131eee3b7a7486f6c05d2f2edc8683753c54da"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-build-tools-api:2.0.21",
+      "file": "kotlin-build-tools-api-2.0.21.jar",
+      "sha256": "8fca2b4af6c4cf24565d9a7f64c3178489518d049e106981db6718ef22cae18e"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-compiler-embeddable:2.0.21",
+      "file": "kotlin-compiler-embeddable-2.0.21.jar",
+      "sha256": "9fa8cdd1de0dccffe154c997d423ec6b5f53cd6d9177e3a77a9b0de03fb1bc81"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-compiler-runner:2.0.21",
+      "file": "kotlin-compiler-runner-2.0.21.jar",
+      "sha256": "08e605be81060ff612d0aeb94058a19bc4ac99625c35c461c6c0b302560e9104"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-daemon-client:2.0.21",
+      "file": "kotlin-daemon-client-2.0.21.jar",
+      "sha256": "371ea08e4f036882cc8e064ffcf6445990df444295ba1ec68928e7cc2b5bc015"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-daemon-embeddable:2.0.21",
+      "file": "kotlin-daemon-embeddable-2.0.21.jar",
+      "sha256": "b1a0a73c5022f8dd05a638c6b76b2bd7361818a1f3860ff2644133b1dd2bdb03"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:2.0.21",
+      "file": "kotlin-gradle-plugin-annotations-2.0.21.jar",
+      "sha256": "5b4707a32e467efbe122c318ff6abdca17a2fc7d8c83f66037c9a120b6dcbc2f"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.0.21",
+      "file": "kotlin-gradle-plugin-api-2.0.21.jar",
+      "sha256": "52eaf52ce303b529de67abc3bac13e4f13596357543dfa831c4d72d2d6310e50"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin-idea-proto:2.0.21",
+      "file": "kotlin-gradle-plugin-idea-proto-2.0.21.jar",
+      "sha256": "53355742b57ba8e16fbdf0a20439f8b345276071edb144e7b3da6e60be363188"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin-idea:2.0.21",
+      "file": "kotlin-gradle-plugin-idea-2.0.21.jar",
+      "sha256": "c1f4ea0c19267f1eed474b541b07715c49167acfbf027a8a2fd07cbbc81b8e72"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.0.21",
+      "file": "kotlin-gradle-plugin-model-2.0.21.jar",
+      "sha256": "951d77989b357009631ff1efb12b0161ccf329c529c546a529f8a1d31f9bc03c"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21",
+      "file": "kotlin-gradle-plugin-2.0.21-gradle85.jar",
+      "sha256": "9df5c7ff13b1fc68ac9450ca63c53111891d6f647bddec0f4398b3e7225bf6d9"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-klib-commonizer-api:2.0.21",
+      "file": "kotlin-klib-commonizer-api-2.0.21.jar",
+      "sha256": "4757891165b698fbdace8f4da6f2bc0e988eaef9ef36713548865a8f27069afd"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-native-utils:2.0.21",
+      "file": "kotlin-native-utils-2.0.21.jar",
+      "sha256": "45eb08a3929f97c48a92912c9625779d1540bc6f3f212fb9e94620d0326bcc00"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-reflect:1.9.23",
+      "file": "kotlin-reflect-1.9.23.jar",
+      "sha256": "747c2927a623b6ebb734b465d6a26862e920ddd1828ef43716887c0849a3131f"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20",
+      "file": "kotlin-stdlib-jdk7-1.9.20.jar",
+      "sha256": "c5451d67a27f33afd09913c67e1ceba3897ae70884b24ef0ff71157e55b60865"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20",
+      "file": "kotlin-stdlib-jdk8-1.9.20.jar",
+      "sha256": "f833fcc94f0bb1c31b9e78bd4bda7ea23f579ff3408ae1a94e2eb5747086a2ab"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:1.9.23",
+      "file": "kotlin-stdlib-1.9.23.jar",
+      "sha256": "8910cc238807d86ef550cb1f0b10dd5ed40b35a4ec1a52525f760aede84ead37"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-tooling-core:2.0.21",
+      "file": "kotlin-tooling-core-2.0.21.jar",
+      "sha256": "5b6f148548fe9e074df51f4225344433bf0375ac5b39ffcd3d7bd7d7f602d629"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-util-io:2.0.21",
+      "file": "kotlin-util-io-2.0.21.jar",
+      "sha256": "0efee4c20f3e7f912b31c796c4e47f9d14ea68803ec7ed4e5d4f24258e3aa61e"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlin:kotlin-util-klib:2.0.21",
+      "file": "kotlin-util-klib-2.0.21.jar",
+      "sha256": "a13b73896554b48e4bef4d8a4630ea7e940149ac4cadccac06914639146549ea"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4",
+      "file": "kotlinx-coroutines-core-jvm-1.6.4.jar",
+      "sha256": "c24c8bb27bb320c4a93871501a7e5e0c61607638907b197aef675513d4c820be"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jetbrains:annotations:13.0",
+      "file": "annotations-13.0.jar",
+      "sha256": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.jvnet.staxex:stax-ex:1.8.1",
+      "file": "stax-ex-1.8.1.jar",
+      "sha256": "20522549056e9e50aa35ef0b445a2e47a53d06be0b0a9467d704e2483ffb049a"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.ow2.asm:asm-analysis:9.6",
+      "file": "asm-analysis-9.6.jar",
+      "sha256": "d92832d7c37edc07c60e2559ac6118b31d642e337a6671edcb7ba9fae68edbbb"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.ow2.asm:asm-commons:9.6",
+      "file": "asm-commons-9.6.jar",
+      "sha256": "7aefd0d5c0901701c69f7513feda765fb6be33af2ce7aa17c5781fc87657c511"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.ow2.asm:asm-tree:9.6",
+      "file": "asm-tree-9.6.jar",
+      "sha256": "c43ecf17b539c777e15da7b5b86553b377e2d39a683de6285567d5283888e7ef"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.ow2.asm:asm-util:9.6",
+      "file": "asm-util-9.6.jar",
+      "sha256": "c635a7402f4aa9bf66b2f4230cea62025a0fe1cd63e8729adefc9b1994fac4c3"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.ow2.asm:asm:9.6",
+      "file": "asm-9.6.jar",
+      "sha256": "3c6fac2424db3d4a853b669f4e3d1d9c3c552235e19a319673f887083c2303a1"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.slf4j:slf4j-api:1.7.30",
+      "file": "slf4j-api-1.7.30.jar",
+      "sha256": "cdba07964d1bb40a0761485c6b1e8c2f8fd9eb1d19c53928ac0d7f9510105c57"
+    },
+    {
+      "scope": "::buildscript",
+      "coordinate": "org.tensorflow:tensorflow-lite-metadata:0.1.0-rc2",
+      "file": "tensorflow-lite-metadata-0.1.0-rc2.jar",
+      "sha256": "2c2a264f842498c36d34d2a7b91342490d9a962862c85baac1acd54ec2fca6d9"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.0",
+      "file": "annotation-experimental-1.4.0.aar",
+      "sha256": "c6eb7e676011ec65b32428373d450debdfc45179c4f8b3a752174fb87c17b08a"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.annotation:annotation-jvm:1.6.0",
+      "file": "annotation-jvm-1.6.0.jar",
+      "sha256": "60b10b5ef5769b79570172e015b8159405c92f034ba88b9391a977589c9deb4e"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.arch.core:core-common:2.2.0",
+      "file": "core-common-2.2.0.jar",
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.collection:collection:1.0.0",
+      "file": "collection-1.0.0.jar",
+      "sha256": "9c8d117b5c2bc120a1cdfeb857e05b495b16c36013570372a708f7827e3ac9f9"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.core:core-ktx:1.13.1",
+      "file": "core-ktx-1.13.1.aar",
+      "sha256": "19ba50d094c7368ede1b4ccf1195ceb83e35970736593f823e5af716f8d05d70"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.core:core:1.13.1",
+      "file": "core-1.13.1.aar",
+      "sha256": "2c27de199535675005553066597a4b20fa1eea7c228ab4ef6b32b5fe39ca1f59"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.lifecycle:lifecycle-common:2.6.2",
+      "file": "lifecycle-common-2.6.2.jar",
+      "sha256": "f34831b6c71cd844e1d35d1be49d5e79447c5ab856346531b1e8676fda7374b1"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime:2.6.2",
+      "file": "lifecycle-runtime-2.6.2.aar",
+      "sha256": "4867fd5279742fba8388821930cb2affe06d81a52814e7e41e70392ea0ef887c"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+      "file": "versionedparcelable-1.1.1.aar",
+      "sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:2.0.21",
+      "file": "kotlin-stdlib-2.0.21.jar",
+      "sha256": "f31cc53f105a7e48c093683bbd5437561d1233920513774b470805641bedbc09"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0",
+      "file": "kotlinx-coroutines-android-1.9.0.jar",
+      "sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+      "file": "kotlinx-coroutines-core-jvm-1.9.0.jar",
+      "sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a"
+    },
+    {
+      "scope": "releaseCompileClasspath",
+      "coordinate": "org.jetbrains:annotations:23.0.0",
+      "file": "annotations-23.0.0.jar",
+      "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.0",
+      "file": "annotation-experimental-1.4.0.aar",
+      "sha256": "c6eb7e676011ec65b32428373d450debdfc45179c4f8b3a752174fb87c17b08a"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.annotation:annotation-jvm:1.6.0",
+      "file": "annotation-jvm-1.6.0.jar",
+      "sha256": "60b10b5ef5769b79570172e015b8159405c92f034ba88b9391a977589c9deb4e"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.arch.core:core-common:2.2.0",
+      "file": "core-common-2.2.0.jar",
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.arch.core:core-runtime:2.2.0",
+      "file": "core-runtime-2.2.0.aar",
+      "sha256": "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.collection:collection:1.0.0",
+      "file": "collection-1.0.0.jar",
+      "sha256": "9c8d117b5c2bc120a1cdfeb857e05b495b16c36013570372a708f7827e3ac9f9"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.concurrent:concurrent-futures:1.1.0",
+      "file": "concurrent-futures-1.1.0.jar",
+      "sha256": "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.core:core-ktx:1.13.1",
+      "file": "core-ktx-1.13.1.aar",
+      "sha256": "19ba50d094c7368ede1b4ccf1195ceb83e35970736593f823e5af716f8d05d70"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.core:core:1.13.1",
+      "file": "core-1.13.1.aar",
+      "sha256": "2c27de199535675005553066597a4b20fa1eea7c228ab4ef6b32b5fe39ca1f59"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.interpolator:interpolator:1.0.0",
+      "file": "interpolator-1.0.0.aar",
+      "sha256": "33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.lifecycle:lifecycle-common:2.6.2",
+      "file": "lifecycle-common-2.6.2.jar",
+      "sha256": "f34831b6c71cd844e1d35d1be49d5e79447c5ab856346531b1e8676fda7374b1"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime:2.6.2",
+      "file": "lifecycle-runtime-2.6.2.aar",
+      "sha256": "4867fd5279742fba8388821930cb2affe06d81a52814e7e41e70392ea0ef887c"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.profileinstaller:profileinstaller:1.3.0",
+      "file": "profileinstaller-1.3.0.aar",
+      "sha256": "34e8b2bfc74e23c1525e3da903ae449b7f1b440aef45e18159ee470e91997f48"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.startup:startup-runtime:1.1.1",
+      "file": "startup-runtime-1.1.1.aar",
+      "sha256": "e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.tracing:tracing:1.0.0",
+      "file": "tracing-1.0.0.aar",
+      "sha256": "07b8b6139665b884a162eccf97891ca50f7f56831233bf25168ae04f7b568612"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+      "file": "versionedparcelable-1.1.1.aar",
+      "sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "com.google.guava:listenablefuture:1.0",
+      "file": "listenablefuture-1.0.jar",
+      "sha256": "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:2.0.21",
+      "file": "kotlin-stdlib-2.0.21.jar",
+      "sha256": "f31cc53f105a7e48c093683bbd5437561d1233920513774b470805641bedbc09"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0",
+      "file": "kotlinx-coroutines-android-1.9.0.jar",
+      "sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+      "file": "kotlinx-coroutines-core-jvm-1.9.0.jar",
+      "sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a"
+    },
+    {
+      "scope": "releaseRuntimeClasspath",
+      "coordinate": "org.jetbrains:annotations:23.0.0",
+      "file": "annotations-23.0.0.jar",
+      "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+    }
+  ],
+  "dependencyLockValidation": {
+    "correct_lock": "PASS",
+    "wrong_lock_rejected": true,
+    "wrong_lock_exit": 1,
+    "native_executed": false
+  },
+  "builds": [
+    {
+      "run": 1,
+      "clean": true,
+      "sourceRoot": "build-1",
+      "status": "SUCCESS",
+      "duration": "2m08s",
+      "tasksExecuted": 33,
+      "candidate": false
+    },
+    {
+      "run": 2,
+      "clean": true,
+      "sourceRoot": "build-2",
+      "status": "SUCCESS",
+      "duration": "1m24s",
+      "tasksExecuted": 33,
+      "candidate": false
+    },
+    {
+      "run": 3,
+      "clean": true,
+      "sourceRoot": "build-1 (fixed-path control)",
+      "status": "SUCCESS",
+      "duration": "1m23s",
+      "tasksExecuted": 33,
+      "candidate": false
+    }
+  ],
+  "differentPathComparison": {
+    "builds": [
+      {
+        "aar_sha256": "6ae08f9932066bfee26307ce43df5945475b3d29907fd3cc33b6c6370cf12557",
+        "members": {
+          "AndroidManifest.xml": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+          "META-INF/com/android/build/gradle/aar-metadata.properties": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+          "R.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "classes.jar": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+          "jni/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+          "jni/arm64-v8a/libggml-base.so": "9dca20d5ec5adf0f526d2ea07b95bda81145034f8679019fdb47fa3f6fbe6e4f",
+          "jni/arm64-v8a/libggml-cpu.so": "20cd6f82a32d395cfd15b82334dc1f2f607b6e2c5816912204ae5f14deb06b3a",
+          "jni/arm64-v8a/libggml.so": "89d8936ba3e34a1353b432b9d4ee5d32006a513b57ed71405e116bc806c1258b",
+          "jni/arm64-v8a/libllama.so": "f04560d28a5154ed32dd1edbc5f201f1b46484b1a3a32651a8fb179bff3e47c3",
+          "jni/arm64-v8a/libllama_jni.so": "5499d88e85e477584f1a3425858ea24ae4caf0a1b22af93055e55a7d93c011c0"
+        },
+        "zip_timestamps": {
+          "R.txt": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "AndroidManifest.xml": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "classes.jar": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "META-INF/com/android/build/gradle/aar-metadata.properties": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libc++_shared.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-base.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-cpu.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama_jni.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "aar_sha256": "414ebf34dfb7114e07c0ee89851f303f3d725fb63f2bfc5bf7c133f1cdb14630",
+        "members": {
+          "AndroidManifest.xml": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+          "META-INF/com/android/build/gradle/aar-metadata.properties": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+          "R.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "classes.jar": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+          "jni/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+          "jni/arm64-v8a/libggml-base.so": "4ee652e681dee7327b4872379ce8e67811543e65c83f3b0329c4248112b5d4b0",
+          "jni/arm64-v8a/libggml-cpu.so": "c7ea1392b12acb437cde533b1ce81fba59b7d5b4e0e52baf02ffe61aa3002bcb",
+          "jni/arm64-v8a/libggml.so": "d38a283032bade86e07d24c1cc2dd7c62cbfc1e92a99cdeacfa44a69a5109fd5",
+          "jni/arm64-v8a/libllama.so": "44421a2f890a3c95c6e9fad02c2b139cb989b43ef1674975b6b3a6c39246f18d",
+          "jni/arm64-v8a/libllama_jni.so": "1f614d3b1b4507e4155d65b63f61cf519f27a248b75fcbe63ee93723775c86ea"
+        },
+        "zip_timestamps": {
+          "R.txt": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "AndroidManifest.xml": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "classes.jar": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "META-INF/com/android/build/gradle/aar-metadata.properties": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libc++_shared.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-base.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-cpu.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama_jni.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    ],
+    "published_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+    "components": {
+      "AndroidManifest.xml": {
+        "build_1": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+        "build_2": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+        "published": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5"
+      },
+      "META-INF/com/android/build/gradle/aar-metadata.properties": {
+        "build_1": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+        "build_2": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+        "published": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2"
+      },
+      "R.txt": {
+        "build_1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build_2": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "published": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "classes.jar": {
+        "build_1": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+        "build_2": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+        "published": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef"
+      },
+      "jni/arm64-v8a/libc++_shared.so": {
+        "build_1": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "build_2": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "published": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4"
+      },
+      "jni/arm64-v8a/libggml-base.so": {
+        "build_1": "9dca20d5ec5adf0f526d2ea07b95bda81145034f8679019fdb47fa3f6fbe6e4f",
+        "build_2": "4ee652e681dee7327b4872379ce8e67811543e65c83f3b0329c4248112b5d4b0",
+        "published": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7"
+      },
+      "jni/arm64-v8a/libggml-cpu.so": {
+        "build_1": "20cd6f82a32d395cfd15b82334dc1f2f607b6e2c5816912204ae5f14deb06b3a",
+        "build_2": "c7ea1392b12acb437cde533b1ce81fba59b7d5b4e0e52baf02ffe61aa3002bcb",
+        "published": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e"
+      },
+      "jni/arm64-v8a/libggml.so": {
+        "build_1": "89d8936ba3e34a1353b432b9d4ee5d32006a513b57ed71405e116bc806c1258b",
+        "build_2": "d38a283032bade86e07d24c1cc2dd7c62cbfc1e92a99cdeacfa44a69a5109fd5",
+        "published": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65"
+      },
+      "jni/arm64-v8a/libllama.so": {
+        "build_1": "f04560d28a5154ed32dd1edbc5f201f1b46484b1a3a32651a8fb179bff3e47c3",
+        "build_2": "44421a2f890a3c95c6e9fad02c2b139cb989b43ef1674975b6b3a6c39246f18d",
+        "published": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993"
+      },
+      "jni/arm64-v8a/libllama_jni.so": {
+        "build_1": "5499d88e85e477584f1a3425858ea24ae4caf0a1b22af93055e55a7d93c011c0",
+        "build_2": "1f614d3b1b4507e4155d65b63f61cf519f27a248b75fcbe63ee93723775c86ea",
+        "published": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20"
+      }
+    },
+    "elf_sections": {
+      "jni/arm64-v8a/libc++_shared.so": {
+        "different_sections": [],
+        "text_identical": true,
+        "identical_except_build_id": true
+      },
+      "jni/arm64-v8a/libggml-base.so": {
+        "different_sections": [
+          ".note.gnu.build-id",
+          ".rela.dyn",
+          ".rodata",
+          ".text"
+        ],
+        "text_identical": false,
+        "identical_except_build_id": false
+      },
+      "jni/arm64-v8a/libggml-cpu.so": {
+        "different_sections": [
+          ".note.gnu.build-id",
+          ".rodata",
+          ".text"
+        ],
+        "text_identical": false,
+        "identical_except_build_id": false
+      },
+      "jni/arm64-v8a/libggml.so": {
+        "different_sections": [
+          ".note.gnu.build-id",
+          ".rodata",
+          ".text"
+        ],
+        "text_identical": false,
+        "identical_except_build_id": false
+      },
+      "jni/arm64-v8a/libllama.so": {
+        "different_sections": [
+          ".note.gnu.build-id",
+          ".rela.dyn",
+          ".rodata",
+          ".text"
+        ],
+        "text_identical": false,
+        "identical_except_build_id": false
+      },
+      "jni/arm64-v8a/libllama_jni.so": {
+        "different_sections": [
+          ".note.gnu.build-id"
+        ],
+        "text_identical": true,
+        "identical_except_build_id": true
+      }
+    },
+    "whole_aar_identical": false,
+    "all_member_bytes_identical": false,
+    "published_aar_identical": false
+  },
+  "fixedPathComparison": {
+    "builds": [
+      {
+        "aar_sha256": "6ae08f9932066bfee26307ce43df5945475b3d29907fd3cc33b6c6370cf12557",
+        "members": {
+          "AndroidManifest.xml": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+          "META-INF/com/android/build/gradle/aar-metadata.properties": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+          "R.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "classes.jar": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+          "jni/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+          "jni/arm64-v8a/libggml-base.so": "9dca20d5ec5adf0f526d2ea07b95bda81145034f8679019fdb47fa3f6fbe6e4f",
+          "jni/arm64-v8a/libggml-cpu.so": "20cd6f82a32d395cfd15b82334dc1f2f607b6e2c5816912204ae5f14deb06b3a",
+          "jni/arm64-v8a/libggml.so": "89d8936ba3e34a1353b432b9d4ee5d32006a513b57ed71405e116bc806c1258b",
+          "jni/arm64-v8a/libllama.so": "f04560d28a5154ed32dd1edbc5f201f1b46484b1a3a32651a8fb179bff3e47c3",
+          "jni/arm64-v8a/libllama_jni.so": "5499d88e85e477584f1a3425858ea24ae4caf0a1b22af93055e55a7d93c011c0"
+        },
+        "zip_timestamps": {
+          "R.txt": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "AndroidManifest.xml": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "classes.jar": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "META-INF/com/android/build/gradle/aar-metadata.properties": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libc++_shared.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-base.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-cpu.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama_jni.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "aar_sha256": "6ae08f9932066bfee26307ce43df5945475b3d29907fd3cc33b6c6370cf12557",
+        "members": {
+          "AndroidManifest.xml": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+          "META-INF/com/android/build/gradle/aar-metadata.properties": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+          "R.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "classes.jar": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+          "jni/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+          "jni/arm64-v8a/libggml-base.so": "9dca20d5ec5adf0f526d2ea07b95bda81145034f8679019fdb47fa3f6fbe6e4f",
+          "jni/arm64-v8a/libggml-cpu.so": "20cd6f82a32d395cfd15b82334dc1f2f607b6e2c5816912204ae5f14deb06b3a",
+          "jni/arm64-v8a/libggml.so": "89d8936ba3e34a1353b432b9d4ee5d32006a513b57ed71405e116bc806c1258b",
+          "jni/arm64-v8a/libllama.so": "f04560d28a5154ed32dd1edbc5f201f1b46484b1a3a32651a8fb179bff3e47c3",
+          "jni/arm64-v8a/libllama_jni.so": "5499d88e85e477584f1a3425858ea24ae4caf0a1b22af93055e55a7d93c011c0"
+        },
+        "zip_timestamps": {
+          "R.txt": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "AndroidManifest.xml": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "classes.jar": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "META-INF/com/android/build/gradle/aar-metadata.properties": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libc++_shared.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-base.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml-cpu.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libggml.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "jni/arm64-v8a/libllama_jni.so": [
+            1980,
+            2,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    ],
+    "published_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+    "components": {
+      "AndroidManifest.xml": {
+        "build_1": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+        "build_2": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+        "published": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5"
+      },
+      "META-INF/com/android/build/gradle/aar-metadata.properties": {
+        "build_1": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+        "build_2": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+        "published": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2"
+      },
+      "R.txt": {
+        "build_1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build_2": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "published": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "classes.jar": {
+        "build_1": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+        "build_2": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+        "published": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef"
+      },
+      "jni/arm64-v8a/libc++_shared.so": {
+        "build_1": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "build_2": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "published": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4"
+      },
+      "jni/arm64-v8a/libggml-base.so": {
+        "build_1": "9dca20d5ec5adf0f526d2ea07b95bda81145034f8679019fdb47fa3f6fbe6e4f",
+        "build_2": "9dca20d5ec5adf0f526d2ea07b95bda81145034f8679019fdb47fa3f6fbe6e4f",
+        "published": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7"
+      },
+      "jni/arm64-v8a/libggml-cpu.so": {
+        "build_1": "20cd6f82a32d395cfd15b82334dc1f2f607b6e2c5816912204ae5f14deb06b3a",
+        "build_2": "20cd6f82a32d395cfd15b82334dc1f2f607b6e2c5816912204ae5f14deb06b3a",
+        "published": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e"
+      },
+      "jni/arm64-v8a/libggml.so": {
+        "build_1": "89d8936ba3e34a1353b432b9d4ee5d32006a513b57ed71405e116bc806c1258b",
+        "build_2": "89d8936ba3e34a1353b432b9d4ee5d32006a513b57ed71405e116bc806c1258b",
+        "published": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65"
+      },
+      "jni/arm64-v8a/libllama.so": {
+        "build_1": "f04560d28a5154ed32dd1edbc5f201f1b46484b1a3a32651a8fb179bff3e47c3",
+        "build_2": "f04560d28a5154ed32dd1edbc5f201f1b46484b1a3a32651a8fb179bff3e47c3",
+        "published": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993"
+      },
+      "jni/arm64-v8a/libllama_jni.so": {
+        "build_1": "5499d88e85e477584f1a3425858ea24ae4caf0a1b22af93055e55a7d93c011c0",
+        "build_2": "5499d88e85e477584f1a3425858ea24ae4caf0a1b22af93055e55a7d93c011c0",
+        "published": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20"
+      }
+    },
+    "elf_sections": {
+      "jni/arm64-v8a/libc++_shared.so": {
+        "different_sections": [],
+        "text_identical": true,
+        "identical_except_build_id": true
+      },
+      "jni/arm64-v8a/libggml-base.so": {
+        "different_sections": [],
+        "text_identical": true,
+        "identical_except_build_id": true
+      },
+      "jni/arm64-v8a/libggml-cpu.so": {
+        "different_sections": [],
+        "text_identical": true,
+        "identical_except_build_id": true
+      },
+      "jni/arm64-v8a/libggml.so": {
+        "different_sections": [],
+        "text_identical": true,
+        "identical_except_build_id": true
+      },
+      "jni/arm64-v8a/libllama.so": {
+        "different_sections": [],
+        "text_identical": true,
+        "identical_except_build_id": true
+      },
+      "jni/arm64-v8a/libllama_jni.so": {
+        "different_sections": [],
+        "text_identical": true,
+        "identical_except_build_id": true
+      }
+    },
+    "whole_aar_identical": true,
+    "all_member_bytes_identical": true,
+    "published_aar_identical": false
+  },
+  "binaryInspection": {
+    "libggml.so": {
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "sha256": "89d8936ba3e34a1353b432b9d4ee5d32006a513b57ed71405e116bc806c1258b"
+    },
+    "libc++_shared.so": {
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4"
+    },
+    "libllama_jni.so": {
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "sha256": "5499d88e85e477584f1a3425858ea24ae4caf0a1b22af93055e55a7d93c011c0",
+      "jni_exports": [
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeComplete",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeEmbed",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeGetSystemInfo",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeLoadModel",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeReleaseModel"
+      ]
+    },
+    "libggml-base.so": {
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "sha256": "9dca20d5ec5adf0f526d2ea07b95bda81145034f8679019fdb47fa3f6fbe6e4f"
+    },
+    "libllama.so": {
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "sha256": "f04560d28a5154ed32dd1edbc5f201f1b46484b1a3a32651a8fb179bff3e47c3"
+    },
+    "libggml-cpu.so": {
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "sha256": "20cd6f82a32d395cfd15b82334dc1f2f607b6e2c5816912204ae5f14deb06b3a"
+    }
+  },
+  "coreTests": {
+    "app": {
+      "tests": 263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xml_files": 24,
+      "lint": {
+        "Warning": 32
+      }
+    },
+    "fixtures/p2-client": {
+      "tests": 36,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xml_files": 4,
+      "lint": {}
+    }
+  },
+  "syntheticOracle": {
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "nativeProof": false
+  },
+  "coroutineProbe": {
+    "status": "PASS",
+    "syntheticResourceOnly": true,
+    "actualPatchExecuted": false,
+    "nativeProof": false
+  },
+  "legacyGuards": {
+    "tools/check-004c.py": {
+      "exit": 1,
+      "status": "FAILED_SCOPE_GUARD",
+      "cause": "Absolute preservation against CORE004B rejects changes already in reference."
+    },
+    "tools/check-identity-002.py": {
+      "exit": 1,
+      "status": "FAILED_SCOPE_GUARD",
+      "cause": "AppGraph differs from earlier IDENTITY reference already in base."
+    },
+    "tools/check-alpha1-001.py": {
+      "exit": 1,
+      "status": "FAILED_SCOPE_GUARD",
+      "cause": "Whitelist allows only ALPHA1-001 additions; ALPHA1-002/003 and pre-existing ID-002N documents are out of scope."
+    }
+  },
+  "notExecuted": [
+    "candidate prepare/consume/discard JNI",
+    "GGUF generation or exact token-ID equality",
+    "Android instrumentation/emulator/physical device",
+    "Android memory/thermal/battery qualification",
+    "corpus40 / real Athena conversation",
+    "source-to-published-native equivalence proof"
+  ],
+  "decision": "NO_GO_ORIGINAL_PATCH_AS_IS; revise and obtain explicit new approval",
+  "logSha256": {
+    "core-validation.log": "8de926ad88d7b8e04897aa00b92b3dd84291ccf9f35607328a5015b6d42a00d0",
+    "build-1.log": "808c558abf6eacdcda5b425f0c66b417fbb8580751ce43937acf92e2d9df1edc",
+    "build-2.log": "a3b487d8e54711b854fc31658234f16ccea9769d44052ed7c8fe6df4d2ddc984",
+    "build-3.log": "2ba5d969969e2c5e31b008bdfd76c7ccf018fbcd8a1dd36be112b24dd0db9669",
+    "dependency-lock-good.log": "ff64ecc4dba4f2cbc1beaa0534427575581f53408cdc116299a9a24e340829e2",
+    "dependency-lock-bad.log": "d687d42fe41287991f6eb3c6d6ba6645d29d844836b93eca37957c5be454315f",
+    "trace-oracle.log": "9a868363ab4187cfcb5d886e2404615cecf6ca5c96056787a11842c218e00abc",
+    "cancellation-probe.log": "998d4e38c1cfd4f0e4375c0f4359ec02ba16f5dd32239384710fa35ddafdc727"
+  },
+  "initialSetupFailure": {
+    "command": "bash tools/identity-cloud-env.sh gradle ...",
+    "exit": 127,
+    "cause": "Default tool root unavailable; existing verified /workspace/.setup selected through scoped environment instead.",
+    "resolved": true
+  },
+  "limitations": [
+    "Same host and shared dependency cache; no independent-host hermetic reproducibility.",
+    "Native release AAR differs with absolute build directory.",
+    "Published source/binary native equivalence not established.",
+    "Three legacy preservation guards failed; none modified or disabled."
+  ],
+  "rawLogSha256": {
+    "core-validation.log": "86878d626d6412fbc389e7807606b3507a48099ab8ab0b1929611b3d8f9ee1cf",
+    "build-1.log": "2d36d39122eeabce67c753d36834a1d5a75cbc8073632b7ea0f8773c6dd85508",
+    "build-2.log": "2279a724cc40cd6a97ae610a9335fb188894c03ae682518d684c6562e8fd9f62",
+    "build-3.log": "98577c9edc80bfb37ee8d6788f303cb5cf8f915598ea8cd943691e8b6a1a0bd3",
+    "dependency-lock-good.log": "4162aeea73da18fab778b560be104dd34752561431ec7477a67488b568c8954c",
+    "dependency-lock-bad.log": "08fd0edd050f2ee48154b726a165d3ffb11bb82d33d89cb26bb6c8ce5093b518",
+    "trace-oracle.log": "9a868363ab4187cfcb5d886e2404615cecf6ca5c96056787a11842c218e00abc",
+    "cancellation-probe.log": "998d4e38c1cfd4f0e4375c0f4359ec02ba16f5dd32239384710fa35ddafdc727"
+  },
+  "publishedLogNormalization": "Trailing line whitespace only; raw logs preserved outside checkout, raw hashes separately recorded."
+}
