@@ -1,0 +1,58 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.9/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+> Configure project :library
+Unable to initialize metrics, ensure /home/agent/.android is writable, details: /home/agent/.android/analytics.settings (No such file or directory)
+
+> Task :library:preBuild UP-TO-DATE
+> Task :library:preReleaseBuild UP-TO-DATE
+
+> Task :library:configureCMakeRelWithDebInfo[arm64-v8a]
+C/C++: CMAKE_BUILD_TYPE=RelWithDebInfo
+C/C++: fatal: not a git repository (or any of the parent directories): .git
+C/C++: fatal: not a git repository (or any of the parent directories): .git
+
+> Task :library:buildCMakeRelWithDebInfo[arm64-v8a][llama_jni]
+> Task :library:mergeReleaseJniLibFolders
+> Task :library:generateReleaseResValues
+> Task :library:extractDeepLinksForAarRelease
+> Task :library:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :library:generateReleaseBuildConfig
+> Task :library:generateReleaseResources
+> Task :library:packageReleaseResources
+> Task :library:javaPreCompileRelease
+> Task :library:mergeReleaseShaders
+> Task :library:mergeReleaseNativeLibs
+> Task :library:compileReleaseShaders NO-SOURCE
+> Task :library:generateReleaseAssets UP-TO-DATE
+> Task :library:parseReleaseLocalResources
+> Task :library:packageReleaseAssets
+> Task :library:stripReleaseDebugSymbols
+> Task :library:prepareLintJarForPublish
+> Task :library:prepareReleaseArtProfile
+> Task :library:copyReleaseJniLibsProjectAndLocalJars
+> Task :library:generateReleaseRFile
+> Task :library:writeReleaseAarMetadata
+> Task :library:processReleaseManifest
+> Task :library:mapReleaseSourceSetPaths
+> Task :library:mergeReleaseResources
+> Task :library:alpha1DependencyInventory
+> Task :library:verifyReleaseResources
+> Task :library:compileReleaseKotlin
+> Task :library:extractReleaseAnnotations
+> Task :library:compileReleaseJavaWithJavac
+> Task :library:mergeReleaseGeneratedProguardFiles
+
+> Task :library:mergeReleaseConsumerProguardFiles
+Supplied consumer proguard configuration does not exist: /workspace/alpha1-003b1-isolated/candidate-a/library/proguard-rules.pro
+
+> Task :library:processReleaseJavaRes
+> Task :library:mergeReleaseJavaResource
+> Task :library:syncReleaseLibJars
+> Task :library:bundleReleaseAar
+> Task :library:assembleRelease
+
+BUILD SUCCESSFUL in 1m 34s
+33 actionable tasks: 33 executed

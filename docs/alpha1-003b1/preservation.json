@@ -1,0 +1,10 @@
+{
+  "base": "7f591f0e041159bb773011d69fdd2b1fe94b5b88",
+  "core_tracked_files_preserved": 200,
+  "original_source_files_compared_per_copy": 3058,
+  "only_seven_authorized_source_changes": true,
+  "all_post_build_candidate_hashes_match": true,
+  "productionAarUnchanged": true,
+  "dependencyLockRows": 181,
+  "all_three_build_dependency_locks_identical": true
+}

@@ -1,0 +1,123 @@
+// Tests the ACTUAL candidate JVM classes with a Looper double. NO JNI or GGUF.
+package dev.ffmpegkit.llama
+
+import android.os.Looper
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicReference
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+
+private val completed = mutableListOf<String>()
+private suspend fun passed(name: String, check: suspend () -> Unit) {
+    check()
+    completed += name
+    println("PASS $name")
+}
+private fun denied(code: String, block: () -> Unit) {
+    try { block(); error("refusal missing: $code") }
+    catch (failure: IllegalStateException) { check(failure.message == code) { "Wrong refusal: ${failure.message}" } }
+}
+private fun waitFor(latch: CountDownLatch) = check(latch.await(5, TimeUnit.SECONDS)) { "test liveness bound" }
+
+fun main() = runBlocking {
+    Looper.markMainThreadForTest()
+    passed("getSystemInfo on simulated UI refused before JNI") {
+        denied("SYNC_MAIN_THREAD_FORBIDDEN") { Llama.getSystemInfo() }
+    }
+    passed("release on simulated UI refused before JNI") {
+        val empty = LlamaModel(0L, LlamaConfig()) // no handle allocation/model load
+        denied("SYNC_MAIN_THREAD_FORBIDDEN") { Llama.releaseModel(empty) }
+    }
+    passed("operation runs on a single owner worker") {
+        val a = LlamaOwner.operation { Thread.currentThread().id }
+        val b = LlamaOwner.operation { Thread.currentThread().id }
+        check(a == b && a != Thread.currentThread().id)
+    }
+    passed("off-UI blocking control returns without native call") {
+        check(withContext(Dispatchers.Default) { LlamaOwner.blocking { 17 } } == 17)
+    }
+    passed("owner-thread reentry refused without queueing") {
+        LlamaOwner.operation { denied("OWNER_REENTRANCY") { Llama.getSystemInfo() } }
+    }
+    passed("admission-callback reentry refused") {
+        LlamaOwner.operation {
+            LlamaOwner.finalAdmission { denied("CALLBACK_REENTRANCY") { Llama.getSystemInfo() } }
+        }
+    }
+    passed("throwing admission callback restores guards") {
+        try {
+            LlamaOwner.operation { LlamaOwner.finalAdmission { throw IllegalArgumentException("synthetic refusal") } }
+            error("failure missing")
+        } catch (expected: IllegalArgumentException) { check(expected.message == "synthetic refusal") }
+        check(LlamaOwner.operation { 19 } == 19)
+    }
+    passed("concurrent synchronous caller refused BUSY") {
+        val started = CountDownLatch(1); val finish = CountDownLatch(1)
+        val first = async(Dispatchers.Default) { LlamaOwner.operation { started.countDown(); waitFor(finish) } }
+        waitFor(started)
+        try { withContext(Dispatchers.Default) { denied("OWNER_BUSY") { Llama.getSystemInfo() } } }
+        finally { finish.countDown() }
+        first.await()
+    }
+    passed("concurrent suspend caller refused BUSY") {
+        val started = CountDownLatch(1); val finish = CountDownLatch(1)
+        val first = async(Dispatchers.Default) { LlamaOwner.operation { started.countDown(); waitFor(finish) } }
+        waitFor(started)
+        try {
+            try { LlamaOwner.operation { error("must not enter") }; error("BUSY missing") }
+            catch (expected: IllegalStateException) { check(expected.message == "OWNER_BUSY") }
+        } finally { finish.countDown() }
+        first.await()
+    }
+    passed("cancel intent retains gate until blocked worker returns") {
+        val started = CountDownLatch(1); val finish = CountDownLatch(1)
+        val first = launch(Dispatchers.Default) { LlamaOwner.operation { started.countDown(); waitFor(finish) } }
+        waitFor(started)
+        first.cancel()
+        try { withContext(Dispatchers.Default) { denied("OWNER_BUSY") { Llama.getSystemInfo() } } }
+        finally { finish.countDown() }
+        first.join()
+        check(first.isCancelled)
+        check(LlamaOwner.operation { 23 } == 23)
+    }
+    passed("interrupted blocking caller does not cancel owner or clear gate") {
+        val started = CountDownLatch(1); val finish = CountDownLatch(1); val callerDone = CountDownLatch(1)
+        val failure = AtomicReference<Throwable>()
+        val thread = Thread {
+            try { LlamaOwner.blocking { started.countDown(); waitFor(finish) } }
+            catch (caught: Throwable) { failure.set(caught) }
+            finally { callerDone.countDown() }
+        }
+        thread.start(); waitFor(started); thread.interrupt(); waitFor(callerDone)
+        try {
+            check(failure.get() is MeasuredTransactionFailure)
+            check(!(failure.get() as MeasuredTransactionFailure).nativeStateKnown)
+            withContext(Dispatchers.Default) { denied("OWNER_BUSY") { Llama.getSystemInfo() } }
+        } finally { finish.countDown() }
+        thread.join()
+        // Completion is observed on the worker; polling is a test bound, never native release proof.
+        kotlinx.coroutines.withTimeout(5000) {
+            while (true) {
+                try { check(LlamaOwner.operation { true }); break }
+                catch (busy: IllegalStateException) { check(busy.message == "OWNER_BUSY"); kotlinx.coroutines.delay(1) }
+            }
+        }
+    }
+    passed("legacy empty model double release on background makes no JNI call") {
+        val empty = LlamaModel(0L, LlamaConfig())
+        withContext(Dispatchers.Default) { Llama.releaseModel(empty); Llama.releaseModel(empty) }
+        check(!empty.isLoaded)
+    }
+    passed("legacy missing source fails before JNI and clears unallocated slot") {
+        val missing = requireNotNull(System.getProperty("java.io.tmpdir")) + "/jarvis-b1-" + java.util.UUID.randomUUID() + ".absent"
+        check(!java.io.File(missing).exists())
+        try { Llama.loadModel(missing); error("load refusal missing") }
+        catch (_: LlamaException.ModelLoadFailed) { /* source validation only */ }
+        check(LlamaOwner.operation { 29 } == 29)
+    }
+    println("RESULT tests=${completed.size} failures=0 JNI=false AndroidDevice=false Looper=double")
+}

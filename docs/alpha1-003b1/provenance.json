@@ -1,0 +1,74 @@
+{
+  "patch_sha256": "329fc1959a2ac990f84e7b63f61239b75dd63d13b478b1f974f37b9c4a3ef97b",
+  "files": {
+    "library/build.gradle.kts": {
+      "base_sha256": "7900cf39711dd91f63d77d23adba60d94d2599f6de3e41b0f37bf08dd0db5a46",
+      "prior_proposal_sha256": "dfcc8423ef88b231f2f7cf9d22c3f2f106c8b9754a613b84b118453906806c93",
+      "proposed_sha256": "c95aedcd5b04c6209e2852d6e503d1a87752284257589aabf04149a32ad75750"
+    },
+    "library/src/main/jni/llama_jni.cpp": {
+      "base_sha256": "a1f5c8bd8e68b83f6bbd1f1eee5a52170ea3c3f7123b22989e52cebda803b31f",
+      "prior_proposal_sha256": "fbe60387d85dcd276cdfa0f62aafbad09749be4098ec59053855c78388dfdf59",
+      "proposed_sha256": "fbe60387d85dcd276cdfa0f62aafbad09749be4098ec59053855c78388dfdf59"
+    },
+    "library/src/main/jni/measured.inc": {
+      "base_sha256": null,
+      "prior_proposal_sha256": "2e8e4c2402c01877298c78121554520ba0353c9758d591d861140baedee4dd50",
+      "proposed_sha256": "2e8e4c2402c01877298c78121554520ba0353c9758d591d861140baedee4dd50"
+    },
+    "library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt": {
+      "base_sha256": "0bc8141ff99c334d1bad547af8b42077a5615801b4683d4346f0021b30ddf859",
+      "prior_proposal_sha256": "7930af5ca762814617c600646506d2a8107df3e8024194cb0fe4d6a7af077c8f",
+      "proposed_sha256": "1f1a3d914ca1b46341f181714cc1d5f71feb337ee77149814e69f393d40a4843"
+    },
+    "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt": {
+      "base_sha256": "7f70c634d8e766be9a262ce9e832b04306b3518a3200a421a179521709e9844a",
+      "prior_proposal_sha256": "5a1147d4d876a49b03af8be751eb491eab5cb570062341cb580d960287da0c39",
+      "proposed_sha256": "5a1147d4d876a49b03af8be751eb491eab5cb570062341cb580d960287da0c39"
+    },
+    "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt": {
+      "base_sha256": null,
+      "prior_proposal_sha256": "4c605e72af69e5805692f022e9c8a45b04f37c56adcd976a62bcf3b69f46dc46",
+      "proposed_sha256": "4475e9451a4e4a73f1c4b40e577101964cc1cdb839240c0246cd6a9900eb7f09"
+    },
+    "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt": {
+      "base_sha256": "fe77030dc4d8584304b8054a17525797def495eac63d9597922dd123e530ec11",
+      "prior_proposal_sha256": "e7c47595bcccd77aa3440939392a65ad63aafc288bf4a987f2d7770a815301ee",
+      "proposed_sha256": "60fa372636c4af39a35bd25b8d8b193a3a075222e14a368914e9a4e4b385b096"
+    }
+  },
+  "source_archives_verified": true,
+  "toolchain_files_verified": 12,
+  "nativeSource": "823d1de2b3ef85ba9ef4847a03bac423f4aa1c44",
+  "llamaCppSource": "2da668617612d2df773f966e3b0ee22dc2beef7b",
+  "copies": {
+    "candidate-a": {
+      "changed_files": [
+        "library/build.gradle.kts",
+        "library/src/main/jni/llama_jni.cpp",
+        "library/src/main/jni/measured.inc",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt"
+      ],
+      "post_patch_hashes_verified": true,
+      "all_other_files_unchanged": true,
+      "source_files": 3060
+    },
+    "candidate-b": {
+      "changed_files": [
+        "library/build.gradle.kts",
+        "library/src/main/jni/llama_jni.cpp",
+        "library/src/main/jni/measured.inc",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt",
+        "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt"
+      ],
+      "post_patch_hashes_verified": true,
+      "all_other_files_unchanged": true,
+      "source_files": 3060
+    }
+  }
+}

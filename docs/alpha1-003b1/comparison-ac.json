@@ -1,0 +1,286 @@
+{
+  "builds": [
+    {
+      "aar_sha256": "7e4e667d4a2f597fb7a78e7f29eb8b6298696812f68eee5e0549eec283ce02b0",
+      "members": {
+        "AndroidManifest.xml": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+        "META-INF/com/android/build/gradle/aar-metadata.properties": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+        "R.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "classes.jar": "01fa11e3d6872f6e6e2d057c8de338b754e7f738434a11d5fee5731e2606cde2",
+        "jni/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "jni/arm64-v8a/libggml-base.so": "cf86d1df5840bb025b2b4b3709d2799da48aae70a1e8425f3fb84b8b9225465e",
+        "jni/arm64-v8a/libggml-cpu.so": "d18ff7a587a1dd6e7e001c249f921110d836238378012e67a0c2541fb1f4f900",
+        "jni/arm64-v8a/libggml.so": "2829ef06449bf055bfdbb62f2ba9e692e66b0c976ae4c3fec28d12f9ff193e99",
+        "jni/arm64-v8a/libllama.so": "3abe2b4303e6d994bc0ed2e19b970d4af210cd6ef02603794014ab0c1b61a754",
+        "jni/arm64-v8a/libllama_jni.so": "fb6e5bc370d498d0fb7ed48e848d45497b1135407d771ade4318f234958ebe48"
+      },
+      "zip_timestamps": {
+        "R.txt": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "AndroidManifest.xml": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "classes.jar": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "META-INF/com/android/build/gradle/aar-metadata.properties": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libc++_shared.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libggml-base.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libggml-cpu.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libggml.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libllama.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libllama_jni.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "aar_sha256": "7e4e667d4a2f597fb7a78e7f29eb8b6298696812f68eee5e0549eec283ce02b0",
+      "members": {
+        "AndroidManifest.xml": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+        "META-INF/com/android/build/gradle/aar-metadata.properties": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+        "R.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "classes.jar": "01fa11e3d6872f6e6e2d057c8de338b754e7f738434a11d5fee5731e2606cde2",
+        "jni/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "jni/arm64-v8a/libggml-base.so": "cf86d1df5840bb025b2b4b3709d2799da48aae70a1e8425f3fb84b8b9225465e",
+        "jni/arm64-v8a/libggml-cpu.so": "d18ff7a587a1dd6e7e001c249f921110d836238378012e67a0c2541fb1f4f900",
+        "jni/arm64-v8a/libggml.so": "2829ef06449bf055bfdbb62f2ba9e692e66b0c976ae4c3fec28d12f9ff193e99",
+        "jni/arm64-v8a/libllama.so": "3abe2b4303e6d994bc0ed2e19b970d4af210cd6ef02603794014ab0c1b61a754",
+        "jni/arm64-v8a/libllama_jni.so": "fb6e5bc370d498d0fb7ed48e848d45497b1135407d771ade4318f234958ebe48"
+      },
+      "zip_timestamps": {
+        "R.txt": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "AndroidManifest.xml": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "classes.jar": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "META-INF/com/android/build/gradle/aar-metadata.properties": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libc++_shared.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libggml-base.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libggml-cpu.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libggml.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libllama.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "jni/arm64-v8a/libllama_jni.so": [
+          1980,
+          2,
+          1,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "published_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+  "components": {
+    "AndroidManifest.xml": {
+      "build_1": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+      "build_2": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+      "published": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5"
+    },
+    "META-INF/com/android/build/gradle/aar-metadata.properties": {
+      "build_1": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+      "build_2": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+      "published": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2"
+    },
+    "R.txt": {
+      "build_1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "build_2": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "classes.jar": {
+      "build_1": "01fa11e3d6872f6e6e2d057c8de338b754e7f738434a11d5fee5731e2606cde2",
+      "build_2": "01fa11e3d6872f6e6e2d057c8de338b754e7f738434a11d5fee5731e2606cde2",
+      "published": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef"
+    },
+    "jni/arm64-v8a/libc++_shared.so": {
+      "build_1": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "build_2": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "published": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4"
+    },
+    "jni/arm64-v8a/libggml-base.so": {
+      "build_1": "cf86d1df5840bb025b2b4b3709d2799da48aae70a1e8425f3fb84b8b9225465e",
+      "build_2": "cf86d1df5840bb025b2b4b3709d2799da48aae70a1e8425f3fb84b8b9225465e",
+      "published": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7"
+    },
+    "jni/arm64-v8a/libggml-cpu.so": {
+      "build_1": "d18ff7a587a1dd6e7e001c249f921110d836238378012e67a0c2541fb1f4f900",
+      "build_2": "d18ff7a587a1dd6e7e001c249f921110d836238378012e67a0c2541fb1f4f900",
+      "published": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e"
+    },
+    "jni/arm64-v8a/libggml.so": {
+      "build_1": "2829ef06449bf055bfdbb62f2ba9e692e66b0c976ae4c3fec28d12f9ff193e99",
+      "build_2": "2829ef06449bf055bfdbb62f2ba9e692e66b0c976ae4c3fec28d12f9ff193e99",
+      "published": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65"
+    },
+    "jni/arm64-v8a/libllama.so": {
+      "build_1": "3abe2b4303e6d994bc0ed2e19b970d4af210cd6ef02603794014ab0c1b61a754",
+      "build_2": "3abe2b4303e6d994bc0ed2e19b970d4af210cd6ef02603794014ab0c1b61a754",
+      "published": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993"
+    },
+    "jni/arm64-v8a/libllama_jni.so": {
+      "build_1": "fb6e5bc370d498d0fb7ed48e848d45497b1135407d771ade4318f234958ebe48",
+      "build_2": "fb6e5bc370d498d0fb7ed48e848d45497b1135407d771ade4318f234958ebe48",
+      "published": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20"
+    }
+  },
+  "elf_sections": {
+    "jni/arm64-v8a/libc++_shared.so": {
+      "different_sections": [],
+      "text_identical": true,
+      "identical_except_build_id": true
+    },
+    "jni/arm64-v8a/libggml-base.so": {
+      "different_sections": [],
+      "text_identical": true,
+      "identical_except_build_id": true
+    },
+    "jni/arm64-v8a/libggml-cpu.so": {
+      "different_sections": [],
+      "text_identical": true,
+      "identical_except_build_id": true
+    },
+    "jni/arm64-v8a/libggml.so": {
+      "different_sections": [],
+      "text_identical": true,
+      "identical_except_build_id": true
+    },
+    "jni/arm64-v8a/libllama.so": {
+      "different_sections": [],
+      "text_identical": true,
+      "identical_except_build_id": true
+    },
+    "jni/arm64-v8a/libllama_jni.so": {
+      "different_sections": [],
+      "text_identical": true,
+      "identical_except_build_id": true
+    }
+  },
+  "whole_aar_identical": true,
+  "all_member_bytes_identical": true,
+  "published_aar_identical": false
+}

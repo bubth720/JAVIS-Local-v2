@@ -1,0 +1,264 @@
+{
+  "candidate_sha256": "7e4e667d4a2f597fb7a78e7f29eb8b6298696812f68eee5e0549eec283ce02b0",
+  "historical_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+  "members": {
+    "AndroidManifest.xml": {
+      "sha256": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+      "size": 355,
+      "historical_sha256": "3af129d84ed706907d51f85091fa2c8591126f1b235da0ccde7844826bae2dc5",
+      "identical_historical": true
+    },
+    "META-INF/com/android/build/gradle/aar-metadata.properties": {
+      "sha256": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+      "size": 156,
+      "historical_sha256": "9cc8517bbdf06d879f57a2cfd6f8c6914e48800d443421cd850971945f98e7b2",
+      "identical_historical": true
+    },
+    "R.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "historical_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identical_historical": true
+    },
+    "classes.jar": {
+      "sha256": "01fa11e3d6872f6e6e2d057c8de338b754e7f738434a11d5fee5731e2606cde2",
+      "size": 52929,
+      "historical_sha256": "bce22368c0d8b22a2f2241fdf24305f9f03dcfffabddff171edf4078a14714ef",
+      "identical_historical": false
+    },
+    "jni/arm64-v8a/libc++_shared.so": {
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "size": 1292904,
+      "historical_sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "identical_historical": true
+    },
+    "jni/arm64-v8a/libggml-base.so": {
+      "sha256": "cf86d1df5840bb025b2b4b3709d2799da48aae70a1e8425f3fb84b8b9225465e",
+      "size": 672816,
+      "historical_sha256": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+      "identical_historical": false
+    },
+    "jni/arm64-v8a/libggml-cpu.so": {
+      "sha256": "d18ff7a587a1dd6e7e001c249f921110d836238378012e67a0c2541fb1f4f900",
+      "size": 718384,
+      "historical_sha256": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+      "identical_historical": false
+    },
+    "jni/arm64-v8a/libggml.so": {
+      "sha256": "2829ef06449bf055bfdbb62f2ba9e692e66b0c976ae4c3fec28d12f9ff193e99",
+      "size": 58576,
+      "historical_sha256": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+      "identical_historical": false
+    },
+    "jni/arm64-v8a/libllama.so": {
+      "sha256": "3abe2b4303e6d994bc0ed2e19b970d4af210cd6ef02603794014ab0c1b61a754",
+      "size": 2756856,
+      "historical_sha256": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+      "identical_historical": false
+    },
+    "jni/arm64-v8a/libllama_jni.so": {
+      "sha256": "fb6e5bc370d498d0fb7ed48e848d45497b1135407d771ade4318f234958ebe48",
+      "size": 65336,
+      "historical_sha256": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+      "identical_historical": false
+    }
+  },
+  "native": {
+    "jni/arm64-v8a/libc++_shared.so": {
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "android_api_note": 21,
+      "executable_stack": false,
+      "gnu_relro": true,
+      "needed": [
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "soname": [
+        "libc++_shared.so"
+      ],
+      "jni_exports": []
+    },
+    "jni/arm64-v8a/libggml-base.so": {
+      "sha256": "cf86d1df5840bb025b2b4b3709d2799da48aae70a1e8425f3fb84b8b9225465e",
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "android_api_note": 24,
+      "executable_stack": false,
+      "gnu_relro": true,
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc++_shared.so",
+        "libc.so"
+      ],
+      "soname": [
+        "libggml-base.so"
+      ],
+      "jni_exports": []
+    },
+    "jni/arm64-v8a/libggml-cpu.so": {
+      "sha256": "d18ff7a587a1dd6e7e001c249f921110d836238378012e67a0c2541fb1f4f900",
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "android_api_note": 24,
+      "executable_stack": false,
+      "gnu_relro": true,
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libc++_shared.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "soname": [
+        "libggml-cpu.so"
+      ],
+      "jni_exports": []
+    },
+    "jni/arm64-v8a/libggml.so": {
+      "sha256": "2829ef06449bf055bfdbb62f2ba9e692e66b0c976ae4c3fec28d12f9ff193e99",
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "android_api_note": 24,
+      "executable_stack": false,
+      "gnu_relro": true,
+      "needed": [
+        "libggml-cpu.so",
+        "libggml-base.so",
+        "libm.so",
+        "libc++_shared.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "soname": [
+        "libggml.so"
+      ],
+      "jni_exports": []
+    },
+    "jni/arm64-v8a/libllama.so": {
+      "sha256": "3abe2b4303e6d994bc0ed2e19b970d4af210cd6ef02603794014ab0c1b61a754",
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "android_api_note": 24,
+      "executable_stack": false,
+      "gnu_relro": true,
+      "needed": [
+        "libggml.so",
+        "libggml-cpu.so",
+        "libggml-base.so",
+        "libm.so",
+        "libc++_shared.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "soname": [
+        "libllama.so"
+      ],
+      "jni_exports": []
+    },
+    "jni/arm64-v8a/libllama_jni.so": {
+      "sha256": "fb6e5bc370d498d0fb7ed48e848d45497b1135407d771ade4318f234958ebe48",
+      "machine": 183,
+      "aarch64": true,
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "at_least_16k": true,
+      "android_api_note": 24,
+      "executable_stack": false,
+      "gnu_relro": true,
+      "needed": [
+        "libllama.so",
+        "liblog.so",
+        "libggml.so",
+        "libggml-cpu.so",
+        "libggml-base.so",
+        "libm.so",
+        "libc++_shared.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "soname": [
+        "libllama_jni.so"
+      ],
+      "jni_exports": [
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeComplete",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeConsumeMeasured",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeDiscardMeasured",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeEmbed",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeGetSystemInfo",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeLoadModel",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativePrepareMeasured",
+        "Java_dev_ffmpegkit_llama_LlamaJNI_nativeReleaseModel"
+      ]
+    }
+  },
+  "public_jvm_compatibility": {
+    "Llama": {
+      "historical_count": 9,
+      "all_preserved": true,
+      "missing": [],
+      "added": []
+    },
+    "LlamaModel": {
+      "historical_count": 6,
+      "all_preserved": true,
+      "missing": [],
+      "added": [
+        "public dev.ffmpegkit.llama.LlamaModel(long, dev.ffmpegkit.llama.LlamaConfig, java.io.File, java.lang.String);",
+        "public final java.io.File getFrozenFile$library_release();",
+        "public final java.lang.String getFrozenSha256$library_release();"
+      ]
+    },
+    "LlamaJNI": {
+      "historical_count": 6,
+      "all_preserved": true,
+      "missing": [],
+      "added": [
+        "public final native byte[] nativeConsumeMeasured(long, long, byte[], byte[], float, float, int, int);",
+        "public final native byte[][] nativePrepareMeasured(long, byte[], byte[], byte[], byte[], int, int, int, int, int);",
+        "public final native void nativeDiscardMeasured(long, byte[]);"
+      ]
+    }
+  },
+  "candidate_native_loaded": false,
+  "min_sdk_24_manifest": true,
+  "manifest_permissions": [],
+  "consumer_proguard_packaged": false
+}

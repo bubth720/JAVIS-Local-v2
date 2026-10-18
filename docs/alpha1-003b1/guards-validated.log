@@ -1,0 +1,16 @@
+PASS getSystemInfo on simulated UI refused before JNI
+PASS release on simulated UI refused before JNI
+PASS operation runs on a single owner worker
+PASS off-UI blocking control returns without native call
+PASS owner-thread reentry refused without queueing
+PASS admission-callback reentry refused
+PASS throwing admission callback restores guards
+PASS concurrent synchronous caller refused BUSY
+PASS concurrent suspend caller refused BUSY
+PASS cancel intent retains gate until blocked worker returns
+PASS interrupted blocking caller does not cancel owner or clear gate
+PASS legacy empty model double release on background makes no JNI call
+PASS legacy missing source fails before JNI and clears unallocated slot
+RESULT tests=13 failures=0 JNI=false AndroidDevice=false Looper=double
+Candidate AAR SHA256: 7e4e667d4a2f597fb7a78e7f29eb8b6298696812f68eee5e0549eec283ce02b0
+Runtime class-load trace: LlamaJNI absent; no SO extracted or loaded

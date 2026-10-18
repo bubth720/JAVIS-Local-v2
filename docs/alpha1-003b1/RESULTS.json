@@ -1,0 +1,58 @@
+{
+  "module": "JARVIS CORE",
+  "mission": "ALPHA1-003B1",
+  "date": "2026-10-18",
+  "branch": "feature/alpha1-003b1-isolated-native-build",
+  "base": "7f591f0e041159bb773011d69fdd2b1fe94b5b88",
+  "delivery_commit": "git log -1 --format=%H -- docs/alpha1-003b1/REPORT.md",
+  "patch_sha256": "329fc1959a2ac990f84e7b63f61239b75dd63d13b478b1f974f37b9c4a3ef97b",
+  "candidate_sha256": "7e4e667d4a2f597fb7a78e7f29eb8b6298696812f68eee5e0549eec283ce02b0",
+  "clean_builds": {
+    "a": "SUCCESS",
+    "b": "SUCCESS",
+    "c_same_path_as_a": "SUCCESS"
+  },
+  "reproducibility": {
+    "a_equals_b": false,
+    "a_equals_c": true,
+    "cross_host": "NOT_EXECUTED"
+  },
+  "guards": {
+    "passed": 13,
+    "failed": 0,
+    "ignored": 0,
+    "environment": "Linux JVM, manual Android Looper double",
+    "jni_class_loaded": false
+  },
+  "static_binary_inspection": "PASS",
+  "consumer_proguard_packaged": false,
+  "core_regression_tests_this_mission": "NOT_EXECUTED: no CORE changes, previous 299 historical only",
+  "android_runtime": "NOT_EXECUTED",
+  "gguf": "NOT_DOWNLOADED_NOT_LOADED",
+  "native_tokenization": "NOT_EXECUTED_B2_REQUIRES_APPROVAL",
+  "production_aar_changed": false,
+  "patch_changed": false,
+  "b2_authorized": false,
+  "logs": {
+    "build-a.log": {
+      "raw_sha256": "f4ae2b405a8086f0ee43c25d741d1a9fc6e512eee140d7bc035c85ad4772e509",
+      "published_sha256": "ad0583c40549bb2f9f5cf662f91361a7f98761ea7321a763824133bd87da0030",
+      "normalization": "trailing whitespace removed, final newline"
+    },
+    "build-b.log": {
+      "raw_sha256": "3cc7785279d02c178b53859d7ee6c2f8e6bcb02b358ba3abdb34d19d6f85e9b9",
+      "published_sha256": "03ff35fedec02c9a0adfede23ed3b6104d506b897bb91f05b69b511d77e82cd5",
+      "normalization": "trailing whitespace removed, final newline"
+    },
+    "build-c.log": {
+      "raw_sha256": "e3fac390b64b1377fc0cf9c5d567dd3ecbfa8386c8ec9240fd7b1c5ff233d4fe",
+      "published_sha256": "2090292a72ac835c7ca4b92e5964228c54ae15bf80b0d5631abd905ad2c6f100",
+      "normalization": "trailing whitespace removed, final newline"
+    },
+    "guards-validated.log": {
+      "raw_sha256": "40a51fb00eede921d87993f39f4ce69fb16f3a79354e1b2b5dc720f06ee3175e",
+      "published_sha256": "40a51fb00eede921d87993f39f4ce69fb16f3a79354e1b2b5dc720f06ee3175e",
+      "normalization": "trailing whitespace removed, final newline"
+    }
+  }
+}
