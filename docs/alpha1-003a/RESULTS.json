@@ -1,0 +1,92 @@
+{
+  "mission": "ALPHA1-003A",
+  "module": "JARVIS CORE / documentary library proposal only",
+  "base": "84571ae6058518e75d63077dfda15a0ef60a0e46",
+  "branch": "design/alpha1-003a-library-patch-review",
+  "nativeSource": "823d1de2b3ef85ba9ef4847a03bac423f4aa1c44",
+  "llamaCppSource": "2da668617612d2df773f966e3b0ee22dc2beef7b",
+  "patch_sha256": "329fc1959a2ac990f84e7b63f61239b75dd63d13b478b1f974f37b9c4a3ef97b",
+  "supersededCompositeSha256": "94f06d0179b95c332f5842b73b69d103e09ca319befc319a0aeca341735c6df7",
+  "targetFiles": 7,
+  "coreHunks": 0,
+  "staticChecks": 26,
+  "mutationTests": {
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "scope": "checker-only, no candidate runtime execution"
+  },
+  "kotlinTypecheck": {
+    "kotlin_typecheck": "PASS",
+    "jvm_signatures": {
+      "Llama": {
+        "old_public_declarations": 9,
+        "all_present": true
+      },
+      "LlamaJNI": {
+        "old_public_declarations": 6,
+        "all_present": true
+      },
+      "LlamaModel": {
+        "old_public_declarations": 6,
+        "all_present": true
+      }
+    },
+    "kotlin_source_files": 7,
+    "jni_loaded": false,
+    "native_compiled": false,
+    "aar_built": false,
+    "patch_applied": false,
+    "patch_sha256": "329fc1959a2ac990f84e7b63f61239b75dd63d13b478b1f974f37b9c4a3ef97b",
+    "compiled_review_sources_rechecked": true
+  },
+  "dryRunPatchCheck": {
+    "command": "git apply --check (read-only)",
+    "exit": 0
+  },
+  "patchApplied": false,
+  "candidateNativeCompiled": false,
+  "nativeAarBuilt": false,
+  "runtimeCoreModified": false,
+  "AthenaActivated": false,
+  "phaseARerun": false,
+  "jniExecuted": false,
+  "apkInstalled": false,
+  "phaseBStarted": false,
+  "intermediateFailures": [
+    {
+      "scope": "Kotlin review typecheck",
+      "cause": "O_DIRECTORY and Os.unlink are absent from the public Android SDK API.",
+      "resolution": "Use O_RDONLY|O_NOFOLLOW + directory fstat and Os.remove after regular-file identity validation."
+    },
+    {
+      "scope": "JVM declarations comparison",
+      "cause": "New lambda shape stopped emitting the former public synthetic access$parseResult bridge.",
+      "resolution": "Explicit @JvmStatic/@JvmSynthetic/@JvmName compatibility bridge; strict comparison retained."
+    }
+  ],
+  "notExecuted": [
+    "candidate C++ syntax/build/link",
+    "AAR build or substitution",
+    "JNI/GGUF inference or exact token-ID measurement",
+    "candidate Android filesystem, cancellation, concurrency or cleanup execution",
+    "CORE historical suites/build/Lint (phase A deliberately not rerun)",
+    "Android emulator/physical devices",
+    "CORE004D/Binder /2 or personality activation"
+  ],
+  "residualRisks": [
+    "All lifecycle guarantees remain proposals until qualified natively.",
+    "Synchronous public release/getSystemInfo now refuse main-thread/reentrant/busy calls: behavioral restriction requires approval.",
+    "Trusted private Context and trusted host callback; same-UID/root attacks not covered.",
+    "Directory-fsync/permissions/inode semantics and I/O failures require Android qualification.",
+    "Unknown native load/unload remains quarantined without reset.",
+    "Source-to-AAR reproducibility limits from phase A remain unchanged."
+  ],
+  "nextAction": "Review and explicitly authorize the exact patch and its seven-file scope before any phase B.",
+  "diffCheck": {
+    "raw_exit": 2,
+    "non_patch_files": "PASS",
+    "raw_findings": "Unified-diff context blank lines carry a syntax space; patch bytes preserved."
+  }
+}

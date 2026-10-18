@@ -1,0 +1,900 @@
+diff --git a/library/build.gradle.kts b/library/build.gradle.kts
+--- a/library/build.gradle.kts
++++ b/library/build.gradle.kts
+@@ -61,7 +61,7 @@
+ }
+ 
+ mavenPublishing {
+-    coordinates("dev.ffmpegkit-maintained", "llama-android", providers.gradleProperty("VERSION").get())
++    coordinates("fr.jarvis.experimental", "llama-android-exact", "0.1.1-jarvis-alpha1.003a-review.1")
+ 
+     // Sign only when a GPG key is configured (Maven Central); JitPack/local skip it.
+     if (providers.gradleProperty("signingInMemoryKey").isPresent) {
+diff --git a/library/src/main/jni/llama_jni.cpp b/library/src/main/jni/llama_jni.cpp
+--- a/library/src/main/jni/llama_jni.cpp
++++ b/library/src/main/jni/llama_jni.cpp
+@@ -110,11 +110,18 @@
+ 
+ } // namespace
+ 
++#include "measured.inc"
++
+ extern "C" {
+ 
+ JNIEXPORT jlong JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeLoadModel(
+         JNIEnv *env, jobject, jstring path, jint nCtx, jint nThreads, jint nGpuLayers) {
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++    require_measured(liveModels.empty(), "MODEL_ALREADY_RESIDENT");
++    require_measured(nextGeneration < static_cast<uint64_t>(std::numeric_limits<jlong>::max()), "GENERATION_EXHAUSTED");
++
+     if (!g_backend_ready) {
+         llama_backend_init();
+         g_backend_ready = true;
+@@ -133,6 +140,7 @@
+ 
+     llama_context_params cp = llama_context_default_params();
+     cp.n_ctx = (uint32_t) nCtx;
++    cp.n_seq_max = 1; // Single sequence; no second context for measurement.
+     cp.n_threads = nThreads;
+     cp.n_threads_batch = nThreads;
+     h->ctx = llama_init_from_model(h->model, cp);
+@@ -142,14 +150,23 @@
+         delete h;
+         return 0;
+     }
++    try { liveModels.emplace(h, LiveModel{nextGeneration++, std::this_thread::get_id(), nullptr}); }
++    catch (...) { llama_free(h->ctx); llama_model_free(h->model); delete h; throw; }
+     return reinterpret_cast<jlong>(h);
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return 0;
+ }
+ 
+ JNIEXPORT jstring JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeComplete(
+         JNIEnv *env, jobject, jlong handle, jstring prompt, jstring system,
+         jint maxTokens, jfloat temp, jfloat topP, jint topK, jint seed) {
+-    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
++    auto *h = owned(handle);
+     if (!h || !h->ctx) return env->NewStringUTF("{}");
+ 
+     const llama_vocab *vocab = llama_model_get_vocab(h->model);
+@@ -157,6 +174,8 @@
+ 
+     // Each complete() is a fresh single turn: reset the KV cache so successive calls
+     // on the same model don't bleed context into one another.
++    require_measured(liveModels.at(h).kvEpoch < std::numeric_limits<uint64_t>::max(), "KV_EPOCH_EXHAUSTED");
++    ++liveModels.at(h).kvEpoch;
+     llama_memory_clear(llama_get_memory(h->ctx), true);
+ 
+     std::vector<llama_token> tokens = tokenize(vocab, text, true);
+@@ -197,12 +216,19 @@
+         ",\"promptEvalTimeMs\":" + std::to_string(prompt_ms) +
+         ",\"generateTimeMs\":" + std::to_string(gen_ms) + "}";
+     return env->NewStringUTF(json.c_str());
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return nullptr;
+ }
+ 
+ JNIEXPORT jfloatArray JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeEmbed(
+         JNIEnv *env, jobject, jlong handle, jstring text) {
+-    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
++    auto *h = owned(handle);
+     if (!h || !h->ctx) return env->NewFloatArray(0);
+ 
+     const llama_vocab *vocab = llama_model_get_vocab(h->model);
+@@ -212,6 +238,8 @@
+     // Embeddings must be explicitly enabled or llama_get_embeddings_* returns null.
+     // Toggle it on for this call and restore generation mode afterwards.
+     llama_set_embeddings(h->ctx, true);
++    require_measured(liveModels.at(h).kvEpoch < std::numeric_limits<uint64_t>::max(), "KV_EPOCH_EXHAUSTED");
++    ++liveModels.at(h).kvEpoch;
+     llama_memory_clear(llama_get_memory(h->ctx), true);
+     llama_batch batch = llama_batch_get_one(tokens.data(), (int32_t) n_tok);
+     if (llama_decode(h->ctx, batch) != 0) {
+@@ -231,20 +259,39 @@
+     jfloatArray arr = env->NewFloatArray(n_embd);
+     env->SetFloatArrayRegion(arr, 0, n_embd, emb);
+     return arr;
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return nullptr;
+ }
+ 
+ JNIEXPORT void JNICALL
+-Java_dev_ffmpegkit_llama_LlamaJNI_nativeReleaseModel(JNIEnv *, jobject, jlong handle) {
+-    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++Java_dev_ffmpegkit_llama_LlamaJNI_nativeReleaseModel(JNIEnv *env, jobject, jlong handle) {
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
++    auto *h = owned(handle);
+     if (!h) return;
+     if (h->ctx) llama_free(h->ctx);
+     if (h->model) llama_model_free(h->model);
++    liveModels.erase(h);
+     delete h;
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return;
+ }
+ 
+ JNIEXPORT jstring JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeGetSystemInfo(JNIEnv *env, jobject) {
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
+     return env->NewStringUTF(llama_print_system_info());
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return nullptr;
+ }
+ 
+ } // extern "C"
+diff --git a/library/src/main/jni/measured.inc b/library/src/main/jni/measured.inc
+new file mode 100644
+--- /dev/null
++++ b/library/src/main/jni/measured.inc
+@@ -0,0 +1,238 @@
++// Proposed internal implementation, included after the historical helpers.
++// No model is loaded, context created, KV cleared or decode run by prepare.
++#include <algorithm>
++#include <chrono>
++#include <cstdint>
++#include <limits>
++#include <map>
++#include <memory>
++#include <mutex>
++#include <stdexcept>
++#include <thread>
++#include <cstring>
++namespace {
++using Clock = std::chrono::steady_clock;
++struct Prepared {
++    std::string ticket, binding;
++    std::vector<llama_token> tokens;
++    uint64_t generation, kvEpoch;
++    uint32_t capacity;
++    int output, margin;
++    Clock::time_point expires;
++    ~Prepared() {
++        volatile llama_token *p = tokens.data();
++        for (size_t i = 0; i < tokens.size(); ++i) p[i] = 0;
++    }
++};
++struct LiveModel {
++    uint64_t generation;
++    std::thread::id worker;
++    std::unique_ptr<Prepared> pending;
++    uint64_t kvEpoch = 0;
++};
++std::mutex measuredMutex;
++std::map<LlamaCtx *, LiveModel> liveModels;
++uint64_t nextGeneration = 1;
++void require_measured(bool ok, const char *why) {
++    if (!ok) throw std::runtime_error(why);
++}
++LlamaCtx *owned(jlong handle, bool allowPending = false) {
++    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++    auto it = liveModels.find(h);
++    require_measured(it != liveModels.end(), "STALE_MODEL");
++    require_measured(it->second.worker == std::this_thread::get_id(), "WRONG_WORKER");
++    require_measured(allowPending || !it->second.pending, "PREPARED_BUSY");
++    return h;
++}
++void throw_measured(JNIEnv *env, const char *why) {
++    if (!env->ExceptionCheck()) {
++        jclass c = env->FindClass("java/lang/IllegalStateException");
++        if (c) { env->ThrowNew(c, why); env->DeleteLocalRef(c); }
++    }
++}
++bool strict_utf8(const std::string &s) {
++    size_t i = 0;
++    while (i < s.size()) {
++        uint8_t a = static_cast<uint8_t>(s[i++]);
++        if (!a) return false; // Deliberate NUL refusal: template messages use C strings.
++        if (a < 0x80) continue;
++        int n; uint32_t cp, min;
++        if (a >= 0xc2 && a <= 0xdf) { n=1; cp=a&31; min=0x80; }
++        else if (a >= 0xe0 && a <= 0xef) { n=2; cp=a&15; min=0x800; }
++        else if (a >= 0xf0 && a <= 0xf4) { n=3; cp=a&7; min=0x10000; }
++        else return false;
++        if (s.size()-i < static_cast<size_t>(n)) return false;
++        while (n--) { uint8_t b=static_cast<uint8_t>(s[i++]);
++            if ((b&0xc0)!=0x80) return false;
++            cp=(cp<<6)|(b&63);
++        }
++        if (cp < min || cp > 0x10ffff || (cp >= 0xd800 && cp <= 0xdfff)) return false;
++    }
++    return true;
++}
++std::string bytes(JNIEnv *env, jbyteArray input, size_t maximum) {
++    require_measured(input != nullptr, "INVALID_BYTES");
++    jsize n=env->GetArrayLength(input);
++    require_measured(n >= 0 && static_cast<size_t>(n) <= maximum, "INPUT_LIMIT");
++    std::string out(static_cast<size_t>(n), '\0');
++    if (n) env->GetByteArrayRegion(input,0,n,reinterpret_cast<jbyte *>(out.data()));
++    require_measured(!env->ExceptionCheck(), "JNI_COPY_FAILED");
++    require_measured(strict_utf8(out), "INVALID_UTF8_OR_NUL");
++    return out;
++}
++jbyteArray to_bytes(JNIEnv *env, const std::string &s) {
++    require_measured(s.size() <= static_cast<size_t>(std::numeric_limits<jsize>::max()), "OUTPUT_LIMIT");
++    jbyteArray out=env->NewByteArray(static_cast<jsize>(s.size()));
++    require_measured(out != nullptr, "JNI_ALLOCATION_FAILED");
++    if (!s.empty()) env->SetByteArrayRegion(out,0,static_cast<jsize>(s.size()),
++        reinterpret_cast<const jbyte *>(s.data()));
++    require_measured(!env->ExceptionCheck(), "JNI_COPY_FAILED");
++    return out;
++}
++std::string render_strict(const llama_model *m, const std::string &system,
++                          const std::string &user, std::string &templateText) {
++    const char *t=llama_model_chat_template(m,nullptr);
++    require_measured(t && *t, "TEMPLATE_UNSUPPORTED");
++    size_t tn=strnlen(t,65537);
++    require_measured(tn <= 65536, "TEMPLATE_LIMIT");
++    templateText.assign(t,tn);
++    require_measured(strict_utf8(templateText), "INVALID_TEMPLATE_ENCODING");
++    // SYSTEM is never concatenated into user on error. The two roles are distinct.
++    std::vector<llama_chat_message> messages;
++    if (!system.empty()) messages.push_back({"system",system.c_str()});
++    messages.push_back({"user",user.c_str()});
++    std::vector<char> buf(65536);
++    int32_t n=llama_chat_apply_template(t,messages.data(),messages.size(),true,buf.data(),buf.size());
++    require_measured(n > 0 && n <= static_cast<int32_t>(buf.size()), "TEMPLATE_UNSUPPORTED_OR_LIMIT");
++    std::string rendered(buf.data(),n);
++    require_measured(strict_utf8(rendered), "INVALID_RENDER_ENCODING");
++    return rendered;
++}
++std::vector<llama_token> tokenize_strict(const llama_vocab *v, const std::string &s) {
++    int32_t n=llama_tokenize(v,s.data(),static_cast<int32_t>(s.size()),nullptr,0,true,true);
++    require_measured(n < 0 && n != std::numeric_limits<int32_t>::min(), "TOKENIZER_UNAVAILABLE");
++    require_measured(-n <= 65536, "TOKEN_LIMIT");
++    std::vector<llama_token> out(static_cast<size_t>(-n));
++    int32_t actual=llama_tokenize(v,s.data(),static_cast<int32_t>(s.size()),out.data(),out.size(),true,true);
++    require_measured(actual == -n, "TOKENIZER_INCONSISTENT");
++    return out;
++}
++void exact_budget(uint64_t input, int output, int margin, uint32_t capacity) {
++    require_measured(input > 0 && output > 0 && output <= 256 && margin == 128, "INVALID_BUDGET");
++    // Subtractions after bounds checks: overflow cannot manufacture admission.
++    require_measured(input <= capacity && static_cast<uint64_t>(output) <= capacity-input &&
++        static_cast<uint64_t>(margin) <= capacity-input-static_cast<uint64_t>(output), "CONTEXT_EXCEEDED");
++}
++std::string piece_strict(const llama_vocab *v,llama_token token) {
++    std::vector<char> b(256);
++    int n=llama_token_to_piece(v,token,b.data(),b.size(),0,true);
++    if (n < 0) {
++        require_measured(n != std::numeric_limits<int>::min() && -n <= 65536,"PIECE_LIMIT");
++        b.resize(-n); n=llama_token_to_piece(v,token,b.data(),b.size(),0,true);
++    }
++    require_measured(n >= 0 && static_cast<size_t>(n) <= b.size(),"PIECE_FAILED");
++    return std::string(b.data(),n);
++}
++} // namespace
++
++extern "C" JNIEXPORT jobjectArray JNICALL
++Java_dev_ffmpegkit_llama_LlamaJNI_nativePrepareMeasured(JNIEnv *env,jobject,jlong handle,
++    jbyteArray sys,jbyteArray prompt,jbyteArray binding,jbyteArray ticket,
++    jint requested,jint admitted,jint output,jint margin,jint ttlMs) {
++    try {
++        std::lock_guard<std::mutex> guard(measuredMutex);
++        LlamaCtx *h=owned(handle);
++        require_measured(requested > 0 && requested <= 2048 && admitted > 0 && admitted <= 2048 &&
++            ttlMs > 0 && ttlMs <= 5000,"INVALID_LIMITS");
++        auto p=std::make_unique<Prepared>();
++        p->binding=bytes(env,binding,64); p->ticket=bytes(env,ticket,64);
++        auto isHex=[](const std::string &s) { return s.size()==64 && std::all_of(s.begin(),s.end(),
++            [](char c) { return (c>='0' && c<='9') || (c>='a' && c<='f'); }); };
++        require_measured(isHex(p->binding) && isHex(p->ticket),"INVALID_BINDING");
++        std::string t;
++        std::string rendered=render_strict(h->model,bytes(env,sys,8192),bytes(env,prompt,16384),t);
++        p->tokens=tokenize_strict(llama_model_get_vocab(h->model),rendered);
++        p->capacity=std::min({static_cast<uint32_t>(requested),static_cast<uint32_t>(admitted),llama_n_ctx(h->ctx),llama_n_ctx_seq(h->ctx)});
++        exact_budget(p->tokens.size(),output,margin,p->capacity);
++        p->generation=liveModels.at(h).generation;
++        p->kvEpoch=liveModels.at(h).kvEpoch;
++        p->output=output; p->margin=margin; p->expires=Clock::now()+std::chrono::milliseconds(ttlMs);
++        std::string meta="1,"+std::to_string(p->generation)+","+std::to_string(p->tokens.size())+","+
++            std::to_string(std::min(llama_n_ctx(h->ctx),llama_n_ctx_seq(h->ctx)))+","+std::to_string(p->capacity)+","+std::to_string(p->kvEpoch);
++        // IDs copied only to the private wrapper to hash, never accepted back from Kotlin.
++        std::string packed; packed.reserve(p->tokens.size()*4);
++        for (llama_token id:p->tokens) for (int i=0;i<4;++i) packed.push_back(static_cast<char>(static_cast<uint32_t>(id)>>(i*8)));
++        jclass byteArrayClass=env->FindClass("[B");
++        require_measured(byteArrayClass != nullptr,"JNI_CLASS_FAILED");
++        jobjectArray result=env->NewObjectArray(4,byteArrayClass,nullptr);
++        env->DeleteLocalRef(byteArrayClass);
++        require_measured(result != nullptr,"JNI_ALLOCATION_FAILED");
++        std::string parts[4]={meta,t,rendered,packed};
++        for (int i=0;i<4;++i) { jbyteArray a=to_bytes(env,parts[i]); env->SetObjectArrayElement(result,i,a); env->DeleteLocalRef(a); }
++        require_measured(!env->ExceptionCheck(),"JNI_COPY_FAILED");
++        liveModels.at(h).pending=std::move(p);
++        return result;
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"NATIVE_PREPARE_FAILED"); }
++    return nullptr;
++}
++
++extern "C" JNIEXPORT jbyteArray JNICALL
++Java_dev_ffmpegkit_llama_LlamaJNI_nativeConsumeMeasured(JNIEnv *env,jobject,jlong handle,
++    jlong generation,jbyteArray ticket,jbyteArray binding,
++    jfloat temp,jfloat topP,jint topK,jint seed) {
++    try {
++        std::lock_guard<std::mutex> guard(measuredMutex);
++        LlamaCtx *h=owned(handle,true);
++        // Remove BEFORE validation: every consumption attempt burns this model's ticket.
++        auto p=std::move(liveModels.at(h).pending);
++        require_measured(p != nullptr,"TICKET_MISSING");
++        require_measured(p->generation == static_cast<uint64_t>(generation) &&
++            p->generation == liveModels.at(h).generation,"STALE_MODEL");
++        require_measured(p->ticket==bytes(env,ticket,64) && p->binding==bytes(env,binding,64),"TICKET_MISMATCH");
++        require_measured(Clock::now() < p->expires,"EXPIRED");
++        exact_budget(p->tokens.size(),p->output,p->margin,std::min({p->capacity,llama_n_ctx(h->ctx),llama_n_ctx_seq(h->ctx)}));
++        require_measured(temp >= 0 && temp <= 2 && topP > 0 && topP <= 1 && topK > 0,"INVALID_SAMPLING");
++        auto *v=llama_model_get_vocab(h->model);
++        std::unique_ptr<llama_sampler,decltype(&llama_sampler_free)> sampler(
++            make_sampler(temp,topP,topK,seed),llama_sampler_free);
++        require_measured(sampler != nullptr,"SAMPLER_FAILED");
++        require_measured(p->kvEpoch == liveModels.at(h).kvEpoch,"STALE_KV");
++        require_measured(liveModels.at(h).kvEpoch < std::numeric_limits<uint64_t>::max(),"KV_EPOCH_EXHAUSTED");
++        ++liveModels.at(h).kvEpoch;
++        // Only consume changes KV. Decode the retained IDs, in bounded batches.
++        llama_memory_clear(llama_get_memory(h->ctx),true);
++        size_t off=0;
++        uint32_t batchSize=llama_n_batch(h->ctx);
++        require_measured(batchSize>0,"INVALID_BATCH");
++        while (off < p->tokens.size()) {
++            int32_t n=static_cast<int32_t>(std::min<size_t>(batchSize,p->tokens.size()-off));
++            require_measured(llama_decode(h->ctx,llama_batch_get_one(p->tokens.data()+off,n))==0,"PREFILL_FAILED");
++            off+=n;
++        }
++        std::string out;
++        for (int i=0;i<p->output;++i) {
++            llama_token id=llama_sampler_sample(sampler.get(),h->ctx,-1);
++            if (llama_vocab_is_eog(v,id)) break;
++            llama_sampler_accept(sampler.get(),id);
++            std::string piece=piece_strict(v,id);
++            require_measured(out.size()+piece.size() <= 1048576,"OUTPUT_LIMIT"); out+=piece;
++            require_measured(llama_decode(h->ctx,llama_batch_get_one(&id,1))==0,"GENERATE_FAILED");
++        }
++        require_measured(strict_utf8(out),"INCOMPLETE_OUTPUT_UTF8");
++        return to_bytes(env,out);
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"NATIVE_CONSUME_FAILED"); }
++    return nullptr;
++}
++
++extern "C" JNIEXPORT void JNICALL
++Java_dev_ffmpegkit_llama_LlamaJNI_nativeDiscardMeasured(JNIEnv *env,jobject,jlong handle,jbyteArray ticket) {
++    try {
++        std::lock_guard<std::mutex> guard(measuredMutex);
++        LlamaCtx *h=owned(handle,true);
++        auto &p=liveModels.at(h).pending;
++        if (p) { require_measured(p->ticket==bytes(env,ticket,64),"TICKET_MISMATCH"); p.reset(); }
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"NATIVE_DISCARD_FAILED"); }
++}
+diff --git a/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt b/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt
+--- a/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt
++++ b/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt
+@@ -1,7 +1,5 @@
+ package dev.ffmpegkit.llama
+ 
+-import kotlinx.coroutines.Dispatchers
+-import kotlinx.coroutines.withContext
+ import org.json.JSONObject
+ import java.io.File
+ 
+@@ -17,7 +15,7 @@
+  * ```
+  *
+  * A single [LlamaModel] is **not** thread-safe. All heavy calls are `suspend`
+- * functions running on [Dispatchers.Default].
++ * functions running on the library owner worker.
+  */
+ object Llama {
+ 
+@@ -25,13 +23,10 @@
+     suspend fun loadModel(
+         modelPath: String,
+         config: LlamaConfig = LlamaConfig(),
+-    ): LlamaModel = withContext(Dispatchers.Default) {
++    ): LlamaModel = LlamaOwner.load { current, checkCancelled ->
++        checkCancelled()
+         if (!File(modelPath).exists()) throw LlamaException.ModelLoadFailed(modelPath)
+-        val handle = LlamaJNI.nativeLoadModel(
+-            modelPath, config.contextSize, config.threads, config.gpuLayers,
+-        )
+-        if (handle == 0L) throw LlamaException.ModelLoadFailed(modelPath)
+-        LlamaModel(handle, config)
++        LlamaOwner.loadInto(current, modelPath, config, null)
+     }
+ 
+     /** Chat completion: `prompt` → full response, formatted with the model's chat template. */
+@@ -40,7 +35,7 @@
+         prompt: String,
+         systemPrompt: String = "",
+         maxTokens: Int = 512,
+-    ): LlamaResult = withContext(Dispatchers.Default) {
++    ): LlamaResult = LlamaOwner.operation { _ ->
+         val c = model.config
+         val json = LlamaJNI.nativeComplete(
+             model.requireHandle(), prompt, systemPrompt, maxTokens,
+@@ -51,21 +46,21 @@
+ 
+     /** Embed `text` into a vector (for search / RAG / clustering). */
+     suspend fun embed(model: LlamaModel, text: String): FloatArray =
+-        withContext(Dispatchers.Default) {
++        LlamaOwner.operation { _ ->
+             LlamaJNI.nativeEmbed(model.requireHandle(), text)
+         }
+ 
+     /** Free the model's native memory. Safe to call more than once. */
+-    fun releaseModel(model: LlamaModel) {
+-        val h = model.handle
+-        if (h != 0L) {
+-            LlamaJNI.nativeReleaseModel(h)
+-            model.handle = 0L
+-        }
+-    }
++    // Existing signatures retained. Busy/reentrant/main-thread sync calls explicitly refuse.
++    fun releaseModel(model: LlamaModel) = LlamaOwner.blocking { LlamaOwner.release(model) }
+ 
+-    /** llama.cpp system info (CPU features / NEON / backends / threads). */
+-    fun getSystemInfo(): String = LlamaJNI.nativeGetSystemInfo()
++    fun getSystemInfo(): String = LlamaOwner.blocking { LlamaJNI.nativeGetSystemInfo() }
++
++    // Retain the public synthetic bridge emitted by the old suspend implementation.
++    @JvmStatic
++    @JvmSynthetic
++    @JvmName("access\$parseResult")
++    internal fun parseResultCompatibility(owner: Llama, json: String): LlamaResult = owner.parseResult(json)
+ 
+     private fun parseResult(json: String): LlamaResult {
+         val o = JSONObject(json)
+diff --git a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
+--- a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
++++ b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
+@@ -28,4 +28,10 @@
+     external fun nativeReleaseModel(handle: Long)
+ 
+     external fun nativeGetSystemInfo(): String
++    external fun nativePrepareMeasured(handle: Long, system: ByteArray, prompt: ByteArray,
++        binding: ByteArray, ticket: ByteArray, requested: Int, admitted: Int,
++        output: Int, margin: Int, ttlMs: Int): Array<ByteArray>
++    external fun nativeConsumeMeasured(handle: Long, generation: Long, ticket: ByteArray,
++        binding: ByteArray, temp: Float, topP: Float, topK: Int, seed: Int): ByteArray
++    external fun nativeDiscardMeasured(handle: Long, ticket: ByteArray)
+ }
+diff --git a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt
+new file mode 100644
+--- /dev/null
++++ b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt
+@@ -0,0 +1,384 @@
++package dev.ffmpegkit.llama
++
++import android.content.Context
++import android.os.Looper
++import android.os.Process
++import android.system.ErrnoException
++import android.system.Os
++import android.system.OsConstants
++import java.io.File
++import java.io.FileInputStream
++import java.io.FileOutputStream
++import java.nio.ByteBuffer
++import java.nio.CharBuffer
++import java.nio.charset.CodingErrorAction
++import java.security.MessageDigest
++import java.security.SecureRandom
++import java.util.concurrent.Callable
++import java.util.concurrent.ExecutionException
++import java.util.concurrent.Executors
++import java.util.concurrent.atomic.AtomicBoolean
++import kotlin.coroutines.resumeWithException
++import kotlinx.coroutines.NonCancellable
++import kotlinx.coroutines.asCoroutineDispatcher
++import kotlinx.coroutines.currentCoroutineContext
++import kotlinx.coroutines.ensureActive
++import kotlinx.coroutines.suspendCancellableCoroutine
++import kotlinx.coroutines.withContext
++
++/** Existing native resources are retained here even when no caller receives a model. */
++internal class OwnerSlot {
++    var handle = 0L
++    var model: LlamaModel? = null
++    var snapshot: PrivateSnapshot? = null
++    var nativeUncertain = false
++    var abandoned = false
++}
++
++internal object LlamaOwner {
++    @Volatile private var worker: Thread? = null
++    private val executor = Executors.newSingleThreadExecutor { task ->
++        Thread(task, "jarvis-llama-owner").also { it.isDaemon = true; worker = it }
++    }
++    private val dispatcher = executor.asCoroutineDispatcher()
++    private val apiBusy = AtomicBoolean(false)
++    private val inAdmissionCallback = AtomicBoolean(false)
++    private var slot: OwnerSlot? = null // only the owner worker reads/writes this reference
++
++    private fun enter(sync: Boolean) {
++        check(!inAdmissionCallback.get()) { "CALLBACK_REENTRANCY" }
++        check(Thread.currentThread() !== worker) { "OWNER_REENTRANCY" }
++        if (sync) check(Looper.myLooper() != Looper.getMainLooper()) { "SYNC_MAIN_THREAD_FORBIDDEN" }
++        check(apiBusy.compareAndSet(false, true)) { "OWNER_BUSY" } // refuse, never queue behind a heavy call
++    }
++    private fun checkWorker() = check(Thread.currentThread() === worker) { "WRONG_WORKER" }
++    private fun healthy() { checkWorker(); check(slot?.nativeUncertain != true) { "NATIVE_QUARANTINED" } }
++
++    suspend fun <T> operation(block: (checkCancelled: () -> Unit) -> T): T {
++        val caller = currentCoroutineContext()
++        caller.ensureActive()
++        enter(sync = false)
++        try {
++            val result = withContext(NonCancellable) { withContext(dispatcher) {
++                healthy()
++                caller.ensureActive()
++                block { caller.ensureActive() }
++            } }
++            caller.ensureActive() // return of JNI, not unload; discard revoked output
++            return result
++        } finally { apiBusy.set(false) }
++    }
++
++    fun <T> blocking(block: () -> T): T {
++        enter(sync = true)
++        val future = try { executor.submit(Callable {
++            try { healthy(); block() } finally { apiBusy.set(false) }
++        }) } catch (failure: Throwable) { apiBusy.set(false); throw failure }
++        try { return future.get() }
++        catch (failure: ExecutionException) { throw (failure.cause ?: failure) }
++        catch (interrupted: InterruptedException) {
++            Thread.currentThread().interrupt()
++            // Never cancel the future, clear the owner, or infer native completion here.
++            throw MeasuredTransactionFailure(false, interrupted)
++        }
++    }
++
++    /** Cancellable delivery has an abandonment hook; the worker owns cleanup to its real end. */
++    suspend fun load(factory: (OwnerSlot, () -> Unit) -> LlamaModel): LlamaModel {
++        currentCoroutineContext().ensureActive()
++        enter(sync = false)
++        return suspendCancellableCoroutine { continuation ->
++            val cancelled = AtomicBoolean(false)
++            continuation.invokeOnCancellation { cancelled.set(true) } // intent only, no release
++            try { executor.execute {
++                var owned: OwnerSlot? = null
++                var gateHeld = true
++                try {
++                    healthy()
++                    if (!continuation.isActive || cancelled.get()) return@execute
++                    check(slot == null) { "MODEL_OR_CLEANUP_ALREADY_OWNED" }
++                    val current = OwnerSlot()
++                    slot = current // reserve before file/native allocation
++                    owned = current
++                    val model = factory(current) {
++                        if (cancelled.get() || !continuation.isActive)
++                            throw java.util.concurrent.CancellationException("LOAD_CANCELLED")
++                    }
++                    check(current.model === model && current.handle != 0L)
++                    apiBusy.set(false)
++                    gateHeld = false // subsequent caller owns its own gate; never clear it in our finally
++                    continuation.resume(model) { _, _, _ ->
++                        // Runs on any caller thread; only enqueue, no native work or positive receipt.
++                        try { executor.execute { abandon(current) } }
++                        catch (_: Throwable) {
++                            // Retained slot is NOT cleared. No later load can pass slot == null.
++                        }
++                    }
++                } catch (failure: Throwable) {
++                    var reported = failure
++                    owned?.let { current ->
++                        current.abandoned = true
++                        try { cleanup(current) }
++                        catch (cleanup: Throwable) { reported = MeasuredTransactionFailure(false, cleanup) }
++                    }
++                    if (gateHeld) { apiBusy.set(false); gateHeld = false }
++                    continuation.resumeWithException(reported)
++                } finally { if (gateHeld) apiBusy.set(false) }
++            } } catch (failure: Throwable) {
++                apiBusy.set(false) // enqueue failed, factory never ran
++                continuation.resumeWithException(failure)
++            }
++        }
++    }
++
++    fun loadInto(current: OwnerSlot, path: String, config: LlamaConfig, digest: String?): LlamaModel {
++        checkWorker(); check(slot === current && current.handle == 0L)
++        current.nativeUncertain = true // includes throw/zero result with no recoverable handle
++        val handle = LlamaJNI.nativeLoadModel(path, config.contextSize, config.threads, config.gpuLayers)
++        check(handle != 0L) { "MODEL_LOAD_UNCONFIRMED" }
++        current.handle = handle // retained BEFORE constructing or delivering a wrapper
++        current.nativeUncertain = false
++        val model = LlamaModel(handle, config, current.snapshot?.file, digest)
++        current.model = model
++        return model
++    }
++
++    fun requireOwned(model: LlamaModel) {
++        checkWorker()
++        check(slot?.model === model) { "STALE_MODEL_OWNER" }
++        check(slot?.nativeUncertain != true) { "NATIVE_QUARANTINED" }
++    }
++    fun quarantine(model: LlamaModel) {
++        checkWorker(); check(slot?.model === model)
++        slot!!.nativeUncertain = true // no reset API
++    }
++    fun release(model: LlamaModel) {
++        checkWorker()
++        if (model.handle == 0L && slot?.model !== model) return // legacy double release, never touch newer owner
++        requireOwned(model)
++        cleanup(slot!!)
++    }
++    private fun abandon(current: OwnerSlot) {
++        checkWorker()
++        if (slot !== current) return // never release a newer owner
++        current.abandoned = true
++        try { cleanup(current) } catch (_: Throwable) {
++            // Slot, handle or cleanup-pending file remain retained. No reset or logger.
++        }
++    }
++    private fun cleanup(current: OwnerSlot) {
++        checkWorker(); check(slot === current)
++        check(!current.nativeUncertain) { "NATIVE_RELEASE_UNKNOWN" }
++        if (current.handle != 0L) {
++            try { LlamaJNI.nativeReleaseModel(current.handle) }
++            catch (failure: Throwable) {
++                current.nativeUncertain = true
++                throw MeasuredTransactionFailure(false, failure)
++            }
++            current.handle = 0L // only AFTER actual native return
++            current.model?.handle = 0L
++        }
++        // Reached on retry too, including handle == 0. File failure cannot turn unload into a load grant.
++        current.snapshot?.deleteOwned()
++        slot = null // only after native release AND exact-file cleanup+directory fsync
++    }
++    fun retryAbandonedFileCleanup() {
++        checkWorker()
++        val current = slot ?: return
++        check(current.abandoned && current.handle == 0L && !current.nativeUncertain) { "NOT_FILE_ONLY_CLEANUP" }
++        cleanup(current) // cannot call nativeReleaseModel because handle is already zero
++    }
++    fun finalAdmission(block: () -> Unit) {
++        checkWorker()
++        check(inAdmissionCallback.compareAndSet(false, true)) { "CALLBACK_REENTRANCY" }
++        try { block() } finally { inAdmissionCallback.set(false) }
++    }
++}
++
++/** Private filesystem ownership is separate from the model and all CORE/Binder admissions. */
++internal class PrivateSnapshot(private val root: File, val file: File) {
++    private var created = false
++    private var inode = 0L
++    private var device = 0L
++
++    companion object {
++        fun privateRoot(context: Context): File {
++            val app = context.applicationContext
++            val data = File(app.applicationInfo.dataDir).canonicalFile
++            val platformRoot = app.noBackupFilesDir
++            check(OsConstants.S_ISDIR(Os.lstat(platformRoot.path).st_mode)) { "PRIVATE_ROOT_LINK" }
++            val root = platformRoot.canonicalFile
++            check(root.parentFile == data && root.name == "no_backup") { "PRIVATE_ROOT_REQUIRED" }
++            for (directory in listOf(data, root)) {
++                val stat = Os.lstat(directory.path)
++                check(OsConstants.S_ISDIR(stat.st_mode) && stat.st_uid == Process.myUid() &&
++                    (stat.st_mode and 0x3f) == 0) { "PRIVATE_DIRECTORY_REQUIRED" }
++            }
++            return root
++        }
++        fun createDescriptor(root: File): PrivateSnapshot {
++            // Allocate the descriptor BEFORE opening: an O_EXCL collision never owns/deletes another file.
++            val nonce = ByteArray(32).also { SecureRandom().nextBytes(it) }
++            val name = nonce.joinToString("") { "%02x".format(it.toInt() and 255) }
++            nonce.fill(0)
++            return PrivateSnapshot(root, File(root, "jarvis-measured-$name.gguf"))
++        }
++    }
++
++    fun copyBounded(sourcePath: String, expectedBytes: Long, expectedSha: String, checkCancelled: () -> Unit) {
++        require(expectedBytes > 0L && expectedSha.matches(Regex("[a-f0-9]{64}"))) { "ARTIFACT_MANIFEST_REQUIRED" }
++        val free = root.usableSpace
++        check(free >= expectedBytes && free - expectedBytes >= 16L * 1024 * 1024) { "SNAPSHOT_DISK_UNAVAILABLE" }
++        checkCancelled()
++        val sourceFd = Os.open(sourcePath, OsConstants.O_RDONLY or OsConstants.O_NOFOLLOW or OsConstants.O_CLOEXEC, 0)
++        FileInputStream(sourceFd).use { input ->
++            val original = Os.fstat(input.fd)
++            check(OsConstants.S_ISREG(original.st_mode) && original.st_size == expectedBytes) { "SOURCE_SIZE_OR_TYPE" }
++            val outFd = Os.open(file.path, OsConstants.O_WRONLY or OsConstants.O_CREAT or
++                OsConstants.O_EXCL or OsConstants.O_NOFOLLOW or OsConstants.O_CLOEXEC, 0x180) // 0600
++            created = true // retained by OwnerSlot before the file was created
++            FileOutputStream(outFd).use { output ->
++                val own = Os.fstat(output.fd)
++                inode = own.st_ino; device = own.st_dev
++                check(OsConstants.S_ISREG(own.st_mode) && own.st_uid == Process.myUid() &&
++                    (own.st_mode and 0x3f) == 0) { "SNAPSHOT_OWNERSHIP" }
++                val digest = MessageDigest.getInstance("SHA-256")
++                val buffer = ByteArray(512 * 1024)
++                var remaining = expectedBytes
++                try {
++                    while (remaining > 0L) {
++                        checkCancelled()
++                        val wanted = minOf(buffer.size.toLong(), remaining).toInt()
++                        val count = input.read(buffer, 0, wanted)
++                        check(count > 0) { "SOURCE_SHORT_OR_STALLED" }
++                        output.write(buffer, 0, count)
++                        digest.update(buffer, 0, count)
++                        remaining -= count.toLong()
++                    }
++                    checkCancelled()
++                    check(input.read() == -1) { "SOURCE_GREW" } // at most expectedBytes+1 read, never +1 written
++                    check(Os.fstat(input.fd).st_size == expectedBytes) { "SOURCE_SIZE_CHANGED" }
++                    val actual = digest.digest().joinToString("") { "%02x".format(it.toInt() and 255) }
++                    check(actual == expectedSha) { "MODEL_HASH_MISMATCH" }
++                    Os.fchmod(output.fd, 0x100) // 0400; same-UID/root compromise remains outside this guarantee
++                    output.fd.sync()
++                } finally { buffer.fill(0) }
++            }
++        }
++        syncDirectory()
++        checkCancelled() // before any native load; cancelled copy only needs file cleanup
++    }
++    private fun syncDirectory() {
++        val fd = Os.open(root.path, OsConstants.O_RDONLY or OsConstants.O_NOFOLLOW, 0)
++        try {
++            val directory = Os.fstat(fd)
++            check(OsConstants.S_ISDIR(directory.st_mode) && directory.st_uid == Process.myUid() &&
++                (directory.st_mode and 0x3f) == 0) { "PRIVATE_DIRECTORY_REQUIRED" }
++            Os.fsync(fd)
++        } finally { Os.close(fd) }
++    }
++    fun deleteOwned() {
++        if (!created) return
++        val stat = try { Os.lstat(file.path) } catch (failure: ErrnoException) {
++            if (failure.errno != OsConstants.ENOENT) throw failure
++            null
++        }
++        if (stat != null) {
++            check(OsConstants.S_ISREG(stat.st_mode) && stat.st_uid == Process.myUid() &&
++                stat.st_ino == inode && stat.st_dev == device && inode != 0L) { "SNAPSHOT_IDENTITY_CHANGED" }
++            Os.remove(file.path) // regular owned file only, never source/glob/directory
++        }
++        syncDirectory() // retry after unlink/fsync failure also comes here
++        created = false
++    }
++}
++
++class MeasuredReceipt internal constructor(
++    val revision: String, val modelSha256: String, val loadGeneration: Long,
++    val templateSha256: String, val renderedSha256: String, val tokenIdsSha256: String,
++    val bindingSha256: String, val kvEpoch: Long, val inputTokens: Long, val loadedContext: Long,
++    val admittedContext: Long, val outputReserve: Int, val marginReserve: Int,
++)
++class MeasuredTransactionFailure(val nativeStateKnown: Boolean, cause: Throwable) :
++    IllegalStateException("Measured transaction refused; inspect owner state", cause)
++
++object LlamaMeasured {
++    const val REVISION = "core.identity.measure/1-proposed"
++    private fun sha(bytes: ByteArray) = MessageDigest.getInstance("SHA-256").digest(bytes)
++        .joinToString("") { "%02x".format(it.toInt() and 255) }
++    private fun utf8(value: String): ByteArray {
++        require('\u0000' !in value) { "NUL_UNSUPPORTED" }
++        val encoded = Charsets.UTF_8.newEncoder().onMalformedInput(CodingErrorAction.REPORT)
++            .onUnmappableCharacter(CodingErrorAction.REPORT).encode(CharBuffer.wrap(value))
++        return ByteArray(encoded.remaining()).also { encoded.get(it) }
++    }
++    private fun decode(value: ByteArray) = Charsets.UTF_8.newDecoder()
++        .onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(CodingErrorAction.REPORT)
++        .decode(ByteBuffer.wrap(value)).toString()
++
++    /** New API only: host-approved SHA AND size, destination from private Android Context. */
++    suspend fun loadFrozen(context: Context, modelPath: String, config: LlamaConfig,
++        expectedSha256: String, expectedBytes: Long): LlamaModel = LlamaOwner.load { current, checkCancelled ->
++        require(config.contextSize in 1..2048) { "INVALID_CONTEXT" }
++        val root = PrivateSnapshot.privateRoot(context)
++        val snapshot = PrivateSnapshot.createDescriptor(root)
++        current.snapshot = snapshot // retain identity before opening or copying
++        snapshot.copyBounded(modelPath, expectedBytes, expectedSha256, checkCancelled)
++        checkCancelled()
++        LlamaOwner.loadInto(current, snapshot.file.absolutePath, config, expectedSha256)
++    }
++
++    /** Explicit retry for an abandoned, already-native-free slot. Does NOT reset CORE admission. */
++    fun retryAbandonedFileCleanup() = LlamaOwner.blocking { LlamaOwner.retryAbandonedFileCleanup() }
++
++    suspend fun complete(model: LlamaModel, system: String, prompt: String, bindingSha256: String,
++        requestedContext: Int, admittedContext: Int, outputReserve: Int,
++        finalAdmission: (MeasuredReceipt) -> Unit): String = LlamaOwner.operation { checkCancelled ->
++        check(model.frozenSha256 != null && model.frozenFile?.isFile == true) { "FROZEN_MODEL_REQUIRED" }
++        require(bindingSha256.matches(Regex("[a-f0-9]{64}"))) { "INVALID_BINDING" }
++        val handle = model.requireHandle()
++        val random = ByteArray(32).also { SecureRandom().nextBytes(it) }
++        val ticket = random.joinToString("") { "%02x".format(it.toInt() and 255) }.toByteArray(Charsets.US_ASCII)
++        random.fill(0)
++        val binding = bindingSha256.toByteArray(Charsets.US_ASCII)
++        var systemBytes: ByteArray? = null
++        var promptBytes: ByteArray? = null
++        var parts: Array<ByteArray>? = null
++        var consumeEntered = false
++        try {
++            systemBytes = utf8(system); promptBytes = utf8(prompt)
++            checkCancelled()
++            parts = LlamaJNI.nativePrepareMeasured(handle, systemBytes, promptBytes, binding, ticket,
++                requestedContext, admittedContext, outputReserve, 128, 5000)
++            check(parts.size == 4) { "INVALID_RECEIPT" }
++            val metadata = decode(parts[0]).split(',').map(String::toLong)
++            check(metadata.size == 6 && metadata[0] == 1L && metadata[1] > 0 && metadata[2] > 0 && metadata[5] >= 0 &&
++                parts[3].size.toLong() == metadata[2] * 4L) { "INVALID_RECEIPT" }
++            val receipt = MeasuredReceipt(REVISION, requireNotNull(model.frozenSha256), metadata[1],
++                sha(parts[1]), sha(parts[2]), sha(parts[3]), bindingSha256, metadata[5],
++                metadata[2], metadata[3], metadata[4], outputReserve, 128)
++            check(receipt.admittedContext == minOf(requestedContext.toLong(), admittedContext.toLong(), receipt.loadedContext))
++            check(receipt.inputTokens + outputReserve.toLong() + 128L <= receipt.admittedContext) { "CONTEXT_EXCEEDED" }
++            checkCancelled()
++            LlamaOwner.finalAdmission { finalAdmission(receipt) }
++            checkCancelled()
++            consumeEntered = true
++            val c = model.config
++            val answer = LlamaJNI.nativeConsumeMeasured(handle, receipt.loadGeneration, ticket, binding,
++                c.temperature, c.topP, c.topK, c.seed)
++            try { decode(answer) } finally { answer.fill(0) }
++        } catch (failure: Throwable) {
++            if (consumeEntered) LlamaOwner.quarantine(model)
++            throw MeasuredTransactionFailure(!consumeEntered, failure)
++        } finally {
++            try { LlamaJNI.nativeDiscardMeasured(handle, ticket) }
++            catch (cleanup: Throwable) {
++                LlamaOwner.quarantine(model)
++                throw MeasuredTransactionFailure(false, cleanup)
++            } finally {
++                ticket.fill(0); binding.fill(0); systemBytes?.fill(0); promptBytes?.fill(0)
++                parts?.forEach { it.fill(0) }
++            }
++        }
++    }
++}
+diff --git a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt
+--- a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt
++++ b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt
+@@ -1,18 +1,16 @@
+ package dev.ffmpegkit.llama
+ 
+-/**
+- * A loaded GGUF model + its inference context. Obtain one from [Llama.loadModel] and
+- * free it with [Llama.releaseModel]. Not thread-safe: serialise calls, or use the Pro
+- * session API for concurrent chats.
+- */
++/** Handle visibility is informational, never an admission or interprocess release proof. */
+ class LlamaModel internal constructor(
+-    internal var handle: Long,
++    @Volatile internal var handle: Long,
+     val config: LlamaConfig,
++    internal val frozenFile: java.io.File?,
++    internal val frozenSha256: String?,
+ ) {
+-    /** True until [Llama.releaseModel] is called. */
++    internal constructor(handle: Long, config: LlamaConfig) : this(handle, config, null, null)
+     val isLoaded: Boolean get() = handle != 0L
+-
+     internal fun requireHandle(): Long {
++        LlamaOwner.requireOwned(this)
+         if (handle == 0L) throw LlamaException.ModelReleased()
+         return handle
+     }
