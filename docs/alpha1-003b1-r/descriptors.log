@@ -1,0 +1,18 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+PASS success closes exactly once
+PASS open failure never closes unowned descriptor
+PASS input constructor failure closes once and preserves primary
+PASS output constructor failure closes once and preserves primary
+PASS read failure closes once and preserves primary
+PASS write failure closes once and preserves primary
+PASS fstat failure closes once and preserves primary
+PASS fsync failure closes once and preserves primary
+PASS close failure surfaces without retry
+PASS body and close failures preserve primary with suppressed close
+PASS same throwable not self suppressed or double closed
+PASS nested output failure closes destination then source
+PASS interruption closes without clearing thread interrupt
+PASS cancellation closes once without reinterpretation
+PASS constructor allocation error closes once
+RESULT tests=15 failures=0 Os=double JNI=false Android=false

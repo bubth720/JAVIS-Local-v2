@@ -1,0 +1,17 @@
+{
+  "overlay_sha256": "7e2c3aa8a2e1556a46ddbdaea1ca1e652a671a2de0d97a0cfe3aeb0da31bdeec",
+  "base_patch_sha256": "329fc1959a2ac990f84e7b63f61239b75dd63d13b478b1f974f37b9c4a3ef97b",
+  "files": {
+    "library/build.gradle.kts": {
+      "b1_sha256": "c95aedcd5b04c6209e2852d6e503d1a87752284257589aabf04149a32ad75750",
+      "proposed_sha256": "e1d12346b93b6d72d4c7bd1ae4cf941056b88b1cc18c4823c65ec350974c1d3f"
+    },
+    "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt": {
+      "b1_sha256": "4475e9451a4e4a73f1c4b40e577101964cc1cdb839240c0246cd6a9900eb7f09",
+      "proposed_sha256": "bad1243a554d39bbdd32036c32894a07c6858977f068cf3e8739f4112bbd314f"
+    }
+  },
+  "composed_dry_check": "PASS",
+  "overlay_dry_check": "PASS",
+  "applied": false
+}

@@ -1,0 +1,89 @@
+package dev.ffmpegkit.llama
+
+// Fake Os, no Linux FD and no Android syscall: exercise the exact proposed helper.
+private object Os {
+    var opened = 0
+    var closed = 0
+    var openFailure: Throwable? = null
+    var closeFailure: Throwable? = null
+    val events = mutableListOf<String>()
+    fun open(path: String, flags: Int, mode: Int): java.io.FileDescriptor {
+        openFailure?.let { throw it }
+        check(flags == 0 && mode == 0)
+        opened++; events += "open:$path"
+        return java.io.FileDescriptor()
+    }
+    fun close(fd: java.io.FileDescriptor) {
+        check(!fd.valid()) // intentionally fake, never a real descriptor
+        closed++; events += "close"
+        closeFailure?.let { throw it }
+    }
+    fun reset() { opened=0; closed=0; openFailure=null; closeFailure=null; events.clear() }
+}
+
+// EXACT_HELPER_INSERTED_HERE
+
+fun main() {
+    var passed=0
+    fun test(name: String, block: () -> Unit) {
+        Os.reset(); block(); passed++; println("PASS $name")
+    }
+    fun capture(block: () -> Unit): Throwable {
+        try { block() } catch (failure: Throwable) { return failure }
+        error("Expected failure")
+    }
+    test("success closes exactly once") {
+        check(withOwnedDescriptor("source",0,0) { 42 }==42)
+        check(Os.opened==1 && Os.closed==1)
+    }
+    test("open failure never closes unowned descriptor") {
+        val x=IllegalStateException("open"); Os.openFailure=x
+        check(capture { withOwnedDescriptor("source",0,0) { error("unreachable") } }===x)
+        check(Os.closed==0)
+    }
+    for (phase in listOf("input constructor", "output constructor", "read", "write", "fstat", "fsync")) {
+        test("$phase failure closes once and preserves primary") {
+            val x=IllegalStateException(phase)
+            check(capture { withOwnedDescriptor("source",0,0) { throw x } }===x)
+            check(Os.closed==1)
+        }
+    }
+    test("close failure surfaces without retry") {
+        val x=IllegalStateException("close"); Os.closeFailure=x
+        check(capture { withOwnedDescriptor("source",0,0) { 1 } }===x && Os.closed==1)
+    }
+    test("body and close failures preserve primary with suppressed close") {
+        val x=IllegalStateException("body"); val y=IllegalStateException("close"); Os.closeFailure=y
+        check(capture { withOwnedDescriptor("source",0,0) { throw x } }===x)
+        check(x.suppressed.single()===y && Os.closed==1)
+    }
+    test("same throwable not self suppressed or double closed") {
+        val x=IllegalStateException("same"); Os.closeFailure=x
+        check(capture { withOwnedDescriptor("source",0,0) { throw x } }===x)
+        check(x.suppressed.isEmpty() && Os.closed==1)
+    }
+    test("nested output failure closes destination then source") {
+        val x=IllegalStateException("write")
+        check(capture { withOwnedDescriptor("source",0,0) {
+            withOwnedDescriptor("destination",0,0) { throw x }
+        } }===x)
+        check(Os.events==listOf("open:source","open:destination","close","close"))
+    }
+    test("interruption closes without clearing thread interrupt") {
+        Thread.currentThread().interrupt()
+        try {
+            val x=InterruptedException("interrupt")
+            check(capture { withOwnedDescriptor("source",0,0) { throw x } }===x)
+            check(Thread.currentThread().isInterrupted && Os.closed==1)
+        } finally { Thread.interrupted() }
+    }
+    test("cancellation closes once without reinterpretation") {
+        val x=java.util.concurrent.CancellationException("cancel")
+        check(capture { withOwnedDescriptor("source",0,0) { throw x } }===x && Os.closed==1)
+    }
+    test("constructor allocation error closes once") {
+        val x=OutOfMemoryError("synthetic only")
+        check(capture { withOwnedDescriptor("source",0,0) { throw x } }===x && Os.closed==1)
+    }
+    println("RESULT tests=$passed failures=0 Os=double JNI=false Android=false")
+}

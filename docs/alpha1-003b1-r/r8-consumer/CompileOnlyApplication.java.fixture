@@ -1,0 +1,4 @@
+package fr.jarvis.experimental.r8consumer;
+
+/** Compile-only entry. No model, reflection initialization, JNI or network operation. */
+public final class CompileOnlyApplication extends android.app.Application { }

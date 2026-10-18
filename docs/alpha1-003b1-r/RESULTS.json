@@ -1,0 +1,74 @@
+{
+  "module": "JARVIS CORE",
+  "mission": "ALPHA1-003B1-R",
+  "base": "d63462bcaffca8d84e42ca9987a2ad22a27dd102",
+  "branch": "design/alpha1-003b1-r-corrections",
+  "date": "2026-10-18",
+  "delivery_commit": "git log -1 --format=%H -- docs/alpha1-003b1-r/REPORT.md",
+  "patch": {
+    "overlay_sha256": "7e2c3aa8a2e1556a46ddbdaea1ca1e652a671a2de0d97a0cfe3aeb0da31bdeec",
+    "base_patch_sha256": "329fc1959a2ac990f84e7b63f61239b75dd63d13b478b1f974f37b9c4a3ef97b",
+    "files": {
+      "library/build.gradle.kts": {
+        "b1_sha256": "c95aedcd5b04c6209e2852d6e503d1a87752284257589aabf04149a32ad75750",
+        "proposed_sha256": "e1d12346b93b6d72d4c7bd1ae4cf941056b88b1cc18c4823c65ec350974c1d3f"
+      },
+      "library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt": {
+        "b1_sha256": "4475e9451a4e4a73f1c4b40e577101964cc1cdb839240c0246cd6a9900eb7f09",
+        "proposed_sha256": "bad1243a554d39bbdd32036c32894a07c6858977f068cf3e8739f4112bbd314f"
+      }
+    },
+    "composed_dry_check": "PASS",
+    "overlay_dry_check": "PASS",
+    "applied": false
+  },
+  "tests": {
+    "static_and_verifier": {
+      "passed": 11,
+      "failed": 0,
+      "ignored": 0
+    },
+    "descriptor_helper_jvm_with_fake_os": {
+      "passed": 15,
+      "failed": 0,
+      "ignored": 0
+    },
+    "kotlin_types": "PASS, Kotlin2.0.21 SDK35 JVM11",
+    "legacy_public_signatures": "Llama9, LlamaModel6, LlamaJNI6 all retained",
+    "b1_aar_negative_control": "PASS: expected missing proguard.txt rejected"
+  },
+  "not_executed": [
+    "corrected AAR build",
+    "R8 minified consumer build",
+    "Android filesystem fault tests",
+    "Android JNI execution",
+    "GGUF tokenization",
+    "CORE regression suites and Lint"
+  ],
+  "native_sources_modified": false,
+  "corrective_patch_applied": false,
+  "b2_authorized": false,
+  "logs": {
+    "static.log": {
+      "raw_sha256": "cf396fd34c573bab14728c1aaab0ecd2db1340d502329eb214307e58e2e4360f",
+      "published_sha256": "cf396fd34c573bab14728c1aaab0ecd2db1340d502329eb214307e58e2e4360f",
+      "normalization": "trailing whitespace and final newline only"
+    },
+    "descriptors.log": {
+      "raw_sha256": "51c1fc6d96a6729b4f57903a7458b27074d2ca75005851d90758e2c07cc2252a",
+      "published_sha256": "51c1fc6d96a6729b4f57903a7458b27074d2ca75005851d90758e2c07cc2252a",
+      "normalization": "trailing whitespace and final newline only"
+    },
+    "typecheck-final.log": {
+      "raw_sha256": "c574d3c48d3854763b2c54a197577078aa0add0dca8436d5daf0c011fdead920",
+      "published_sha256": "c574d3c48d3854763b2c54a197577078aa0add0dca8436d5daf0c011fdead920",
+      "normalization": "trailing whitespace and final newline only"
+    }
+  },
+  "whitespace_check": {
+    "raw_exit": 2,
+    "cause": "four blank unified-diff context lines",
+    "excluding_patch": "PASS",
+    "added_code_lines": "PASS"
+  }
+}

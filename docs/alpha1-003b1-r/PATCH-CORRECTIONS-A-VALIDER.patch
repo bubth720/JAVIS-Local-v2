@@ -1,0 +1,117 @@
+diff --git a/library/build.gradle.kts b/library/build.gradle.kts
+--- a/library/build.gradle.kts
++++ b/library/build.gradle.kts
+@@ -11,7 +11,7 @@
+ 
+     defaultConfig {
+         minSdk = 24
+-        consumerProguardFiles("proguard-rules.pro")
++        consumerProguardFiles("src/proguard-rules.pro")
+ 
+         ndk { abiFilters += "arm64-v8a" }   // Free = arm64-v8a only
+ 
+diff --git a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt
+--- a/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt
++++ b/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt
+@@ -7,8 +7,6 @@
+ import android.system.Os
+ import android.system.OsConstants
+ import java.io.File
+-import java.io.FileInputStream
+-import java.io.FileOutputStream
+ import java.nio.ByteBuffer
+ import java.nio.CharBuffer
+ import java.nio.charset.CodingErrorAction
+@@ -195,6 +193,22 @@
+     }
+ }
+ 
++/** Sole FD owner: no borrowed stream, no retry of an ambiguous close. */
++private inline fun <T> withOwnedDescriptor(path: String, flags: Int, mode: Int,
++    block: (java.io.FileDescriptor) -> T): T {
++    val fd = Os.open(path, flags, mode)
++    var primary: Throwable? = null
++    try { return block(fd) }
++    catch (failure: Throwable) { primary = failure; throw failure }
++    finally {
++        try { Os.close(fd) }
++        catch (close: Throwable) {
++            if (primary == null) throw close
++            if (primary !== close) primary.addSuppressed(close)
++        }
++    }
++}
++
+ /** Private filesystem ownership is separate from the model and all CORE/Binder admissions. */
+ internal class PrivateSnapshot(private val root: File, val file: File) {
+     private var created = false
+@@ -230,15 +244,13 @@
+         val free = root.usableSpace
+         check(free >= expectedBytes && free - expectedBytes >= 16L * 1024 * 1024) { "SNAPSHOT_DISK_UNAVAILABLE" }
+         checkCancelled()
+-        val sourceFd = Os.open(sourcePath, OsConstants.O_RDONLY or OsConstants.O_NOFOLLOW or OsConstants.O_CLOEXEC, 0)
+-        FileInputStream(sourceFd).use { input ->
+-            val original = Os.fstat(input.fd)
++        withOwnedDescriptor(sourcePath, OsConstants.O_RDONLY or OsConstants.O_NOFOLLOW or OsConstants.O_CLOEXEC, 0) { sourceFd ->
++            val original = Os.fstat(sourceFd)
+             check(OsConstants.S_ISREG(original.st_mode) && original.st_size == expectedBytes) { "SOURCE_SIZE_OR_TYPE" }
+-            val outFd = Os.open(file.path, OsConstants.O_WRONLY or OsConstants.O_CREAT or
+-                OsConstants.O_EXCL or OsConstants.O_NOFOLLOW or OsConstants.O_CLOEXEC, 0x180) // 0600
+-            created = true // retained by OwnerSlot before the file was created
+-            FileOutputStream(outFd).use { output ->
+-                val own = Os.fstat(output.fd)
++            withOwnedDescriptor(file.path, OsConstants.O_WRONLY or OsConstants.O_CREAT or
++                OsConstants.O_EXCL or OsConstants.O_NOFOLLOW or OsConstants.O_CLOEXEC, 0x180) { outFd -> // 0600
++                created = true // retained by OwnerSlot before the file was created
++                val own = Os.fstat(outFd)
+                 inode = own.st_ino; device = own.st_dev
+                 check(OsConstants.S_ISREG(own.st_mode) && own.st_uid == Process.myUid() &&
+                     (own.st_mode and 0x3f) == 0) { "SNAPSHOT_OWNERSHIP" }
+@@ -249,19 +261,25 @@
+                     while (remaining > 0L) {
+                         checkCancelled()
+                         val wanted = minOf(buffer.size.toLong(), remaining).toInt()
+-                        val count = input.read(buffer, 0, wanted)
++                        val count = Os.read(sourceFd, buffer, 0, wanted)
+                         check(count > 0) { "SOURCE_SHORT_OR_STALLED" }
+-                        output.write(buffer, 0, count)
++                        var written = 0
++                        while (written < count) {
++                            checkCancelled()
++                            val accepted = Os.write(outFd, buffer, written, count - written)
++                            check(accepted > 0 && accepted <= count - written) { "SNAPSHOT_WRITE_STALLED" }
++                            written += accepted
++                        }
+                         digest.update(buffer, 0, count)
+                         remaining -= count.toLong()
+                     }
+                     checkCancelled()
+-                    check(input.read() == -1) { "SOURCE_GREW" } // at most expectedBytes+1 read, never +1 written
+-                    check(Os.fstat(input.fd).st_size == expectedBytes) { "SOURCE_SIZE_CHANGED" }
++                    check(Os.read(sourceFd, buffer, 0, 1) == 0) { "SOURCE_GREW" } // at most expectedBytes+1 read, never +1 written
++                    check(Os.fstat(sourceFd).st_size == expectedBytes) { "SOURCE_SIZE_CHANGED" }
+                     val actual = digest.digest().joinToString("") { "%02x".format(it.toInt() and 255) }
+                     check(actual == expectedSha) { "MODEL_HASH_MISMATCH" }
+-                    Os.fchmod(output.fd, 0x100) // 0400; same-UID/root compromise remains outside this guarantee
+-                    output.fd.sync()
++                    Os.fchmod(outFd, 0x100) // 0400; same-UID/root compromise remains outside this guarantee
++                    Os.fsync(outFd)
+                 } finally { buffer.fill(0) }
+             }
+         }
+@@ -269,13 +287,12 @@
+         checkCancelled() // before any native load; cancelled copy only needs file cleanup
+     }
+     private fun syncDirectory() {
+-        val fd = Os.open(root.path, OsConstants.O_RDONLY or OsConstants.O_NOFOLLOW, 0)
+-        try {
++        withOwnedDescriptor(root.path, OsConstants.O_RDONLY or OsConstants.O_NOFOLLOW or OsConstants.O_CLOEXEC, 0) { fd ->
+             val directory = Os.fstat(fd)
+             check(OsConstants.S_ISDIR(directory.st_mode) && directory.st_uid == Process.myUid() &&
+                 (directory.st_mode and 0x3f) == 0) { "PRIVATE_DIRECTORY_REQUIRED" }
+             Os.fsync(fd)
+-        } finally { Os.close(fd) }
++        }
+     }
+     fun deleteOwned() {
+         if (!created) return

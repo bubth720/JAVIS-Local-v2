@@ -1,0 +1,31 @@
+plugins { id("com.android.application") version "8.7.3" }
+val candidate = providers.gradleProperty("candidateAar").get()
+android {
+    namespace = "fr.jarvis.experimental.r8consumer"
+    compileSdk = 35
+    defaultConfig {
+        applicationId = "fr.jarvis.experimental.r8consumer"
+        minSdk = 24
+        targetSdk = 35
+        versionCode = 1
+        versionName = "compile-only"
+        ndk { abiFilters += "arm64-v8a" }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+            // No extra JNI/API keep rule: only the AAR's consumer rules may preserve it.
+        }
+    }
+}
+dependencies {
+    implementation(files(candidate))
+    // Local AAR has no published POM supplying these runtime dependencies.
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+}
