@@ -1,0 +1,17 @@
+[
+  {
+    "command": "python3 tools/check-004c.py",
+    "exit": 1,
+    "reason": "AssertionError: historical CORE changed"
+  },
+  {
+    "command": "python3 tools/check-identity-002.py",
+    "exit": 1,
+    "reason": "AssertionError: app/build.gradle.kts"
+  },
+  {
+    "command": "python3 tools/check-alpha1-001.py",
+    "exit": 1,
+    "reason": "New Preview files exceed ALPHA1-001-only additions; original assertion unchanged"
+  }
+]

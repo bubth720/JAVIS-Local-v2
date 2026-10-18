@@ -1,0 +1,59 @@
+name: Preview 001 Android kit
+
+on:
+  push:
+    branches: [release/preview-001-android]
+    paths:
+      - 'app/**'
+      - 'tools/preview_kit.py'
+      - 'tools/check-preview-001.py'
+      - '.github/workflows/preview-001.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Android build tools only — no model downloads
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Verify scope and preservation
+        run: |
+          git fetch --no-tags --depth=1 origin b2ec98238f70e89edc636c1c671f2ddf1b957d74
+          python3 tools/check-preview-001.py
+      - name: Historical and fixture non-regression
+        run: >-
+          gradle -PincludeP2Fixture=true :app:testDebugUnitTest :p2-client:testDebugUnitTest
+          :app:assembleDebug :app:lintDebug :p2-client:assembleDebug :p2-client:lintDebug
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Preview UI tests
+        run: >-
+          gradle :app:testPreviewUnitTest --tests '*PreviewActivityTest*'
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Build and lint isolated Preview
+        run: gradle :app:assemblePreview :app:lintPreview --no-daemon --max-workers=4
+      - name: Inspect signature, permissions, native libraries and package kit
+        run: python3 tools/preview_kit.py --sdk "$ANDROID_HOME" --out preview-kit
+      - name: Upload downloadable kit — no installation or release
+        id: kit
+        uses: actions/upload-artifact@v4
+        with:
+          name: JARVIS-PREVIEW-001-Android
+          path: preview-kit/*
+          if-no-files-found: error
+          retention-days: 30
+      - name: Download link
+        env:
+          ARTIFACT_URL: ${{ steps.kit.outputs.artifact-url }}
+        run: python3 -c 'import os; open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n[Télécharger le kit PREVIEW-001](" + os.environ["ARTIFACT_URL"] + ")\n")'

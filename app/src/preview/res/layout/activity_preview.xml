@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true" android:background="@color/jarvis_bg">
+    <LinearLayout android:id="@+id/previewRoot" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/preview_title" android:textSize="28sp"
+            android:textColor="@color/jarvis_cyan" android:layout_marginTop="24dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/preview_intro" android:textSize="18sp" android:textColor="@color/jarvis_text"
+            android:layout_marginTop="20dp" />
+        <TextView android:id="@+id/previewModelStatus" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/preview_checking"
+            android:textSize="18sp" android:textColor="@color/jarvis_cyan" android:layout_marginTop="24dp" />
+        <Button android:id="@+id/previewStart" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/preview_open_lab" android:layout_marginTop="24dp" />
+        <Button android:id="@+id/previewModelHelp" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/preview_model_title" android:layout_marginTop="8dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/preview_limits" android:textSize="16sp"
+            android:textColor="@color/jarvis_text" android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

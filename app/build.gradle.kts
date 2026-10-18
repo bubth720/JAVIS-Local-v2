@@ -18,6 +18,13 @@ android {
 
     buildTypes {
         debug { isMinifyEnabled = false }
+        create("preview") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".preview001"
+            versionNameSuffix = "-preview001"
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("debug")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true

@@ -936,3 +936,26 @@ masquer ces échecs ni assouplir leurs assertions. Le nouveau
 explicite, sans autoriser de modification native. Rapports et détails dans
 VALIDATION.md et TEST_RESULTS.json. Toute qualification native/persona et essai
 physique restent soumis aux gates documentés et aux autorisations distinctes.
+
+
+## Actualisation — PREVIEW-001
+
+Base b2ec98238f70e89edc636c1c671f2ddf1b957d74, branche
+`release/preview-001-android`. Variante :app:assemblePreview, applicationId
+com.stark.jarvislocal.preview001, launcher PreviewActivity et signature debug.
+Lire docs/preview-001/. Accueil sans chargement ; laboratoire textuel après
+confirmation seulement, sortie sans retour vers le mode historique. Variante
+normale conservée (bool jarvis_preview=false), JNI/admission/ModelManager/budgets
+et contrats inchangés. Aucun GGUF/importeur dans le kit, aucune conversation réelle
+ou personnalité Athéna validée ; VOICE/avatar inactifs, permission micro retirée.
+311 tests :263 historiques +36 fixture +12 Preview API24/25/35 Robolectric ;
+0 échec/erreur/ignoré. Builds/Lint réussis,27 avertissements debug/28 Preview.
+Aucun émulateur disponible (/dev/kvm, emulator et system-images absents), aucune
+installation personnelle. Autorisation explicite requise avant essai POCO manuel.
+Workflow Preview001 dédié sans téléchargement de poids, contents:read, upload-artifact ;
+ancien workflow modèles non utilisé. Certificat debug potentiellement différent
+entre builds : ne pas proposer de désinstallation ou mise à jour d'une installation
+existante. tools/preview_kit.py produit des preuves propres à chaque APK ;
+tools/check-preview-001.py protège151 fichiers de base. Ne pas confondre l'APK
+locale avec le kit signé par Actions. Provenance/licence/hash et qualification d'un
+futur GGUF/import SAF restent une mission séparée. Aucun patch ALPHA1-002 appliqué.

@@ -1,0 +1,14 @@
+<resources>
+    <string name="preview_title">JARVIS Preview 001</string>
+    <string name="preview_intro">Version expérimentale séparée de JARVIS Local. Aucun modèle inclus. Athéna, la voix et l’avatar restent désactivés.</string>
+    <string name="preview_checking">Vérification du modèle local…</string>
+    <string name="preview_model_absent">Modèle absent. Tu peux visiter le laboratoire, mais aucune réponse LLM ne sera produite.</string>
+    <string name="preview_model_invalid">Fichier détecté mais non validé. Le chargement est refusé.</string>
+    <string name="preview_model_present">Modèle présent selon les contrôles de fichiers. Inférence et compatibilité matérielle non qualifiées.</string>
+    <string name="preview_open_lab">Ouvrir le laboratoire texte</string>
+    <string name="preview_confirm_title">Commencer une session de laboratoire ?</string>
+    <string name="preview_confirm_body">Session en mémoire uniquement. Aucun document ni souvenir historique utilisé. Sans modèle validé, un message d’erreur sera affiché. Athéna reste inactive. Fermer le laboratoire efface son historique.</string>
+    <string name="preview_model_title">À propos du modèle GGUF</string>
+    <string name="preview_model_help">L’import GGUF n’est pas disponible dans cette Preview. Un fichier dans Téléchargements ne sera pas chargé. Aucun poids n’est téléchargé. Un futur import local exigera une provenance, une licence, une empreinte vérifiée et une qualification séparée.</string>
+    <string name="preview_limits">Sans modèle, cette Preview sert à essayer l’accueil et les erreurs du laboratoire, pas à valider une conversation. Aucun essai sur ton téléphone n’a encore été réalisé. Quitte l’application si elle chauffe anormalement.</string>
+</resources>
