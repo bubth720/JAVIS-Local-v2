@@ -12,6 +12,6 @@
   {
     "command": "python3 tools/check-alpha1-001.py",
     "exit": 1,
-    "reason": "New Preview files exceed ALPHA1-001-only additions; original assertion unchanged"
+    "reason": "UNAUTHORIZED_BASELINE_CHANGE: app/build.gradle.kts"
   }
 ]

@@ -100,3 +100,11 @@ inventée. Remplacement par tools/setup-preview-android.py : archive officielle
 chemins pour Gradle. Le script a été exécuté ici sur le SDK vérifié ; il conserve
 proxy et TLS et installe seulement SDK35/build-tools35, aucun modèle/émulateur/APK.
 Les deux premières exécutions n'ont publié aucun kit.
+
+
+Troisième exécution39123386767, source d0e2808 : **réussie**. Préparation SDK,
+préservation, tests historiques/fixtures et Preview, build/Lint, contrôles de
+signature/permissions et upload : tous les steps réussis. PUBLICATION.json et
+RAPPORT.md donnent l'artefact observé. Les comptes XML distants sont embarqués dans
+APK-INFO.json ;311 cas ont été vérifiés localement. Aucune nouvelle génération
+GGUF ou installation physique ne découle de cette réussite CI.

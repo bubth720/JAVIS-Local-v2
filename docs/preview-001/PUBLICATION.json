@@ -1,0 +1,37 @@
+{
+  "mission": "PREVIEW-001",
+  "source_commit_of_installation_kit": "d0e2808b20dd646555b4a4d1ebadcb46b6609709",
+  "branch": "release/preview-001-android",
+  "workflow_run_id": "39123386767",
+  "workflow_url": "https://github.com/bubth720/JAVIS-Local-v2/actions/runs/39123386767",
+  "workflow_result": "success",
+  "artifact_id": "12134764891",
+  "artifact_name": "JARVIS-PREVIEW-001-Android",
+  "artifact_url": "https://github.com/bubth720/JAVIS-Local-v2/actions/runs/39123386767/artifacts/12134764891",
+  "artifact_zip_sha256_from_github": "c8225bee9bc5bd02dff899abe6fd7942335046df7034292d34765359f5e1af57",
+  "artifact_display_size": "16.4 MB",
+  "retention_days": 30,
+  "download_requires_authenticated_github_account": true,
+  "anonymous_download_probe_http_status": 404,
+  "artifact_zip_downloaded_and_rehashed_in_cloud": false,
+  "evidence": "GitHub public workflow page: successful run, successful APK inspection and upload, artifact ID/name/size/digest displayed. ZIP download requires GitHub login.",
+  "local_tests": {
+    "historical": 263,
+    "fixture": 36,
+    "preview": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "remote_step_results": {
+    "historical_and_fixture_tests": "success",
+    "preview_ui_tests": "success",
+    "build_and_lint": "success",
+    "signature_permissions_and_kit": "success",
+    "artifact_upload": "success"
+  },
+  "physical_installation_performed": false,
+  "real_gguf_inference_validated": false,
+  "model_import_available": false,
+  "Athena_enabled": false
+}

@@ -55,3 +55,22 @@ n'est implicite dans sa publication. Aucun changement de JNI, intégration Athé
 import de poids ou fusion main n'est autorisé par cette Preview.
 Après cet essai : proposer PREVIEW-002 pour import SAF qualifié et choix explicite
 d'un GGUF de provenance/licence vérifiées, sans remplacer les protections natives.
+
+
+## Publication vérifiée
+
+Kit construit au commit `d0e2808b20dd646555b4a4d1ebadcb46b6609709`.
+[Exécution Actions réussie](https://github.com/bubth720/JAVIS-Local-v2/actions/runs/39123386767).
+[Téléchargement du kit](https://github.com/bubth720/JAVIS-Local-v2/actions/runs/39123386767/artifacts/12134764891)
+— connexion GitHub requise ; une requête anonyme peut afficher404.
+Artefact JARVIS-PREVIEW-001-Android,16,4Mo, conservation30jours.
+Digest ZIP affiché par GitHub :
+`c8225bee9bc5bd02dff899abe6fd7942335046df7034292d34765359f5e1af57`.
+
+Ce digest est celui de l'archive Actions, pas celui de l'APK ni du kit local.
+L'APK et son certificat ont leurs propres empreintes dans APK-INFO.json/CERTIFICAT.txt.
+Archive publiée et contrôles CI vérifiés via la page GitHub ; son téléchargement
+anonyme renvoie404, aucun contournement ni rehash local du ZIP n'est revendiqué.
+PUBLICATION.json conserve les références exactes. Les commits documentaires de
+clôture peuvent suivre le commit de fabrication sans modifier les sources de l'APK.
+Les deux premières exécutions échouées n'ont publié aucun artefact installable.

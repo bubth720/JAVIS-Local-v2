@@ -395,3 +395,11 @@ existante. tools/preview_kit.py produit des preuves propres à chaque APK ;
 tools/check-preview-001.py protège151 fichiers de base. Ne pas confondre l'APK
 locale avec le kit signé par Actions. Provenance/licence/hash et qualification d'un
 futur GGUF/import SAF restent une mission séparée. Aucun patch ALPHA1-002 appliqué.
+
+
+Publication PREVIEW-001 vérifiée : run Actions39123386767 SUCCESS, artefact
+12134764891 JARVIS-PREVIEW-001-Android, source d0e2808b20dd646555b4a4d1ebadcb46b6609709.
+Voir docs/preview-001/PUBLICATION.json. Téléchargement avec connexion GitHub ;
+requête anonyme404. Aucun ZIP téléchargé/re-hashé dans le cloud, ne pas confondre
+le digest d'archive GitHub avec le SHA APK local. La clôture documentaire ne change
+pas le code de fabrication. Installation physique toujours en attente d'accord.
