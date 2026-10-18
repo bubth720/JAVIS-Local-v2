@@ -26,6 +26,19 @@ class JarvisCore(
         finally { conversationLock.unlock() }
     }
 
+    /** Explicit text lab: same controller/session/lock, without commands, RAG, SQLite or persona. */
+    internal suspend fun chatVolatile(userText: String, history: List<ChatMessage>): ChatMessage {
+        check(conversationLock.tryLock()) { "JARVIS est occupé. Réessaie après la réponse en cours." }
+        return try {
+            currentCoroutineContext().ensureActive()
+            val user = userText.trim()
+            require(user.isNotEmpty())
+            val settings = settingsStore.load()
+            val prompt = PromptBuilder.prepare(user, history, emptyList(), emptyList(), settings)
+            inferPrepared(user, prompt, settings, requireText = true)
+        } finally { conversationLock.unlock() }
+    }
+
     private suspend fun chatExclusive(userText: String): ChatMessage {
         currentCoroutineContext().ensureActive()
         val user = userText.trim()
@@ -78,12 +91,18 @@ class JarvisCore(
         val history = db.recentMessages(12).dropLast(1)
         val prompt = PromptBuilder.prepare(user, history, hits, memories, settings)
 
+        return inferPrepared(user, prompt, settings).also(db::addMessage)
+    }
+
+    private suspend fun inferPrepared(user: String, prompt: PromptBuilder.Prepared,
+        settings: JarvisSettings, requireText: Boolean = false): ChatMessage {
         val request = InferenceRequest(inferenceSessionId, UUID.randomUUID().toString(), settings.systemPrompt,
             user, prompt.context, prompt.sources, GenerationLimits(settings.contextSize, settings.maxTokens))
         val response = llm.infer(request)
         if (!response.nativeDone) throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
         if (response.sessionId != request.sessionId || response.requestId != request.requestId)
             throw InferenceRejected(InferenceRefusal.STALE_RESPONSE)
+        if (requireText) check(response.text.isNotBlank()) { "Le LLM local n’a produit aucun texte." }
         val raw = response.text.ifBlank { "Le modèle n'a produit aucune réponse." }
 
         currentCoroutineContext().ensureActive()
@@ -92,7 +111,7 @@ class JarvisCore(
             role = "assistant",
             text = raw,
             source = prompt.documentNames.takeIf { it.isNotEmpty() }?.joinToString(", ")
-        ).also(db::addMessage)
+        )
     }
 
     private fun looksLikeDocumentLookup(input: String): Boolean {

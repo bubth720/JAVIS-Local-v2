@@ -31,6 +31,7 @@ data class SessionState(
 )
 
 internal interface SessionActions {
+    fun beforeTextChat() { }
     fun requestInferenceStop() { }
     fun inferenceReleaseUnconfirmed(): Boolean = false
     suspend fun prepare(progress: (String) -> Unit)
@@ -64,6 +65,14 @@ class SessionCoordinator internal constructor(
     @Volatile private var discardAudio = false
     @Volatile private var foreground = false
 
+    /** UI mode readiness only. Does not reset the engine, quarantine, native gate or lease. */
+    @Synchronized internal fun reprepareWhenIdle(change: () -> Boolean): Boolean {
+        if (mutableState.value.busy || !change()) return false
+        mutableState.value = mutableState.value.copy(phase = SessionPhase.PREPARING, prepared = false,
+            detail = "Préparation du mode sélectionné…", revision = mutableState.value.revision + 1)
+        return true
+    }
+
     fun prepare(): Boolean = begin(SessionPhase.PREPARING, "Préparation du noyau local…", reportFailure = false) {
         if (mutableState.value.prepared) return@begin
         withContext(workerDispatcher) {
@@ -76,7 +85,7 @@ class SessionCoordinator internal constructor(
     fun send(text: String): Boolean {
         val question = text.trim()
         if (question.isEmpty()) return false
-        return begin(SessionPhase.THINKING, "Réflexion locale…") { conversation(question) }
+        return begin(SessionPhase.THINKING, "Réflexion locale…", onAccepted = actions::beforeTextChat) { conversation(question) }
     }
 
     fun importPdf(uri: String): Boolean = begin(SessionPhase.IMPORTING, "Import du PDF…") {
@@ -194,9 +203,11 @@ class SessionCoordinator internal constructor(
     }
 
     @Synchronized
-    private fun begin(phase: SessionPhase, detail: String, reportFailure: Boolean = true, block: suspend () -> Unit): Boolean {
+    private fun begin(phase: SessionPhase, detail: String, reportFailure: Boolean = true,
+        onAccepted: (() -> Unit)? = null, block: suspend () -> Unit): Boolean {
         if (mutableState.value.busy) return false
         if (phase == SessionPhase.PREPARING && mutableState.value.prepared) return true
+        onAccepted?.invoke()
         mutableState.value = mutableState.value.copy(phase = phase, busy = true, detail = detail, revision = mutableState.value.revision + 1)
         val job = scope.launch(start = CoroutineStart.LAZY) {
             var failure: String? = null

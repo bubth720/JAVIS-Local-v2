@@ -914,3 +914,25 @@ Nouvelle suite de séparation des sources : IdentityTokenizerBoundaryTest ;
 règle contre004B refuse déjà les ajouts ID-002 de8adec3e ; ne pas le masquer,
 voir RESULTS.md. Les autres contrôles de préservation passent. Même modèle,
 worker, bail, template et IDs de tokens doivent être qualifiés avant activation.
+
+
+## Actualisation — ALPHA1-001
+
+Base exacte71831913, branche `feature/alpha1-001-text-lab`. Lire
+`docs/alpha1-001/` avant reprise. Laboratoire textuel volontaire, état RAM,
+chemin A dans CORE avec même LlamaLocalEngine ; comportement historique par défaut.
+Aucune injection Athéna, aucune mesure native exacte nouvelle, aucun changement
+JNI/admission/protections ou fixture /2. CORE004D reste bloquée pour le chemin B.
+Ne pas confondre requestStop UNSUPPORTED, annulation logique, retour JNI et unload.
+Les tours sont armés avant dispatch : l'annulation d'un tour encore en file interdit
+son entrée moteur. Un échec de nettoyage conserve les refus existants.
+
+Validation :299 tests (263app +36fixture), zéro échec/erreur/ignoré ; builds/Lint
+réussis,27 avertissements app. Aucun GGUF réel, émulateur, installation ou test
+physique ; corpus40 NON EXÉCUTÉ et persona désactivée. Les anciens check-004c.py et
+check-identity-002.py échouent sur leurs règles absolues de préservation ; ne pas
+masquer ces échecs ni assouplir leurs assertions. Le nouveau
+`python3 tools/check-alpha1-001.py` protège la base exacte avec un périmètre
+explicite, sans autoriser de modification native. Rapports et détails dans
+VALIDATION.md et TEST_RESULTS.json. Toute qualification native/persona et essai
+physique restent soumis aux gates documentés et aux autorisations distinctes.

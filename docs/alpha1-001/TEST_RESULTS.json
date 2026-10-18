@@ -1,0 +1,262 @@
+{
+  "mission": "ALPHA1-001",
+  "base": "71831913a772bcc51b20885b52b965f5d3e9f61b",
+  "date": "2026-10-18",
+  "kind": "cloud_jvm_robolectric_not_native_or_physical",
+  "suites": {
+    "app": [
+      {
+        "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.InferenceControllerTest",
+        "tests": 20,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LocalDatabaseTest",
+        "tests": 39,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.LocalTtsTest",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.ModelInstallationTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.ModelManagerConcurrencyTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.OfflineVoiceTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.PdfImporterTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.PromptBudgetTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+        "tests": 17,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.SessionInferenceLifecycleTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.SettingsStoreTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.TextLabActivityTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.TextLabConversationTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.TextLabCoreTest",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.WavRecorderTest",
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+        "tests": 39,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "fixture": [
+      {
+        "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+        "tests": 17,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "lint": {
+    "app": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 27
+    },
+    "fixture": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 0
+    }
+  },
+  "not_executed": [
+    "real_gguf_conversation",
+    "exact_native_tokenization",
+    "Athena_behaviour_corpus_40",
+    "airplane_mode_real_inference",
+    "android_device_or_emulator",
+    "personal_device_installation"
+  ],
+  "legacy_guards": [
+    {
+      "command": [
+        "python3",
+        "tools/check-004c.py"
+      ],
+      "exit_code": 1,
+      "error": "AssertionError: historical CORE changed"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check-identity-002.py"
+      ],
+      "exit_code": 1,
+      "error": "AssertionError: app/src/main/java/com/stark/jarvislocal/AppGraph.kt"
+    }
+  ],
+  "existing_suite_case_counts_preserved": true,
+  "apk": {
+    "sha256": "740d14f966751121899ca457e696fa2239bfa7d07e8c8f102ed7f2e8c2fd696d",
+    "permissions": [
+      "package: com.stark.jarvislocal",
+      "uses-permission: name='android.permission.RECORD_AUDIO'",
+      "permission: com.stark.jarvislocal.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "uses-permission: name='com.stark.jarvislocal.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'"
+    ],
+    "badging": [
+      "sdkVersion:'24'",
+      "targetSdkVersion:'35'",
+      "native-code: 'arm64-v8a'"
+    ],
+    "model_assets": []
+  }
+}

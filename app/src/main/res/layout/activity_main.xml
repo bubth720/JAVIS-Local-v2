@@ -124,6 +124,31 @@
                 app:strokeColor="@color/jarvis_border"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/textLab"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:text="Laboratoire texte"
+                android:textAllCaps="false"
+                android:textColor="@color/jarvis_cyan"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/jarvis_border"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancelGeneration"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:text="Annuler la réponse"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                android:textColor="@color/jarvis_cyan"
+                app:cornerRadius="14dp"
+                app:strokeColor="@color/jarvis_border"/>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/settings"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"

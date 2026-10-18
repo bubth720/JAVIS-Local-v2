@@ -17,6 +17,7 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
     val pdf = PdfImporter(appContext, db)
     val llm = InferenceController(InferenceEngineFactory(historical = { LlamaLocalEngine(models) }))
     val core = JarvisCore(db, rag, llm, settings)
+    val textLab = TextLabConversation(core::chatVolatile)
     val whisper = WhisperLocalEngine(appContext, models)
     val tts = LocalTts(appContext)
     val recorder = WavRecorder(appContext)
@@ -26,6 +27,13 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
         private var recordingFile: File? = null
 
         override suspend fun prepare(progress: (String) -> Unit) {
+            if (textLab.active) {
+                check(models.hasLlm()) { "Modèle local absent ou incomplet : laboratoire indisponible." }
+                progress("Préparation du LLM local pour la session volatile…")
+                llm.warmUp(settings.load())
+                check(llm.isLoaded()) { "Le moteur local n'est pas prêt." }
+                return
+            }
             WavFiles.clearAbandonedRecordings(applicationContext.cacheDir)
             models.ensureBundledModels(progress)
             progress("Chargement du cerveau local…")
@@ -36,11 +44,16 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
             }
         }
 
-        override suspend fun chat(text: String): ChatMessage = core.chat(text)
-        override fun requestInferenceStop() { llm.requestStop() }
+        override fun beforeTextChat() { if (textLab.active) textLab.armTurn() }
+        override suspend fun chat(text: String): ChatMessage = if (textLab.active) textLab.chat(text) else core.chat(text)
+        override fun requestInferenceStop() {
+            if (textLab.active) textLab.invalidatePending()
+            llm.requestStop()
+        }
         override fun inferenceReleaseUnconfirmed(): Boolean = llm.state.value.quarantined
 
         override suspend fun importPdf(uri: String) {
+            check(!textLab.active) { "Import indisponible dans le laboratoire textuel" }
             val document = Uri.parse(uri)
             var name = "document.pdf"
             applicationContext.contentResolver.query(document, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use {
@@ -51,6 +64,7 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
         }
 
         override suspend fun startRecording() {
+            check(!textLab.active) { "Microphone indisponible dans le laboratoire textuel" }
             val file = File.createTempFile("jarvis_input_", ".wav", applicationContext.cacheDir)
             recordingFile = file
             recorder.start(file)
@@ -71,11 +85,21 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
         override suspend fun transcribe(file: File): String = whisper.transcribe(file.absolutePath)
         override fun deleteRecording(file: File) { WavFiles.delete(file) }
         override suspend fun reportError(detail: String) {
+            if (textLab.active) return // SessionState displays the error; no durable lab log.
             db.addMessage(ChatMessage(role = "assistant", text = "Erreur locale : $detail"))
         }
-        override fun speakIfEnabled(text: String) { if (settings.load().speakReplies) tts.speak(text) }
+        override fun speakIfEnabled(text: String) { if (!textLab.active && settings.load().speakReplies) tts.speak(text) }
         override fun stopSpeech() { tts.stop() }
         override fun releaseSpeech() { tts.shutdown() }
-        override fun initializeSpeechIfEnabled() { if (settings.load().speakReplies) tts.initialize() }
+        override fun initializeSpeechIfEnabled() { if (!textLab.active && settings.load().speakReplies) tts.initialize() }
     }, operationScope)
+
+    /** Existing coordinator serializes mode changes against all accepted app operations. */
+    fun setTextLab(enabled: Boolean): Boolean = session.reprepareWhenIdle {
+        if (llm.state.value.busy) false else {
+            textLab.setActive(enabled)
+            if (enabled) tts.stop()
+            true
+        }
+    }
 }

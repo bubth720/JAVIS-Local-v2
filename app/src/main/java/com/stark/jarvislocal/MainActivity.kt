@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
+    companion object { const val EXTRA_TEXT_LAB = "com.stark.jarvislocal.TEXT_LAB" }
     private val graph by lazy { (application as JarvisApplication).graph }
 
     private lateinit var input: EditText
@@ -62,9 +63,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.send).setOnClickListener { send() }
         findViewById<Button>(R.id.importPdf).setOnClickListener {
+            if (graph.textLab.active) return@setOnClickListener
             pdfPicker.launch(arrayOf("application/pdf"))
         }
         findViewById<Button>(R.id.mic).setOnClickListener {
+            if (graph.textLab.active) return@setOnClickListener
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) !=
                 PackageManager.PERMISSION_GRANTED
             ) {
@@ -75,10 +78,24 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.memory).setOnClickListener { showMemoryDialog() }
         findViewById<Button>(R.id.settings).setOnClickListener { showSettingsDialog() }
+        findViewById<Button>(R.id.textLab).setOnClickListener {
+            if (graph.textLab.active) changeTextLab(false)
+            else AlertDialog.Builder(this)
+                .setTitle("Laboratoire textuel local")
+                .setMessage("Session en mémoire uniquement, sans documents ni voix. Athéna reste inactive. La saisie et l’historique de laboratoire sont effacés à la sortie.")
+                .setPositiveButton("Commencer") { _, _ -> changeTextLab(true) }
+                .setNegativeButton("Annuler", null).show()
+        }
+        findViewById<Button>(R.id.cancelGeneration).setOnClickListener { if (graph.textLab.active) graph.session.cancelCurrent() }
+        if (intent.getBooleanExtra(EXTRA_TEXT_LAB, false)) {
+            intent.removeExtra(EXTRA_TEXT_LAB)
+            if (!graph.textLab.active) graph.setTextLab(true)
+        }
+        configureLabPrivacy()
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                combine(graph.session.state, graph.tts.status) { session, tts -> session to tts }
+                combine(graph.session.state, graph.tts.status, graph.textLab.state) { session, tts, _ -> session to tts }
                     .collect { (session, tts) ->
                         renderSession(session, tts)
                         refreshMessages()
@@ -112,17 +129,23 @@ class MainActivity : AppCompatActivity() {
     private fun send(text: String? = null) {
         val question = (text ?: input.text.toString()).trim()
         if (question.isEmpty()) return
+        if (graph.textLab.active && !graph.session.state.value.prepared) {
+            toast("Prépare le modèle local avant d’envoyer un message.")
+            return
+        }
         if (graph.session.send(question)) input.setText("")
         else toast("JARVIS est occupé. Ta saisie est conservée.")
     }
 
     private fun importPdf(uri: Uri) {
+        if (graph.textLab.active) return
         if (!graph.session.importPdf(uri.toString())) {
             toast("JARVIS est occupé. Réessaie l’import après l’opération en cours.")
         }
     }
 
     private fun toggleMic() {
+        if (graph.textLab.active) return
         val phase = graph.session.state.value.phase
         if (phase == SessionPhase.LISTENING || phase == SessionPhase.STARTING_AUDIO) {
             graph.session.stopRecording()
@@ -143,18 +166,57 @@ class MainActivity : AppCompatActivity() {
             SessionPhase.TIMEOUT -> "TIMEOUT"
         }
         setStatus(label, session.phase == SessionPhase.READY && session.prepared)
-        val voiceUnavailable = graph.settings.load().speakReplies && tts == TtsStatus.UNAVAILABLE
+        val lab = graph.textLab.active
+        val voiceUnavailable = !lab && graph.settings.load().speakReplies && tts == TtsStatus.UNAVAILABLE
         modelText.text = modelSummary(session.detail + if (voiceUnavailable) " · Voix française locale indisponible" else "")
         val microphoneActive = session.phase == SessionPhase.LISTENING
         findViewById<Button>(R.id.mic).apply {
             text = if (microphoneActive) "■ Stop" else "🎙  Voix"
-            isEnabled = !session.busy || microphoneActive
+            isEnabled = !lab && (!session.busy || microphoneActive)
         }
         findViewById<Button>(R.id.send).isEnabled = !session.busy
-        findViewById<Button>(R.id.importPdf).isEnabled = !session.busy
+        findViewById<Button>(R.id.importPdf).isEnabled = !lab && !session.busy
+        findViewById<Button>(R.id.memory).isEnabled = !lab
+        findViewById<Button>(R.id.settings).isEnabled = !lab
+        findViewById<Button>(R.id.textLab).apply {
+            text = if (lab) "Quitter le laboratoire" else "Laboratoire texte"
+            isEnabled = !session.busy
+        }
+        findViewById<Button>(R.id.cancelGeneration).apply {
+            visibility = if (lab) android.view.View.VISIBLE else android.view.View.GONE
+            isEnabled = lab && session.busy
+        }
+    }
+
+    private fun changeTextLab(enabled: Boolean) {
+        if (enabled && input.text.isNotBlank()) {
+            toast("Envoie ou efface ta saisie avant d’ouvrir le laboratoire.")
+            return
+        }
+        if (!graph.setTextLab(enabled)) {
+            toast("Attends la fin effective du traitement avant de changer de mode.")
+            return
+        }
+        input.setText("")
+        configureLabPrivacy()
+        prepareModels()
+    }
+
+    private fun configureLabPrivacy() {
+        val lab = graph.textLab.active
+        input.isSaveEnabled = !lab
+        if (lab) window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+        else window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
+        if (android.os.Build.VERSION.SDK_INT >= 26) {
+            input.importantForAutofill = if (lab) android.view.View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
+                else android.view.View.IMPORTANT_FOR_AUTOFILL_AUTO
+            val flag = android.view.inputmethod.EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING
+            input.imeOptions = if (lab) input.imeOptions or flag else input.imeOptions and flag.inv()
+        }
     }
 
     private fun showMemoryDialog() = lifecycleScope.launch {
+        if (graph.textLab.active) return@launch
         val edit = EditText(this@MainActivity).apply {
             hint = "Ex. Mon projet principal s'appelle Orion."
         }
@@ -188,6 +250,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSettingsDialog() {
+        if (graph.textLab.active) return
         val settings = graph.settings.load()
 
         val edit = EditText(this).apply {
@@ -218,7 +281,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private suspend fun refreshMessages() {
-        val list = withContext(Dispatchers.IO) { graph.db.recentMessages(100) }
+        val fetched = if (graph.textLab.active) graph.textLab.state.value.messages
+            else withContext(Dispatchers.IO) { graph.db.recentMessages(100) }
+        val list = if (graph.textLab.active) graph.textLab.state.value.messages else fetched
         adapter.submit(list)
         if (list.isNotEmpty()) {
             messages.post {
@@ -228,6 +293,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun modelSummary(prefix: String): String {
+        if (graph.textLab.active) return "$prefix · Laboratoire texte · session RAM · Athéna inactive"
         val mb = graph.models.llmFile.length() / 1024 / 1024
         val whisper = if (graph.models.hasWhisper()) "Whisper ✓" else "Whisper absent"
         return "$prefix · $mb Mo · $whisper · hors réseau"
