@@ -936,3 +936,24 @@ masquer ces échecs ni assouplir leurs assertions. Le nouveau
 explicite, sans autoriser de modification native. Rapports et détails dans
 VALIDATION.md et TEST_RESULTS.json. Toute qualification native/persona et essai
 physique restent soumis aux gates documentés et aux autorisations distinctes.
+
+
+## Actualisation — ALPHA1-002 (revue uniquement)
+
+Base b2ec98238f70e89edc636c1c671f2ddf1b957d74, branche
+`design/alpha1-002-jni-review`. Lire docs/alpha1-002/RAPPORT.md avant toute reprise.
+Patch composite12 fichiers proposé, jamais appliqué au runtime ; aucune AAR
+substituée, aucun JNI de génération exécuté, aucune persona activée. Trois JNI
+prepare/consume/discard, worker série commun et registre de handles/générations/KV
+sont sensibles et nécessitent l'autorisation spécifique de l'utilisateur.
+Les tickets ne libèrent jamais modèle ou bail ; UNKNOWN conserve la quarantaine.
+Source823d1de2 et gitlink llama.cpp2da66861 vérifiés ; AAR fdccf04c…31e7501
+recontrôlée avec checksum Maven. Tag non signé et reproductibilité source→binaire
+non démontrée : ne pas déclarer cet artefact natif qualifié. NDK/CMake manquants.
+Contrôles isolés : patch à blanc, typecheck Kotlin/C++,4214 cas purs budget/UTF-8 ;
+aucun vrai comptage GGUF. Runtime inchangé :299 tests réussis,0 échec/ignoré,
+builds/Lint réussis (27 avertissements app). Trois anciens gardes de périmètre
+en échec documenté, assertions intactes. verify_review.py compare la base exacte ;
+les candidats de revue doivent rester hors checkout. CORE004D et Binder/2 restent
+bloqués, contrats IDENTITY et manifeste B inchangés. Prochaine étape proposée :
+autorisation de construction/qualification expérimentale, sans déploiement.

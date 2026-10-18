@@ -1,0 +1,50 @@
+{
+  "upstream/library/src/main/jni/llama_jni.cpp": {
+    "base_sha256": "a1f5c8bd8e68b83f6bbd1f1eee5a52170ea3c3f7123b22989e52cebda803b31f",
+    "proposed_sha256": "fbe60387d85dcd276cdfa0f62aafbad09749be4098ec59053855c78388dfdf59"
+  },
+  "upstream/library/src/main/jni/measured.inc": {
+    "base_sha256": null,
+    "proposed_sha256": "2e8e4c2402c01877298c78121554520ba0353c9758d591d861140baedee4dd50"
+  },
+  "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt": {
+    "base_sha256": "7f70c634d8e766be9a262ce9e832b04306b3518a3200a421a179521709e9844a",
+    "proposed_sha256": "5a1147d4d876a49b03af8be751eb491eab5cb570062341cb580d960287da0c39"
+  },
+  "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt": {
+    "base_sha256": "fe77030dc4d8584304b8054a17525797def495eac63d9597922dd123e530ec11",
+    "proposed_sha256": "e7c47595bcccd77aa3440939392a65ad63aafc288bf4a987f2d7770a815301ee"
+  },
+  "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt": {
+    "base_sha256": "0bc8141ff99c334d1bad547af8b42077a5615801b4683d4346f0021b30ddf859",
+    "proposed_sha256": "7930af5ca762814617c600646506d2a8107df3e8024194cb0fe4d6a7af077c8f"
+  },
+  "upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt": {
+    "base_sha256": null,
+    "proposed_sha256": "4c605e72af69e5805692f022e9c8a45b04f37c56adcd976a62bcf3b69f46dc46"
+  },
+  "upstream/library/build.gradle.kts": {
+    "base_sha256": "7900cf39711dd91f63d77d23adba60d94d2599f6de3e41b0f37bf08dd0db5a46",
+    "proposed_sha256": "dfcc8423ef88b231f2f7cf9d22c3f2f106c8b9754a613b84b118453906806c93"
+  },
+  "core/app/src/main/java/com/stark/jarvislocal/ExactLocalInference.kt": {
+    "base_sha256": null,
+    "proposed_sha256": "9270222aade5945d703a05edb77f643bf57abc23212ea8a85910783f435b1b5e"
+  },
+  "core/app/src/main/java/com/stark/jarvislocal/ExactAndroidBackend.kt": {
+    "base_sha256": null,
+    "proposed_sha256": "77f35c904ab7de5bd0b947d3b78ebc7ecfb8e19e417855741260bd404e09e5db"
+  },
+  "core/app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt": {
+    "base_sha256": "94eef86357b1e6985785cea540395ca30640e1ca8c5ce4b6d001671195ef81d9",
+    "proposed_sha256": "c615c5a88ca09fcb1ede9b8c6cc16fe8632da2af7fe2b44e6a11af77cddf1e63"
+  },
+  "core/app/src/main/java/com/stark/jarvislocal/InferenceController.kt": {
+    "base_sha256": "488a79c5fe28df0279f9d16af9783f3b2184029fa773ab94c550eb1ef6b0c3e5",
+    "proposed_sha256": "1d234121957cb3171acffab98b39b50a9e3fc38ecf7d1c85926df96e38520e58"
+  },
+  "core/app/build.gradle.kts": {
+    "base_sha256": "d9aa6132f694b11eb2a8edae2e30b7b5396f0727b5a4f185ae0e11485833977e",
+    "proposed_sha256": "7298647af2fa4153734dfb6c9b3bcf9b87b916fd7221d3d298a3fbf2187cf067"
+  }
+}

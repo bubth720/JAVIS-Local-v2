@@ -1,0 +1,301 @@
+{
+  "date": "2026-10-18",
+  "mission": "ALPHA1-002",
+  "core_base": "b2ec98238f70e89edc636c1c671f2ddf1b957d74",
+  "provenance_and_scope": {
+    "base": "b2ec98238f70e89edc636c1c671f2ddf1b957d74",
+    "baseline_files_preserved": 153,
+    "source_files_hash_verified": 31,
+    "aar_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+    "aar_parts_verified": 7,
+    "patch_files_reconstructed": 12,
+    "patch_sha256": "94f06d0179b95c332f5842b73b69d103e09ca319befc319a0aeca341735c6df7",
+    "patch_check": "PASS",
+    "static_prepare_consume_separation": "PASS",
+    "runtime_modified": false,
+    "jni_executed": false,
+    "binary_reproducibility_proven": false
+  },
+  "candidate_static_checks": {
+    "patch_sha256": "94f06d0179b95c332f5842b73b69d103e09ca319befc319a0aeca341735c6df7",
+    "kotlin_library_typecheck": "PASS",
+    "public_jvm_signatures_static_comparison": {
+      "Llama": {
+        "previous_public_declarations": 9,
+        "all_preserved": true
+      },
+      "LlamaModel": {
+        "previous_public_declarations": 6,
+        "all_preserved": true
+      },
+      "LlamaJNI": {
+        "previous_public_declarations": 6,
+        "all_preserved": true
+      }
+    },
+    "kotlin_core_typecheck": "PASS",
+    "cpp_syntax": "PASS",
+    "pure_budget_utf8_checks_passed": 4214,
+    "jni_executed": false,
+    "experimental_aar_built": false
+  },
+  "maven_checksum": {
+    "url": "https://repo.maven.apache.org/maven2/dev/ffmpegkit-maintained/llama-android/0.1.1/llama-android-0.1.1.aar.sha256",
+    "status": 200,
+    "published_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+    "matches": true
+  },
+  "tag_signature": {
+    "exit_code": 1,
+    "diagnostic": "error: no signature found"
+  },
+  "gradle": {
+    "status": "BUILD SUCCESSFUL",
+    "duration": "1m 36s",
+    "tasks_executed": 107,
+    "command": "bash tools/identity-cloud-env.sh gradle -PincludeP2Fixture=true :app:testDebugUnitTest :p2-client:testDebugUnitTest :app:assembleDebug :app:lintDebug :p2-client:assembleDebug :p2-client:lintDebug --rerun-tasks --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process",
+    "suites": {
+      "app": [
+        {
+          "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.InferenceControllerTest",
+          "tests": 20,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.LocalDatabaseTest",
+          "tests": 39,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.LocalTtsTest",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.ModelInstallationTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.ModelManagerConcurrencyTest",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.OfflineVoiceTest",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.PdfImporterTest",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.PromptBudgetTest",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+          "tests": 17,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.SessionInferenceLifecycleTest",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.SettingsStoreTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.TextLabActivityTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.TextLabConversationTest",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.TextLabCoreTest",
+          "tests": 18,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.WavRecorderTest",
+          "tests": 16,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+          "tests": 39,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ],
+      "fixture": [
+        {
+          "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+          "tests": 17,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    }
+  },
+  "lint": {
+    "app": {
+      "errors": 0,
+      "warnings": 27
+    },
+    "fixture": {
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "legacy_scope_guards": {
+    "check-004c.py": {
+      "exit_code": 1,
+      "diagnostic": "AssertionError: historical CORE changed"
+    },
+    "check-identity-002.py": {
+      "exit_code": 1,
+      "diagnostic": "AssertionError: app/src/main/java/com/stark/jarvislocal/AppGraph.kt"
+    },
+    "check-alpha1-001.py": {
+      "exit_code": 1,
+      "diagnostic": "UNREVIEWED_ADDITION: ['docs/alpha1-002/RISQUES-REGRESSION.md', 'docs/alpha1-002/verify_review.py', 'docs/alpha1-002/SOURCE_LOCK.json', 'docs/alpha1-002/PATCH-A-VALIDER.patch', 'docs/alpha1-002/ARCHITECTURE-JNI.md', 'docs/alpha1-002/AUDIT-NATIF.md', 'docs/alpha1-002/PATCH_FILES.json', 'docs/alpha1-002/PLAN-TESTS.md', 'docs/alpha1-002/BUDGET_UTF8_REVIEW_TEST.cpp', 'docs/alpha1-002/typecheck_review.py']"
+    }
+  },
+  "not_executed": [
+    "experimental_android_aar_build",
+    "source_to_existing_binary_reproduction",
+    "real_tokenizer_gguf_test",
+    "real_jni_prepare_consume_discard",
+    "android_emulator_or_physical_installation",
+    "Athena_persona_activation_or_qualification"
+  ],
+  "pinned_llama_cpp_headers_verified": 23,
+  "whitespace_checks": {
+    "raw_staged_diff": {
+      "exit_code": 2,
+      "diagnostic": "Unified patch empty context lines carry a required space; artifact representation warning"
+    },
+    "staged_non_patch_documents": "PASS",
+    "proposed_candidate_trailing_whitespace": "PASS"
+  }
+}

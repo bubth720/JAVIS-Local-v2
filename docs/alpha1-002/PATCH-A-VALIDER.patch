@@ -1,0 +1,814 @@
+diff --git a/core/app/build.gradle.kts b/core/app/build.gradle.kts
+--- a/core/app/build.gradle.kts
++++ b/core/app/build.gradle.kts
+@@ -48,7 +48,15 @@
+     implementation("androidx.recyclerview:recyclerview:1.4.0")
+     implementation("com.google.android.material:material:1.12.0")
+     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+-    implementation("dev.ffmpegkit-maintained:llama-android:0.1.1")
++    // REVIEW ONLY: whole patch requires a separately built/reviewed experimental AAR.
++    // No Maven fallback, no side-by-side historical AAR, no implicit artifact download.
++    val reviewedAar = file(providers.gradleProperty("jarvisReviewedExactAar").get())
++    val reviewedSha = providers.gradleProperty("jarvisReviewedExactAarSha256").get()
++    require(reviewedSha.matches(Regex("[a-f0-9]{64}")) && reviewedAar.isFile)
++    val actualSha = java.security.MessageDigest.getInstance("SHA-256").digest(reviewedAar.readBytes())
++        .joinToString("") { "%02x".format(it.toInt() and 255) }
++    require(actualSha == reviewedSha) { "Experimental AAR not reviewed" }
++    implementation(files(reviewedAar))
+     implementation("dev.ffmpegkit-maintained:whisper-android:1.0.0")
+     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
+ 
+diff --git a/core/app/src/main/java/com/stark/jarvislocal/ExactAndroidBackend.kt b/core/app/src/main/java/com/stark/jarvislocal/ExactAndroidBackend.kt
+new file mode 100644
+--- /dev/null
++++ b/core/app/src/main/java/com/stark/jarvislocal/ExactAndroidBackend.kt
+@@ -0,0 +1,33 @@
++package com.stark.jarvislocal
++
++import com.stark.jarvislocal.identity.IdentityComposer
++import dev.ffmpegkit.llama.LlamaMeasured
++import dev.ffmpegkit.llama.MeasuredReceipt
++import dev.ffmpegkit.llama.LlamaModel
++import java.security.MessageDigest
++
++internal data class ExactArtifact(val modelSha256: String, val templateSha256: String) {
++    init { require(listOf(modelSha256, templateSha256).all { it.matches(Regex("[a-f0-9]{64}")) }) }
++}
++
++internal interface ExactLlamaBackend : LlamaBackend {
++    val exactEnabled: Boolean
++    suspend fun completeExact(model: Any, request: InferenceRequest, ownerEpoch: String,
++        lease: Long, finalAdmission: () -> Unit): String
++}
++
++internal fun exactBinding(request: InferenceRequest, owner: String, lease: Long): String =
++    MessageDigest.getInstance("SHA-256").digest(
++        ("core.exact/1-proposed\n$owner\n$lease\n" + IdentityComposer.requestDigest(request))
++            .toByteArray(Charsets.UTF_8)).joinToString("") { "%02x".format(it.toInt() and 255) }
++
++internal fun checkExactReceipt(receipt: MeasuredReceipt, expectedModel: String,
++    expectedBinding: String, request: InferenceRequest, expectedTemplate: String) {
++    check(receipt.revision == LlamaMeasured.REVISION && receipt.modelSha256 == expectedModel &&
++        receipt.bindingSha256 == expectedBinding && receipt.templateSha256 == expectedTemplate && receipt.loadGeneration > 0) { "MEASUREMENT_MISMATCH" }
++    check(receipt.outputReserve == request.limits.maxTokens && receipt.marginReserve == 128 &&
++        receipt.inputTokens > 0 && receipt.admittedContext <= request.limits.contextSize &&
++        receipt.inputTokens + receipt.outputReserve.toLong() + receipt.marginReserve <= receipt.admittedContext) { "CONTEXT_EXCEEDED" }
++    for (hash in listOf(receipt.templateSha256, receipt.renderedSha256, receipt.tokenIdsSha256))
++        check(hash.matches(Regex("[a-f0-9]{64}"))) { "INVALID_RECEIPT" }
++}
+diff --git a/core/app/src/main/java/com/stark/jarvislocal/ExactLocalInference.kt b/core/app/src/main/java/com/stark/jarvislocal/ExactLocalInference.kt
+new file mode 100644
+--- /dev/null
++++ b/core/app/src/main/java/com/stark/jarvislocal/ExactLocalInference.kt
+@@ -0,0 +1,7 @@
++package com.stark.jarvislocal
++
++/** Internal opt-in only; not a v1, IDENTITY or IPC contract change. */
++internal interface ExactLocalInference {
++    val exactEnabled: Boolean
++    suspend fun inferExact(request: InferenceRequest, finalAdmission: () -> Unit): InferenceResponse
++}
+diff --git a/core/app/src/main/java/com/stark/jarvislocal/InferenceController.kt b/core/app/src/main/java/com/stark/jarvislocal/InferenceController.kt
+--- a/core/app/src/main/java/com/stark/jarvislocal/InferenceController.kt
++++ b/core/app/src/main/java/com/stark/jarvislocal/InferenceController.kt
+@@ -94,7 +94,10 @@
+         }
+     }
+ 
+-    override suspend fun infer(request: InferenceRequest): InferenceResponse = execute(request) { it.infer(request) }
++    override suspend fun infer(request: InferenceRequest): InferenceResponse {
++        val bound = request.copy(sources = java.util.Collections.unmodifiableList(request.sources.toList()))
++        return execute(bound) { it.infer(bound) }
++    }
+ 
+     // Preserve legacy callers' exact rendered prompt and separate system argument.
+     override suspend fun generate(prompt: String, systemPrompt: String, settings: JarvisSettings): String {
+@@ -110,7 +113,21 @@
+             if (sessionId != request.sessionId) throw InferenceRejected(InferenceRefusal.STALE_RESPONSE)
+             epoch
+         }
+-        val response = drain { beginNative(mayAllocate = true); call(backend).also { result ->
++        val response = drain { beginNative(mayAllocate = true)
++            val result = if (backend is ExactLocalInference && backend.exactEnabled) {
++                if (request.question.isBlank()) throw InferenceRejected(InferenceRefusal.CONTRACT)
++                backend.inferExact(request) {
++                    // Host admission linearizes here. A later cancellation drains JNI and rejects output.
++                    synchronized(this@InferenceController) {
++                        if (mutableState.value.stopRequested) throw InferenceRejected(InferenceRefusal.STOP_REQUESTED)
++                        if (epoch != token || sessionId != request.sessionId)
++                            throw InferenceRejected(InferenceRefusal.STALE_RESPONSE)
++                        if (mutableState.value.quarantined)
++                            throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
++                    }
++                }
++            } else call(backend)
++            result.also { result ->
+             mark { copy(nativeDone = result.nativeDone, quarantined = !result.nativeDone) }
+         } }
+         if (!response.nativeDone) throw InferenceRejected(InferenceRefusal.RELEASE_UNCONFIRMED)
+diff --git a/core/app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt b/core/app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt
+--- a/core/app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt
++++ b/core/app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt
+@@ -1,6 +1,7 @@
+ package com.stark.jarvislocal
+ 
+ import dev.ffmpegkit.llama.Llama
++import dev.ffmpegkit.llama.LlamaMeasured
+ import dev.ffmpegkit.llama.LlamaConfig
+ import dev.ffmpegkit.llama.LlamaModel
+ import kotlinx.coroutines.sync.Mutex
+@@ -21,9 +22,37 @@
+     private val modelPath: String,
+     private val backend: LlamaBackend,
+     private val admission: ProcessInferenceAdmission
+-) : LocalLanguageModel {
++) : LocalLanguageModel, ExactLocalInference {
+     constructor(modelManager: ModelManager) : this({ modelManager.hasLlm() }, modelManager.llmFile.absolutePath,
+         AndroidLlamaBackend(), ProcessInferenceAdmission.process)
++
++    companion object {
++        // Not called by AppGraph: a later explicitly authorized lab composition must opt in.
++        internal fun reviewedExact(modelManager: ModelManager, artifact: ExactArtifact): LlamaLocalEngine =
++            LlamaLocalEngine({ modelManager.hasLlm() }, modelManager.llmFile.absolutePath,
++                AndroidLlamaBackend(artifact), ProcessInferenceAdmission.process)
++    }
++    private val ownerEpoch = java.util.UUID.randomUUID().toString()
++    override val exactEnabled: Boolean get() = (backend as? ExactLlamaBackend)?.exactEnabled == true
++    override suspend fun inferExact(request: InferenceRequest, finalAdmission: () -> Unit): InferenceResponse =
++        withContext(NonCancellable) { lock.withLock {
++            check(exactEnabled) { "EXACT_DISABLED" }
++            val bound = request.copy(sources = request.sources.toList())
++            val active = ensureLoaded(bound.settings())
++            val lease = requireNotNull(admissionToken)
++            try {
++                val text = (backend as ExactLlamaBackend).completeExact(active, bound, ownerEpoch, lease, finalAdmission)
++                InferenceResponse(bound.sessionId, bound.requestId, text, nativeDone = true)
++            } catch (error: Throwable) {
++                if (error is dev.ffmpegkit.llama.MeasuredTransactionFailure && error.nativeStateKnown)
++                    throw InferenceFailure("Transaction refusée avant calcul ; modèle résident", nativeDone = true, cause = error)
++                // Return from JNI does not unload. Any native/cleanup error is conservative quarantine.
++                releaseUncertain = true
++                admission.quarantine(this@LlamaLocalEngine, lease)
++                throw InferenceFailure("Échec de transaction exacte ; reprise interdite", nativeDone = true,
++                    cause = error, releaseUnconfirmed = true)
++            }
++        } }
+ 
+     private val lock = Mutex()
+     @Volatile private var model: Any? = null
+@@ -101,10 +130,26 @@
+     }
+ }
+ 
+-private class AndroidLlamaBackend : LlamaBackend {
+-    override suspend fun load(path: String, settings: JarvisSettings): Any = Llama.loadModel(modelPath = path,
+-        config = LlamaConfig(contextSize = settings.contextSize, threads = max(2, Runtime.getRuntime().availableProcessors().coerceAtMost(6))))
++private class AndroidLlamaBackend(private val exactArtifact: ExactArtifact? = null) : ExactLlamaBackend {
++    override val exactEnabled: Boolean get() = exactArtifact != null
++    override suspend fun completeExact(model: Any, request: InferenceRequest, ownerEpoch: String,
++        lease: Long, finalAdmission: () -> Unit): String {
++        val artifact = requireNotNull(exactArtifact)
++        val binding = exactBinding(request, ownerEpoch, lease)
++        return LlamaMeasured.complete(model as LlamaModel, request.systemPrompt, request.renderPrompt(), binding,
++            request.limits.contextSize, request.limits.contextSize, request.limits.maxTokens) { receipt ->
++                checkExactReceipt(receipt, artifact.modelSha256, binding, request, artifact.templateSha256)
++                finalAdmission()
++            }
++    }
++    override suspend fun load(path: String, settings: JarvisSettings): Any {
++        val config = LlamaConfig(contextSize = settings.contextSize,
++            threads = max(2, Runtime.getRuntime().availableProcessors().coerceAtMost(6)))
++        return exactArtifact?.let { LlamaMeasured.loadFrozen(path, config, it.modelSha256) }
++            ?: Llama.loadModel(modelPath = path, config = config)
++    }
+     override suspend fun complete(model: Any, prompt: String, systemPrompt: String, settings: JarvisSettings): String =
+-        Llama.complete(model = model as LlamaModel, prompt = prompt, systemPrompt = systemPrompt, maxTokens = settings.maxTokens).text
++        if (exactEnabled) error("EXACT_REQUIRES_PREPARED") else
++            Llama.complete(model = model as LlamaModel, prompt = prompt, systemPrompt = systemPrompt, maxTokens = settings.maxTokens).text
+     override fun release(model: Any) = Llama.releaseModel(model as LlamaModel)
+ }
+diff --git a/upstream/library/build.gradle.kts b/upstream/library/build.gradle.kts
+--- a/upstream/library/build.gradle.kts
++++ b/upstream/library/build.gradle.kts
+@@ -61,7 +61,7 @@
+ }
+ 
+ mavenPublishing {
+-    coordinates("dev.ffmpegkit-maintained", "llama-android", providers.gradleProperty("VERSION").get())
++    coordinates("fr.jarvis.experimental", "llama-android-exact", "0.1.1-jarvis-alpha1.002-review.1")
+ 
+     // Sign only when a GPG key is configured (Maven Central); JitPack/local skip it.
+     if (providers.gradleProperty("signingInMemoryKey").isPresent) {
+diff --git a/upstream/library/src/main/jni/llama_jni.cpp b/upstream/library/src/main/jni/llama_jni.cpp
+--- a/upstream/library/src/main/jni/llama_jni.cpp
++++ b/upstream/library/src/main/jni/llama_jni.cpp
+@@ -110,11 +110,18 @@
+ 
+ } // namespace
+ 
++#include "measured.inc"
++
+ extern "C" {
+ 
+ JNIEXPORT jlong JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeLoadModel(
+         JNIEnv *env, jobject, jstring path, jint nCtx, jint nThreads, jint nGpuLayers) {
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++    require_measured(liveModels.empty(), "MODEL_ALREADY_RESIDENT");
++    require_measured(nextGeneration < static_cast<uint64_t>(std::numeric_limits<jlong>::max()), "GENERATION_EXHAUSTED");
++
+     if (!g_backend_ready) {
+         llama_backend_init();
+         g_backend_ready = true;
+@@ -133,6 +140,7 @@
+ 
+     llama_context_params cp = llama_context_default_params();
+     cp.n_ctx = (uint32_t) nCtx;
++    cp.n_seq_max = 1; // Single sequence; no second context for measurement.
+     cp.n_threads = nThreads;
+     cp.n_threads_batch = nThreads;
+     h->ctx = llama_init_from_model(h->model, cp);
+@@ -142,14 +150,23 @@
+         delete h;
+         return 0;
+     }
++    try { liveModels.emplace(h, LiveModel{nextGeneration++, std::this_thread::get_id(), nullptr}); }
++    catch (...) { llama_free(h->ctx); llama_model_free(h->model); delete h; throw; }
+     return reinterpret_cast<jlong>(h);
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return 0;
+ }
+ 
+ JNIEXPORT jstring JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeComplete(
+         JNIEnv *env, jobject, jlong handle, jstring prompt, jstring system,
+         jint maxTokens, jfloat temp, jfloat topP, jint topK, jint seed) {
+-    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
++    auto *h = owned(handle);
+     if (!h || !h->ctx) return env->NewStringUTF("{}");
+ 
+     const llama_vocab *vocab = llama_model_get_vocab(h->model);
+@@ -157,6 +174,8 @@
+ 
+     // Each complete() is a fresh single turn: reset the KV cache so successive calls
+     // on the same model don't bleed context into one another.
++    require_measured(liveModels.at(h).kvEpoch < std::numeric_limits<uint64_t>::max(), "KV_EPOCH_EXHAUSTED");
++    ++liveModels.at(h).kvEpoch;
+     llama_memory_clear(llama_get_memory(h->ctx), true);
+ 
+     std::vector<llama_token> tokens = tokenize(vocab, text, true);
+@@ -197,12 +216,19 @@
+         ",\"promptEvalTimeMs\":" + std::to_string(prompt_ms) +
+         ",\"generateTimeMs\":" + std::to_string(gen_ms) + "}";
+     return env->NewStringUTF(json.c_str());
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return nullptr;
+ }
+ 
+ JNIEXPORT jfloatArray JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeEmbed(
+         JNIEnv *env, jobject, jlong handle, jstring text) {
+-    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
++    auto *h = owned(handle);
+     if (!h || !h->ctx) return env->NewFloatArray(0);
+ 
+     const llama_vocab *vocab = llama_model_get_vocab(h->model);
+@@ -212,6 +238,8 @@
+     // Embeddings must be explicitly enabled or llama_get_embeddings_* returns null.
+     // Toggle it on for this call and restore generation mode afterwards.
+     llama_set_embeddings(h->ctx, true);
++    require_measured(liveModels.at(h).kvEpoch < std::numeric_limits<uint64_t>::max(), "KV_EPOCH_EXHAUSTED");
++    ++liveModels.at(h).kvEpoch;
+     llama_memory_clear(llama_get_memory(h->ctx), true);
+     llama_batch batch = llama_batch_get_one(tokens.data(), (int32_t) n_tok);
+     if (llama_decode(h->ctx, batch) != 0) {
+@@ -231,20 +259,39 @@
+     jfloatArray arr = env->NewFloatArray(n_embd);
+     env->SetFloatArrayRegion(arr, 0, n_embd, emb);
+     return arr;
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return nullptr;
+ }
+ 
+ JNIEXPORT void JNICALL
+-Java_dev_ffmpegkit_llama_LlamaJNI_nativeReleaseModel(JNIEnv *, jobject, jlong handle) {
+-    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++Java_dev_ffmpegkit_llama_LlamaJNI_nativeReleaseModel(JNIEnv *env, jobject, jlong handle) {
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
++    auto *h = owned(handle);
+     if (!h) return;
+     if (h->ctx) llama_free(h->ctx);
+     if (h->model) llama_model_free(h->model);
++    liveModels.erase(h);
+     delete h;
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return;
+ }
+ 
+ JNIEXPORT jstring JNICALL
+ Java_dev_ffmpegkit_llama_LlamaJNI_nativeGetSystemInfo(JNIEnv *env, jobject) {
++    try {
++    std::lock_guard<std::mutex> guard(measuredMutex);
++
+     return env->NewStringUTF(llama_print_system_info());
++
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"LEGACY_NATIVE_FAILED"); }
++    return nullptr;
+ }
+ 
+ } // extern "C"
+diff --git a/upstream/library/src/main/jni/measured.inc b/upstream/library/src/main/jni/measured.inc
+new file mode 100644
+--- /dev/null
++++ b/upstream/library/src/main/jni/measured.inc
+@@ -0,0 +1,238 @@
++// Proposed internal implementation, included after the historical helpers.
++// No model is loaded, context created, KV cleared or decode run by prepare.
++#include <algorithm>
++#include <chrono>
++#include <cstdint>
++#include <limits>
++#include <map>
++#include <memory>
++#include <mutex>
++#include <stdexcept>
++#include <thread>
++#include <cstring>
++namespace {
++using Clock = std::chrono::steady_clock;
++struct Prepared {
++    std::string ticket, binding;
++    std::vector<llama_token> tokens;
++    uint64_t generation, kvEpoch;
++    uint32_t capacity;
++    int output, margin;
++    Clock::time_point expires;
++    ~Prepared() {
++        volatile llama_token *p = tokens.data();
++        for (size_t i = 0; i < tokens.size(); ++i) p[i] = 0;
++    }
++};
++struct LiveModel {
++    uint64_t generation;
++    std::thread::id worker;
++    std::unique_ptr<Prepared> pending;
++    uint64_t kvEpoch = 0;
++};
++std::mutex measuredMutex;
++std::map<LlamaCtx *, LiveModel> liveModels;
++uint64_t nextGeneration = 1;
++void require_measured(bool ok, const char *why) {
++    if (!ok) throw std::runtime_error(why);
++}
++LlamaCtx *owned(jlong handle, bool allowPending = false) {
++    auto *h = reinterpret_cast<LlamaCtx *>(handle);
++    auto it = liveModels.find(h);
++    require_measured(it != liveModels.end(), "STALE_MODEL");
++    require_measured(it->second.worker == std::this_thread::get_id(), "WRONG_WORKER");
++    require_measured(allowPending || !it->second.pending, "PREPARED_BUSY");
++    return h;
++}
++void throw_measured(JNIEnv *env, const char *why) {
++    if (!env->ExceptionCheck()) {
++        jclass c = env->FindClass("java/lang/IllegalStateException");
++        if (c) { env->ThrowNew(c, why); env->DeleteLocalRef(c); }
++    }
++}
++bool strict_utf8(const std::string &s) {
++    size_t i = 0;
++    while (i < s.size()) {
++        uint8_t a = static_cast<uint8_t>(s[i++]);
++        if (!a) return false; // Deliberate NUL refusal: template messages use C strings.
++        if (a < 0x80) continue;
++        int n; uint32_t cp, min;
++        if (a >= 0xc2 && a <= 0xdf) { n=1; cp=a&31; min=0x80; }
++        else if (a >= 0xe0 && a <= 0xef) { n=2; cp=a&15; min=0x800; }
++        else if (a >= 0xf0 && a <= 0xf4) { n=3; cp=a&7; min=0x10000; }
++        else return false;
++        if (s.size()-i < static_cast<size_t>(n)) return false;
++        while (n--) { uint8_t b=static_cast<uint8_t>(s[i++]);
++            if ((b&0xc0)!=0x80) return false;
++            cp=(cp<<6)|(b&63);
++        }
++        if (cp < min || cp > 0x10ffff || (cp >= 0xd800 && cp <= 0xdfff)) return false;
++    }
++    return true;
++}
++std::string bytes(JNIEnv *env, jbyteArray input, size_t maximum) {
++    require_measured(input != nullptr, "INVALID_BYTES");
++    jsize n=env->GetArrayLength(input);
++    require_measured(n >= 0 && static_cast<size_t>(n) <= maximum, "INPUT_LIMIT");
++    std::string out(static_cast<size_t>(n), '\0');
++    if (n) env->GetByteArrayRegion(input,0,n,reinterpret_cast<jbyte *>(out.data()));
++    require_measured(!env->ExceptionCheck(), "JNI_COPY_FAILED");
++    require_measured(strict_utf8(out), "INVALID_UTF8_OR_NUL");
++    return out;
++}
++jbyteArray to_bytes(JNIEnv *env, const std::string &s) {
++    require_measured(s.size() <= static_cast<size_t>(std::numeric_limits<jsize>::max()), "OUTPUT_LIMIT");
++    jbyteArray out=env->NewByteArray(static_cast<jsize>(s.size()));
++    require_measured(out != nullptr, "JNI_ALLOCATION_FAILED");
++    if (!s.empty()) env->SetByteArrayRegion(out,0,static_cast<jsize>(s.size()),
++        reinterpret_cast<const jbyte *>(s.data()));
++    require_measured(!env->ExceptionCheck(), "JNI_COPY_FAILED");
++    return out;
++}
++std::string render_strict(const llama_model *m, const std::string &system,
++                          const std::string &user, std::string &templateText) {
++    const char *t=llama_model_chat_template(m,nullptr);
++    require_measured(t && *t, "TEMPLATE_UNSUPPORTED");
++    size_t tn=strnlen(t,65537);
++    require_measured(tn <= 65536, "TEMPLATE_LIMIT");
++    templateText.assign(t,tn);
++    require_measured(strict_utf8(templateText), "INVALID_TEMPLATE_ENCODING");
++    // SYSTEM is never concatenated into user on error. The two roles are distinct.
++    std::vector<llama_chat_message> messages;
++    if (!system.empty()) messages.push_back({"system",system.c_str()});
++    messages.push_back({"user",user.c_str()});
++    std::vector<char> buf(65536);
++    int32_t n=llama_chat_apply_template(t,messages.data(),messages.size(),true,buf.data(),buf.size());
++    require_measured(n > 0 && n <= static_cast<int32_t>(buf.size()), "TEMPLATE_UNSUPPORTED_OR_LIMIT");
++    std::string rendered(buf.data(),n);
++    require_measured(strict_utf8(rendered), "INVALID_RENDER_ENCODING");
++    return rendered;
++}
++std::vector<llama_token> tokenize_strict(const llama_vocab *v, const std::string &s) {
++    int32_t n=llama_tokenize(v,s.data(),static_cast<int32_t>(s.size()),nullptr,0,true,true);
++    require_measured(n < 0 && n != std::numeric_limits<int32_t>::min(), "TOKENIZER_UNAVAILABLE");
++    require_measured(-n <= 65536, "TOKEN_LIMIT");
++    std::vector<llama_token> out(static_cast<size_t>(-n));
++    int32_t actual=llama_tokenize(v,s.data(),static_cast<int32_t>(s.size()),out.data(),out.size(),true,true);
++    require_measured(actual == -n, "TOKENIZER_INCONSISTENT");
++    return out;
++}
++void exact_budget(uint64_t input, int output, int margin, uint32_t capacity) {
++    require_measured(input > 0 && output > 0 && output <= 256 && margin == 128, "INVALID_BUDGET");
++    // Subtractions after bounds checks: overflow cannot manufacture admission.
++    require_measured(input <= capacity && static_cast<uint64_t>(output) <= capacity-input &&
++        static_cast<uint64_t>(margin) <= capacity-input-static_cast<uint64_t>(output), "CONTEXT_EXCEEDED");
++}
++std::string piece_strict(const llama_vocab *v,llama_token token) {
++    std::vector<char> b(256);
++    int n=llama_token_to_piece(v,token,b.data(),b.size(),0,true);
++    if (n < 0) {
++        require_measured(n != std::numeric_limits<int>::min() && -n <= 65536,"PIECE_LIMIT");
++        b.resize(-n); n=llama_token_to_piece(v,token,b.data(),b.size(),0,true);
++    }
++    require_measured(n >= 0 && static_cast<size_t>(n) <= b.size(),"PIECE_FAILED");
++    return std::string(b.data(),n);
++}
++} // namespace
++
++extern "C" JNIEXPORT jobjectArray JNICALL
++Java_dev_ffmpegkit_llama_LlamaJNI_nativePrepareMeasured(JNIEnv *env,jobject,jlong handle,
++    jbyteArray sys,jbyteArray prompt,jbyteArray binding,jbyteArray ticket,
++    jint requested,jint admitted,jint output,jint margin,jint ttlMs) {
++    try {
++        std::lock_guard<std::mutex> guard(measuredMutex);
++        LlamaCtx *h=owned(handle);
++        require_measured(requested > 0 && requested <= 2048 && admitted > 0 && admitted <= 2048 &&
++            ttlMs > 0 && ttlMs <= 5000,"INVALID_LIMITS");
++        auto p=std::make_unique<Prepared>();
++        p->binding=bytes(env,binding,64); p->ticket=bytes(env,ticket,64);
++        auto isHex=[](const std::string &s) { return s.size()==64 && std::all_of(s.begin(),s.end(),
++            [](char c) { return (c>='0' && c<='9') || (c>='a' && c<='f'); }); };
++        require_measured(isHex(p->binding) && isHex(p->ticket),"INVALID_BINDING");
++        std::string t;
++        std::string rendered=render_strict(h->model,bytes(env,sys,8192),bytes(env,prompt,16384),t);
++        p->tokens=tokenize_strict(llama_model_get_vocab(h->model),rendered);
++        p->capacity=std::min({static_cast<uint32_t>(requested),static_cast<uint32_t>(admitted),llama_n_ctx(h->ctx),llama_n_ctx_seq(h->ctx)});
++        exact_budget(p->tokens.size(),output,margin,p->capacity);
++        p->generation=liveModels.at(h).generation;
++        p->kvEpoch=liveModels.at(h).kvEpoch;
++        p->output=output; p->margin=margin; p->expires=Clock::now()+std::chrono::milliseconds(ttlMs);
++        std::string meta="1,"+std::to_string(p->generation)+","+std::to_string(p->tokens.size())+","+
++            std::to_string(std::min(llama_n_ctx(h->ctx),llama_n_ctx_seq(h->ctx)))+","+std::to_string(p->capacity)+","+std::to_string(p->kvEpoch);
++        // IDs copied only to the private wrapper to hash, never accepted back from Kotlin.
++        std::string packed; packed.reserve(p->tokens.size()*4);
++        for (llama_token id:p->tokens) for (int i=0;i<4;++i) packed.push_back(static_cast<char>(static_cast<uint32_t>(id)>>(i*8)));
++        jclass byteArrayClass=env->FindClass("[B");
++        require_measured(byteArrayClass != nullptr,"JNI_CLASS_FAILED");
++        jobjectArray result=env->NewObjectArray(4,byteArrayClass,nullptr);
++        env->DeleteLocalRef(byteArrayClass);
++        require_measured(result != nullptr,"JNI_ALLOCATION_FAILED");
++        std::string parts[4]={meta,t,rendered,packed};
++        for (int i=0;i<4;++i) { jbyteArray a=to_bytes(env,parts[i]); env->SetObjectArrayElement(result,i,a); env->DeleteLocalRef(a); }
++        require_measured(!env->ExceptionCheck(),"JNI_COPY_FAILED");
++        liveModels.at(h).pending=std::move(p);
++        return result;
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"NATIVE_PREPARE_FAILED"); }
++    return nullptr;
++}
++
++extern "C" JNIEXPORT jbyteArray JNICALL
++Java_dev_ffmpegkit_llama_LlamaJNI_nativeConsumeMeasured(JNIEnv *env,jobject,jlong handle,
++    jlong generation,jbyteArray ticket,jbyteArray binding,
++    jfloat temp,jfloat topP,jint topK,jint seed) {
++    try {
++        std::lock_guard<std::mutex> guard(measuredMutex);
++        LlamaCtx *h=owned(handle,true);
++        // Remove BEFORE validation: every consumption attempt burns this model's ticket.
++        auto p=std::move(liveModels.at(h).pending);
++        require_measured(p != nullptr,"TICKET_MISSING");
++        require_measured(p->generation == static_cast<uint64_t>(generation) &&
++            p->generation == liveModels.at(h).generation,"STALE_MODEL");
++        require_measured(p->ticket==bytes(env,ticket,64) && p->binding==bytes(env,binding,64),"TICKET_MISMATCH");
++        require_measured(Clock::now() < p->expires,"EXPIRED");
++        exact_budget(p->tokens.size(),p->output,p->margin,std::min({p->capacity,llama_n_ctx(h->ctx),llama_n_ctx_seq(h->ctx)}));
++        require_measured(temp >= 0 && temp <= 2 && topP > 0 && topP <= 1 && topK > 0,"INVALID_SAMPLING");
++        auto *v=llama_model_get_vocab(h->model);
++        std::unique_ptr<llama_sampler,decltype(&llama_sampler_free)> sampler(
++            make_sampler(temp,topP,topK,seed),llama_sampler_free);
++        require_measured(sampler != nullptr,"SAMPLER_FAILED");
++        require_measured(p->kvEpoch == liveModels.at(h).kvEpoch,"STALE_KV");
++        require_measured(liveModels.at(h).kvEpoch < std::numeric_limits<uint64_t>::max(),"KV_EPOCH_EXHAUSTED");
++        ++liveModels.at(h).kvEpoch;
++        // Only consume changes KV. Decode the retained IDs, in bounded batches.
++        llama_memory_clear(llama_get_memory(h->ctx),true);
++        size_t off=0;
++        uint32_t batchSize=llama_n_batch(h->ctx);
++        require_measured(batchSize>0,"INVALID_BATCH");
++        while (off < p->tokens.size()) {
++            int32_t n=static_cast<int32_t>(std::min<size_t>(batchSize,p->tokens.size()-off));
++            require_measured(llama_decode(h->ctx,llama_batch_get_one(p->tokens.data()+off,n))==0,"PREFILL_FAILED");
++            off+=n;
++        }
++        std::string out;
++        for (int i=0;i<p->output;++i) {
++            llama_token id=llama_sampler_sample(sampler.get(),h->ctx,-1);
++            if (llama_vocab_is_eog(v,id)) break;
++            llama_sampler_accept(sampler.get(),id);
++            std::string piece=piece_strict(v,id);
++            require_measured(out.size()+piece.size() <= 1048576,"OUTPUT_LIMIT"); out+=piece;
++            require_measured(llama_decode(h->ctx,llama_batch_get_one(&id,1))==0,"GENERATE_FAILED");
++        }
++        require_measured(strict_utf8(out),"INCOMPLETE_OUTPUT_UTF8");
++        return to_bytes(env,out);
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"NATIVE_CONSUME_FAILED"); }
++    return nullptr;
++}
++
++extern "C" JNIEXPORT void JNICALL
++Java_dev_ffmpegkit_llama_LlamaJNI_nativeDiscardMeasured(JNIEnv *env,jobject,jlong handle,jbyteArray ticket) {
++    try {
++        std::lock_guard<std::mutex> guard(measuredMutex);
++        LlamaCtx *h=owned(handle,true);
++        auto &p=liveModels.at(h).pending;
++        if (p) { require_measured(p->ticket==bytes(env,ticket,64),"TICKET_MISMATCH"); p.reset(); }
++    } catch (const std::exception &e) { throw_measured(env,e.what()); }
++      catch (...) { throw_measured(env,"NATIVE_DISCARD_FAILED"); }
++}
+diff --git a/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt
+--- a/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt
++++ b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt
+@@ -1,6 +1,5 @@
+ package dev.ffmpegkit.llama
+ 
+-import kotlinx.coroutines.Dispatchers
+ import kotlinx.coroutines.withContext
+ import org.json.JSONObject
+ import java.io.File
+@@ -17,7 +16,7 @@
+  * ```
+  *
+  * A single [LlamaModel] is **not** thread-safe. All heavy calls are `suspend`
+- * functions running on [Dispatchers.Default].
++ * functions running on the library owner worker.
+  */
+ object Llama {
+ 
+@@ -25,7 +24,7 @@
+     suspend fun loadModel(
+         modelPath: String,
+         config: LlamaConfig = LlamaConfig(),
+-    ): LlamaModel = withContext(Dispatchers.Default) {
++    ): LlamaModel = withContext(LlamaOwner.dispatcher) {
+         if (!File(modelPath).exists()) throw LlamaException.ModelLoadFailed(modelPath)
+         val handle = LlamaJNI.nativeLoadModel(
+             modelPath, config.contextSize, config.threads, config.gpuLayers,
+@@ -40,7 +39,7 @@
+         prompt: String,
+         systemPrompt: String = "",
+         maxTokens: Int = 512,
+-    ): LlamaResult = withContext(Dispatchers.Default) {
++    ): LlamaResult = withContext(LlamaOwner.dispatcher) {
+         val c = model.config
+         val json = LlamaJNI.nativeComplete(
+             model.requireHandle(), prompt, systemPrompt, maxTokens,
+@@ -51,16 +50,17 @@
+ 
+     /** Embed `text` into a vector (for search / RAG / clustering). */
+     suspend fun embed(model: LlamaModel, text: String): FloatArray =
+-        withContext(Dispatchers.Default) {
++        withContext(LlamaOwner.dispatcher) {
+             LlamaJNI.nativeEmbed(model.requireHandle(), text)
+         }
+ 
+     /** Free the model's native memory. Safe to call more than once. */
+-    fun releaseModel(model: LlamaModel) {
++    fun releaseModel(model: LlamaModel) = LlamaOwner.blocking {
+         val h = model.handle
+         if (h != 0L) {
+             LlamaJNI.nativeReleaseModel(h)
+             model.handle = 0L
++            model.frozenFile?.let { check(!it.exists() || it.delete()) { "SNAPSHOT_CLEANUP_FAILED" } }
+         }
+     }
+ 
+diff --git a/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
+--- a/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
++++ b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaJNI.kt
+@@ -28,4 +28,10 @@
+     external fun nativeReleaseModel(handle: Long)
+ 
+     external fun nativeGetSystemInfo(): String
++    external fun nativePrepareMeasured(handle: Long, system: ByteArray, prompt: ByteArray,
++        binding: ByteArray, ticket: ByteArray, requested: Int, admitted: Int,
++        output: Int, margin: Int, ttlMs: Int): Array<ByteArray>
++    external fun nativeConsumeMeasured(handle: Long, generation: Long, ticket: ByteArray,
++        binding: ByteArray, temp: Float, topP: Float, topK: Int, seed: Int): ByteArray
++    external fun nativeDiscardMeasured(handle: Long, ticket: ByteArray)
+ }
+diff --git a/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt
+new file mode 100644
+--- /dev/null
++++ b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaMeasured.kt
+@@ -0,0 +1,143 @@
++package dev.ffmpegkit.llama
++
++import java.io.File
++import java.io.FileInputStream
++import java.io.FileOutputStream
++import java.nio.ByteBuffer
++import java.nio.CharBuffer
++import java.nio.charset.CodingErrorAction
++import java.security.MessageDigest
++import java.security.SecureRandom
++import java.util.concurrent.Executors
++import java.util.concurrent.Callable
++import kotlinx.coroutines.asCoroutineDispatcher
++import kotlinx.coroutines.withContext
++
++/** One library worker, shared by historical calls and the proposed measured path. */
++internal object LlamaOwner {
++    @Volatile private var thread: Thread? = null
++    private val executor = Executors.newSingleThreadExecutor { task ->
++        Thread(task, "jarvis-llama-owner").also { it.isDaemon = true; thread = it }
++    }
++    val dispatcher = executor.asCoroutineDispatcher()
++    fun <T> blocking(block: () -> T): T = if (Thread.currentThread() === thread) block()
++        else executor.submit(Callable { block() }).get()
++    fun checkWorker() = check(Thread.currentThread() === thread) { "WRONG_WORKER" }
++}
++
++/** Information for a trusted host gate. Not an inference permit or an unload receipt. */
++class MeasuredReceipt internal constructor(
++    val revision: String, val modelSha256: String, val loadGeneration: Long,
++    val templateSha256: String, val renderedSha256: String, val tokenIdsSha256: String,
++    val bindingSha256: String, val kvEpoch: Long, val inputTokens: Long, val loadedContext: Long,
++    val admittedContext: Long, val outputReserve: Int, val marginReserve: Int,
++)
++
++class MeasuredTransactionFailure(val nativeStateKnown: Boolean, cause: Throwable) :
++    IllegalStateException("Measured transaction refused; model remains resident", cause)
++
++/** Proposed public API. Ticket and IDs never leave this scoped wrapper. */
++object LlamaMeasured {
++    const val REVISION = "core.identity.measure/1-proposed"
++    private fun sha(data: ByteArray): String = MessageDigest.getInstance("SHA-256")
++        .digest(data).joinToString("") { "%02x".format(it.toInt() and 255) }
++    private fun utf8(value: String): ByteArray {
++        require('\u0000' !in value) { "NUL_UNSUPPORTED" }
++        val b = Charsets.UTF_8.newEncoder().onMalformedInput(CodingErrorAction.REPORT)
++            .onUnmappableCharacter(CodingErrorAction.REPORT).encode(CharBuffer.wrap(value))
++        return ByteArray(b.remaining()).also { b.get(it) }
++    }
++    private fun decode(value: ByteArray): String = Charsets.UTF_8.newDecoder()
++        .onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(CodingErrorAction.REPORT)
++        .decode(ByteBuffer.wrap(value)).toString()
++
++    /** Freeze a private, read-only copy. Original model is never changed or deleted.
++     * Expected digest MUST come from a separately approved artifact manifest.
++     * No automatic model download. Native load still allocates only one model/context.
++     */
++    suspend fun loadFrozen(modelPath: String, config: LlamaConfig, expectedSha256: String): LlamaModel =
++        withContext(LlamaOwner.dispatcher) {
++            require(expectedSha256.matches(Regex("[a-f0-9]{64}"))) { "MODEL_HASH_REQUIRED" }
++            require(config.contextSize in 1..2048) { "INVALID_CONTEXT" }
++            val source = File(modelPath)
++            require(source.isFile && source.length() > 0) { "MODEL_UNAVAILABLE" }
++            val directory = requireNotNull(source.parentFile)
++            require(directory.usableSpace > source.length() &&
++                directory.usableSpace - source.length() >= 16L * 1024 * 1024) { "SNAPSHOT_DISK_UNAVAILABLE" }
++            val frozen = File.createTempFile("jarvis-measured-", ".gguf", directory)
++            var transferred = false
++            try {
++                val digest = MessageDigest.getInstance("SHA-256")
++                FileInputStream(source).use { input -> FileOutputStream(frozen).use { output ->
++                    val buffer = ByteArray(512 * 1024)
++                    try { while (true) { val n = input.read(buffer); if (n < 0) break
++                        if (n > 0) { output.write(buffer, 0, n); digest.update(buffer, 0, n) }
++                    } } finally { buffer.fill(0) }
++                    output.fd.sync()
++                } }
++                val actual = digest.digest().joinToString("") { "%02x".format(it.toInt() and 255) }
++                check(actual == expectedSha256) { "MODEL_HASH_MISMATCH" }
++                check(frozen.setReadOnly()) { "MODEL_FREEZE_FAILED" }
++                val h = LlamaJNI.nativeLoadModel(frozen.absolutePath, config.contextSize, config.threads, config.gpuLayers)
++                check(h != 0L) { "MODEL_LOAD_FAILED" }
++                // No throwable operation between successful native allocation and handle transfer.
++                val model = try { LlamaModel(h, config, frozen, actual) }
++                catch (failure: Throwable) {
++                    // Failure of this release propagates; host must retain admission/quarantine.
++                    LlamaJNI.nativeReleaseModel(h)
++                    throw failure
++                }
++                transferred = true
++                model
++            } finally {
++                if (!transferred && frozen.exists()) check(frozen.delete()) { "SNAPSHOT_CLEANUP_FAILED" }
++            }
++        }
++
++    /** No suspension or arbitrary callback between native prepare and consume.
++     * finalAdmission runs on the owner worker: trusted host validation only, no JNI/reentrancy.
++     */
++    suspend fun complete(model: LlamaModel, system: String, prompt: String, bindingSha256: String,
++        requestedContext: Int, admittedContext: Int, outputReserve: Int,
++        finalAdmission: (MeasuredReceipt) -> Unit): String = withContext(LlamaOwner.dispatcher) {
++        LlamaOwner.checkWorker()
++        check(model.frozenSha256 != null && model.frozenFile?.isFile == true) { "FROZEN_MODEL_REQUIRED" }
++        require(bindingSha256.matches(Regex("[a-f0-9]{64}"))) { "INVALID_BINDING" }
++        val handle = model.requireHandle()
++        val random = ByteArray(32).also { SecureRandom().nextBytes(it) }
++        val ticket = random.joinToString("") { "%02x".format(it.toInt() and 255) }.toByteArray(Charsets.US_ASCII)
++        random.fill(0)
++        val binding = bindingSha256.toByteArray(Charsets.US_ASCII)
++        val systemBytes = utf8(system); val promptBytes = utf8(prompt)
++        var parts: Array<ByteArray>? = null
++        var consumeEntered = false
++        try {
++            parts = LlamaJNI.nativePrepareMeasured(handle, systemBytes, promptBytes, binding, ticket,
++                requestedContext, admittedContext, outputReserve, 128, 5000)
++            check(parts.size == 4) { "INVALID_RECEIPT" }
++            val metadata = decode(parts[0]).split(',').map(String::toLong)
++            check(metadata.size == 6 && metadata[0] == 1L && metadata[1] > 0 && metadata[2] > 0 && metadata[5] >= 0 &&
++                parts[3].size.toLong() == metadata[2] * 4L) { "INVALID_RECEIPT" }
++            val receipt = MeasuredReceipt(REVISION, requireNotNull(model.frozenSha256), metadata[1],
++                sha(parts[1]), sha(parts[2]), sha(parts[3]), bindingSha256, metadata[5],
++                metadata[2], metadata[3], metadata[4], outputReserve, 128)
++            check(receipt.admittedContext == minOf(requestedContext.toLong(), admittedContext.toLong(), receipt.loadedContext))
++            check(receipt.inputTokens + outputReserve.toLong() + 128L <= receipt.admittedContext) { "CONTEXT_EXCEEDED" }
++            finalAdmission(receipt) // Linearization point for CORE; revocation afterwards drains/rejects output.
++            val c = model.config
++            consumeEntered = true
++            val answer = LlamaJNI.nativeConsumeMeasured(handle, receipt.loadGeneration, ticket, binding,
++                c.temperature, c.topP, c.topK, c.seed)
++            try { decode(answer) } finally { answer.fill(0) }
++        } catch (failure: Throwable) {
++            throw MeasuredTransactionFailure(nativeStateKnown = !consumeEntered, cause = failure)
++        } finally {
++            try { LlamaJNI.nativeDiscardMeasured(handle, ticket) }
++            catch (cleanup: Throwable) { throw MeasuredTransactionFailure(nativeStateKnown = false, cause = cleanup) }
++            finally {
++                ticket.fill(0); binding.fill(0); systemBytes.fill(0); promptBytes.fill(0)
++                parts?.forEach { it.fill(0) }
++            }
++        }
++    }
++}
+diff --git a/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt
+--- a/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt
++++ b/upstream/library/src/main/kotlin/dev/ffmpegkit/llama/LlamaModel.kt
+@@ -8,7 +8,11 @@
+ class LlamaModel internal constructor(
+     internal var handle: Long,
+     val config: LlamaConfig,
++    internal val frozenFile: java.io.File?,
++    internal val frozenSha256: String?,
+ ) {
++    internal constructor(handle: Long, config: LlamaConfig) : this(handle, config, null, null)
++
+     /** True until [Llama.releaseModel] is called. */
+     val isLoaded: Boolean get() = handle != 0L
+ 
