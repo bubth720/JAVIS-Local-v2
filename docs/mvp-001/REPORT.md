@@ -69,3 +69,14 @@ Prochaine action recommandée : revue du code et du kit, puis accord explicite s
 un environnement Android de laboratoire et un GGUF public vérifié, sans installation
 personnelle implicite. Aucun raccordement JNI expérimental, Binder004D, Athéna ou
 fusion main n'est engagé par cette livraison.
+
+## Kit local vérifié
+
+Source applicative exacte : `d69021d7135334dad5de8d3d6fd3bda75f9d07ee`, source_dirty=false.
+APK locale SHA-256 : `b0d62c563075b101ffcdf4261318bcd5cb337da0e0dd02072f076cf60cb9ec01`.
+Certificat public SHA-256 : `9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3`.
+Les métadonnées complètes sont dans LOCAL-APK-INFO.json.
+ZIP local : JARVIS-MVP-001-kit-d69021d.zip ; SHA-256
+`d0dfb0719b0514f48a93aa8bad632751fb39e1a79af16fcc30201d3cc1bc8ef4`.
+Ce kit cloud est distinct d'un futur artefact Actions ; aucune CI distante
+réussie n'est présumée par ces preuves locales.
