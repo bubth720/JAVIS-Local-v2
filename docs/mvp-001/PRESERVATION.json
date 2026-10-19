@@ -1,0 +1,13 @@
+{
+  "base": "86ea8bfa94deea0bab94914cd7214bc395a83f9b",
+  "unchanged_base_files": 169,
+  "append_only_knowledge_files": [
+    "AGENTS.md",
+    "docs/PROJECT_KNOWLEDGE.md"
+  ],
+  "only_existing_file_additions": [
+    "app/build.gradle.kts",
+    "app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt"
+  ],
+  "legacy_acceptance_jni_admission_preserved": true
+}

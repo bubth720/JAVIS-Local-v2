@@ -403,3 +403,22 @@ Voir docs/preview-001/PUBLICATION.json. Téléchargement avec connexion GitHub ;
 requête anonyme404. Aucun ZIP téléchargé/re-hashé dans le cloud, ne pas confondre
 le digest d'archive GitHub avec le SHA APK local. La clôture documentaire ne change
 pas le code de fabrication. Installation physique toujours en attente d'accord.
+
+## Actualisation — MVP-001
+
+Base Preview86ea8bfa94deea0bab94914cd7214bc395a83f9b ; lire docs/mvp-001/.
+Variante `mvp`, package `com.stark.jarvislocal.mvp001`, minSdk24/ARM64,
+application/launcher dédiés sans AppGraph historique. Aucun warmup implicite.
+Les imports SAF vont uniquement dans noBackupFilesDir/mvp-models, avec manifeste
+public déclaré, SHA attendu, taille exacte, borne100–512Mio et réserve disque.
+Ne pas modifier les règles ModelManager historiques pour accepter ces imports.
+L'unique ajout LlamaLocalEngine est un constructeur de chemin/validateur utilisant
+le même backend historique et ProcessInferenceAdmission.process. Aucun JNI changé.
+MvpRuntime sérialise import/load/send/unload et attend le drainage réel du contrôleur.
+Les protections MVP refusent les nouvelles opérations en cas de manque de RAM,
+batterie faible/température élevée ; requestStop historique reste UNSUPPORTED,
+donc aucune promesse d'arrêt thermique immédiat. Pas de second moteur/IPC/persona.
+Tests dédiés : `:app:testMvpUnitTest --tests '*Mvp*'`, assembleMvp et lintMvp ;
+conserver les suites debug/fixture/Preview. Les doubles JVM/Robolectric ne prouvent
+pas la génération GGUF Android. Aucun modèle, téléchargement ou installation
+personnelle automatique dans le workflow MVP ; guide et kit via tools/mvp_kit.py.

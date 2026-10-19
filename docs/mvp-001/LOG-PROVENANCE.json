@@ -1,0 +1,6 @@
+{
+  "source": "mvp-all-validation.log",
+  "raw_sha256": "09fef1b56b2d1235820e31e992aef09359c6cab06fce3d1ab89627afa7864056",
+  "published_sha256": "9e6995ded68921f57bc79b109791b9e11a3a03f82ea77882b636765fff962960",
+  "normalization": "strip trailing line spaces and final newline only"
+}

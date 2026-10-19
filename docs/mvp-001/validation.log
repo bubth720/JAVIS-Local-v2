@@ -1,0 +1,312 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugResValues
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+> Task :app:mergeDebugResources
+
+> Task :app:processDebugMainManifest
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:11:9-41 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:4:5-87 Warning:
+	uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:4 to remove other declarations but no other declaration present
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:5:5-99 Warning:
+	uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:5 to remove other declarations but no other declaration present
+
+> Task :app:processDebugManifest
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebug
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :p2-client:sharedCore
+> Task :p2-client:preBuild
+> Task :p2-client:preDebugBuild
+> Task :app:processDebugManifestForPackage
+> Task :p2-client:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :p2-client:generateDebugBuildConfig
+> Task :p2-client:compileDebugAidl
+> Task :p2-client:generateDebugResValues
+> Task :p2-client:checkDebugAarMetadata
+> Task :p2-client:mapDebugSourceSetPaths
+> Task :p2-client:generateDebugResources
+> Task :p2-client:mergeDebugResources
+> Task :p2-client:packageDebugResources
+> Task :p2-client:createDebugCompatibleScreenManifests
+> Task :p2-client:parseDebugLocalResources
+> Task :p2-client:extractDeepLinksDebug
+
+> Task :p2-client:processDebugMainManifest
+/workspace/JAVIS-Local-v2/fixtures/p2-client/src/main/AndroidManifest.xml:2:5-87 Warning:
+	uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:2 to remove other declarations but no other declaration present
+/workspace/JAVIS-Local-v2/fixtures/p2-client/src/main/AndroidManifest.xml:3:5-99 Warning:
+	uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:3 to remove other declarations but no other declaration present
+
+> Task :p2-client:processDebugManifest
+> Task :p2-client:processDebugManifestForPackage
+> Task :p2-client:javaPreCompileDebug
+> Task :p2-client:preDebugUnitTestBuild
+> Task :p2-client:javaPreCompileDebugUnitTest
+> Task :p2-client:mergeDebugShaders
+> Task :p2-client:compileDebugShaders NO-SOURCE
+> Task :p2-client:generateDebugAssets UP-TO-DATE
+> Task :p2-client:mergeDebugAssets
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:desugarDebugFileDependencies
+> Task :p2-client:processDebugResources
+> Task :app:compressDebugAssets
+> Task :app:processDebugResources
+> Task :app:packageDebugUnitTestForUnitTest
+> Task :app:generateDebugUnitTestConfig
+> Task :p2-client:packageDebugUnitTestForUnitTest
+> Task :p2-client:generateDebugUnitTestConfig
+> Task :app:mergeDebugJniLibFolders
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugNativeLibs
+> Task :app:mergeLibDexDebug
+> Task :app:mergeExtDexDebug
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libc++_shared.so, libggml-base.so, libggml-cpu.so, libggml.so, libllama.so, libllama_jni.so, libwhisper.so.
+
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:extractProguardFiles
+> Task :p2-client:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :p2-client:compressDebugAssets
+> Task :p2-client:desugarDebugFileDependencies
+> Task :p2-client:checkDebugDuplicateClasses
+> Task :p2-client:mergeDebugJniLibFolders
+> Task :p2-client:mergeExtDexDebug
+> Task :p2-client:mergeLibDexDebug
+> Task :p2-client:mergeDebugNativeLibs NO-SOURCE
+> Task :p2-client:stripDebugDebugSymbols NO-SOURCE
+> Task :p2-client:writeDebugAppMetadata
+> Task :p2-client:writeDebugSigningConfigVersions
+> Task :p2-client:preDebugAndroidTestBuild SKIPPED
+> Task :p2-client:generateDebugAndroidTestResValues
+> Task :p2-client:extractProguardFiles
+> Task :app:prePreviewBuild UP-TO-DATE
+> Task :app:checkPreviewAarMetadata
+> Task :app:generatePreviewResValues
+> Task :app:mapPreviewSourceSetPaths
+> Task :app:generatePreviewResources
+> Task :app:packagePreviewResources
+> Task :app:parsePreviewLocalResources
+> Task :app:createPreviewCompatibleScreenManifests
+> Task :app:extractDeepLinksPreview
+
+> Task :app:processPreviewMainManifest
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:11:9-41 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+/workspace/JAVIS-Local-v2/app/src/preview/AndroidManifest.xml Warning:
+	uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:0 to remove other declarations but no other declaration present
+/workspace/JAVIS-Local-v2/app/src/preview/AndroidManifest.xml Warning:
+	uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:0 to remove other declarations but no other declaration present
+
+> Task :app:processPreviewManifest
+> Task :app:processPreviewManifestForPackage
+> Task :app:javaPreCompilePreview
+> Task :app:prePreviewUnitTestBuild UP-TO-DATE
+> Task :app:mergePreviewResources
+> Task :app:javaPreCompilePreviewUnitTest
+> Task :app:mergePreviewShaders
+> Task :app:compilePreviewShaders NO-SOURCE
+> Task :app:generatePreviewAssets UP-TO-DATE
+> Task :app:mergePreviewAssets
+> Task :app:mergePreviewNativeDebugMetadata NO-SOURCE
+> Task :app:compressPreviewAssets
+> Task :app:checkPreviewDuplicateClasses
+> Task :app:desugarPreviewFileDependencies
+> Task :app:processPreviewResources
+> Task :app:mergeExtDexPreview
+> Task :app:packagePreviewUnitTestForUnitTest
+> Task :app:generatePreviewUnitTestConfig
+> Task :app:mergeLibDexPreview
+> Task :app:mergePreviewJniLibFolders
+> Task :app:mergePreviewNativeLibs
+
+> Task :app:stripPreviewDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libc++_shared.so, libggml-base.so, libggml-cpu.so, libggml.so, libllama.so, libllama_jni.so, libwhisper.so.
+
+> Task :app:validateSigningPreview
+> Task :p2-client:compileDebugKotlin
+> Task :app:writePreviewAppMetadata
+> Task :p2-client:compileDebugJavaWithJavac
+> Task :p2-client:bundleDebugClassesToCompileJar
+> Task :p2-client:bundleDebugClassesToRuntimeJar
+> Task :p2-client:processDebugJavaRes
+> Task :app:compileDebugKotlin
+> Task :p2-client:dexBuilderDebug
+> Task :p2-client:mergeDebugGlobalSynthetics
+> Task :p2-client:mergeDebugJavaResource
+> Task :p2-client:mergeProjectDexDebug
+> Task :p2-client:packageDebug
+> Task :p2-client:createDebugApkListingFileRedirect
+> Task :p2-client:assembleDebug
+> Task :p2-client:generateDebugAndroidTestLintModel
+> Task :p2-client:generateDebugLintReportModel
+> Task :p2-client:generateDebugUnitTestLintModel
+> Task :app:compileDebugJavaWithJavac NO-SOURCE
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:bundleDebugClassesToCompileJar
+> Task :p2-client:compileDebugUnitTestKotlin
+> Task :app:processDebugJavaRes
+> Task :p2-client:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :p2-client:processDebugUnitTestJavaRes
+> Task :app:compilePreviewKotlin
+
+> Task :p2-client:testDebugUnitTest
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+> Task :p2-client:lintAnalyzeDebug
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:mergeProjectDexDebug
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:generateDebugLintReportModel
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:mergeDebugJavaResource
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :p2-client:lintAnalyzeDebugAndroidTest
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+
+> Task :app:testDebugUnitTest
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+> Task :p2-client:lintAnalyzeDebugUnitTest
+> Task :app:lintAnalyzeDebug
+> Task :app:lintAnalyzeDebugUnitTest
+> Task :app:compilePreviewJavaWithJavac NO-SOURCE
+> Task :p2-client:lintReportDebug
+> Task :p2-client:lintDebug
+> Task :app:bundlePreviewClassesToRuntimeJar
+> Task :app:processPreviewJavaRes
+> Task :app:bundlePreviewClassesToCompileJar
+
+> Task :app:lintReportDebug
+Wrote HTML report to file:///workspace/JAVIS-Local-v2/app/build/reports/lint-results-debug.html
+
+> Task :app:dexBuilderPreview
+> Task :app:lintDebug
+> Task :app:mergePreviewGlobalSynthetics
+> Task :app:writePreviewSigningConfigVersions
+> Task :app:generatePreviewLintReportModel
+> Task :app:mergeProjectDexPreview
+> Task :app:generatePreviewUnitTestLintModel
+> Task :app:mergePreviewJavaResource
+> Task :app:packagePreview
+> Task :app:createPreviewApkListingFileRedirect
+> Task :app:assemblePreview
+> Task :app:preMvpBuild UP-TO-DATE
+> Task :app:checkMvpAarMetadata
+> Task :app:generateMvpResValues
+> Task :app:mapMvpSourceSetPaths
+> Task :app:generateMvpResources
+> Task :app:mergeMvpResources
+> Task :app:packageMvpResources
+> Task :app:parseMvpLocalResources
+> Task :app:createMvpCompatibleScreenManifests
+> Task :app:extractDeepLinksMvp
+
+> Task :app:processMvpMainManifest
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:11:9-41 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+/workspace/JAVIS-Local-v2/app/src/mvp/AndroidManifest.xml Warning:
+	uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:0 to remove other declarations but no other declaration present
+/workspace/JAVIS-Local-v2/app/src/mvp/AndroidManifest.xml Warning:
+	uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:0 to remove other declarations but no other declaration present
+
+> Task :app:processMvpManifest
+> Task :app:processMvpManifestForPackage
+> Task :app:processMvpResources
+> Task :app:lintAnalyzePreviewUnitTest
+> Task :app:javaPreCompileMvp
+> Task :app:preMvpUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileMvpUnitTest
+> Task :app:mergeMvpShaders
+> Task :app:compileMvpShaders NO-SOURCE
+> Task :app:generateMvpAssets UP-TO-DATE
+> Task :app:mergeMvpAssets
+> Task :app:packageMvpUnitTestForUnitTest
+> Task :app:generateMvpUnitTestConfig
+> Task :app:mergeMvpNativeDebugMetadata NO-SOURCE
+> Task :app:compressMvpAssets
+> Task :app:checkMvpDuplicateClasses
+> Task :app:desugarMvpFileDependencies
+> Task :app:lintAnalyzePreview
+> Task :app:mergeExtDexMvp
+
+> Task :app:lintReportPreview
+Wrote HTML report to file:///workspace/JAVIS-Local-v2/app/build/reports/lint-results-preview.html
+
+> Task :app:lintPreview
+> Task :app:mergeLibDexMvp
+> Task :app:mergeMvpJniLibFolders
+> Task :app:validateSigningMvp
+> Task :app:writeMvpAppMetadata
+> Task :app:writeMvpSigningConfigVersions
+> Task :app:mergeMvpNativeLibs
+
+> Task :app:stripMvpDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libc++_shared.so, libggml-base.so, libggml-cpu.so, libggml.so, libllama.so, libllama_jni.so, libwhisper.so.
+
+> Task :app:compilePreviewUnitTestKotlin
+> Task :app:compilePreviewUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processPreviewUnitTestJavaRes
+> Task :app:compileMvpKotlin
+
+> Task :app:testPreviewUnitTest
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+> Task :app:compileMvpJavaWithJavac NO-SOURCE
+> Task :app:bundleMvpClassesToRuntimeJar
+> Task :app:bundleMvpClassesToCompileJar
+> Task :app:processMvpJavaRes
+> Task :app:dexBuilderMvp
+> Task :app:mergeMvpGlobalSynthetics
+> Task :app:generateMvpLintReportModel
+> Task :app:generateMvpUnitTestLintModel
+> Task :app:mergeProjectDexMvp
+> Task :app:mergeMvpJavaResource
+> Task :app:packageMvp
+> Task :app:createMvpApkListingFileRedirect
+> Task :app:assembleMvp
+> Task :app:lintAnalyzeMvpUnitTest
+> Task :app:lintAnalyzeMvp
+
+> Task :app:lintReportMvp
+Wrote HTML report to file:///workspace/JAVIS-Local-v2/app/build/reports/lint-results-mvp.html
+
+> Task :app:lintMvp
+> Task :app:compileMvpUnitTestKotlin
+> Task :app:compileMvpUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processMvpUnitTestJavaRes
+
+> Task :app:testMvpUnitTest
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+BUILD SUCCESSFUL in 3m 31s
+205 actionable tasks: 205 executed

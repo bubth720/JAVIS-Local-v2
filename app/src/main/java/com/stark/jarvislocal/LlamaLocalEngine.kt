@@ -25,6 +25,10 @@ class LlamaLocalEngine internal constructor(
     constructor(modelManager: ModelManager) : this({ modelManager.hasLlm() }, modelManager.llmFile.absolutePath,
         AndroidLlamaBackend(), ProcessInferenceAdmission.process)
 
+    /** MVP imports use a separate validator/path; historical asset rules remain unchanged. */
+    internal constructor(path: String, ready: () -> Boolean) : this(ready, path,
+        AndroidLlamaBackend(), ProcessInferenceAdmission.process)
+
     private val lock = Mutex()
     @Volatile private var model: Any? = null
     @Volatile private var releaseUncertain = false

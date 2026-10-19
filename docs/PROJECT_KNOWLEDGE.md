@@ -967,3 +967,21 @@ Voir docs/preview-001/PUBLICATION.json. Téléchargement avec connexion GitHub ;
 requête anonyme404. Aucun ZIP téléchargé/re-hashé dans le cloud, ne pas confondre
 le digest d'archive GitHub avec le SHA APK local. La clôture documentaire ne change
 pas le code de fabrication. Installation physique toujours en attente d'accord.
+
+## Évolution — MVP-001, variante conversationnelle isolée
+
+Base vérifiée Preview86ea8bfa94deea0bab94914cd7214bc395a83f9b ; voir docs/mvp-001/
+pour preuves de cette mission. MvpApplication compose un unique InferenceController
+historique, MvpRuntime et MvpModelStore. Elle n'initialise ni SQLite, ni voix, ni
+IDENTITY. Les fonctions historiques restent dans les variantes existantes.
+L'import SAF attend une provenance/licence déclarées, un SHA-256 externe et une
+taille exacte ; le stockage privé content-addressé conserve les anciens fichiers,
+le pointeur sélectionné utilise AtomicFile. Aucun modèle n'est téléchargé.
+LlamaLocalEngine reçoit un constructeur additionnel de chemin/validateur ; aucun
+changement du backend natif, de ModelManager, du schéma ou de l'admission.
+Le prompt système est séparé ; PromptBuilder borne l'historique en RAM et le
+contexte par octets conservateurs, sans prétendre mesurer les vrais tokens.
+Les gardes RAM/batterie/température s'appliquent au MVP. Elles ne prouvent pas un
+arrêt natif instantané et l'API24 utilise la température batterie comme proxy,
+pas une mesure thermique SoC. La qualification réelle nécessite Android ARM64
+et un GGUF autorisé/compatible ; ne pas confondre build et inférence réussie.

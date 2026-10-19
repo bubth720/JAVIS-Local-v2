@@ -25,6 +25,13 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("debug")
         }
+        create("mvp") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".mvp001"
+            versionNameSuffix = "-mvp001"
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("debug")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true

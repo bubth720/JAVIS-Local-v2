@@ -1,0 +1,44 @@
+name: MVP 001 isolated Android kit
+on:
+  push:
+    branches: [feature/mvp-001-local-conversation]
+    paths: ['app/**', 'tools/mvp_kit.py', 'tools/check-mvp-001.py', '.github/workflows/mvp-001.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mvp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.10.2'}
+      - name: Android tools only — no models
+        run: python3 tools/setup-preview-android.py
+      - name: Preserve historical CORE
+        run: |
+          git fetch --no-tags --depth=1 origin 86ea8bfa94deea0bab94914cd7214bc395a83f9b
+          python3 tools/check-mvp-001.py
+      - name: Historical and Binder fixture regression
+        run: >-
+          gradle -PincludeP2Fixture=true :app:testDebugUnitTest :p2-client:testDebugUnitTest
+          :app:assembleDebug :app:lintDebug :p2-client:assembleDebug :p2-client:lintDebug
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Preview regression
+        run: >-
+          gradle :app:testPreviewUnitTest --tests '*PreviewActivityTest*' :app:assemblePreview :app:lintPreview
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: MVP tests, APK and lint
+        run: >-
+          gradle :app:testMvpUnitTest --tests '*Mvp*' :app:assembleMvp :app:lintMvp
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Inspect isolated APK and package evidence
+        run: python3 tools/mvp_kit.py --sdk "$ANDROID_HOME" --out mvp-kit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: JARVIS-MVP-001-Android
+          path: mvp-kit/*
+          if-no-files-found: error

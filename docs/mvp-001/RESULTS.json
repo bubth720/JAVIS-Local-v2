@@ -1,0 +1,111 @@
+{
+  "mission": "MVP-001",
+  "module": "JARVIS CORE",
+  "branch": "feature/mvp-001-local-conversation",
+  "base": "86ea8bfa94deea0bab94914cd7214bc395a83f9b",
+  "total_tests": 383,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "mvp_tests": 72,
+  "historical_and_fixture_tests": 311,
+  "builds": [
+    "debug",
+    "preview",
+    "mvp",
+    "p2-client debug"
+  ],
+  "lint": {
+    "historical_app": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 32
+    },
+    "preview": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 33
+    },
+    "mvp": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 35
+    },
+    "fixture": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 0
+    }
+  },
+  "apk_sha256": "b0d62c563075b101ffcdf4261318bcd5cb337da0e0dd02072f076cf60cb9ec01",
+  "certificate_sha256": "9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3",
+  "package": "com.stark.jarvislocal.mvp001",
+  "min_sdk": 24,
+  "target_sdk": 35,
+  "abi": [
+    "arm64-v8a"
+  ],
+  "native_libraries": [
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "load_segment_alignments": [
+        "0x4000"
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libggml-base.so",
+      "sha256": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+      "load_segment_alignments": [
+        "0x4000"
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libggml-cpu.so",
+      "sha256": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+      "load_segment_alignments": [
+        "0x4000"
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libggml.so",
+      "sha256": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+      "load_segment_alignments": [
+        "0x4000"
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libllama.so",
+      "sha256": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+      "load_segment_alignments": [
+        "0x4000"
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libllama_jni.so",
+      "sha256": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+      "load_segment_alignments": [
+        "0x4000"
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libwhisper.so",
+      "sha256": "f9dc0706abf2264eaa6acca6012ee0ae3dacfa4388b60c4870071e1c631103be",
+      "load_segment_alignments": [
+        "0x4000"
+      ]
+    }
+  ],
+  "historical_aar_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+  "historical_native_unchanged": true,
+  "gguf_native_generation": "NOT_EXECUTED_NOT_VALIDATED",
+  "gguf_downloaded": false,
+  "personal_device_installation": false,
+  "athena_enabled": false,
+  "ipc_added": false,
+  "main_merged": false,
+  "legacy_scope_guard_failures": 4,
+  "mvp_scope_guard": "PASS",
+  "github_ci": "NOT_YET_OBSERVED",
+  "apk_kit_provenance": "Final clean-commit kit metadata is emitted after code commit; precommit audit not a delivered kit."
+}

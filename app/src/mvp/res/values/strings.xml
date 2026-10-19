@@ -1,0 +1,14 @@
+<resources>
+    <string name="mvp_intro">JARVIS MVP 001 — conversation locale expérimentale. Import manuel uniquement. Modèle ARM64 compatible requis, plus de 100 Mio à 512 Mio. Aucun téléchargement. Conversation en RAM. L’annulation attend le retour natif ; elle ne garantit pas un arrêt immédiat.</string>
+    <string name="mvp_provenance">Provenance publique du modèle (sans identifiant ni jeton)</string>
+    <string name="mvp_license">Licence du modèle, vérifiée par vos soins</string>
+    <string name="mvp_sha">SHA-256 attendu provenant d’une source de confiance</string>
+    <string name="mvp_bytes">Taille exacte attendue en octets</string>
+    <string name="mvp_system">Prompt système distinct</string>
+    <string name="mvp_import">Choisir et importer un GGUF local</string>
+    <string name="mvp_load">Charger explicitement le modèle</string>
+    <string name="mvp_unload">Décharger le modèle</string>
+    <string name="mvp_question">Votre message</string>
+    <string name="mvp_send">Générer une réponse locale</string>
+    <string name="mvp_cancel">Demander l’annulation</string>
+</resources>
