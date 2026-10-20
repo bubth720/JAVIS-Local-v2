@@ -1,0 +1,59 @@
+{
+  "module": "JARVIS CORE",
+  "mission": "MVP-002",
+  "base": "7368f41bbcec389e4b76c99ea27819645d94a50d",
+  "branch": "feature/mvp-002-unified-interaction",
+  "tests": {
+    "total": 423,
+    "regression": 383,
+    "new": 40,
+    "failed": 0,
+    "errors": 0,
+    "ignored": 0
+  },
+  "lint": {
+    "historical_app": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 32
+    },
+    "preview": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 33
+    },
+    "mvp": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 36
+    },
+    "mvp2": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 40
+    },
+    "fixture": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 0
+    }
+  },
+  "apk_sha256": "1c8a633b4e8d1ffc921b49cc7ab8f8d10af40f633613fe44ccae84e09a369bb6",
+  "certificate_sha256": "9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3",
+  "package": "com.stark.jarvislocal.mvp002",
+  "native_unchanged_from_mvp001": true,
+  "model_downloaded": false,
+  "gguf_generation_validated": false,
+  "tts_actual_offline_audio_validated_here": false,
+  "tts_requires_airplane_and_user_confirmation": true,
+  "whisper_import_available": true,
+  "whisper_microphone_enabled": false,
+  "whisper_native_validated": false,
+  "binder_pilots_enabled": false,
+  "external_repos_modified": false,
+  "personal_installation": false,
+  "main_merged": false,
+  "legacy_scope_guard_failures": 5,
+  "mvp002_scope_guard": "PASS",
+  "ci_remote_status": "NOT_OBSERVED"
+}

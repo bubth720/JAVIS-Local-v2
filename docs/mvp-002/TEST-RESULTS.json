@@ -1,0 +1,308 @@
+{
+  "core": [
+    {
+      "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+      "timestamp": "2026-10-20T13:54:00",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "timestamp": "2026-10-20T13:54:13",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "timestamp": "2026-10-20T13:54:14",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+      "timestamp": "2026-10-20T13:54:16",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "timestamp": "2026-10-20T13:54:16",
+      "tests": 39,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "timestamp": "2026-10-20T13:54:20",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "timestamp": "2026-10-20T13:54:20",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+      "timestamp": "2026-10-20T13:54:20",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelInstallationTest",
+      "timestamp": "2026-10-20T13:54:32",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelManagerConcurrencyTest",
+      "timestamp": "2026-10-20T13:54:33",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.OfflineVoiceTest",
+      "timestamp": "2026-10-20T13:54:33",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.PdfImporterTest",
+      "timestamp": "2026-10-20T13:54:33",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "timestamp": "2026-10-20T13:54:34",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.PromptBudgetTest",
+      "timestamp": "2026-10-20T13:54:34",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "timestamp": "2026-10-20T13:54:34",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionInferenceLifecycleTest",
+      "timestamp": "2026-10-20T13:54:35",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.SettingsStoreTest",
+      "timestamp": "2026-10-20T13:54:35",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabActivityTest",
+      "timestamp": "2026-10-20T13:54:35",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "timestamp": "2026-10-20T13:54:39",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "timestamp": "2026-10-20T13:54:39",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "timestamp": "2026-10-20T13:54:40",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "timestamp": "2026-10-20T13:54:40",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "timestamp": "2026-10-20T13:54:40",
+      "tests": 39,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+      "timestamp": "2026-10-20T13:54:42",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "fixture": [
+    {
+      "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+      "timestamp": "2026-10-20T13:53:29",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "timestamp": "2026-10-20T13:53:42",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "timestamp": "2026-10-20T13:53:43",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+      "timestamp": "2026-10-20T13:53:43",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "preview": [
+    {
+      "class": "com.stark.jarvislocal.PreviewActivityTest",
+      "timestamp": "2026-10-20T13:55:51",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "mvp001": [
+    {
+      "class": "com.stark.jarvislocal.MvpActivityTest",
+      "timestamp": "2026-10-20T13:56:12",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.MvpModelStoreTest",
+      "timestamp": "2026-10-20T13:56:28",
+      "tests": 39,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.MvpRuntimeTest",
+      "timestamp": "2026-10-20T13:56:30",
+      "tests": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.MvpSafetyTest",
+      "timestamp": "2026-10-20T13:56:32",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "mvp002": [
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "timestamp": "2026-10-20T13:57:25",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "timestamp": "2026-10-20T13:57:37",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "timestamp": "2026-10-20T13:57:38",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "timestamp": "2026-10-20T13:57:38",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

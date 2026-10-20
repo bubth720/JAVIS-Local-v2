@@ -1,0 +1,16 @@
+{
+  "base": "7368f41bbcec389e4b76c99ea27819645d94a50d",
+  "unchanged_base_files": 190,
+  "allowed_existing_files": [
+    "AGENTS.md",
+    "app/build.gradle.kts",
+    "app/src/main/java/com/stark/jarvislocal/LocalTts.kt",
+    "app/src/mvp/java/com/stark/jarvislocal/MvpActivity.kt",
+    "app/src/mvp/java/com/stark/jarvislocal/MvpApplication.kt",
+    "app/src/mvp/java/com/stark/jarvislocal/MvpModelStore.kt",
+    "app/src/mvp/java/com/stark/jarvislocal/MvpRuntime.kt",
+    "docs/PROJECT_KNOWLEDGE.md"
+  ],
+  "jni_llama_whisper_db_schema_modelmanager_admission_binder_unchanged": true,
+  "dependencies_unchanged": true
+}

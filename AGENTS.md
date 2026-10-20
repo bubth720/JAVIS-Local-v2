@@ -422,3 +422,23 @@ Tests dédiés : `:app:testMvpUnitTest --tests '*Mvp*'`, assembleMvp et lintMvp 
 conserver les suites debug/fixture/Preview. Les doubles JVM/Robolectric ne prouvent
 pas la génération GGUF Android. Aucun modèle, téléchargement ou installation
 personnelle automatique dans le workflow MVP ; guide et kit via tools/mvp_kit.py.
+
+## Actualisation — MVP-002
+
+Base MVP-0017368f41bbcec389e4b76c99ea27819645d94a50d ; lire docs/mvp-002/.
+Variante mvp2 distincte `.mvp002`, minSdk24/ARM64, reprend les sources MVP avec
+conversation persistante optionnelle vers JarvisCore. Le mode MVP001 par défaut
+reste volatile. Aucun AppGraph/Binder/Whisper natif activé dans cette variante.
+Confirmer les souvenirs explicitement ; ne pas mémoriser automatiquement.
+La palette et le sous-ensemble avatar statique sont adaptés d'INTERFACE139bfdc,
+VOICE005K6a86d84 est une référence de contrat seulement ; aucun profil B/pack lu.
+TTS : voix française déclarée locale et installée, mode avion contrôlé avant
+initialisation/lecture, test entendu hors réseau attesté manuellement. READY
+seul n'est ni preuve de lecture ni preuve d'absence Wi-Fi. Lecture manuelle
+bornée300 caractères, aucune troncature/repli ; preuve révoquée à la fermeture.
+Whisper : import privé GGML >50Mio/<=160Mio validé séparément, mais micro désactivé
+sans permission tant que modèle/admission/fin native ne sont pas qualifiés.
+NEXUS/SERVICES/EVOLUTION sont des descriptions désactivées, jamais des résultats.
+Tests : testMvp2UnitTest --tests '*Mvp2*', assembleMvp2/lintMvp2, puis conserver
+les suites CORE, fixture, Preview et MVP001. Aucun test simulé ne qualifie JNI,
+Whisper ou audition physique ; ne pas installer personnellement ni fusionner.

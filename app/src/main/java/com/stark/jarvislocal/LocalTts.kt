@@ -84,7 +84,8 @@ class LocalTts internal constructor(private val factory: ((Boolean) -> Unit) -> 
 }
 
 internal fun offlineFrenchVoice(voices: Set<Voice>): Voice? =
-    voices.firstOrNull { it.locale.language == "fr" && !it.isNetworkConnectionRequired }
+    voices.firstOrNull { it.locale.language == "fr" && !it.isNetworkConnectionRequired &&
+        TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED !in it.features.orEmpty() }
 
 private class AndroidSpeechEngine(context: Context, onInit: (Boolean) -> Unit) : SpeechEngine {
     private val tts = TextToSpeech(context) { status -> onInit(status == TextToSpeech.SUCCESS) }

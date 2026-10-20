@@ -14,21 +14,24 @@ internal data class MvpModelManifest(val provenance: String, val license: String
         require(provenance.isNotBlank() && provenance.length <= 512) { "Provenance publique requise (512 caractères maximum)" }
         require(license.isNotBlank() && license.length <= 256) { "Licence requise (256 caractères maximum)" }
         require(sha256.matches(Regex("[a-f0-9]{64}"))) { "SHA-256 attendu requis : 64 caractères hexadécimaux minuscules" }
-        require(bytes > policy.minimum && bytes <= policy.maximum) { "Taille autorisée : plus de 100 Mio et au plus 512 Mio" }
+        require(bytes > policy.minimum && bytes <= policy.maximum) { "Taille autorisée : plus de ${policy.minimum} et au plus ${policy.maximum} octets" }
     }
 }
+internal enum class MvpModelFormat { GGUF, WHISPER_GGML }
 internal data class MvpImportPolicy(val minimum: Long = 100L * 1024 * 1024,
     val maximum: Long = 512L * 1024 * 1024, val reserve: Long = 256L * 1024 * 1024)
 
 /** Separate, private MVP store. No asset, legacy model, SQLite or production preference mutation. */
 internal class MvpModelStore(private val root: File, private val policy: MvpImportPolicy = MvpImportPolicy(),
+    private val format: MvpModelFormat = MvpModelFormat.GGUF,
     private val freeBytes: () -> Long = { root.usableSpace }) {
     private val metadata get() = AtomicFile(File(root, "selected.json"))
-    private fun path(m: MvpModelManifest) = File(root, m.sha256 + ".gguf")
+    private fun path(m: MvpModelManifest) = File(root, m.sha256 + if (format == MvpModelFormat.GGUF) ".gguf" else ".bin")
     @Synchronized fun selected(): MvpModelManifest? {
         if (!root.exists()) return null
         return try {
             val j = JSONObject(metadata.openRead().bufferedReader().use { it.readText() })
+            require(j.optString("format", MvpModelFormat.GGUF.name) == format.name) { "Format de manifeste incompatible" }
             require(j.getInt("version") == 1) { "Version de manifeste inconnue" }
             MvpModelManifest(j.getString("provenance"), j.getString("license"), j.getString("sha256"), j.getLong("bytes"))
                 .also { it.validate(policy); require(quickValid(it)) { "Modèle sélectionné incomplet" } }
@@ -75,7 +78,7 @@ internal class MvpModelStore(private val root: File, private val policy: MvpImpo
             else check(part.renameTo(destination)) { "Installation atomique impossible" }
             checkCancelled()
             val json = JSONObject().put("version", 1).put("provenance", m.provenance).put("license", m.license)
-                .put("sha256", m.sha256).put("bytes", m.bytes).toString().toByteArray(Charsets.UTF_8)
+                .put("format", format.name).put("sha256", m.sha256).put("bytes", m.bytes).toString().toByteArray(Charsets.UTF_8)
             val atomic = metadata
             val output = atomic.startWrite()
             try {
@@ -102,10 +105,15 @@ internal class MvpModelStore(private val root: File, private val policy: MvpImpo
                 val n = input.read(header, position, header.size - position)
                 require(n > 0) { "En-tête GGUF tronqué" }; position += n
             }
-            require(header.copyOfRange(0, 4).contentEquals(byteArrayOf(0x47,0x47,0x55,0x46))) { "Signature GGUF absente" }
             val h = ByteBuffer.wrap(header).order(ByteOrder.LITTLE_ENDIAN)
-            val version = h.getInt(4); val tensors = h.getLong(8); val values = h.getLong(16)
-            require(version in 2..3 && tensors in 1..1_000_000 && values in 1..1_000_000) { "En-tête GGUF non pris en charge" }
+            if (format == MvpModelFormat.GGUF) {
+                require(header.copyOfRange(0, 4).contentEquals(byteArrayOf(0x47,0x47,0x55,0x46))) { "Signature GGUF absente" }
+                val version = h.getInt(4); val tensors = h.getLong(8); val values = h.getLong(16)
+                require(version in 2..3 && tensors in 1..1_000_000 && values in 1..1_000_000) { "En-tête GGUF non pris en charge" }
+            } else {
+                require(h.getInt(0) == 0x67676d6c && h.getInt(4) in 1..60000 && h.getInt(8) in 1..3000 &&
+                    h.getInt(12) in 1..1536 && h.getInt(16) in 1..32 && h.getInt(20) in 1..32) { "En-tête Whisper GGML non pris en charge" }
+            }
             val digest = MessageDigest.getInstance("SHA-256"); digest.update(header)
             val buffer = ByteArray(1024 * 1024)
             try {

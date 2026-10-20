@@ -11,9 +11,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 
 /** Explicit actions only; no import/download/load on opening or rotation. */
-class MvpActivity : AppCompatActivity() {
-    private val runtime get() = (application as MvpApplication).runtime
-    private val fields = mutableMapOf<String, EditText>()
+open class MvpActivity : AppCompatActivity() {
+    internal val runtime get() = (application as MvpApplication).runtime
+    protected val fields = mutableMapOf<String, EditText>()
     private val controls = mutableListOf<Button>()
     private lateinit var status: TextView
     private lateinit var transcript: TextView
@@ -39,11 +39,21 @@ class MvpActivity : AppCompatActivity() {
             view.setPadding(padding + bars.left, padding + bars.top, padding + bars.right, padding + bars.bottom)
             insets
         }
-        layout.addView(TextView(this).apply { text = getString(R.string.mvp_intro); textSize = 18f })
+        decorate(layout)
+        layout.addView(TextView(this).apply { text = introText(); textSize = 18f })
         status = TextView(this); layout.addView(status)
-        fun field(key: String, hint: Int, initial: String = ""): EditText = EditText(this).also {
+        val modelForm = if (compactUi) LinearLayout(this).also { form ->
+            form.orientation = LinearLayout.VERTICAL; form.visibility = android.view.View.GONE
+            layout.addView(Button(this).apply {
+                text = "Modèles et paramètres"
+                setOnClickListener { form.visibility = if (form.visibility == android.view.View.GONE)
+                    android.view.View.VISIBLE else android.view.View.GONE }
+            })
+            layout.addView(form)
+        } else layout
+        fun field(key: String, hint: Int, initial: String = "", parent: LinearLayout = modelForm): EditText = EditText(this).also {
             it.hint = getString(hint); it.setText(savedInstanceState?.getString(key) ?: initial)
-            fields[key] = it; layout.addView(it)
+            fields[key] = it; parent.addView(it)
         }
         field("provenance", R.string.mvp_provenance)
         field("license", R.string.mvp_license)
@@ -74,14 +84,21 @@ class MvpActivity : AppCompatActivity() {
         }
         button(R.string.mvp_load) { if (!runtime.load(settings())) toast("Opération déjà active") }
         button(R.string.mvp_unload) { if (!runtime.unload()) toast("Opération déjà active") }
-        val question = field("question", R.string.mvp_question)
+        val question = field("question", R.string.mvp_question, parent = layout)
         button(R.string.mvp_send) {
-            if (runtime.send(question.text.toString(), settings())) question.text.clear() else toast("Envoi refusé ou opération déjà active")
+            val text = question.text.toString()
+            confirmSend(text) {
+                try {
+                    if (runtime.send(text, settings())) question.text.clear() else toast("Envoi refusé ou opération déjà active")
+                } catch (failure: Exception) { toast(failure.message ?: "Envoi refusé") }
+            }
         }
         Button(this).also { b ->
             b.setText(R.string.mvp_cancel); b.setOnClickListener { runtime.cancel() }; layout.addView(b)
         }
+        if (!compactUi) addInteractionControls(layout)
         transcript = TextView(this).apply { setTextIsSelectable(true) }; layout.addView(transcript)
+        if (compactUi) addInteractionControls(layout)
         if (savedInstanceState?.getBoolean("pending") == true) {
             try { pendingManifest = MvpModelManifest(fields.getValue("provenance").text.toString(), fields.getValue("license").text.toString(),
                 fields.getValue("sha").text.toString(), fields.getValue("bytes").text.toString().toLong()) }
@@ -92,6 +109,7 @@ class MvpActivity : AppCompatActivity() {
                 runtime.state.collect { state ->
                     status.text = state.detail + (state.model?.let { "\n${it.provenance}\nLicence : ${it.license}\nSHA-256 : ${it.sha256}\n${it.bytes} octets" } ?: "")
                     controls.forEach { it.isEnabled = !state.busy }
+                    renderInteraction(state)
                     transcript.text = state.messages.joinToString("\n\n") { "${it.role} : ${it.text}" }
                 }
             }
@@ -106,5 +124,11 @@ class MvpActivity : AppCompatActivity() {
         if (!isChangingConfigurations) runtime.cancel("Application en arrière-plan : arrêt demandé, attente de fin native.")
         super.onStop()
     }
-    private fun toast(message: String) { Toast.makeText(this, message, Toast.LENGTH_LONG).show() }
+    protected open val compactUi: Boolean = false
+    protected open fun introText(): String = getString(R.string.mvp_intro)
+    protected open fun decorate(layout: LinearLayout) { }
+    protected open fun addInteractionControls(layout: LinearLayout) { }
+    internal open fun renderInteraction(state: MvpState) { }
+    protected open fun confirmSend(text: String, send: () -> Unit) { send() }
+    protected fun toast(message: String) { Toast.makeText(this, message, Toast.LENGTH_LONG).show() }
 }

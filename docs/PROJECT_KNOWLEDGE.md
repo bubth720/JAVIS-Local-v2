@@ -985,3 +985,23 @@ Les gardes RAM/batterie/température s'appliquent au MVP. Elles ne prouvent pas 
 arrêt natif instantané et l'API24 utilise la température batterie comme proxy,
 pas une mesure thermique SoC. La qualification réelle nécessite Android ARM64
 et un GGUF autorisé/compatible ; ne pas confondre build et inférence réussie.
+
+## Évolution — MVP-002
+
+Mvp2Application compose une unique instance du contrôleur historique et de JarvisCore,
+LocalDatabase/SettingsStore/RagEngine, via CoreConversationAdapter. Le port de
+conversation est optionnel dans le runtime partagé ; la composition persistante
+n'écrase pas l'identifiant de session ouvert par CORE. Historique et mémoires
+restent dans SQLite schema2, sans migration ni suppression ; une commande mémoire
+est explicite et confirmée par l'UI. Le package distinct ne transfère aucune
+base d'une autre application. Les écritures mémoire/messages restent séparées.
+L'avatar est un vector drawable statique adapté d'INTERFACE, sans moteur ni horloge.
+LocalTts refuse aussi une voix marquée non installée. Mvp2Speech sépare voix prête,
+phrase test, attestation utilisateur, commande de lecture et arrêt ; aucun reçu
+acoustique automatique. Le mode avion n'atteste pas seul l'absence de Wi-Fi.
+Les imports vocaux privés restent séparés des GGUF ; validation ≠ qualification.
+Le microphone est refusé dans cette livraison et la saisie textuelle reste active.
+Le chemin Whisper historique est inchangé, son activation/admission sûre et son
+modèle doivent être qualifiés avant raccordement. Aucun pilote VOICE005K/Binder
+ou modèle/profil vocal externe n'est chargé. Voir docs/mvp-002/ pour les résultats
+réellement obtenus et les limites physiques ; pas de présomption de JNI fonctionnel.

@@ -1,0 +1,48 @@
+name: MVP 002 isolated Android kit
+on:
+  push:
+    branches: [feature/mvp-002-unified-interaction]
+    paths: ['app/**', 'tools/mvp2_kit.py', 'tools/check-mvp-002.py', '.github/workflows/mvp-002.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mvp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.10.2'}
+      - name: Android tools only — no models
+        run: python3 tools/setup-preview-android.py
+      - name: Preserve historical CORE
+        run: |
+          git fetch --no-tags --depth=1 origin 7368f41bbcec389e4b76c99ea27819645d94a50d
+          python3 tools/check-mvp-002.py
+      - name: Historical and Binder fixture regression
+        run: >-
+          gradle -PincludeP2Fixture=true :app:testDebugUnitTest :p2-client:testDebugUnitTest
+          :app:assembleDebug :app:lintDebug :p2-client:assembleDebug :p2-client:lintDebug
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Preview regression
+        run: >-
+          gradle :app:testPreviewUnitTest --tests '*PreviewActivityTest*' :app:assemblePreview :app:lintPreview
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: MVP tests, APK and lint
+        run: >-
+          gradle :app:testMvpUnitTest --tests '*Mvp*' :app:assembleMvp :app:lintMvp
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: MVP002 tests, APK and lint
+        run: >-
+          gradle :app:testMvp2UnitTest --tests '*Mvp2*' :app:assembleMvp2 :app:lintMvp2
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Inspect isolated APK and package evidence
+        run: python3 tools/mvp2_kit.py --sdk "$ANDROID_HOME" --out mvp-kit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: JARVIS-MVP-002-Android
+          path: mvp-kit/*
+          if-no-files-found: error

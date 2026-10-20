@@ -1,0 +1,10 @@
+<resources>
+    <!-- Palette adapted from JARVIS-INTERFACE JarvisTheme @139bfdc; Views, no Compose module. -->
+    <style name="Theme.JarvisMvp2" parent="Theme.JarvisLocal">
+        <item name="android:windowBackground">#080E18</item>
+        <item name="android:colorAccent">#62E6DF</item>
+        <item name="colorPrimary">#62E6DF</item>
+        <item name="colorOnPrimary">#003734</item>
+        <item name="android:textColorPrimary">#E4EEF8</item>
+    </style>
+</resources>

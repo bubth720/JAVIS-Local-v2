@@ -1,0 +1,22 @@
+[
+  {
+    "repository": "bubth720/JARVIS-INTERFACE",
+    "branch": "feature/interface-avatar-001",
+    "commit": "139bfdc4aac5d2fc9b841c5b804c3b89bfc57ec6",
+    "files_sha256": {
+      "app/src/main/java/com/jarvis/interfaceapp/ui/JarvisTheme.kt": "86c5a9996532baa04dfef8afbfc8e7933c3f885c70497ef591f0bdf3b8da9d48",
+      "app/src/main/java/com/jarvis/interfaceapp/avatar/AvatarArtwork.kt": "03cb50bc4c05235d3ad609eff24b4ab67611193f840dfb6e4f50dd819a6daf71"
+    },
+    "read_only": true
+  },
+  {
+    "repository": "bubth720/JARVIS-VOICE",
+    "branch": "feat/voice-core-bridge-005k",
+    "commit": "6a86d847ff57fd9f695ee87eb5bff21c0c8862ca",
+    "files_sha256": {
+      "docs/mission005k/CONTRAT-BRIDGE.md": "50d4546ada5129f204185b1272e80ed7a1fd8f92c4c1008c5aad4c2b8fe328e6",
+      "docs/mission005k/RESULTATS.md": "5be987b61fdbb61bb1ab550696bd0031885149f4be1ccf75a3a05826796e96e0"
+    },
+    "read_only": true
+  }
+]

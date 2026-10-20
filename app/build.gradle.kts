@@ -32,12 +32,22 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("debug")
         }
+        create("mvp2") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".mvp002"
+            versionNameSuffix = "-mvp002"
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("debug")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    sourceSets.getByName("mvp2").java.srcDir("src/mvp/java")
+    sourceSets.getByName("mvp2").res.srcDir("src/mvp/res")
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
