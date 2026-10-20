@@ -67,3 +67,13 @@ public vérifié pour la conversation et une voix Android installée testée hor
 Le microphone demande encore une chaîne Recorder/Whisper coordonnée sans seconde
 résidence et des preuves de load/release ; l'import seul ne débloque jamais cette
 fonction. Aucun essai personnel ni activation sensible implicite. Aucune fusion main.
+
+## Kit local vérifié
+
+Source applicative : `e9cf56d775bed7d9cde651ad87b554b4be8e67a0` ; source_dirty=false.
+APK SHA-256 : `1c8a633b4e8d1ffc921b49cc7ab8f8d10af40f633613fe44ccae84e09a369bb6`.
+Certificat public SHA-256 : `9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3`.
+ZIP : JARVIS-MVP-002-kit-e9cf56d.zip ; SHA-256
+`2c68421bde833054c2c149cf8e537abd6ed981903d57da37ef87306e2651c1ce`.
+Voir LOCAL-APK-INFO.json. Aucun son, modèle natif ou installation personnelle
+n'est validé par ce kit. La CI distante n'est pas présumée réussie.
