@@ -1,0 +1,14 @@
+{
+  "observed_utc": "2026-10-21T17:04:24.982707+00:00",
+  "repository": "bubth720/JAVIS-Local-v2",
+  "branch": "test/mvp-004-native-qualification",
+  "published_preparation_source_commit": "c10444e8f78047b593aebc8eab37ed7f6e01b859",
+  "remote_head_at_source_publication": "c10444e8f78047b593aebc8eab37ed7f6e01b859",
+  "observation": "Before subsequent evidence-only commit",
+  "local_apk_sha256": "d82d3a6c4570cc2fbe3c9da021f6684f6c711d1e8af635adbdf9fd677f684dd1",
+  "local_apk_identical_to_MVP003": true,
+  "certificate_unchanged": true,
+  "model_downloaded": false,
+  "native_qualified": false,
+  "main_merged": false
+}
