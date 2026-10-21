@@ -1,0 +1,32 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+Traceback (most recent call last):
+  File "/workspace/JAVIS-Local-v2/tools/mvp3_kit.py", line 160, in <module>
+    main()
+  File "/workspace/JAVIS-Local-v2/tools/mvp3_kit.py", line 64, in main
+    assert 'Verification successful' in alignment_check
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+{
+  "kind": "Linux Android build-tools inspection, not Android runtime or JNI",
+  "tests": 3,
+  "passed": 2,
+  "failed": 1,
+  "cases": [
+    {
+      "case": "authentic_signed_candidate_accepted",
+      "passed": false,
+      "exit": 1
+    },
+    {
+      "case": "other_signed_variant_refused",
+      "passed": true,
+      "exit": 1
+    },
+    {
+      "case": "modified_signed_archive_refused",
+      "passed": true,
+      "exit": 1
+    }
+  ]
+}

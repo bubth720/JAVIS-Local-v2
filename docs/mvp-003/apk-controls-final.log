@@ -1,0 +1,23 @@
+{
+  "kind": "Linux Android build-tools inspection, not Android runtime or JNI",
+  "tests": 3,
+  "passed": 3,
+  "failed": 0,
+  "cases": [
+    {
+      "case": "authentic_signed_candidate_accepted",
+      "passed": true,
+      "exit": 0
+    },
+    {
+      "case": "other_signed_variant_refused",
+      "passed": true,
+      "exit": 1
+    },
+    {
+      "case": "modified_signed_archive_refused",
+      "passed": true,
+      "exit": 1
+    }
+  ]
+}

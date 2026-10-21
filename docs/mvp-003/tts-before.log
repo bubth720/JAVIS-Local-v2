@@ -1,0 +1,56 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preMvp2Build UP-TO-DATE
+> Task :app:checkMvp2AarMetadata UP-TO-DATE
+> Task :app:generateMvp2ResValues UP-TO-DATE
+> Task :app:mapMvp2SourceSetPaths
+> Task :app:generateMvp2Resources
+> Task :app:packageMvp2Resources
+> Task :app:createMvp2CompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksMvp2 UP-TO-DATE
+> Task :app:parseMvp2LocalResources
+> Task :app:processMvp2MainManifest UP-TO-DATE
+> Task :app:processMvp2Manifest UP-TO-DATE
+> Task :app:processMvp2ManifestForPackage UP-TO-DATE
+> Task :app:javaPreCompileMvp2 UP-TO-DATE
+> Task :app:preMvp2UnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileMvp2UnitTest UP-TO-DATE
+> Task :app:mergeMvp2Shaders UP-TO-DATE
+> Task :app:compileMvp2Shaders NO-SOURCE
+> Task :app:generateMvp2Assets UP-TO-DATE
+> Task :app:mergeMvp2Assets UP-TO-DATE
+> Task :app:mergeMvp2Resources
+> Task :app:processMvp2Resources
+> Task :app:packageMvp2UnitTestForUnitTest
+> Task :app:generateMvp2UnitTestConfig
+> Task :app:compileMvp2Kotlin
+> Task :app:compileMvp2JavaWithJavac NO-SOURCE
+> Task :app:processMvp2JavaRes UP-TO-DATE
+> Task :app:bundleMvp2ClassesToRuntimeJar
+> Task :app:bundleMvp2ClassesToCompileJar
+> Task :app:compileMvp2UnitTestKotlin
+> Task :app:compileMvp2UnitTestJavaWithJavac NO-SOURCE
+> Task :app:processMvp2UnitTestJavaRes UP-TO-DATE
+
+> Task :app:testMvp2UnitTest FAILED
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+Mvp2SpeechTest > observedAirplaneOffRevokesProbeAndProofPermanently FAILED
+    java.lang.AssertionError at Mvp2SpeechTest.kt:59
+
+1 test completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:testMvp2UnitTest'.
+> There were failing tests. See the report at: file:///workspace/JAVIS-Local-v2/app/build/reports/tests/testMvp2UnitTest/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+BUILD FAILED in 45s
+26 actionable tasks: 13 executed, 13 up-to-date

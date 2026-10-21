@@ -2,11 +2,17 @@ package com.stark.jarvislocal
 
 /** READY is voice metadata, not acoustic/offline proof. Human check is session-scoped and explicit. */
 internal class Mvp2Speech(private val local: LocalTts, private val airplaneMode: () -> Boolean = { false }) {
-    private fun offline(): Boolean = try { airplaneMode() } catch (_: Exception) { false }
+    private fun offline(): Boolean {
+        val allowed = try { airplaneMode() } catch (_: Exception) { false }
+        // An observed loss of the prerequisite permanently invalidates this probe/session.
+        // A later airplane-mode flag alone must never resurrect the previous human confirmation.
+        if (!allowed) { verified = false; probeAccepted = false }
+        return allowed
+    }
     private var probeAccepted = false
     private var verified = false
     val status get() = local.status
-    val verifiedByUser get() = verified && local.status.value == TtsStatus.READY && offline()
+    val verifiedByUser get() = offline() && verified && local.status.value == TtsStatus.READY
     fun initialize(): Boolean {
         verified = false; probeAccepted = false
         if (!offline()) { local.shutdown(); return false }

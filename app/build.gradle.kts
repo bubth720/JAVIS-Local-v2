@@ -39,6 +39,13 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("debug")
         }
+        create("mvp3") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".mvp003"
+            versionNameSuffix = "-mvp003-diagnostic"
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("debug")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -48,6 +55,9 @@ android {
 
     sourceSets.getByName("mvp2").java.srcDir("src/mvp/java")
     sourceSets.getByName("mvp2").res.srcDir("src/mvp/res")
+
+    sourceSets.getByName("mvp3").java.srcDirs("src/mvp/java", "src/mvp2/java")
+    sourceSets.getByName("mvp3").res.srcDirs("src/mvp/res", "src/mvp2/res")
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

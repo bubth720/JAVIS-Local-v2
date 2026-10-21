@@ -1,0 +1,250 @@
+{
+  "module": "JARVIS CORE",
+  "mission": "MVP-003",
+  "branch": "release/mvp-003-android-candidate",
+  "base": "c7fec293791dc0b30c83d712e0fae0bbf59736a0",
+  "collected_utc": "2026-10-20T18:59:04.633857+00:00",
+  "classification": "DIAGNOSTIC_NOT_OPERATIONAL",
+  "gradle_full_run": {
+    "exit_code": 0,
+    "duration": "4m54s",
+    "tasks_executed": 303,
+    "tests": {
+      "tests": 439,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "groups": {
+      "core": {
+        "tests": 263,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "fixture": {
+        "tests": 36,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "preview": {
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "mvp1": {
+        "tests": 72,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "mvp2": {
+        "tests": 41,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "mvp3": {
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "lint": {
+    "debug": {
+      "counts": {
+        "Error": 0,
+        "Fatal": 0,
+        "Warning": 32
+      },
+      "warning_ids": [
+        "Autofill",
+        "ChromeOsAbiSupport",
+        "DataExtractionRules",
+        "GradleDependency",
+        "HardcodedText",
+        "MissingApplicationIcon",
+        "NotifyDataSetChanged",
+        "Overdraw",
+        "SetTextI18n",
+        "SmallSp",
+        "TrustAllX509TrustManager",
+        "UnusedResources"
+      ]
+    },
+    "fixture": {
+      "counts": {
+        "Error": 0,
+        "Fatal": 0,
+        "Warning": 0
+      },
+      "warning_ids": []
+    },
+    "preview": {
+      "counts": {
+        "Error": 0,
+        "Fatal": 0,
+        "Warning": 33
+      },
+      "warning_ids": [
+        "Autofill",
+        "ChromeOsAbiSupport",
+        "DataExtractionRules",
+        "GradleDependency",
+        "HardcodedText",
+        "MissingApplicationIcon",
+        "NotifyDataSetChanged",
+        "Overdraw",
+        "SetTextI18n",
+        "SmallSp",
+        "TrustAllX509TrustManager",
+        "UnusedResources"
+      ]
+    },
+    "mvp1": {
+      "counts": {
+        "Error": 0,
+        "Fatal": 0,
+        "Warning": 36
+      },
+      "warning_ids": [
+        "Autofill",
+        "ChromeOsAbiSupport",
+        "DataExtractionRules",
+        "GradleDependency",
+        "HardcodedText",
+        "MissingApplicationIcon",
+        "NotifyDataSetChanged",
+        "Overdraw",
+        "SetTextI18n",
+        "SmallSp",
+        "TrustAllX509TrustManager",
+        "UnusedResources",
+        "UsableSpace"
+      ]
+    },
+    "mvp2": {
+      "counts": {
+        "Error": 0,
+        "Fatal": 0,
+        "Warning": 40
+      },
+      "warning_ids": [
+        "Autofill",
+        "ChromeOsAbiSupport",
+        "DataExtractionRules",
+        "GradleDependency",
+        "HardcodedText",
+        "MissingApplicationIcon",
+        "NotifyDataSetChanged",
+        "Overdraw",
+        "SetTextI18n",
+        "SmallSp",
+        "TrustAllX509TrustManager",
+        "UnusedResources",
+        "UsableSpace"
+      ]
+    },
+    "mvp3": {
+      "counts": {
+        "Error": 0,
+        "Fatal": 0,
+        "Warning": 40
+      },
+      "warning_ids": [
+        "Autofill",
+        "ChromeOsAbiSupport",
+        "DataExtractionRules",
+        "GradleDependency",
+        "HardcodedText",
+        "MissingApplicationIcon",
+        "NotifyDataSetChanged",
+        "Overdraw",
+        "SetTextI18n",
+        "SmallSp",
+        "TrustAllX509TrustManager",
+        "UnusedResources",
+        "UsableSpace"
+      ]
+    }
+  },
+  "apk_inspection_tests": {
+    "kind": "Linux Android build-tools inspection, not Android runtime or JNI",
+    "tests": 3,
+    "passed": 3,
+    "failed": 0,
+    "cases": [
+      {
+        "case": "authentic_signed_candidate_accepted",
+        "passed": true,
+        "exit": 0
+      },
+      {
+        "case": "other_signed_variant_refused",
+        "passed": true,
+        "exit": 1
+      },
+      {
+        "case": "modified_signed_archive_refused",
+        "passed": true,
+        "exit": 1
+      }
+    ]
+  },
+  "preservation": "PRESERVATION.json",
+  "earlier_failed_checks": [
+    {
+      "case": "TTS regression before correction",
+      "tests": 1,
+      "failed": 1,
+      "proof": "tts-before.log"
+    },
+    {
+      "case": "APK inspector wording assumption",
+      "passed": 2,
+      "failed": 1,
+      "proof": "apk-controls-first.log",
+      "cause": "zipalign exited 0 but printed succesful"
+    },
+    {
+      "case": "APK inspector assets assumption",
+      "passed": 2,
+      "failed": 1,
+      "proof": "apk-controls-second.log",
+      "cause": "112 historical PDFBox assets were not in initial allowlist; now compared byte for byte to pinned AAR"
+    }
+  ],
+  "legacy_guards": {
+    "failed": 6,
+    "passed": 0,
+    "proof": "LEGACY-GUARDS.json",
+    "classification": "Exact old-scope guards not relaxed; five already failed on delivered MVP002; MVP002 guard rejects added variant"
+  },
+  "not_executed": [
+    "Android instrumentation/emulator",
+    "Personal devices POCO X8 Pro/Redmi Pad SE",
+    "Real llama JNI/GGUF generation",
+    "Native LLM Linux execution",
+    "TTS audibility and service runtime network observation",
+    "Whisper microphone/transcription",
+    "Actual process kill/reboot/power-loss",
+    "Physical RAM/latency/thermal measurement"
+  ],
+  "blockers": [
+    "No authorized selected public GGUF",
+    "No Android emulator/system image/KVM available",
+    "No personal device access/installation authorized",
+    "Native stop not attested by historical engine; drain required",
+    "TTS external-service offline behavior unqualified"
+  ],
+  "permissions_changed": false,
+  "historical_native_dependencies_changed": false,
+  "model_downloaded_or_loaded": false,
+  "personal_device_used": false,
+  "main_merged": false,
+  "remote_ci_status": "NOT_OBSERVED"
+}

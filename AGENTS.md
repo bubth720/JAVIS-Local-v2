@@ -442,3 +442,19 @@ NEXUS/SERVICES/EVOLUTION sont des descriptions désactivées, jamais des résult
 Tests : testMvp2UnitTest --tests '*Mvp2*', assembleMvp2/lintMvp2, puis conserver
 les suites CORE, fixture, Preview et MVP001. Aucun test simulé ne qualifie JNI,
 Whisper ou audition physique ; ne pas installer personnellement ni fusionner.
+
+## Actualisation — MVP-003
+
+Base MVP002 `c7fec293791dc0b30c83d712e0fae0bbf59736a0`. Lire docs/mvp-003/.
+Variante mvp3 distincte `.mvp003`, signature debug, marquée diagnostic ; pas de
+GGUF, de génération native Android ni d'appareil qualifié par une compilation.
+Aucun modèle/micro/Binder/persona activé automatiquement. Rejouer les suites
+historiques et MVP003 ; `tools/check-mvp-003.py` protège la base exacte,
+`tools/mvp3_kit.py` contrôle signature, permissions, composants, ABI et natifs.
+Ne pas affaiblir les anciens gardes absolus : consigner leurs échecs de périmètre.
+Une perte observée du mode avion révoque le test TTS et sa confirmation ; son
+retour ne rétablit pas la preuve. Le service TTS externe et un changement de
+réseau non observé ne sont pas qualifiés par ce contrôle. Aucun effacement,
+installation personnelle ou migration inter-packages ; retour arrière en
+conservant les apps et données. Qualification GGUF/appareils et signature
+stable restent des étapes distinctes ; maintenir ces instructions à jour.

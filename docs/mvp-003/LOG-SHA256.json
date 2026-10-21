@@ -1,0 +1,37 @@
+{
+  "normalization": "Trailing whitespace and trailing blank lines removed only; original logs retained outside Git. Both hashes recorded.",
+  "logs": {
+    "apk-controls-final.log": {
+      "original_sha256": "8db73a379467dfd6fa201997c2da98b330ac02e202961784a514cb7c923c3f6d",
+      "stored_sha256": "8db73a379467dfd6fa201997c2da98b330ac02e202961784a514cb7c923c3f6d"
+    },
+    "apk-controls-first.log": {
+      "original_sha256": "68da97a70be4b406b8bee8fd15ca944e111dc3e854b53b9179a237c2db4c2969",
+      "stored_sha256": "68da97a70be4b406b8bee8fd15ca944e111dc3e854b53b9179a237c2db4c2969"
+    },
+    "apk-controls-second.log": {
+      "original_sha256": "7d68696b33c3946d53bd2bd1b5450c03f164a4dd76592968e48d1bf3e04b995c",
+      "stored_sha256": "7d68696b33c3946d53bd2bd1b5450c03f164a4dd76592968e48d1bf3e04b995c"
+    },
+    "focused-validation.log": {
+      "original_sha256": "4e25d241d080aad3d5318293e93d5e3127bf917f6524018e7a09da2a1e2985e2",
+      "stored_sha256": "98f6b5eec652cd043febd0203f5474f64a4e75602889bcbd26db89a11d6f7960"
+    },
+    "gradle-version.txt": {
+      "original_sha256": "eec6f194ca6448435fcbd52ba3df91d418bbf9fe5efab3f80479fde048555c42",
+      "stored_sha256": "641061a23e7c3e2379a5188d882898896b9967a2e9e310e46f2056fdeb086301"
+    },
+    "java-version.txt": {
+      "original_sha256": "1e1cab53ed086f57167425aeedd4b016acb0d64b289d15f58933136c1e393701",
+      "stored_sha256": "1e1cab53ed086f57167425aeedd4b016acb0d64b289d15f58933136c1e393701"
+    },
+    "tts-before.log": {
+      "original_sha256": "221bc0ae62270f6903b32ab7c4375a7913346a48a830a1b8ad5d54edecf1af44",
+      "stored_sha256": "28732b273b3cb398ac13814c625dbb45279bfd896ec7400060ad4030fd3f83d1"
+    },
+    "validation.log": {
+      "original_sha256": "8d8811bfbab36d3ad4dc95ed21bba2a377cbe9a3c7878095e6265b0ce4cdaed4",
+      "stored_sha256": "7c7cbffafaa09391accf241dce533701f9082fa69525626b43cfb4077b04108d"
+    }
+  }
+}

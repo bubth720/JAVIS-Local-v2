@@ -1,0 +1,54 @@
+name: MVP 003 diagnostic isolated Android kit
+on:
+  push:
+    branches: [release/mvp-003-android-candidate]
+    paths: ['app/**', 'tools/mvp3_kit.py', 'tools/test-mvp3-apk.py', 'tools/check-mvp-003.py', '.github/workflows/mvp-003.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mvp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.10.2'}
+      - name: Android tools only — no models
+        run: python3 tools/setup-preview-android.py
+      - name: Preserve historical CORE
+        run: |
+          git fetch --no-tags --depth=1 origin c7fec293791dc0b30c83d712e0fae0bbf59736a0
+          python3 tools/check-mvp-003.py
+      - name: Historical and Binder fixture regression
+        run: >-
+          gradle -PincludeP2Fixture=true :app:testDebugUnitTest :p2-client:testDebugUnitTest
+          :app:assembleDebug :app:lintDebug :p2-client:assembleDebug :p2-client:lintDebug
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Preview regression
+        run: >-
+          gradle :app:testPreviewUnitTest --tests '*PreviewActivityTest*' :app:assemblePreview :app:lintPreview
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: MVP tests, APK and lint
+        run: >-
+          gradle :app:testMvpUnitTest --tests '*Mvp*' :app:assembleMvp :app:lintMvp
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: MVP002 tests, APK and lint
+        run: >-
+          gradle :app:testMvp2UnitTest --tests '*Mvp2*' :app:assembleMvp2 :app:lintMvp2
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: MVP003 qualification software only
+        run: >-
+          gradle :app:testMvp3UnitTest --tests '*Mvp3*' :app:assembleMvp3 :app:lintMvp3
+          --no-daemon --max-workers=4 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Signed APK negative controls — no installation
+        run: python3 tools/test-mvp3-apk.py --sdk "$ANDROID_HOME" --report "$RUNNER_TEMP/mvp3-apk-tests.json"
+      - name: Inspect isolated APK and package evidence
+        run: python3 tools/mvp3_kit.py --sdk "$ANDROID_HOME" --out mvp-kit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: JARVIS-MVP-003-Android
+          path: mvp-kit/*
+          if-no-files-found: error

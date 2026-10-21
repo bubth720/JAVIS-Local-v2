@@ -1,0 +1,16 @@
+{
+  "status": "NO_MODEL_SELECTED_OR_BUNDLED",
+  "qualification": "BLOCKED_PENDING_AUTHORIZED_PUBLIC_MODEL_AND_ANDROID_RUNTIME",
+  "provenance_url": null,
+  "repository_revision": null,
+  "filename": null,
+  "license": null,
+  "expected_sha256": null,
+  "actual_sha256": null,
+  "exact_bytes": null,
+  "gguf_architecture": null,
+  "historical_backend_compatibility": "UNVERIFIED",
+  "automatic_download": false,
+  "policy": {"minimum_bytes_exclusive": 104857600, "maximum_bytes_inclusive": 536870912, "disk_reserve_bytes": 268435456},
+  "note": "Template only. Fill and approve before qualification; never invent provenance or use personal data."
+}

@@ -26,7 +26,7 @@ class Mvp2Activity : MvpActivity() {
         }
     }
     override val compactUi = true
-    override fun introText() = "JARVIS MVP 002 — conversation CORE et historique SQLite. Souvenirs uniquement sur confirmation. Avatar V1 statique. Microphone non qualifié : désactivé. Aucun chargement automatique."
+    override fun introText() = getString(R.string.mvp2_intro, applicationInfo.loadLabel(packageManager))
     override fun decorate(layout: LinearLayout) {
         layout.addView(ImageView(this).apply {
             setImageResource(R.drawable.avatar_static_v1)

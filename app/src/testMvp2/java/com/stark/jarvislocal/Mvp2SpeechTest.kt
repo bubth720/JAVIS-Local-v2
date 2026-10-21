@@ -51,4 +51,14 @@ class Mvp2SpeechTest {
         assertFalse(unavailable.initialize());assertFalse(unavailable.readReply("refuse"))
     }
 
+    @Test fun observedAirplaneOffRevokesProbeAndProofPermanently() {
+        val e=Engine();var airplane=true
+        val s=Mvp2Speech(LocalTts{done->done(true);e}){airplane}
+        s.initialize();s.testPhrase();s.confirmOfflineHeard();assertTrue(s.verifiedByUser)
+        airplane=false;assertFalse(s.verifiedByUser)
+        airplane=true;assertFalse(s.verifiedByUser);assertFalse(s.readReply("must not revive old proof"))
+        try{s.confirmOfflineHeard();fail("old probe must also be revoked")}catch(_:IllegalStateException){}
+        assertTrue(s.testPhrase());s.confirmOfflineHeard();assertTrue(s.readReply("new confirmation"))
+    }
+
 }

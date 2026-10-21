@@ -1,0 +1,14 @@
+{
+  "base": "c7fec293791dc0b30c83d712e0fae0bbf59736a0",
+  "unchanged_base_files": 218,
+  "allowed_existing_files": [
+    "AGENTS.md",
+    "app/build.gradle.kts",
+    "app/src/mvp2/java/com/stark/jarvislocal/Mvp2Activity.kt",
+    "app/src/mvp2/java/com/stark/jarvislocal/Mvp2Speech.kt",
+    "app/src/testMvp2/java/com/stark/jarvislocal/Mvp2SpeechTest.kt",
+    "docs/PROJECT_KNOWLEDGE.md"
+  ],
+  "runtime_core_jni_sqlite_binder_identity_unchanged": true,
+  "dependencies_and_resource_budgets_unchanged": true
+}

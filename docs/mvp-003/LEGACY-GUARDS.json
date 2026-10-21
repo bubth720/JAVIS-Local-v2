@@ -1,0 +1,38 @@
+[
+  {
+    "script": "check-mvp-002.py",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/workspace/JAVIS-Local-v2/tools/check-mvp-002.py\", line 27, in <module>\n    assert build == expected, 'Unapproved build change'\n           ^^^^^^^^^^^^^^^^^\nAssertionError: Unapproved build change\n"
+  },
+  {
+    "script": "check-mvp-001.py",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/workspace/JAVIS-Local-v2/tools/check-mvp-001.py\", line 14, in <module>\n    elif name not in allowed:assert (ROOT/name).read_bytes()==git('show',BASE+':'+name),name\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: app/src/main/java/com/stark/jarvislocal/LocalTts.kt\n"
+  },
+  {
+    "script": "check-preview-001.py",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/workspace/JAVIS-Local-v2/tools/check-preview-001.py\", line 36, in <module>\n    main()\n  File \"/workspace/JAVIS-Local-v2/tools/check-preview-001.py\", line 22, in main\n    assert (ROOT / name).is_file() and (ROOT / name).read_bytes() == git('show', BASE + ':' + name), name\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: app/src/main/java/com/stark/jarvislocal/LocalTts.kt\n"
+  },
+  {
+    "script": "check-alpha1-001.py",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "UNAUTHORIZED_BASELINE_CHANGE: app/build.gradle.kts\n"
+  },
+  {
+    "script": "check-identity-002.py",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/workspace/JAVIS-Local-v2/tools/check-identity-002.py\", line 27, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"/workspace/JAVIS-Local-v2/tools/check-identity-002.py\", line 23, in main\n    for name in protected:assert (ROOT/name).read_bytes()==git('show',BASE+':'+name),name\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: app/build.gradle.kts\n"
+  },
+  {
+    "script": "check-004c.py",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/workspace/JAVIS-Local-v2/tools/check-004c.py\", line 20, in <module>\n    assert not subprocess.check_output(['git', 'diff', base, '--', 'app', 'build.gradle.kts', '.github'], cwd=root), 'historical CORE changed'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: historical CORE changed\n"
+  }
+]

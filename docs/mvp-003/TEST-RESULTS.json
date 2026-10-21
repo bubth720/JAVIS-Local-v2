@@ -1,0 +1,890 @@
+{
+  "environment": "JVM/Robolectric, synthetic inputs/backends; not Android device or llama JNI",
+  "totals": {
+    "tests": 439,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "groups": {
+    "core": {
+      "totals": {
+        "tests": 263,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+          "timestamp": "2026-10-20T18:53:46",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData[24]",
+            "corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData[25]",
+            "corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData",
+            "mismatchedOrUnattestedResponseNeverEntersHistory[24]",
+            "mismatchedOrUnattestedResponseNeverEntersHistory[25]",
+            "mismatchedOrUnattestedResponseNeverEntersHistory"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.InferenceControllerTest",
+          "timestamp": "2026-10-20T18:54:03",
+          "tests": 20,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "cancellationBeforeDispatchDoesNotConstructOrLoadAnything",
+            "legacyGeneratePreservesExactPromptAndSeparateSystem",
+            "incompatibleContractSystemCapabilityAndBudgetNeverInvokeBackend",
+            "exceptionWithoutCompletionEvidenceQuarantinesInsteadOfGuessing",
+            "attestedGenerationErrorCanRetrySameEngineButCannotSwitchBeforeUnload",
+            "cancellationAfterCompletedGenerationDoesNotInventAnotherStop",
+            "historicalIsDefaultAndUnconfiguredDelegateIsRefused",
+            "negativeIsLoadedIsNotAnUnloadAcknowledgement",
+            "simultaneousPreparationAndSelectionCannotDoubleLoad",
+            "cancellationDuringGenerationRequestsStopAndDrainsBeforeUnlock",
+            "explicitStopIsDistinctFromDoneAndDiscardsTheEventualResponse",
+            "cancellationCannotEraseAFailedReleaseReportedDuringDrain",
+            "structuredSystemContextSourcesAndLimitsReachBackendUnchanged",
+            "timeoutDoesNotConfirmNativeDoneOrUnload",
+            "selectionHappensBeforeAnyConstructionOrWarmup",
+            "explicitHistoricalReturnRequiresConfirmedUnload",
+            "unconfirmedNativeCompletionCannotAuthorizeAnyNewEngine",
+            "cancellationAfterReservationButBeforeBackendDispatchDoesNotGenerate",
+            "previousSessionAndWrongResponseIdsAreRejected",
+            "failedUnloadQuarantinesAndBlocksAllNextEngineOperations"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+          "timestamp": "2026-10-20T18:54:03",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "cancellationKeepsLockUntilNativeReturnAndAddsNoErrorOrDuplicateAnswer[24]",
+            "cancellationKeepsLockUntilNativeReturnAndAddsNoErrorOrDuplicateAnswer",
+            "wholeConversationIsExclusiveAndHistoryIsNeverMixed[24]",
+            "wholeConversationIsExclusiveAndHistoryIsNeverMixed",
+            "generationFailureReleasesTheConversationLock[24]",
+            "generationFailureReleasesTheConversationLock",
+            "explicitRememberConfirmsOnlySuccessfulMemoryInsertAndNeverCallsTheModel[24]",
+            "explicitRememberConfirmsOnlySuccessfulMemoryInsertAndNeverCallsTheModel",
+            "rememberCanPersistEvenIfTheSeparateHistoryWriteFails[24]",
+            "rememberCanPersistEvenIfTheSeparateHistoryWriteFails",
+            "generationKeepsAllIncludedPdfNamesInPersistedSource[24]",
+            "generationKeepsAllIncludedPdfNamesInPersistedSource"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+          "timestamp": "2026-10-20T18:54:04",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "callerCancellationDoesNotReleaseModelBeforeCompletionReturns",
+            "failedContextResizeReleaseCannotLoadReplacement",
+            "warmupAndGenerationReuseTheHistoricalModelAndKeepSystemSeparate",
+            "failedUnloadRetainsHandleAndNeverLoadsAnotherModel",
+            "memoryFailureWithFailedReleaseKeepsControllerQuarantined",
+            "failedLoadWithoutHandleIsQuarantinedRatherThanRetriedBlindly"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.LocalDatabaseTest",
+          "timestamp": "2026-10-20T18:54:04",
+          "tests": 39,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites[24]",
+            "migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites[25]",
+            "migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites",
+            "ignoredMemoryInsertIsReportedWithoutChangingStoredData[24]",
+            "ignoredMemoryInsertIsReportedWithoutChangingStoredData[25]",
+            "ignoredMemoryInsertIsReportedWithoutChangingStoredData",
+            "interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry[24]",
+            "interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry[25]",
+            "interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry",
+            "unsupportedUpgradeKeepsTheOriginalVersionAndData[24]",
+            "unsupportedUpgradeKeepsTheOriginalVersionAndData[25]",
+            "unsupportedUpgradeKeepsTheOriginalVersionAndData",
+            "versionOneMigrationPreservesEveryValueAndIdentifier[24]",
+            "versionOneMigrationPreservesEveryValueAndIdentifier[25]",
+            "versionOneMigrationPreservesEveryValueAndIdentifier",
+            "freshDatabasePersistsAllFourCollectionsAfterReopening[24]",
+            "freshDatabasePersistsAllFourCollectionsAfterReopening[25]",
+            "freshDatabasePersistsAllFourCollectionsAfterReopening",
+            "ignoredSecondChunkRollsBackTheDocumentAndFirstChunk[24]",
+            "ignoredSecondChunkRollsBackTheDocumentAndFirstChunk[25]",
+            "ignoredSecondChunkRollsBackTheDocumentAndFirstChunk",
+            "existingVersionTwoPreservesEveryValueAndIdentifier[24]",
+            "existingVersionTwoPreservesEveryValueAndIdentifier[25]",
+            "existingVersionTwoPreservesEveryValueAndIdentifier",
+            "rejectedMessageInsertIsReportedWithoutChangingStoredData[24]",
+            "rejectedMessageInsertIsReportedWithoutChangingStoredData[25]",
+            "rejectedMessageInsertIsReportedWithoutChangingStoredData",
+            "rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData[24]",
+            "rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData[25]",
+            "rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData",
+            "unsupportedDowngradeKeepsTheOriginalVersionAndData[24]",
+            "unsupportedDowngradeKeepsTheOriginalVersionAndData[25]",
+            "unsupportedDowngradeKeepsTheOriginalVersionAndData",
+            "unversionedExistingDatabaseIsRefusedWithoutDeletingItsData[24]",
+            "unversionedExistingDatabaseIsRefusedWithoutDeletingItsData[25]",
+            "unversionedExistingDatabaseIsRefusedWithoutDeletingItsData",
+            "rejectedSecondChunkRollsBackTheDocumentAndFirstChunk[24]",
+            "rejectedSecondChunkRollsBackTheDocumentAndFirstChunk[25]",
+            "rejectedSecondChunkRollsBackTheDocumentAndFirstChunk"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+          "timestamp": "2026-10-20T18:54:06",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "eveningUsesTwentyFourHourFormat",
+            "localTimeIncludesFractionalHourOffset",
+            "nonLatinDefaultLocalePreservesAsciiTimeFormat",
+            "singleDigitHoursAndMinutesArePaddedAndSecondsAreOmitted",
+            "defaultTimeZoneIsReadOnEachCall",
+            "daylightSavingTransitionUsesTheOffsetAtTheRequestedInstant",
+            "midnightUsesZeroHours"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.LocalTtsTest",
+          "timestamp": "2026-10-20T18:54:06",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "synchronousInitializationCallbackIsHandled",
+            "missingOfflineFrenchVoiceDoesNotFallBackToNetwork",
+            "releasedEngineIsNotUsedAndCanBeRecreatedForNextScreen",
+            "initializationFailureCanBeRetriedWithOneNewEngine",
+            "factoryFailureLeavesClearUnavailableState",
+            "failedSpeakIsReportedWithoutThrowingIntoConversation",
+            "asynchronousInitializationDoesNotSpeakUntilReady",
+            "stopPreservesReadyEngineForRotation",
+            "lateCallbackAfterShutdownCannotReviveReleasedEngine"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+          "timestamp": "2026-10-20T18:54:06",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "memoryDialogPersistsOnWorkerAndReportsRejectedInsertWithoutSuccess[24]",
+            "memoryDialogPersistsOnWorkerAndReportsRejectedInsertWithoutSuccess",
+            "rotationKeepsPreparationAndDestroysOldObserver[24]",
+            "rotationKeepsPreparationAndDestroysOldObserver",
+            "rotationKeepsGenerationAndRejectedInputIsNotCleared[24]",
+            "rotationKeepsGenerationAndRejectedInputIsNotCleared"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.ModelInstallationTest",
+          "timestamp": "2026-10-20T18:54:11",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "interruptedCopyPreservesOldDestinationAndCanRetryAfterRecreation",
+            "wrongMagicAndOversizedAssetCannotReplaceExistingData",
+            "abandonedPartialFileIsRestartedAndNeverPromotedBlindly",
+            "failedAtomicReplacementNeverDeletesPreviousFile",
+            "completeFilesArePreservedWithoutOpeningTheirAssetsAgain",
+            "truncatedAssetCannotBeInstalledOrReportedReady"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.ModelManagerConcurrencyTest",
+          "timestamp": "2026-10-20T18:54:11",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "copyErrorReleasesLockForRetry",
+            "twoCallersCannotWriteTheSamePartFileConcurrently"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.OfflineVoiceTest",
+          "timestamp": "2026-10-20T18:54:11",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "nonFrenchOfflineVoiceDoesNotSilentlyReplaceFrench",
+            "selectsFrenchOfflineVoiceEvenWhenNetworkVoiceComesFirst",
+            "networkOnlyFrenchVoiceIsUnavailable"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.PdfImporterTest",
+          "timestamp": "2026-10-20T18:54:11",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "imageOnlyOrEmptyPdfDoesNotAlterExistingCorpus[24]",
+            "imageOnlyOrEmptyPdfDoesNotAlterExistingCorpus",
+            "syntheticPdfKeepsDocumentAndPageOnEveryChunkAfterReopening[24]",
+            "syntheticPdfKeepsDocumentAndPageOnEveryChunkAfterReopening"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+          "timestamp": "2026-10-20T18:54:12",
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "nativeLoadFailureAndReleaseFailureKeepProcessReserved",
+            "contextResizeDoesNotOpenAnAdmissionGapBetweenReleaseAndReload",
+            "timeoutAndCancellationDoNotFreeAdmissionAtNativeReturn",
+            "failedLoadWithUnknownResourcesCannotFallbackToHistorical",
+            "failedOrUnknownReleaseBlocksAReplacementControllerAndSameBackend",
+            "independentControllersCannotWarmTwoBackendsUntilConfirmedRelease",
+            "factoriesShareProductionAdmissionByDefault",
+            "staleConfirmationForSameBackendCannotFreeItsNewReservation",
+            "controllerConfirmationCannotFreeReservationReacquiredDuringUnload",
+            "controlledFallbackAfterLoadFailureRequiresReleaseAcknowledgement",
+            "concurrentPreparationReservesBeforeBackendStarts",
+            "directHistoricalInstancesUseSameAdmissionAndCannotBypassController",
+            "staleReleaseCannotReleaseTheNextOwner"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.PromptBudgetTest",
+          "timestamp": "2026-10-20T18:54:12",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "oversizedQuestionOrSystemPromptIsRefusedRatherThanSilentlyCut",
+            "omittedChunksNeverBecomeDisplayedSourcesAndDuplicateNamesRemainTraceable",
+            "historyIsRecentAndChronologicalAndMemoryStillIncluded",
+            "largeContextIsBoundedInUtf8WithoutTruncatingQuestionOrSources"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+          "timestamp": "2026-10-20T18:54:12",
+          "tests": 17,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "operationCancellationIsNotRecordedAsFailure",
+            "failedPreparationDoesNotPretendToBeReadyAndCanBeRetried",
+            "microphoneFailureDoesNotLeaveSessionStuck",
+            "rapidDoubleSendIsRejectedWithoutDuplicatingWork",
+            "disabledSpeechDoesNotAffectTextualConversation",
+            "preparationIsSingleFlightAndNotRepeatedAfterRotation",
+            "recordingIsExclusiveAndTranscribesOnlyAfterConfirmedStop",
+            "rotationRetainsConversationAndSharedSpeechEngine",
+            "backgroundDoesNotSpeakAndPermanentDestroyReleasesSpeech",
+            "timeoutKeepsGateUntilActualNativeCompletion",
+            "conversationErrorReleasesGateAndReportsExactlyOneError",
+            "pdfCannotInterleaveWithConversationHistory",
+            "cancellationDrainsNativeWorkWithoutLoggingAnApplicationError",
+            "transcriptionTimeoutBlocksNewWorkUntilNativeReturnAndDeletesAudio",
+            "emptyTranscriptionIsNotSentAsConversation",
+            "backgroundDiscardsMicrophoneInsteadOfTranscribingIt",
+            "cancellationBeforeFirstInstructionDoesNotLeaveGateLocked"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.SessionInferenceLifecycleTest",
+          "timestamp": "2026-10-20T18:54:12",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "closureDuringUnknownCompletionCannotDisplayReadyOrUnloaded",
+            "timeoutRequestsStopButKeepsSessionBusyAndRejectsTheLateAnswer"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.SettingsStoreTest",
+          "timestamp": "2026-10-20T18:54:12",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice[24]",
+            "preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice[25]",
+            "preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice",
+            "historicalCapsDoNotRewritePersistedPreferencesOnRead[24]",
+            "historicalCapsDoNotRewritePersistedPreferencesOnRead[25]",
+            "historicalCapsDoNotRewritePersistedPreferencesOnRead"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.TextLabActivityTest",
+          "timestamp": "2026-10-20T18:54:12",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase[24]",
+            "explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase[25]",
+            "explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase",
+            "labDraftIsExcludedFromAndroidSavedStateAndScreenshots[24]",
+            "labDraftIsExcludedFromAndroidSavedStateAndScreenshots[25]",
+            "labDraftIsExcludedFromAndroidSavedStateAndScreenshots"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.TextLabConversationTest",
+          "timestamp": "2026-10-20T18:54:13",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "oversizedInputCannotRemainInVolatileHistory",
+            "requiresExplicitOptInAndErasesHistoryAtExit",
+            "modeReadinessCannotChangeWhileCoordinatorIsBusy",
+            "boundedHistoryContainsOnlyCompletedPairs",
+            "failedOrEmptyAnswerNeverEntersFollowupContext",
+            "cancellationRejectsLateAnswerAndKeepsReservationUntilReturn",
+            "cancellationBeforeWorkerEntryNeverCallsInference"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.TextLabCoreTest",
+          "timestamp": "2026-10-20T18:54:13",
+          "tests": 18,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "stopRejectsLateNativeResultWithoutFreeingResidentModel[24]",
+            "stopRejectsLateNativeResultWithoutFreeingResidentModel[25]",
+            "stopRejectsLateNativeResultWithoutFreeingResidentModel",
+            "labCannotEscapeFailedUnloadOrLoadAnotherBackend[24]",
+            "labCannotEscapeFailedUnloadOrLoadAnotherBackend[25]",
+            "labCannotEscapeFailedUnloadOrLoadAnotherBackend",
+            "historicalGreetingAndStorageRemainTheDefaultCorePath[24]",
+            "historicalGreetingAndStorageRemainTheDefaultCorePath[25]",
+            "historicalGreetingAndStorageRemainTheDefaultCorePath",
+            "oversizedQuestionRefusesBeforeAnyModelLoad[24]",
+            "oversizedQuestionRefusesBeforeAnyModelLoad[25]",
+            "oversizedQuestionRefusesBeforeAnyModelLoad",
+            "messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory[24]",
+            "messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory[25]",
+            "messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory",
+            "emptyNativeResultIsNotReplacedWithALabSuccess[24]",
+            "emptyNativeResultIsNotReplacedWithALabSuccess[25]",
+            "emptyNativeResultIsNotReplacedWithALabSuccess"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.WavRecorderTest",
+          "timestamp": "2026-10-20T18:54:14",
+          "tests": 16,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "permissionRevokedDuringDeviceCreationDoesNotLeaveCaptureActive",
+            "emptyCaptureIsNotPresentedAsValidWav",
+            "readErrorIsReportedAndDoesNotProduceValidAudio",
+            "unavailableDeviceIsReleasedAndNextAttemptCanSucceed",
+            "aSecondCaptureCannotStartWhileFirstIsActive",
+            "permissionRefusalDoesNotCreateAnAudioDevice",
+            "finalizationFailureDoesNotReturnAudioForTranscription",
+            "normalStopFinalizesWavAndRepeatedStopIsSafe",
+            "startupCleanupRemovesOnlyJarvisTemporaryAudio",
+            "openFileFailureReleasesAudioDevice",
+            "stopWaitsForReleaseAndWriterTerminationBeforeReturningFile",
+            "startFailureReleasesDeviceAndDeletesFile",
+            "writeFailureDeletesIncompleteWavAndReleasesDevice",
+            "releaseFailureQuarantinesAudioAndNeverReturnsAValidRecording",
+            "discardedCaptureIsDeletedAndNeverReturnedAsValid",
+            "deviceFactoryFailureDoesNotLeaveRecordingFlagSet"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+          "timestamp": "2026-10-20T18:54:14",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "successfulTranscriptionReleasesTheModelAndTrimsText",
+            "cancellationDoesNotReleaseNativeResourcesBeforeActualReturn",
+            "absentOrTruncatedWavIsRejectedBeforeNativeLoad",
+            "incompleteHeaderAndWrongPcmFormatAreRejected",
+            "emptyTranscriptionStillReleasesTheModel",
+            "loadingFailureAllowsRetryWithoutReleasingUnknownHandle",
+            "missingModelDoesNotLoadNativeResources",
+            "concurrentAttemptIsRejectedUntilFirstNativeCallEnds",
+            "transcriptionFailureReleasesTheModelAndAllowsRetry"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+          "timestamp": "2026-10-20T18:54:14",
+          "tests": 39,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "mismatchedMeasurementCannotAuthorizeDifferentRequest[24]",
+            "mismatchedMeasurementCannotAuthorizeDifferentRequest[25]",
+            "mismatchedMeasurementCannotAuthorizeDifferentRequest",
+            "simulatedCompositionChangesOnlySystemAndKeepsProvenance[24]",
+            "simulatedCompositionChangesOnlySystemAndKeepsProvenance[25]",
+            "simulatedCompositionChangesOnlySystemAndKeepsProvenance",
+            "missingRealTokenizerBlocksOptIn[24]",
+            "missingRealTokenizerBlocksOptIn[25]",
+            "missingRealTokenizerBlocksOptIn",
+            "manifestVersionDigestAndFalseRightsRejected[24]",
+            "manifestVersionDigestAndFalseRightsRejected[25]",
+            "manifestVersionDigestAndFalseRightsRejected",
+            "revocationOrExpiryDuringMeasureRejectsLateComposition[24]",
+            "revocationOrExpiryDuringMeasureRejectsLateComposition[25]",
+            "revocationOrExpiryDuringMeasureRejectsLateComposition",
+            "quarantineAndOversizeSystemFailBeforeTokenizer[24]",
+            "quarantineAndOversizeSystemFailBeforeTokenizer[25]",
+            "quarantineAndOversizeSystemFailBeforeTokenizer",
+            "fixtureMeasurementsAndNoSystemCapabilityAreRefused[24]",
+            "fixtureMeasurementsAndNoSystemCapabilityAreRefused[25]",
+            "fixtureMeasurementsAndNoSystemCapabilityAreRefused",
+            "snapshotIsTechnicalReadOnlyAndVersionBound[24]",
+            "snapshotIsTechnicalReadOnlyAndVersionBound[25]",
+            "snapshotIsTechnicalReadOnlyAndVersionBound",
+            "exactBudgetBoundaryAndRequestedContextNotLoadedContext[24]",
+            "exactBudgetBoundaryAndRequestedContextNotLoadedContext[25]",
+            "exactBudgetBoundaryAndRequestedContextNotLoadedContext",
+            "immutableManifestAndRestartHaveSameTechnicalIdentity[24]",
+            "immutableManifestAndRestartHaveSameTechnicalIdentity[25]",
+            "immutableManifestAndRestartHaveSameTechnicalIdentity",
+            "rejectsMalformedDuplicateFloatSurrogateAndOversize[24]",
+            "rejectsMalformedDuplicateFloatSurrogateAndOversize[25]",
+            "rejectsMalformedDuplicateFloatSurrogateAndOversize",
+            "sixApprovedVectorsMatchCanonicalBytesAndDigests[24]",
+            "sixApprovedVectorsMatchCanonicalBytesAndDigests[25]",
+            "sixApprovedVectorsMatchCanonicalBytesAndDigests",
+            "disabledByDefaultNeverMeasuresOrReadsPrivateState[24]",
+            "disabledByDefaultNeverMeasuresOrReadsPrivateState[25]",
+            "disabledByDefaultNeverMeasuresOrReadsPrivateState"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+          "timestamp": "2026-10-20T18:54:15",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses[24]",
+            "callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses[25]",
+            "callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses",
+            "hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented[24]",
+            "hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented[25]",
+            "hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "totals": {
+        "tests": 36,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+          "timestamp": "2026-10-20T18:53:19",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "corruptJournalIsNotReset",
+            "unpublishedEndpointNeverBecomesReady",
+            "callerUidIsCapturedInsideLocalBinderTransactionBeforeDispatch",
+            "journalReopensAndRestartRemainsBlockedWithoutNewEvidence",
+            "actualArbiterStubRejectsUnenrolledCallerBeforeMalformedPayload",
+            "mismatchedUidPackageCertificateAndSharedUidAreRefused"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+          "timestamp": "2026-10-20T18:53:29",
+          "tests": 17,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "authorityCannotGrantUnknownOrReplayedQuery",
+            "timeoutAndDisconnectRequireSeparateReconciliation",
+            "strictJsonRejectsDuplicateUnknownNumberMalformedUtf8AndOversize",
+            "cancellationNeverPersistsLateAssistantText",
+            "exactSystemQuestionAndServerEpochArePreserved",
+            "incompatibleModelProfileDurationAndMainBudgetAreRefused",
+            "lostSubmitAckHoldsLeaseWithoutReplay",
+            "publishedCrossRepositoryDigestVectorMatches",
+            "obsoleteReceiptIsRejectedWithoutReleasingOwner",
+            "productionStartupHasNoSyntheticRecoveryOrAdmission",
+            "simulatedGenerationCorrelatesAndReleases",
+            "authorityExpiresWithoutFreeingReservation",
+            "cleanupAndNativeEvidenceRequiredBeforeText",
+            "privateContextAndNonPilotTextNeverReachTransport",
+            "everyCorrelationIdentifierAndDigestMustMatch",
+            "effectiveNativeLimitsMayBeLowerButNeverExceedRequestedBudget",
+            "failedUnloadNeverAdmitsNextOperation"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+          "timestamp": "2026-10-20T18:53:30",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "unknownNativeStateAndFailedUnloadKeepReservation",
+            "brokerRestartPreservesOwnerAndRejectsOldRecoveryChallenge",
+            "clientOrServiceDeathAndLostAckRequireReconciliationNotRetry",
+            "coldStartRequiresAllParticipantsAndFreshChallenge",
+            "loadNeverStartedMayReleaseButCannotProvideANativeResponse",
+            "wrongOwnerExpiredMandateAndOldOperationAreRefused",
+            "timeoutNeverReleasesByExpiryAlone",
+            "journalWriteFailureDoesNotGrantOrPretendToRelease",
+            "singleReservationRetainedUntilExactNativeAndCleanupEvidence",
+            "stopDoesNotReleaseAndCancelledResponseIsNotConsumable"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+          "timestamp": "2026-10-20T18:53:30",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "systemAndQuestionRemainSeparateBeforeTransport",
+            "allContextIncludingWhitespaceAndAnySourceIsRefused",
+            "invalidIdsUtf8LimitsAndOversizedInputsAreRefused"
+          ]
+        }
+      ]
+    },
+    "preview": {
+      "totals": {
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.stark.jarvislocal.PreviewActivityTest",
+          "timestamp": "2026-10-20T18:54:59",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "launcherIsIsolatedAndDoesNotPrepareAnyEngine[24]",
+            "launcherIsIsolatedAndDoesNotPrepareAnyEngine[25]",
+            "launcherIsIsolatedAndDoesNotPrepareAnyEngine",
+            "openingLabRequiresConfirmationAndOnlyPassesExplicitOptIn[24]",
+            "openingLabRequiresConfirmationAndOnlyPassesExplicitOptIn[25]",
+            "openingLabRequiresConfirmationAndOnlyPassesExplicitOptIn",
+            "directMainEntryWithoutOptInReturnsToWelcome[24]",
+            "directMainEntryWithoutOptInReturnsToWelcome[25]",
+            "directMainEntryWithoutOptInReturnsToWelcome",
+            "missingModelRetryAndExitNeverFallBackToHistoricalModeOrPersistence[24]",
+            "missingModelRetryAndExitNeverFallBackToHistoricalModeOrPersistence[25]",
+            "missingModelRetryAndExitNeverFallBackToHistoricalModeOrPersistence"
+          ]
+        }
+      ]
+    },
+    "mvp1": {
+      "totals": {
+        "tests": 72,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.stark.jarvislocal.MvpActivityTest",
+          "timestamp": "2026-10-20T18:56:18",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "rotationReusesApplicationRuntimeWithoutPreparingModel[24]",
+            "rotationReusesApplicationRuntimeWithoutPreparingModel[25]",
+            "rotationReusesApplicationRuntimeWithoutPreparingModel",
+            "isolatedLauncherHasNoModelNoNetworkAndNoLegacyDatabase[24]",
+            "isolatedLauncherHasNoModelNoNetworkAndNoLegacyDatabase[25]",
+            "isolatedLauncherHasNoModelNoNetworkAndNoLegacyDatabase"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.MvpModelStoreTest",
+          "timestamp": "2026-10-20T18:56:38",
+          "tests": 39,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "interruptedPartIsNeverAppendedAndRestartDoesNotAutoLoad[24]",
+            "interruptedPartIsNeverAppendedAndRestartDoesNotAutoLoad[25]",
+            "interruptedPartIsNeverAppendedAndRestartDoesNotAutoLoad",
+            "wrongHashDoesNotReplacePreviousModel[24]",
+            "wrongHashDoesNotReplacePreviousModel[25]",
+            "wrongHashDoesNotReplacePreviousModel",
+            "truncatedAndGrowingSourcesRefused[24]",
+            "truncatedAndGrowingSourcesRefused[25]",
+            "truncatedAndGrowingSourcesRefused",
+            "unsupportedVersionRefused[24]",
+            "unsupportedVersionRefused[25]",
+            "unsupportedVersionRefused",
+            "corruptInstalledFileIsRejectedOnExplicitRevalidation[24]",
+            "corruptInstalledFileIsRejectedOnExplicitRevalidation[25]",
+            "corruptInstalledFileIsRejectedOnExplicitRevalidation",
+            "readFailureDoesNotLoseSelectedModel[24]",
+            "readFailureDoesNotLoseSelectedModel[25]",
+            "readFailureDoesNotLoseSelectedModel",
+            "cancellationPreservesPreviousAndAllowsRetry[24]",
+            "cancellationPreservesPreviousAndAllowsRetry[25]",
+            "cancellationPreservesPreviousAndAllowsRetry",
+            "nonGgufRefusedEvenWithMatchingHash[24]",
+            "nonGgufRefusedEvenWithMatchingHash[25]",
+            "nonGgufRefusedEvenWithMatchingHash",
+            "importAndRestartKeepProvenanceAndBytes[24]",
+            "importAndRestartKeepProvenanceAndBytes[25]",
+            "importAndRestartKeepProvenanceAndBytes",
+            "spaceReserveRefusedWithoutOpeningProvider[24]",
+            "spaceReserveRefusedWithoutOpeningProvider[25]",
+            "spaceReserveRefusedWithoutOpeningProvider",
+            "interruptedMetadataCommitRecoversPreviousSelection[24]",
+            "interruptedMetadataCommitRecoversPreviousSelection[25]",
+            "interruptedMetadataCommitRecoversPreviousSelection",
+            "interruptionAfterAtomicModelRenameRetainsOldSelectionAndCanResume[24]",
+            "interruptionAfterAtomicModelRenameRetainsOldSelectionAndCanResume[25]",
+            "interruptionAfterAtomicModelRenameRetainsOldSelectionAndCanResume",
+            "declarationsAndBoundsValidatedBeforeOpening[24]",
+            "declarationsAndBoundsValidatedBeforeOpening[25]",
+            "declarationsAndBoundsValidatedBeforeOpening"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.MvpRuntimeTest",
+          "timestamp": "2026-10-20T18:56:41",
+          "tests": 24,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "resourceRefusalHappensBeforeNativeLoad[24]",
+            "resourceRefusalHappensBeforeNativeLoad[25]",
+            "resourceRefusalHappensBeforeNativeLoad",
+            "importedFileCannotBeChangedWhileResidentAndCanBeReselectedAfterRelease[24]",
+            "importedFileCannotBeChangedWhileResidentAndCanBeReselectedAfterRelease[25]",
+            "importedFileCannotBeChangedWhileResidentAndCanBeReselectedAfterRelease",
+            "cancellationDrainsAndRejectsConcurrentLoadAndLateResponse[24]",
+            "cancellationDrainsAndRejectsConcurrentLoadAndLateResponse[25]",
+            "cancellationDrainsAndRejectsConcurrentLoadAndLateResponse",
+            "failedReleaseBlocksReimportAndReload[24]",
+            "failedReleaseBlocksReimportAndReload[25]",
+            "failedReleaseBlocksReimportAndReload",
+            "timeoutRetainsBusyUntilRealSimulatedReturn[24]",
+            "timeoutRetainsBusyUntilRealSimulatedReturn[25]",
+            "timeoutRetainsBusyUntilRealSimulatedReturn",
+            "explicitLoadAndSeparatedPromptWithConversationContext[24]",
+            "explicitLoadAndSeparatedPromptWithConversationContext[25]",
+            "explicitLoadAndSeparatedPromptWithConversationContext",
+            "cancellationBeforeDispatchAndWarmupCannotOpenGateEarly[24]",
+            "cancellationBeforeDispatchAndWarmupCannotOpenGateEarly[25]",
+            "cancellationBeforeDispatchAndWarmupCannotOpenGateEarly",
+            "deterioratingResourceSignalInvalidatesOutputButKeepsBusyUntilReturn[24]",
+            "deterioratingResourceSignalInvalidatesOutputButKeepsBusyUntilReturn[25]",
+            "deterioratingResourceSignalInvalidatesOutputButKeepsBusyUntilReturn"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.MvpSafetyTest",
+          "timestamp": "2026-10-20T18:56:43",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "pre29UsesBatteryProxyAndChargingDoesNotBypassTemperature",
+            "conservativeBudgetAdmitsKnownCoolDevice",
+            "resourceRefusalsFailClosed"
+          ]
+        }
+      ]
+    },
+    "mvp2": {
+      "totals": {
+        "tests": 41,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+          "timestamp": "2026-10-20T18:56:45",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "networkAndUninstalledVoicesAreRejectedWithoutDownloading[24]",
+            "networkAndUninstalledVoicesAreRejectedWithoutDownloading[25]",
+            "networkAndUninstalledVoicesAreRejectedWithoutDownloading",
+            "cancellingMemoryDialogWritesNoMemoryOrConversation[24]",
+            "cancellingMemoryDialogWritesNoMemoryOrConversation[25]",
+            "cancellingMemoryDialogWritesNoMemoryOrConversation",
+            "isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch[24]",
+            "isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch[25]",
+            "isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+          "timestamp": "2026-10-20T18:56:58",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "adapterSessionSurvivesRuntimeCompositionAndRestoresHistory[24]",
+            "adapterSessionSurvivesRuntimeCompositionAndRestoresHistory[25]",
+            "adapterSessionSurvivesRuntimeCompositionAndRestoresHistory",
+            "cancelledInferenceCannotWriteLateAssistantToSqlite[24]",
+            "cancelledInferenceCannotWriteLateAssistantToSqlite[25]",
+            "cancelledInferenceCannotWriteLateAssistantToSqlite",
+            "explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages[24]",
+            "explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages[25]",
+            "explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages",
+            "realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen[24]",
+            "realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen[25]",
+            "realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+          "timestamp": "2026-10-20T18:56:58",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "shutdownRevokesProofAndRecreationDoesNotReplay",
+            "metadataReadyDoesNotAuthorizeReplyWithoutHumanCheck",
+            "observedAirplaneOffRevokesProbeAndProofPermanently",
+            "playbackFailureRevokesProofRatherThanFallback",
+            "explicitProbeAndConfirmationAuthorizeOnlyBoundedUnmodifiedReply",
+            "missingLocalVoiceCannotBeConfirmedOrUsed",
+            "futureCapabilitiesAreDisabledAndCannotReturnFakeData",
+            "airplaneOffPreventsEngineInitializationAndRevokesPreviousProof"
+          ]
+        },
+        {
+          "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+          "timestamp": "2026-10-20T18:56:58",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "cancellationRetainsPreviousVoiceFileAndManifest[24]",
+            "cancellationRetainsPreviousVoiceFileAndManifest[25]",
+            "cancellationRetainsPreviousVoiceFileAndManifest",
+            "wrongHeaderAndHashAreRefusedWithoutSelectingModel[24]",
+            "wrongHeaderAndHashAreRefusedWithoutSelectingModel[25]",
+            "wrongHeaderAndHashAreRefusedWithoutSelectingModel",
+            "ggufStoreCannotSelectWhisperMetadataAndNoThresholdLowered[24]",
+            "ggufStoreCannotSelectWhisperMetadataAndNoThresholdLowered[25]",
+            "ggufStoreCannotSelectWhisperMetadataAndNoThresholdLowered",
+            "privateVoiceImportDoesNotImplyWhisperNativeQualification[24]",
+            "privateVoiceImportDoesNotImplyWhisperNativeQualification[25]",
+            "privateVoiceImportDoesNotImplyWhisperNativeQualification"
+          ]
+        }
+      ]
+    },
+    "mvp3": {
+      "totals": {
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.stark.jarvislocal.Mvp3QualificationTest",
+          "timestamp": "2026-10-20T18:56:59",
+          "tests": 15,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "cases": [
+            "explicitMemoryDocumentsAndSettingsSurviveBackgroundRecreationAndDatabaseReopen[24]",
+            "explicitMemoryDocumentsAndSettingsSurviveBackgroundRecreationAndDatabaseReopen[25]",
+            "explicitMemoryDocumentsAndSettingsSurviveBackgroundRecreationAndDatabaseReopen",
+            "resourceLimitsAndUnknownSensorsContinueToFailClosed[24]",
+            "resourceLimitsAndUnknownSensorsContinueToFailClosed[25]",
+            "resourceLimitsAndUnknownSensorsContinueToFailClosed",
+            "rotationDoesNotCreateSecondRuntimeOrWarmUpModel[24]",
+            "rotationDoesNotCreateSecondRuntimeOrWarmUpModel[25]",
+            "rotationDoesNotCreateSecondRuntimeOrWarmUpModel",
+            "absentModelRefusesLoadAndConversationWithoutWritingAssistantOrUser[24]",
+            "absentModelRefusesLoadAndConversationWithoutWritingAssistantOrUser[25]",
+            "absentModelRefusesLoadAndConversationWithoutWritingAssistantOrUser",
+            "isolatedDiagnosticPackageHasNoNetworkMicrophoneOrAutomaticModel[24]",
+            "isolatedDiagnosticPackageHasNoNetworkMicrophoneOrAutomaticModel[25]",
+            "isolatedDiagnosticPackageHasNoNetworkMicrophoneOrAutomaticModel"
+          ]
+        }
+      ]
+    }
+  }
+}

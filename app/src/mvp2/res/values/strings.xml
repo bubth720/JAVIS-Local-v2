@@ -1,0 +1,3 @@
+<resources>
+    <string name="mvp2_intro">%1$s — conversation CORE et historique SQLite. Souvenirs uniquement sur confirmation. Avatar V1 statique. Microphone non qualifié : désactivé. Aucun chargement automatique. Génération GGUF réelle et appareils non qualifiés par les tests cloud.</string>
+</resources>

@@ -1005,3 +1005,22 @@ Le chemin Whisper historique est inchangé, son activation/admission sûre et so
 modèle doivent être qualifiés avant raccordement. Aucun pilote VOICE005K/Binder
 ou modèle/profil vocal externe n'est chargé. Voir docs/mvp-002/ pour les résultats
 réellement obtenus et les limites physiques ; pas de présomption de JNI fonctionnel.
+
+## Actualisation — MVP-003 : qualification Android
+
+Base MVP002 vérifiée : `c7fec293791dc0b30c83d712e0fae0bbf59736a0`.
+La variante mvp3 (`com.stark.jarvislocal.mvp003`) réutilise l'UI et le chemin
+CORE de MVP002, avec label de diagnostic et stockage isolé. Pas de migration,
+changement natif/SQLite/admission ou deuxième backend. Correctif limité TTS :
+un prérequis mode avion observé faux/inaccessible invalide phrase et confirmation
+définitivement ; un nouveau test est exigé. Cela ne surveille pas le réseau du
+service externe ni les changements non observés.
+Les preuves exécutées sont dans docs/mvp-003/TEST-RESULTS.json, RESULTS.json
+et validation.log ; les preuves APK finales dans LOCAL-APK-INFO.json. Les
+anciennes validations ne remplacent pas celles de cette mission. Génération
+GGUF native, audition, micro et essais physiques ne sont pas qualifiés ;
+le micro reste désactivé, les extensions NEXUS/SERVICES/EVOLUTION sont des
+marqueurs inactifs. Aucun export/restauration applicatif Android livré.
+Consulter GUIDE.md et DEVICE-QUALIFICATION.md avant toute autorisation d'essai.
+Le statut demeure « candidate de diagnostic », sans promesse de conversation
+opérationnelle. Actualiser ces connaissances après toute qualification réelle.
