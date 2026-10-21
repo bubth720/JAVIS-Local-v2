@@ -1,0 +1,12 @@
+{
+  "observed_utc": "2026-10-21T16:22:51.731879+00:00",
+  "repository": "bubth720/JAVIS-Local-v2",
+  "branch": "release/mvp-003-android-candidate",
+  "published_source_commit": "faf0d4fde9103b039ffd208361ccfccfbe603658",
+  "remote_ref_observed": "faf0d4fde9103b039ffd208361ccfccfbe603658",
+  "observation": "At source publication, before the evidence-only closure commit. Final HEAD may include that subsequent documentation commit.",
+  "github_actions_status": "NOT_OBSERVED",
+  "main_merged": false,
+  "apk_uploaded_to_github_by_this_session": false,
+  "local_apk_info": "LOCAL-APK-INFO.json"
+}
