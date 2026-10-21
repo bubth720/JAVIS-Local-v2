@@ -1,0 +1,18 @@
+test_array_bombs_nested_arrays_and_unknown_type (test_mvp4_model_probe.ProbeTest.test_array_bombs_nested_arrays_and_unknown_type) ... ok
+test_bool_float_and_alignment_refusals (test_mvp4_model_probe.ProbeTest.test_bool_float_and_alignment_refusals) ... ok
+test_cli_refuses_wrong_model_size_and_never_claims_native_load (test_mvp4_model_probe.ProbeTest.test_cli_refuses_wrong_model_size_and_never_claims_native_load) ... ok
+test_duplicate_keys_and_tensor_names (test_mvp4_model_probe.ProbeTest.test_duplicate_keys_and_tensor_names) ... ok
+test_header_count_bounds (test_mvp4_model_probe.ProbeTest.test_header_count_bounds) ... ok
+test_invalid_signatures_versions_and_truncations (test_mvp4_model_probe.ProbeTest.test_invalid_signatures_versions_and_truncations) ... ok
+test_invalid_utf8_and_oversized_string (test_mvp4_model_probe.ProbeTest.test_invalid_utf8_and_oversized_string) ... ok
+test_reader_budget_and_truncated_array (test_mvp4_model_probe.ProbeTest.test_reader_budget_and_truncated_array) ... ok
+test_report_cannot_overwrite_model_or_its_hardlink (test_mvp4_model_probe.ProbeTest.test_report_cannot_overwrite_model_or_its_hardlink) ... ok
+test_tensor_dimensions_and_offsets_are_bounded (test_mvp4_model_probe.ProbeTest.test_tensor_dimensions_and_offsets_are_bounded) ... ok
+test_token_array_records_order_and_raw_digest_without_tokenization (test_mvp4_model_probe.ProbeTest.test_token_array_records_order_and_raw_digest_without_tokenization) ... ok
+test_unicode_system_template_is_preserved_not_rendered (test_mvp4_model_probe.ProbeTest.test_unicode_system_template_is_preserved_not_rendered) ... ok
+test_v2_v3_qwen_metadata_and_mixed_quantization (test_mvp4_model_probe.ProbeTest.test_v2_v3_qwen_metadata_and_mixed_quantization) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.293s
+
+OK

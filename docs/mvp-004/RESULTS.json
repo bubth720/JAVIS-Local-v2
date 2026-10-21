@@ -1,0 +1,75 @@
+{
+  "mission": "MVP-004",
+  "module": "JARVIS CORE",
+  "base": "90215258ad3914cd6576971334ecb8ca48db74ff",
+  "branch": "test/mvp-004-native-qualification",
+  "collected_utc": "2026-10-21T17:00:17.412961+00:00",
+  "decision": "NO_GO_NON_QUALIFIE",
+  "native_android_arm64_executed": false,
+  "actual_model_sha256_verified": false,
+  "model_download_authorization": "PENDING_EXPLICIT_REPLY",
+  "model_downloaded": false,
+  "pinned_LICENSE_checked": true,
+  "upstream_reference_source_hashes_checked": true,
+  "model_provider_metadata_read": true,
+  "regression": {
+    "exit": 0,
+    "duration": "5m5s",
+    "tasks_executed": 303,
+    "totals": {
+      "tests": 439,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "python_synthetic_metadata_tests": {
+    "tests": 13,
+    "passed": 13,
+    "failed": 0
+  },
+  "apk_inspection": {
+    "kind": "Linux Android build-tools inspection, not Android runtime or JNI",
+    "tests": 3,
+    "passed": 3,
+    "failed": 0,
+    "cases": [
+      {
+        "case": "authentic_signed_candidate_accepted",
+        "passed": true,
+        "exit": 0
+      },
+      {
+        "case": "other_signed_variant_refused",
+        "passed": true,
+        "exit": 1
+      },
+      {
+        "case": "modified_signed_archive_refused",
+        "passed": true,
+        "exit": 1
+      }
+    ]
+  },
+  "mvp003_CI": "SUCCESS run39634143182, source faf0d4f; not native execution",
+  "mvp003_CI_artifact_download": "BLOCKED_403_REDIRECT",
+  "not_executed": [
+    "GGUF download and independent full hash",
+    "Actual selected GGUF metadata/quantization inspection",
+    "Native template/tokenizer execution",
+    "Android ARM64 JNI load/generation/stop/unload",
+    "Two real French answers",
+    "Physical RAM/PSS/temperature/battery measurements",
+    "Personal device installation",
+    "Runtime network observation"
+  ],
+  "production_modified": false,
+  "sensitive_change_applied": false,
+  "apk_installed": false,
+  "main_merged": false,
+  "old_mvp003_scope_guard": {
+    "exit_code": 1,
+    "evidence": "LEGACY-GUARD.json",
+    "applicable_mvp004_base_guard": "PASS"
+  }
+}

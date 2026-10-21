@@ -458,3 +458,18 @@ réseau non observé ne sont pas qualifiés par ce contrôle. Aucun effacement,
 installation personnelle ou migration inter-packages ; retour arrière en
 conservant les apps et données. Qualification GGUF/appareils et signature
 stable restent des étapes distinctes ; maintenir ces instructions à jour.
+
+## Actualisation — MVP-004
+
+Base MVP00390215258ad3914cd6576971334ecb8ca48db74ff. Lire docs/mvp-004/.
+Préparatifs uniquement tant qu'aucun modèle et runtime Android ARM64 ne sont
+réellement qualifiés. tools/mvp4_model_probe.py ne télécharge/charge rien :
+lecture GGUF hors ligne après autorisation, SHA/taille exacts Qwen épinglés,
+examen borné de métadonnées. Ses tests synthétiques ne sont ni tokenisation
+native ni génération. Une déclaration LFS/HF n'est pas un hash calculé du GGUF.
+La CI MVP003 est confirmée réussie mais pas native ; son archive n'a pas pu
+être retéléchargée dans cette session. Garder les hashes local/CI séparés.
+Préserver toute la production, les signatures, l'admission et les budgets ;
+aucune correction JNI ou sensible sans validation distincte du diff.
+Suivre ANDROID-PROTOCOL.md seulement après autorisations ; NO-GO tant que
+fichier et Android réel manquent. Actualiser les résultats avec les preuves.

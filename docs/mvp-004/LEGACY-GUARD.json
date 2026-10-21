@@ -1,0 +1,7 @@
+{
+  "script": "tools/check-mvp-003.py",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/workspace/JAVIS-Local-v2/tools/check-mvp-003.py\", line 52, in <module>\n    assert n in new_allowed or n.startswith('docs/mvp-003/'), 'Unexpected new tracked file: '+n\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Unexpected new tracked file: docs/mvp-004/EVIDENCE-TEMPLATE.json\n",
+  "classification": "Old mission exact-new-file scope rejects tracked MVP004 preparations; guard unchanged, not a runtime failure"
+}

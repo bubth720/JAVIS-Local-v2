@@ -1,0 +1,29 @@
+{
+  "observed_utc": "2026-10-21T16:56:03.252857+00:00",
+  "workflow": ".github/workflows/mvp-003.yml",
+  "run": {
+    "id": 39634143182,
+    "head_sha": "faf0d4fde9103b039ffd208361ccfccfbe603658",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/bubth720/JAVIS-Local-v2/actions/runs/39634143182",
+    "created_at": "2026-10-21T16:22:13Z",
+    "updated_at": "2026-10-21T16:31:04Z"
+  },
+  "artifact": {
+    "id": 12360079506,
+    "name": "JARVIS-MVP-003-Android",
+    "size_in_bytes": 17247187,
+    "expired": false,
+    "digest": "sha256:e20542ee7dc30ae2a667e51f4182744ee3123bcaa1e60db3742d470dbf6e2929"
+  },
+  "artifact_digest_independently_verified": false,
+  "apk_downloaded_from_CI": false,
+  "artifact_download_block": {
+    "http_status": 302,
+    "redirect_host": "productionresultssa12.blob.core.windows.net",
+    "query_not_recorded": true,
+    "followup_observation": "403 Forbidden from proxy on following redirect"
+  },
+  "actions_success_does_not_qualify_native_inference": true
+}

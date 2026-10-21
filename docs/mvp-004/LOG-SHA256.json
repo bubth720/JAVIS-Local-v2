@@ -1,0 +1,17 @@
+{
+  "normalization": "Trailing whitespace/final blank lines only; originals retained outside repository.",
+  "logs": {
+    "regression.log": {
+      "original_sha256": "cae5df294bfb68c792a602f44460f043946587edd397253f4dd8d5db6c1f45ad",
+      "stored_sha256": "efe4ddeae69ca690086f52adbbbb2427144850d130e8d4598f8b3f574654e1c3"
+    },
+    "probe-tests.log": {
+      "original_sha256": "b9a4bec68ab54e9f9dffe0d8183b64acaac82e1692b9a28e6ffee2d50132c78a",
+      "stored_sha256": "b9a4bec68ab54e9f9dffe0d8183b64acaac82e1692b9a28e6ffee2d50132c78a"
+    },
+    "apk-controls.log": {
+      "original_sha256": "8db73a379467dfd6fa201997c2da98b330ac02e202961784a514cb7c923c3f6d",
+      "stored_sha256": "8db73a379467dfd6fa201997c2da98b330ac02e202961784a514cb7c923c3f6d"
+    }
+  }
+}

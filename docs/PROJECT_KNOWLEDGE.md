@@ -1024,3 +1024,21 @@ marqueurs inactifs. Aucun export/restauration applicatif Android livré.
 Consulter GUIDE.md et DEVICE-QUALIFICATION.md avant toute autorisation d'essai.
 Le statut demeure « candidate de diagnostic », sans promesse de conversation
 opérationnelle. Actualiser ces connaissances après toute qualification réelle.
+
+## Actualisation — MVP-004 : qualification native bloquée
+
+Base exacte MVP00390215258ad3914cd6576971334ecb8ca48db74ff.
+La mission conserve tous les fichiers applicatifs et dépendances à l'identique.
+Le modèle candidat Qwen3-0.6B-Q4_K_M est identifié par révision/LFS/taille dans
+MODEL-PROVENANCE.json ; sa licence épinglée a été lue. Les octets GGUF n'ont
+pas été obtenus sans autorisation : SHA indépendant, architecture du fichier,
+tokenisation et chargement restent non qualifiés. Le lecteur Python préparé
+ne change pas les règles ModelManager/MvpModelStore ni l'admission.
+La source native de référence reconnaît ChatML, sans interpréter tout le Jinja
+Qwen3 ; support de raisonnement, fallback SYSTEM et encodage JNI à qualifier.
+La CI MVP00339634143182 est réellement en succès, artefact12360079506 annoncé ;
+son ZIP n'a pas été rehaché, redirection Azure refusée. Aucun Android ARM64
+exécutable ni appareil personnel utilisé ; aucune conversation native obtenue.
+Docs/mvp-004/ distingue les nouvelles régressions exécutées des essais natifs
+non exécutés. NO-GO personnel, aucun modèle/IPC/persona activé. Maintenir cette
+entrée à jour après toute autorisation et preuve de qualification ultérieure.

@@ -1,0 +1,14 @@
+{
+  "observed_utc": "2026-10-21T16:56:03.253094+00:00",
+  "host_arch": "x86_64",
+  "android_sdk": "35, build-tools35.0.0",
+  "emulator_binary_available": false,
+  "system_image_installed": false,
+  "dev_kvm_available": false,
+  "android_arm64_runtime_available": false,
+  "personal_device_inspected": false,
+  "adb_server_started": false,
+  "model_download_authorization": "PENDING_EXPLICIT_USER_REPLY",
+  "model_downloaded": false,
+  "environment_variables_or_credentials_dumped": false
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "path": "library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt",
+    "repository": "ffmpegkit-maintained/llama-android",
+    "revision": "823d1de2b3ef85ba9ef4847a03bac423f4aa1c44",
+    "url": "https://raw.githubusercontent.com/ffmpegkit-maintained/llama-android/823d1de2b3ef85ba9ef4847a03bac423f4aa1c44/library/src/main/kotlin/dev/ffmpegkit/llama/Llama.kt",
+    "sha256": "0bc8141ff99c334d1bad547af8b42077a5615801b4683d4346f0021b30ddf859",
+    "remote_matches_local": true
+  },
+  {
+    "path": "library/src/main/jni/llama_jni.cpp",
+    "repository": "ffmpegkit-maintained/llama-android",
+    "revision": "823d1de2b3ef85ba9ef4847a03bac423f4aa1c44",
+    "url": "https://raw.githubusercontent.com/ffmpegkit-maintained/llama-android/823d1de2b3ef85ba9ef4847a03bac423f4aa1c44/library/src/main/jni/llama_jni.cpp",
+    "sha256": "a1f5c8bd8e68b83f6bbd1f1eee5a52170ea3c3f7123b22989e52cebda803b31f",
+    "remote_matches_local": true
+  },
+  {
+    "path": "src/llama-arch.cpp",
+    "repository": "ggml-org/llama.cpp",
+    "revision": "2da668617612d2df773f966e3b0ee22dc2beef7b",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/2da668617612d2df773f966e3b0ee22dc2beef7b/src/llama-arch.cpp",
+    "sha256": "db0df7a270a601630d9eabe543d52973aaa304b70a15bb2ab73d67e331643b7c",
+    "remote_matches_local": true
+  }
+]

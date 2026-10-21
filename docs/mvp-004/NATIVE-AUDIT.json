@@ -1,0 +1,20 @@
+{
+  "artifact": "dev.ffmpegkit-maintained:llama-android:0.1.1",
+  "aar_sha256": "fdccf04c77de470004d7e54679bb918074ee9dbf31ea75af8c014d19c31e7501",
+  "libllama_so_sha256": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+  "static_binary_markers_observed": [
+    "qwen3",
+    "qwen3moe",
+    "llama_tokenize",
+    "llama_chat_apply_template",
+    "llama_model_chat_template",
+    "llama_model_load_from_file"
+  ],
+  "reference_upstream_sources_match_pinned_remote": true,
+  "source_to_published_binary_bit_reproducibility_asserted": false,
+  "jni_invoked": false,
+  "model_loaded": false,
+  "generation_performed": false,
+  "native_stop_supported": false,
+  "native_release_observed": false
+}
