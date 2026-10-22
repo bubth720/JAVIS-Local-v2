@@ -1,0 +1,21 @@
+{
+  "source_url": "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/1208e45d782fe18602c5eaf10e5758d5b0f24c03/Qwen3-0.6B-Q4_K_M.gguf",
+  "source_revision": "1208e45d782fe18602c5eaf10e5758d5b0f24c03",
+  "started_utc": "2026-10-22T20:21:45.303540+00:00",
+  "redirect_hosts": [
+    "us.aws.cdn.hf.co"
+  ],
+  "TLS_and_proxy_preserved": true,
+  "expected_size": 396704416,
+  "expected_sha256": "b0638f08417a2d3c8652760462eb5407c6e30173cf9608ad0820757a281eea0e",
+  "native_execution": false,
+  "http_status": 200,
+  "final_host": "us.aws.cdn.hf.co",
+  "content_length": "396704416",
+  "downloaded_bytes": 396704416,
+  "stream_sha256": "b0638f08417a2d3c8652760462eb5407c6e30173cf9608ad0820757a281eea0e",
+  "status": "COMPLETE_SIZE_AND_STREAM_SHA256_MATCH",
+  "temporary_model_path": "/workspace/model-laboratory/mvp-004c-1208e45/Qwen3-0.6B-Q4_K_M.gguf",
+  "finished_utc": "2026-10-22T20:22:09.436857+00:00",
+  "elapsed_seconds": 24.133
+}

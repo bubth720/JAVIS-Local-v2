@@ -1,0 +1,18 @@
+{
+  "special_tokens": {
+    "151643": "<|endoftext|>",
+    "151645": "<|im_end|>"
+  },
+  "template_utf8_bytes": 4100,
+  "template_sha256": "57f1fd00f0013a2be96aa79b857391f27e23df5b5f847072b524c897e24d0361",
+  "template_matches_previously_recorded_provider_metadata": true,
+  "provider_architecture_matches": true,
+  "GGUF_name_anomaly": {
+    "general.name": "Qwen3 0.6B Instruct Awq",
+    "general.finetune": "Instruct-awq",
+    "interpretation": "Stored naming/finetune labels include AWQ; observed GGUF ftype15 and Q4_K/Q6_K/F32 types identify the selected Q4_K_M file. No provenance claim beyond pinned bytes."
+  },
+  "tokenization_executed": false,
+  "Jinja_rendering_executed": false,
+  "native_engine_loaded": false
+}

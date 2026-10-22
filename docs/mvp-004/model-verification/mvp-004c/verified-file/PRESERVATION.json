@@ -1,0 +1,21 @@
+{
+  "base": "80d6ad3129fc6f3fe7713f894043c25bbe8ab42f",
+  "observed_utc": "2026-10-22T20:23:35.612037+00:00",
+  "base_files_compared": 292,
+  "base_files_changed": [],
+  "probe_sha256": "96c13ed014b90755c0ef4585908f0eb151c554692a65f05659b1bafd7fb7d41b",
+  "model_real_path": "/workspace/model-laboratory/mvp-004c-1208e45/Qwen3-0.6B-Q4_K_M.gguf",
+  "model_outside_repository": true,
+  "model_not_under_app_or_build_assets": true,
+  "tracked_GGUF_files": [],
+  "GGUF_files_in_app": [],
+  "existing_APK_inspection": {
+    "path": "/workspace/mvp-004-kit-c10444e/JARVIS-MVP-003.apk",
+    "sha256": "d82d3a6c4570cc2fbe3c9da021f6684f6c711d1e8af635adbdf9fd677f684dd1",
+    "GGUF_entries": 0,
+    "modified_or_rebuilt": false
+  },
+  "preexisting_identity_folder_preserved": true,
+  "no_other_model_downloaded": true,
+  "no_native_call_or_installation": true
+}

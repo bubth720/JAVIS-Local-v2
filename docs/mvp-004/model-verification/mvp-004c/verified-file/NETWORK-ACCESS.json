@@ -1,0 +1,14 @@
+{
+  "method": "HEAD",
+  "source_url": "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/1208e45d782fe18602c5eaf10e5758d5b0f24c03/Qwen3-0.6B-Q4_K_M.gguf",
+  "observed_utc": "2026-10-22T20:21:13.927153+00:00",
+  "redirect_hosts": [
+    "us.aws.cdn.hf.co"
+  ],
+  "model_bytes_received": 0,
+  "proxy_and_TLS_preserved": true,
+  "http_status": 200,
+  "final_host": "us.aws.cdn.hf.co",
+  "content_length": "396704416",
+  "CDN_access_observed": true
+}

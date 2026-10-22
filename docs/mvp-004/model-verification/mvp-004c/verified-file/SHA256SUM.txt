@@ -1,0 +1,1 @@
+b0638f08417a2d3c8652760462eb5407c6e30173cf9608ad0820757a281eea0e  /workspace/model-laboratory/mvp-004c-1208e45/Qwen3-0.6B-Q4_K_M.gguf
