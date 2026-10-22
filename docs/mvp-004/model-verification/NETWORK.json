@@ -1,0 +1,12 @@
+{
+  "policy_type": "restricted",
+  "vpn_configured": false,
+  "redirect_host": "us.aws.cdn.hf.co",
+  "redirect_host_in_selected_executor_egress_rules": false,
+  "observation": "Proxy CONNECT tunnel returned HTTP403 following pinned Hugging Face resolve URL",
+  "no_proxy_bypass": true,
+  "network_configuration_changed": false,
+  "retry_performed": false,
+  "required_next_step": "Review cloud network allowlist and permit us.aws.cdn.hf.co while preserving existing domains; retry only after actual policy change",
+  "credential_values_read_or_logged": false
+}

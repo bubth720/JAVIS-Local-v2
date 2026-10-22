@@ -1,0 +1,25 @@
+{
+  "base": "69b65685f0c721c313a1d0cde1eed4379834ebe6",
+  "observed_utc": "2026-10-22T15:45:14.221312+00:00",
+  "base_tracked_files_checked": 282,
+  "base_files_modified": [],
+  "writes_in_repository_limited_to": "docs/mvp-004/model-verification/",
+  "protected_sha256": {
+    "tools/mvp4_model_probe.py": "96c13ed014b90755c0ef4585908f0eb151c554692a65f05659b1bafd7fb7d41b",
+    "docs/mvp-004/QWEN-LICENSE.txt": "5de36594c10839788a8c589443a8ef9d8b8d17c65a1b5807206ae037fc36c6bd",
+    "docs/mvp-004/MODEL-PROVENANCE.json": "80a5f7e8da2ad47eeb94139fb8ab1cd21bf4be710fa485c17aa95eee1fafe695",
+    "docs/mvp-004/NATIVE-COMPATIBILITY.md": "4364eb5bd32fe68cf53a51e32f404897faf32217b05228227638450a76626e01"
+  },
+  "GGUF_in_app_sources": [],
+  "existing_diagnostic_APK": {
+    "rebuilt": false,
+    "path": "/workspace/mvp-004-kit-c10444e/JARVIS-MVP-003.apk",
+    "sha256": "d82d3a6c4570cc2fbe3c9da021f6684f6c711d1e8af635adbdf9fd677f684dd1",
+    "gguf_entries": []
+  },
+  "existing_untracked_identity_folder_preserved": true,
+  "model_file_obtained": false,
+  "temporary_directory": "/workspace/model-laboratory/mvp-004b-1208e45",
+  "no_native_execution": true,
+  "no_device_used": true
+}
