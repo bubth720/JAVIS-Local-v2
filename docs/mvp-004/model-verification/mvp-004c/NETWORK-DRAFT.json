@@ -1,0 +1,49 @@
+{
+  "requested_domain": "us.aws.cdn.hf.co",
+  "previous_custom_domains": [
+    "api.github.com",
+    "cas-bridge.xethub.hf.co",
+    "cas-server.xethub.hf.co",
+    "cdn-lfs-us-1.huggingface.co",
+    "cdn-lfs.huggingface.co",
+    "dl.google.com",
+    "huggingface.co",
+    "maven.google.com",
+    "transfer.xethub.hf.co"
+  ],
+  "requested_custom_domains": [
+    "api.github.com",
+    "cas-bridge.xethub.hf.co",
+    "cas-server.xethub.hf.co",
+    "cdn-lfs-us-1.huggingface.co",
+    "cdn-lfs.huggingface.co",
+    "dl.google.com",
+    "huggingface.co",
+    "maven.google.com",
+    "transfer.xethub.hf.co",
+    "us.aws.cdn.hf.co"
+  ],
+  "previous_custom_rules_preserved": true,
+  "only_domain_added": [
+    "us.aws.cdn.hf.co"
+  ],
+  "draft_save": {
+    "status": "saved",
+    "requires_publish": true
+  },
+  "changed_fields": [
+    "network.allowed_domains"
+  ],
+  "install_script_changed": false,
+  "start_skill_changed": false,
+  "repositories_changed": false,
+  "credential_requirements_changed": false,
+  "after_save_runtime_observation": {
+    "observations_current": true,
+    "network_state": "unknown",
+    "custom_domains": [],
+    "spec_revision": "1"
+  },
+  "active_rule_verified": false,
+  "network_bypass_attempted": false
+}

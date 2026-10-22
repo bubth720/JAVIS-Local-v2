@@ -1,0 +1,15 @@
+{
+  "base": "4977681ae5cb5bbff08517c6d5363b8e8b2321fd",
+  "checked_at_utc": "2026-10-22T20:12:44.474131+00:00",
+  "all_base_files_compared": 288,
+  "changed_base_files": [],
+  "protected_sha256": {
+    "tools/mvp4_model_probe.py": "96c13ed014b90755c0ef4585908f0eb151c554692a65f05659b1bafd7fb7d41b",
+    "app/build.gradle.kts": "be358aa8ded614ff4b21053835c278f864b9a64a808cfb828e3a255068ebcefa",
+    "app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt": "5cb8dc75c9cc17ded1d3ff3af5c7e53fc0b33dcd1c8efb0b1e1dcc45a7015ac2"
+  },
+  "GGUF_in_app_sources": [],
+  "preexisting_identity_review_folder_preserved": true,
+  "new_repository_writes_scope": "docs/mvp-004/model-verification/mvp-004c/",
+  "no_build_JNI_signature_admission_data_or_budget_change": true
+}
