@@ -1,0 +1,67 @@
+{
+  "format": "jarvis.campaign-validation/1",
+  "mission": "MEM-02",
+  "base_commit": "283423cb8b9d567539f33cf7f2f1fafa602cf974",
+  "qualification": "software_tested",
+  "status": "DELIVERED",
+  "capabilities": [
+    "memory.recall.confirmed",
+    "memory.context.bounded",
+    "memory.export.voluntary",
+    "memory.import.preview"
+  ],
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "tools/identity-cloud-env.sh",
+        "gradle",
+        "-PincludeP2Fixture=true",
+        "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8",
+        "-Pkotlin.compiler.execution.strategy=in-process",
+        ":app:testDebugUnitTest",
+        ":app:testMvp2UnitTest",
+        "--tests",
+        "*Mvp*",
+        "--tests",
+        "*MemoryLabUiTest*",
+        ":app:assembleDebug",
+        ":app:assembleMvp2",
+        ":app:assembleMvp3",
+        ":app:lintDebug",
+        ":app:lintMvp2",
+        ":p2-client:testDebugUnitTest",
+        "--offline",
+        "--no-daemon",
+        "--max-workers=2"
+      ],
+      "exit_code": 0,
+      "passed": 501,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "test_breakdown": [
+    {
+      "variant": "Debug",
+      "tests": 448,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "variant": "Mvp2",
+      "tests": 53,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "limits": [
+    "Robolectric API24/25/35 SQLite and real synthetic private files; not Android physical qualification",
+    "36 fixture /2 results UP-TO-DATE, excluded from rerun count",
+    "SAF destination protocol tested with doubles; physical provider not qualified",
+    "No qualified encryption adapter, encrypted request refuses; plain JSON explicitly announced",
+    "No automatic import, historical migration, persona or native inference activation"
+  ]
+}

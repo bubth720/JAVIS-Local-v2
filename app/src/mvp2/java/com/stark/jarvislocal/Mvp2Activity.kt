@@ -17,6 +17,23 @@ class Mvp2Activity : MvpActivity() {
     private lateinit var voiceStatus: TextView
     private lateinit var extensions: TextView
     private var pendingVoice: MvpModelManifest? = null
+    private var pendingMemoryExport: Pair<Set<com.stark.jarvislocal.memory.MemoryReference>, Long>? = null
+    private val memoryExportPicker = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val pending = pendingMemoryExport; pendingMemoryExport = null
+        val now = android.os.SystemClock.elapsedRealtime()
+        if (result.resultCode == RESULT_OK && pending != null && now >= pending.second && now - pending.second < 90_000) {
+            result.data?.data?.let { MemoryToolsLabUi(this, runtime, graph).confirmLocalDestination(it, pending.first) }
+        }
+    }
+    internal fun chooseMemoryExport(selected: Set<com.stark.jarvislocal.memory.MemoryReference>) {
+        pendingMemoryExport = selected.toSet() to android.os.SystemClock.elapsedRealtime()
+        try {
+            memoryExportPicker.launch(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE); type = "application/json"
+                putExtra(Intent.EXTRA_TITLE, "jarvis-memory-export.json"); putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+            })
+        } catch (_: Exception) { pendingMemoryExport = null; toast("Sélecteur de fichier local indisponible : aucun export effectué.") }
+    }
     private val voicePicker = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val manifest = pendingVoice; pendingVoice = null
         val uri = result.data?.data
@@ -105,6 +122,10 @@ class Mvp2Activity : MvpActivity() {
         button("Mémoire confirmée — laboratoire isolé") {
             if (!graph.intentFacade.isEnabled || runtime.state.value.busy) toast("Active le laboratoire et attends la fin de l’opération")
             else MemoryLabUi(this, runtime, graph.confirmedMemory, graph.memoryApproval, graph.intentSessionId).show()
+        }
+        button("Rappel et export — mémoire confirmée") {
+            if (!graph.intentFacade.isEnabled || runtime.state.value.busy) toast("Active le laboratoire et attends la fin de l’opération")
+            else MemoryToolsLabUi(this, runtime, graph).show()
         }
         button("Ajouter un souvenir confirmé") {
             val input = EditText(this).apply { hint = "Souvenir explicite (maximum 1500 caractères)" }

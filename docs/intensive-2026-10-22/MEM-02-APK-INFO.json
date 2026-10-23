@@ -1,0 +1,54 @@
+{
+  "local_build_only": true,
+  "installed": false,
+  "apks": [
+    {
+      "variant": "debug",
+      "sha256": "ad34c370449c3fd622cc7434aaf5e2e0953f85badd355768b0c405610b8c90cd",
+      "min_sdk": 24,
+      "internet_permission": false,
+      "network_state_permission": false,
+      "native_libraries": {
+        "lib/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "lib/arm64-v8a/libggml-base.so": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+        "lib/arm64-v8a/libggml-cpu.so": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+        "lib/arm64-v8a/libggml.so": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+        "lib/arm64-v8a/libllama.so": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+        "lib/arm64-v8a/libllama_jni.so": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+        "lib/arm64-v8a/libwhisper.so": "f9dc0706abf2264eaa6acca6012ee0ae3dacfa4388b60c4870071e1c631103be"
+      }
+    },
+    {
+      "variant": "mvp2",
+      "sha256": "6990d091b352260580e6e5e7843b36e16bb25cc3635e4413b71f3634e75ff278",
+      "min_sdk": 24,
+      "internet_permission": false,
+      "network_state_permission": false,
+      "native_libraries": {
+        "lib/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "lib/arm64-v8a/libggml-base.so": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+        "lib/arm64-v8a/libggml-cpu.so": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+        "lib/arm64-v8a/libggml.so": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+        "lib/arm64-v8a/libllama.so": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+        "lib/arm64-v8a/libllama_jni.so": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+        "lib/arm64-v8a/libwhisper.so": "f9dc0706abf2264eaa6acca6012ee0ae3dacfa4388b60c4870071e1c631103be"
+      }
+    },
+    {
+      "variant": "mvp3",
+      "sha256": "f2889d01425eb08012add9c399919c13fcdeb54573721c06a08b8b1f44da8c91",
+      "min_sdk": 24,
+      "internet_permission": false,
+      "network_state_permission": false,
+      "native_libraries": {
+        "lib/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+        "lib/arm64-v8a/libggml-base.so": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+        "lib/arm64-v8a/libggml-cpu.so": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+        "lib/arm64-v8a/libggml.so": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+        "lib/arm64-v8a/libllama.so": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+        "lib/arm64-v8a/libllama_jni.so": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+        "lib/arm64-v8a/libwhisper.so": "f9dc0706abf2264eaa6acca6012ee0ae3dacfa4388b60c4870071e1c631103be"
+      }
+    }
+  ]
+}

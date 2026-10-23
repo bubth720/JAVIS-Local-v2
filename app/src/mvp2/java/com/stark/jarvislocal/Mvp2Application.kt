@@ -28,7 +28,17 @@ internal class Mvp2Graph(app: Mvp2Application, controller: InferenceController) 
     val confirmedMemory get() = memoryStore.value
     private val approval = lazy { com.stark.jarvislocal.memory.MemoryApprovalWorkflow(confirmedMemory) }
     val memoryApproval get() = approval.value
-    fun revokePendingMemory() { if (approval.isInitialized()) approval.value.revokeSession(intentSessionId) }
+    val memoryControls = com.stark.jarvislocal.memory.UserMemoryControl()
+    private val recall = lazy { com.stark.jarvislocal.memory.MemoryRecallIndex(confirmedMemory, memoryControls) }
+    val memoryRecall get() = recall.value
+    val memoryContext get() = com.stark.jarvislocal.memory.MemoryContextAssembler(memoryRecall)
+    private val exports = lazy { com.stark.jarvislocal.memory.MemoryExportService(confirmedMemory, memoryControls, File(app.noBackupFilesDir, "memory_exports_lab")) }
+    val memoryExports get() = exports.value
+    fun revokePendingMemory() {
+        if (approval.isInitialized()) approval.value.revokeSession(intentSessionId)
+        memoryControls.suspendSession(intentSessionId)
+        if (exports.isInitialized()) exports.value.revokeSession(intentSessionId)
+    }
     val speech = Mvp2Speech(LocalTts(app)) {
         android.provider.Settings.Global.getInt(app.contentResolver, android.provider.Settings.Global.AIRPLANE_MODE_ON, 0) == 1
     }

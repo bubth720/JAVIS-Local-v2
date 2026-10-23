@@ -67,4 +67,30 @@ class MemoryLabUiTest {
             assertFalse(app.runtime.state.value.loaded)
         } finally { controller.pause().stop().destroy(); idle(app); app.graph.confirmedMemory.close(); app.graph.db.close() }
     }
+    @Test fun recallToolsDisplayARealConfirmedMemoryWithoutActivatingInference() {
+        val controller = Robolectric.buildActivity(Mvp2Activity::class.java).setup()
+        val app = RuntimeEnvironment.getApplication() as Mvp2Application
+        try {
+            idle(app)
+            val views = all(controller.get().findViewById(android.R.id.content))
+            views.filterIsInstance<CheckBox>().first { it.text.startsWith("Activer le laboratoire") }.performClick()
+            val graph = app.graph
+            val candidate = graph.memoryApproval.propose(graph.intentSessionId, "souvenir synthétique origami")
+            assertTrue(graph.memoryApproval.decide(candidate.id, graph.intentSessionId, candidate.content,
+                com.stark.jarvislocal.memory.MemoryDecision.ACCEPT) is com.stark.jarvislocal.memory.MemoryApprovalResult.Confirmed)
+            views.filterIsInstance<Button>().first { it.text == "Rappel et export — mémoire confirmée" }.performClick()
+            val menu = ShadowAlertDialog.getLatestAlertDialog()
+            menu.listView.performItemClick(menu.listView.adapter.getView(0, null, menu.listView), 0, 0)
+            val prompt = ShadowAlertDialog.getLatestAlertDialog()
+            all(prompt.window!!.decorView).filterIsInstance<EditText>().first().setText("origami")
+            prompt.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle(app)
+            val explanation = ShadowAlertDialog.getLatestAlertDialog()
+            val text = all(explanation.window!!.decorView).filterIsInstance<TextView>().joinToString { it.text.toString() }
+            assertTrue(text.contains(candidate.content)); assertTrue(text.contains("USER_EXPLICIT"))
+            assertTrue(graph.db.recentMessages().isEmpty()); assertFalse(app.runtime.state.value.loaded)
+            controller.pause().stop(); assertEquals(com.stark.jarvislocal.memory.RecallStatus.DENIED,
+                graph.memoryRecall.recall(com.stark.jarvislocal.memory.MemoryQuery(graph.intentSessionId, "origami"),
+                    com.stark.jarvislocal.memory.ProjectionPolicy(setOf(com.stark.jarvislocal.memory.MemoryScope.GENERAL))).status)
+        } finally { controller.destroy(); idle(app); app.graph.confirmedMemory.close(); app.graph.db.close() }
+    }
 }

@@ -1108,3 +1108,25 @@ lie une approbation de 90s à l'aperçu et à la révision optimiste ; restaurat
 ProfileRepository conserve toutes les versions. Extension locale éditeur /2
 compatible en lecture avec /1, schéma SQLite inchangé, contrats approuvés intacts.
 Aucun goût/configuration créé au lancement, aucun branchement dans l'inférence.
+
+## MEM-02 — rappel confirmé et export volontaire
+
+Base ID-02 corrigée `283423cb8b9d567539f33cf7f2f1fafa602cf974`, les 400 tests
+initiaux et 406 après revue restent préservés. MemoryRecallIndex parcourt au plus
+200 souvenirs MEM-01 confirmés, sans seconde base ni collecte de conversations.
+Session fermée par défaut, scopes explicites, aucune portée SENSITIVE, expiration,
+suspension/oubli et lecture fraîche. Égalité lexicale => choix utilisateur, pas une
+contradiction sémantique prouvée. MemoryContextAssembler produit un bloc JSON de
+données non fiables distinct du documentaire ; son budget UTF-8 n'est pas une
+mesure exacte de tokens ni une autorisation de génération.
+
+MemoryExportService : aperçu exact RAM90s, sélection limitée10, JSON32Kio maximum,
+révision/source/SHA et consentements toujours revérifiés. Fichiers privés neufs,
+confirmation explicite avant écriture ; SAF local facultatif avec nouvel aperçu
+après le sélecteur, cible vide obligatoire et relecture SHA. Erreur de copie =>
+UNKNOWN, copie privée conservée, jamais suppression/rollback promis du fournisseur.
+Le port de chiffrement n'a pas d'adaptateur Keystore qualifié : requête chiffrée
+refusée par défaut, export en clair annoncé. Import uniquement en aperçu isolé,
+aucune autorité ou confirmation acceptée d'un fichier, aucune API d'importation
+automatique. Aucun souvenir historique, profil, JNI ou fixture modifié ; Athéna
+inactive. `tools/check-mem-02.py` protège les fichiers amont hors UI opt-in.
