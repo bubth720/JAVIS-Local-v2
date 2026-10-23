@@ -1096,3 +1096,15 @@ La palette MVP2/MVP3 offre un laboratoire isolé après opt-in, avec aperçu, re
 confirmation positive puis consultation/édition/effacement. Les tests se limitent
 aux bases synthétiques et distinguent rollback/restauration manuelle de fixture
 d'un service de sauvegarde Android qui n'est pas livré ici.
+
+## ID-02 — styles et intérêts éditoriaux sans activation native
+
+PreferencesCatalog distingue goûts simulés, style configuré et données utilisateur
+confirmées, sans convertir un goût en souvenir. ContextStylePolicy réduit l'humour
+en contexte travail/urgence ; TemplateRealizer explique les substitutions finies
+sur ses seuls gabarits, aucune entrée texte libre. Les règles conflictuelles ou
+chaînées sont rejetées, l'urgence suspend les variantes. IdentityChangeJournal
+lie une approbation de 90s à l'aperçu et à la révision optimiste ; restauration
+ProfileRepository conserve toutes les versions. Extension locale éditeur /2
+compatible en lecture avec /1, schéma SQLite inchangé, contrats approuvés intacts.
+Aucun goût/configuration créé au lancement, aucun branchement dans l'inférence.

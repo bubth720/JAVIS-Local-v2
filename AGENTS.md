@@ -526,3 +526,15 @@ et n'exporte jamais SENSITIVE ; l'UI propriétaire seule consulte le catalogue.
 Le nouvel écran MVP2/MVP3 est opt-in et isolé, l'écran historique reste intact.
 Aucun chiffrement/effacement cryptographique revendiqué ; gardes/contrats/JNI et
 règles de mémoire historique conservés. `tools/check-mem-01.py` protège ID-01.
+
+## Actualisation — ID-02 intensive
+
+Les goûts fictifs PersonaInterest et variantes lexicales finies restent dans le
+format local d'éditeur identity-profile-lab/2, distinct de jarvis.identity/1 et
+des fixtures expérimentales /2. Les révisions /1 restent lisibles et inchangées,
+aucune migration SQLite n'est exécutée. TemplateRealizer ne prend que des
+gabarits internes : aucun document, résultat LLM ou SYSTEM n'est réécrit.
+IdentityChangeJournal impose aperçu/digest et approbation explicite, conserve
+les propositions/rejets RAM et délègue les révisions au repository ID-01.
+MemoryPreferenceReader est uniquement lecteur des préférences confirmées MEM-01.
+Athéna reste désactivée ; ContextStylePolicy n'accorde aucune capacité.

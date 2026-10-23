@@ -13,6 +13,8 @@ object DiffService {
             val a = before.parameters(context); val b = after.parameters(context)
             if (a != b) changes += ProfileDifference(context.name, a.toString(), b.toString())
         }
+        if (before.interests != after.interests) changes += ProfileDifference("simulated_interests", before.interests.toString(), after.interests.toString())
+        if (before.languageRules != after.languageRules) changes += ProfileDifference("language_rules", before.languageRules.toString(), after.languageRules.toString())
         return changes
     }
 }

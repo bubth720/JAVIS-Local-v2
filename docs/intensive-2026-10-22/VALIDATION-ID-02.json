@@ -1,0 +1,56 @@
+{
+  "format": "jarvis.campaign-validation/1",
+  "mission": "ID-02",
+  "base_commit": "a6f13dd101990c6b5e3992be506c9a5b99873621",
+  "qualification": "software_tested",
+  "capabilities": [
+    "identity.simulated-interests",
+    "identity.bounded-template-preview",
+    "identity.explicit-change-review",
+    "identity.confirmed-preference-reader"
+  ],
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "tools/identity-cloud-env.sh",
+        "gradle",
+        "-PincludeP2Fixture=true",
+        "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8",
+        "-Pkotlin.compiler.execution.strategy=in-process",
+        ":app:testDebugUnitTest",
+        ":app:assembleDebug",
+        ":app:lintDebug",
+        ":p2-client:testDebugUnitTest",
+        "--offline",
+        "--no-daemon",
+        "--max-workers=2"
+      ],
+      "exit_code": 0,
+      "passed": 400,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check-id-02.py"
+      ],
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ]
+}
