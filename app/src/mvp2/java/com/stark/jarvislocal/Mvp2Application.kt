@@ -17,6 +17,13 @@ internal class Mvp2Graph(app: Mvp2Application, controller: InferenceController) 
     val settings = SettingsStore(app)
     val core = JarvisCore(db, RagEngine(db), controller, settings)
     val conversation = CoreConversationAdapter(db, settings, core)
+    // No new native qualification: conversation remains unavailable in the orchestration laboratory.
+    val intentFacade = com.stark.jarvislocal.orchestration.MvpIntentFacade(
+        com.stark.jarvislocal.orchestration.CoreCapabilities(db, RagEngine(db),
+            { question -> core.chatVolatile(question, emptyList()) }).registry(),
+        com.stark.jarvislocal.orchestration.IntentPermissions(setOf(
+            "core.history", "core.documents", "core.search", "core.time", "core.conversation")))
+    val intentSessionId: String = java.util.UUID.randomUUID().toString()
     val speech = Mvp2Speech(LocalTts(app)) {
         android.provider.Settings.Global.getInt(app.contentResolver, android.provider.Settings.Global.AIRPLANE_MODE_ON, 0) == 1
     }

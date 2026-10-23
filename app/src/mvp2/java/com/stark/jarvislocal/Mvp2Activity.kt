@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -45,6 +46,36 @@ class Mvp2Activity : MvpActivity() {
             b.text = label; b.setOnClickListener { try { action() } catch (failure: Exception) { toast(failure.message ?: "Action refusée") } }
             extra.addView(b)
         }
+        val intentStatus = TextView(this).apply { text = "Intentions : laboratoire désactivé par défaut ; aucun modèle chargé par le routeur." }
+        extra.addView(intentStatus)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(androidx.lifecycle.Lifecycle.State.STARTED) {
+                graph.intentFacade.tasks.state.collect { states ->
+                    intentStatus.text = states.lastOrNull()?.let { "Intentions : ${it.capabilityId} · ${it.phase} · ${it.requestId}" }
+                        ?: "Intentions : aucune tâche ; activation explicite requise."
+                }
+            }
+        }
+        extra.addView(CheckBox(this).apply {
+            text = "Activer le laboratoire d'intentions (lectures locales explicites)"
+            isChecked = graph.intentFacade.isEnabled
+            setOnCheckedChangeListener { _, checked ->
+                if (runtime.state.value.busy || !graph.intentFacade.setEnabled(checked)) {
+                    isChecked = graph.intentFacade.isEnabled
+                    toast("Opération active : changement refusé")
+                }
+            }
+        })
+        button("Intentions : consulter l'historique SQLite") { inspectIntent("core.history", com.stark.jarvislocal.orchestration.IntentCategory.READ) }
+        button("Intentions : lister les documents SQLite") { inspectIntent("core.documents", com.stark.jarvislocal.orchestration.IntentCategory.READ) }
+        button("Intentions : rechercher dans les documents") {
+            val query = EditText(this).apply { hint = "Mots à rechercher dans les documents locaux"; isSaveEnabled = false }
+            AlertDialog.Builder(this).setTitle("Recherche locale explicite").setView(query)
+                .setPositiveButton("Rechercher") { _, _ ->
+                    inspectIntent("core.search", com.stark.jarvislocal.orchestration.IntentCategory.SEARCH, query.text.toString())
+                }.setNegativeButton(android.R.string.cancel, null).show()
+        }
+        button("Intentions : lire l'heure locale") { inspectIntent("core.time", com.stark.jarvislocal.orchestration.IntentCategory.DIAGNOSTIC) }
         button("1. Rechercher une voix locale (mode avion requis)") {
             if (!graph.speech.initialize()) toast("Active le mode avion, puis désactive le Wi-Fi avant le test de voix")
             renderSpeech()
@@ -96,6 +127,28 @@ class Mvp2Activity : MvpActivity() {
         extra.addView(extensions)
         lifecycleScope.launch { graph.speech.status.collect { renderSpeech() } }
         renderSpeech()
+    }
+    private fun inspectIntent(capability: String, category: com.stark.jarvislocal.orchestration.IntentCategory, input: String = "") {
+        try {
+            val request = graph.intentFacade.request(graph.intentSessionId, capability, category, input)
+            if (!runtime.inspect { check ->
+                check()
+                val result = graph.intentFacade.execute(request)
+                check()
+                withContext(Dispatchers.Main) {
+                    check()
+                    if (!lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)) return@withContext
+                    val text = when (result) {
+                        is com.stark.jarvislocal.orchestration.IntentResult.Completed ->
+                            "Requête ${result.requestId} · ${result.capabilityId}\n" +
+                                result.items.joinToString("\n\n") { "${it.source ?: it.id} : ${it.text}" }.ifBlank { "Aucun résultat local." }
+                        else -> "Refus du laboratoire : $result"
+                    }
+                    AlertDialog.Builder(this@Mvp2Activity).setTitle("Résultat local — aucune génération IA")
+                        .setMessage(text).setPositiveButton(android.R.string.ok, null).show()
+                }
+            }) toast("Opération active : inspection refusée")
+        } catch (_: IllegalArgumentException) { toast("Demande invalide ou trop longue") }
     }
     override fun confirmSend(text: String, send: () -> Unit) {
         if (text.trim().startsWith("/remember ", true)) {

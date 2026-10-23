@@ -52,6 +52,8 @@ internal class MvpRuntime(private val store: MvpModelStore, private val engine: 
         require(engine.state.value.modelUnloaded && !engine.state.value.quarantined) { "Décharger le moteur avant cet import" }
         task(check)
     }
+    /** Explicit read-only UI extensions use the existing operation gate, never another engine gate. */
+    fun inspect(task: suspend (() -> Unit) -> Unit) = start("Inspection locale explicite…", block = task)
     fun unload() = start("Déchargement : attente du retour natif…") {
         require(engine.unload() == UnloadResult.CONFIRMED) { "Libération non confirmée ; aucune nouvelle admission" }
     }

@@ -1042,3 +1042,18 @@ exécutable ni appareil personnel utilisé ; aucune conversation native obtenue.
 Docs/mvp-004/ distingue les nouvelles régressions exécutées des essais natifs
 non exécutés. NO-GO personnel, aucun modèle/IPC/persona activé. Maintenir cette
 entrée à jour après toute autorisation et preuve de qualification ultérieure.
+
+## CORE-01 intensive — capacités locales opt-in
+
+Nouveau package `orchestration/` : enveloppe d'intention in-process versionnée,
+registre sans écrasement, permissions hôte séparées du contenu, routage explicite
+et suivi borné en RAM. Les adaptateurs réutilisent LocalDatabase, RagEngine et
+l'horloge historique. Pas de heuristique LLM, migration, IPC ou deuxième moteur.
+MVP2/MVP3 expose l'activation puis historique/documents/recherche/heure dans la
+palette existante ; chaque inspection emprunte le même gate MvpRuntime. Les
+résultats sont indiqués comme lectures locales, aucune génération IA simulée.
+Le prototype de conversation réutilise chatVolatile mais demeure indisponible
+faute de qualification native ; IDENTITY et les fixtures restent inchangés.
+Le quota des IDs acceptés est256 par façade/processus ; un refus QUOTA n'entraîne
+ni effacement de journal ni reset d'admission. Voir REPORT-CORE-01.md pour les
+commandes, résultats frais et limites. La fin de tâche n'atteste aucun unload.

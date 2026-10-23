@@ -473,3 +473,18 @@ Préserver toute la production, les signatures, l'admission et les budgets ;
 aucune correction JNI ou sensible sans validation distincte du diff.
 Suivre ANDROID-PROTOCOL.md seulement après autorisations ; NO-GO tant que
 fichier et Android réel manquent. Actualiser les résultats avec les preuves.
+
+## Actualisation — CORE-01 intensive
+
+Base `a6f13dd101990c6b5e3992be506c9a5b99873621`. Lire
+`docs/intensive-2026-10-22/REPORT-CORE-01.md`. Le routeur `orchestration/`
+est local, typé et désactivé par défaut ; il ne décode ni LLM ni PDF comme
+commandes. `MvpRuntime.inspect` partage le gate des opérations MVP ; le
+TaskCoordinator ne remplace aucune admission native. Annulation logique et
+fin de tâche ne prouvent jamais unload. UI MVP2/MVP3 : quatre lectures
+explicites SQLite/RAG/horloge, résultats uniquement RAM ; aucun nouveau souvenir
+ou historique créé. La route conversation reste indisponible sans qualification
+native ; aucun port externe, IPC ou persona activé. Les IDs de requête sont
+retenus en RAM (quota256, refus explicite après épuisement), jamais rejoués
+automatiquement. Exécuter `python3 tools/check-core-01.py`, les suites CORE,
+fixture et MVP, builds/Lint ; conserver les gardes historiques sans les assouplir.
