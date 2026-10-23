@@ -1068,3 +1068,16 @@ RESPONSE_CHUNK et SPEECH_REQUESTED sont des types réservés aux producteurs
 réels futurs, pas une promesse de streaming ou de voix déjà raccordée. Le journal
 métrique optionnel reste RAM, avec durées seulement quand début et fin observés.
 Les ports externes restent indisponibles même quand leur découverte est activée.
+
+## ID-01 — profils éditoriaux locaux et contrats conservés
+
+ProfileRepository : SQLite de laboratoire distincte, création/sélection de profils,
+révisions optimistes, hash strict, restauration par nouvelle révision et journal
+d'origine, sans migration historique. ProfileDraft est immuable et sépare les
+propositions numériques du contrat B. ProfilePreviewEngine expose six scénarios
+sans génération et l'aperçu du SYSTEM B identique au formatter de l'ancien composer.
+IdentityComposerAdapter délègue seulement la baseline technique approuvée, avec
+les mêmes exigences de politique/tokenizer ; Athéna/variantes restent refusées
+par CONTRACT_EXTENSION_REQUIRED. PersonaExpressionPort ne donne que contexte,
+style et tutoiement, aucun texte libre, souvenir ou permission. Aucun runtime
+activé ni nouveau stockage de données utilisateur effectué par cette livraison.

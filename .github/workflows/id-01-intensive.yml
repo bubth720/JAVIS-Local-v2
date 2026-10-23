@@ -1,0 +1,41 @@
+name: ID-01 local orchestration regression
+on:
+  push:
+    branches: [feat/id-01-intensive]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.10.2'}
+      - name: Android tools only, no models
+        run: python3 tools/setup-preview-android.py
+      - name: Verify exact mission scope
+        run: python3 tools/check-id-01.py
+      - name: CORE, fixtures and explicit MVP laboratory
+        run: >-
+          gradle -PincludeP2Fixture=true
+          :app:testDebugUnitTest :p2-client:testDebugUnitTest
+          :app:testMvp2UnitTest --tests '*Mvp*'
+          :app:testMvp3UnitTest --tests '*Mvp*'
+          :app:assembleDebug :app:assembleMvp2 :app:assembleMvp3
+          :app:lintDebug :app:lintMvp2 :app:lintMvp3
+          :p2-client:assembleDebug :p2-client:lintDebug
+          --no-daemon --max-workers=2 -Pkotlin.compiler.execution.strategy=in-process
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ID-01-test-reports
+          path: |
+            app/build/test-results/**/TEST-*.xml
+            app/build/reports/lint-results-*.xml
+            fixtures/p2-client/build/test-results/**/TEST-*.xml
+          if-no-files-found: error

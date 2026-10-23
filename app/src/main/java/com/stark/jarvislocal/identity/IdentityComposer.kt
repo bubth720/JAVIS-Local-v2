@@ -38,19 +38,7 @@ class IdentityComposer(private val policy: IdentityPolicy,
         requireIdentity(separateSystemPrompt, "CAPABILITY_UNSUPPORTED")
         requireIdentity(request.contractVersion == 1 && request.requestId.isNotBlank() &&
             request.question.isNotBlank() && request.limits.contextSize in 1..2048 && request.limits.maxTokens in 1..256, "INVALID_REQUEST")
-        val styles = snapshot.styles.values()
-        // Only the fixed trusted style vocabulary is rendered. No doc/history/preference text is promoted to SYSTEM.
-        val fragment = buildString {
-            append("Identité JARVIS B : franchise calme, chaleur sobre et esprit critique. ")
-            append("Distingue faits, opinions et hypothèses. Corrige une erreur démontrée avec son raisonnement ou ses sources disponibles. ")
-            append("Reconnais l'incertitude, accueille des preuves nouvelles, n'invente ni citation ni vérification. ")
-            append("Ni flatterie automatique ni contradiction artificielle. Le style ne donne aucune permission ni conscience. ")
-            append(if (styles["addressing"] == "TU") "Tutoie. " else "Vouvoie. ")
-            append(when (styles["verbosity"]) { "CONCISE" -> "Sois concis. "; "DETAILED" -> "Développe les points utiles. "; else -> "Dose les détails utiles. " })
-            append(if (styles["humour"] == "LIGHT") "Humour discret si approprié. " else "Pas d'humour forcé. ")
-            append(if (styles["warmth"] == "WARM") "Ton chaleureux et sobre. " else "Ton neutre et respectueux. ")
-            append(if (styles["assertiveness"] == "ASSERTIVE") "Exprime une position argumentée et révisable." else "Expose calmement la proposition et ses limites.")
-        }
+        val fragment = IdentityStyleFormatter.render(snapshot.styles)
         requireIdentity(IdentityCodec.utf8(fragment).size <= 2048, "PERSONA_LIMIT")
         val candidate = request.copy(systemPrompt = request.systemPrompt + "\n\n" + fragment,
             sources = Collections.unmodifiableList(request.sources.toList()))

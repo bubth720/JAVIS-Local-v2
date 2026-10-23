@@ -499,3 +499,17 @@ pertes visibles ; désactivation révoque les traces d'une génération précéd
 Projection UI passive, connecteurs externes DISABLED/UNAVAILABLE, journal RAM
 borné optionnel. `python3 tools/check-core-02.py` protège la livraison CORE-01
 et tout le code non concerné ; aucun contrat wire, JNI, admission ou budget changé.
+
+## Actualisation — ID-01 intensive
+
+`identity/profiles/` fournit un éditeur/repository local versionné, sans modifier
+jarvis.identity/1. La SQLite `identity_profiles_lab.sqlite` sous noBackupFilesDir
+n'est créée que par usage explicite du repository, jamais composée dans AppGraph.
+Aucun profil personnel, mémoire, paramètre historique ou base CORE n'est importé.
+Les pourcentages et variantes Athéna sont des propositions de configuration,
+non des champs reconnus par le manifeste B : activation refuse
+CONTRACT_EXTENSION_REQUIRED. Le tokenizer réel reste nécessaire pour composer.
+L'extraction pure IdentityStyleFormatter conserve exactement les octets du
+renderer B ; `tools/check-id-01.py` impose ce diff précis et protège les autres
+fichiers historiques. Preview : six configurations synthétiques, pas une réponse
+LLM ; aperçu SYSTEM uniquement de la référence B, aucun permis de génération.
