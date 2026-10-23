@@ -488,3 +488,14 @@ native ; aucun port externe, IPC ou persona activé. Les IDs de requête sont
 retenus en RAM (quota256, refus explicite après épuisement), jamais rejoués
 automatiquement. Exécuter `python3 tools/check-core-01.py`, les suites CORE,
 fixture et MVP, builds/Lint ; conserver les gardes historiques sans les assouplir.
+
+## Actualisation — CORE-02 intensive
+
+Bus `events/` opt-in dans AppGraph, observation des vraies transitions de
+SessionCoordinator. Métadonnées uniquement : pas de texte, prompt, source privée
+ou permission déduite d'un événement. Corrélation métier locale distincte des IDs
+natifs/du bail ; aucune preuve d'unload. Replay64, déduplication sur256 événements,
+pertes visibles ; désactivation révoque les traces d'une génération précédente.
+Projection UI passive, connecteurs externes DISABLED/UNAVAILABLE, journal RAM
+borné optionnel. `python3 tools/check-core-02.py` protège la livraison CORE-01
+et tout le code non concerné ; aucun contrat wire, JNI, admission ou budget changé.

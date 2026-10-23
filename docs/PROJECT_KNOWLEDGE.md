@@ -1057,3 +1057,14 @@ faute de qualification native ; IDENTITY et les fixtures restent inchangés.
 Le quota des IDs acceptés est256 par façade/processus ; un refus QUOTA n'entraîne
 ni effacement de journal ni reset d'admission. Voir REPORT-CORE-01.md pour les
 commandes, résultats frais et limites. La fin de tâche n'atteste aucun unload.
+
+## CORE-02 — événements locaux observables
+
+AppGraph expose `events`, `eventUi`, `connectors`. Le bus reste désactivé tant que
+l'hôte ne choisit pas `graph.events.setEnabled(true)` ; aucun état observé ne
+commence une opération ni ne donne des droits. SessionCoordinator conserve ses
+gates/timeout/drainage et publie entrée/réflexion/fin/erreur/annulation sans texte.
+RESPONSE_CHUNK et SPEECH_REQUESTED sont des types réservés aux producteurs
+réels futurs, pas une promesse de streaming ou de voix déjà raccordée. Le journal
+métrique optionnel reste RAM, avec durées seulement quand début et fin observés.
+Les ports externes restent indisponibles même quand leur découverte est activée.

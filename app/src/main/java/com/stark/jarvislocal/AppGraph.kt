@@ -18,6 +18,9 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
     val llm = InferenceController(InferenceEngineFactory(historical = { LlamaLocalEngine(models) }))
     val core = JarvisCore(db, rag, llm, settings)
     val textLab = TextLabConversation(core::chatVolatile)
+    val events = com.stark.jarvislocal.events.CoreEventBus() // disabled, volatile observation only
+    val eventUi = com.stark.jarvislocal.events.UiStateProjection(events)
+    val connectors = com.stark.jarvislocal.events.ConnectorRegistry.defaults()
     val whisper = WhisperLocalEngine(appContext, models)
     val tts = LocalTts(appContext)
     val recorder = WavRecorder(appContext)
@@ -92,7 +95,7 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
         override fun stopSpeech() { tts.stop() }
         override fun releaseSpeech() { tts.shutdown() }
         override fun initializeSpeechIfEnabled() { if (!textLab.active && settings.load().speakReplies) tts.initialize() }
-    }, operationScope)
+    }, operationScope, conversationEvents = com.stark.jarvislocal.events.ConversationEventPublisher(events))
 
     /** Existing coordinator serializes mode changes against all accepted app operations. */
     fun setTextLab(enabled: Boolean): Boolean = session.reprepareWhenIdle {

@@ -56,11 +56,14 @@ class SessionCoordinator internal constructor(
     private val workerDispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val chatTimeoutMillis: Long = 90_000,
     private val transcriptionTimeoutMillis: Long = 60_000,
-    private val audioTimeoutMillis: Long = 5_000
+    private val audioTimeoutMillis: Long = 5_000,
+    private val conversationEvents: com.stark.jarvislocal.events.ConversationEventPublisher? = null
 ) {
     private val mutableState = MutableStateFlow(SessionState())
     val state: StateFlow<SessionState> = mutableState.asStateFlow()
     private var currentJob: Job? = null
+    private val eventSessionId = java.util.UUID.randomUUID().toString()
+    private var conversationTrace: com.stark.jarvislocal.events.ConversationTrace? = null
     private var stopSignal: CompletableDeferred<Unit>? = null
     @Volatile private var discardAudio = false
     @Volatile private var foreground = false
@@ -169,11 +172,13 @@ class SessionCoordinator internal constructor(
     fun cancelCurrent() {
         stopRecording(discard = true)
         actions.requestInferenceStop()
+        conversationEvents?.cancelRequested(conversationTrace)
         currentJob?.cancel()
     }
 
     private suspend fun conversation(text: String) {
         val answer = waitForWork(SessionPhase.THINKING, chatTimeoutMillis) { actions.chat(text) }
+        synchronized(this) { conversationEvents?.completed(conversationTrace) }
         if (foreground) actions.speakIfEnabled(answer.text)
     }
 
@@ -208,11 +213,13 @@ class SessionCoordinator internal constructor(
         if (mutableState.value.busy) return false
         if (phase == SessionPhase.PREPARING && mutableState.value.prepared) return true
         onAccepted?.invoke()
+        val trace = if (phase == SessionPhase.THINKING) conversationEvents?.accepted(eventSessionId) else null
+        conversationTrace = trace
         mutableState.value = mutableState.value.copy(phase = phase, busy = true, detail = detail, revision = mutableState.value.revision + 1)
         val job = scope.launch(start = CoroutineStart.LAZY) {
             var failure: String? = null
             var cancelled = false
-            try { block() }
+            try { synchronized(this@SessionCoordinator) { conversationEvents?.started(trace) }; block() }
             catch (e: CancellationException) { cancelled = true }
             catch (e: Exception) {
                 failure = e.message ?: "Erreur locale inconnue"
@@ -226,7 +233,10 @@ class SessionCoordinator internal constructor(
                 throw fatal
             } finally {
                 synchronized(this@SessionCoordinator) {
-                    if (actions.inferenceReleaseUnconfirmed()) failure = failure ?: "État natif ou libération du moteur non attesté ; moteur bloqué."
+                    val releaseUnconfirmed = actions.inferenceReleaseUnconfirmed()
+                    if (releaseUnconfirmed) failure = failure ?: "État natif ou libération du moteur non attesté ; moteur bloqué."
+                    conversationEvents?.finished(trace, cancelled, failure != null, releaseUnconfirmed)
+                    conversationTrace = null
                     val previous = mutableState.value
                     mutableState.value = previous.copy(
                         phase = if (failure != null || !previous.prepared) SessionPhase.ERROR else SessionPhase.READY,
@@ -243,6 +253,8 @@ class SessionCoordinator internal constructor(
             synchronized(this@SessionCoordinator) {
                 // A job cancelled before its first instruction never runs its finally block.
                 if (currentJob === job) {
+                    conversationEvents?.finished(trace, cancelled = true, failed = false)
+                    conversationTrace = null
                     currentJob = null
                     stopSignal = null
                     val previous = mutableState.value
