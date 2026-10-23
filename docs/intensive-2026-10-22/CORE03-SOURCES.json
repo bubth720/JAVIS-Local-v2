@@ -1,0 +1,16 @@
+{
+  "nexus": {
+    "repository": "bubth720/JARVIS-NEXUS",
+    "commit": "777e6afa75ecb99b85e52d68837cb0fefcf161cd",
+    "git_tree": "b534f8a7f7e441cf264097773afb042103aefd36",
+    "source_files": 46,
+    "tree_sha256": "4a1a3cfcafe50e7f56d985a02e7017ec7d47b11d431202d3a21259d63f87521e"
+  },
+  "services": {
+    "repository": "bubth720/JARVIS-SERVICES",
+    "commit": "3decdc47d82f9b43713c48cab244762941770a81",
+    "git_tree": "56f5214de9a0d1d164638e9e128bb3335ee23499",
+    "source_files": 189,
+    "tree_sha256": "975a2dcafa3b90ed4f3216da0d1fba98410f5a940b058e55c2eb2ece2b646dbb"
+  }
+}

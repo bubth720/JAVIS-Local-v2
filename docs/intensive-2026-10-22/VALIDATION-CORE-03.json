@@ -1,0 +1,46 @@
+{
+  "format": "jarvis.campaign-validation/1",
+  "mission": "CORE-03",
+  "base_commit": "49ad428e94edd75c2a1d115c8c2504f26609eace",
+  "qualification": "software_tested",
+  "status": "PARTIAL",
+  "capabilities": [
+    "core.jvm.nexus.search",
+    "core.jvm.citation.resolve",
+    "core.jvm.services.dispatch",
+    "core.jvm.context.data-only"
+  ],
+  "blocking_limitations": [
+    "No Android API24 adapter for JVM17/JDBC NEXUS and java.nio SERVICES",
+    "No production SessionCoordinator wiring, native inference, or APK transport"
+  ],
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "tools/identity-cloud-env.sh",
+        "gradle",
+        "-p",
+        "integration-lab",
+        "-PcoreNexusSource=/workspace/.jarvis-dependencies/core03-nexus-777e6afa75ecb99b85e52d68837cb0fefcf161cd",
+        "-PcoreServicesSource=/workspace/.jarvis-dependencies/core03-services-3decdc47d82f9b43713c48cab244762941770a81",
+        "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8",
+        "-Pkotlin.compiler.execution.strategy=in-process",
+        "test",
+        "run",
+        "--offline",
+        "--no-daemon",
+        "--max-workers=2"
+      ],
+      "exit_code": 0,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "limits": [
+    "Synthetic data, real library and SQLite/FTS5/CSV/DOCX calls on JVM Linux only",
+    "Fixture approval is not a user approval or physical/native Android proof",
+    "501 parent Android/Robolectric tests retained, not rerun or added to ten JVM tests"
+  ]
+}

@@ -1130,3 +1130,23 @@ refusée par défaut, export en clair annoncé. Import uniquement en aperçu iso
 aucune autorité ou confirmation acceptée d'un fichier, aucune API d'importation
 automatique. Aucun souvenir historique, profil, JNI ou fixture modifié ; Athéna
 inactive. `tools/check-mem-02.py` protège les fichiers amont hors UI opt-in.
+
+## CORE-03 — client de bibliothèques JVM, Android non raccordé
+
+Base MEM-02 `49ad428e94edd75c2a1d115c8c2504f26609eace`. Le projet autonome
+`integration-lab/` réutilise NEXUS777e6afa et SERVICES3decdc47, snapshots Git
+exacts validés par `tools/prepare-core03-sources.py` et CORE03-SOURCES.json.
+Ne jamais substituer les worktrees modifiés ni charger JDBC dans l'APK. Aucun
+include/dépendance Android ajouté : source NEXUS JVM17/JDBC et SERVICES java.nio
+API26 restent incompatibles/non qualifiés avec le CORE API24 historique.
+
+SourceSearchPort/NexusSearchAdapter conservent et résolvent toutes les citations,
+HostAccessPort refuse par défaut et revalide les réponses tardives. ContextAssembler
+produit des données JSON non fiables, pas un SYSTEM ni une admission de tokens.
+ServicesToolAdapter réutilise registre/Guard/ApprovalGate existants ; toute mutation
+nécessite revue exacte et appel propriétaire distinct, aucun accord déduit du texte.
+Les approbations du CLI sont synthétiques et ne valent pas décisions utilisateur.
+Annuler/timeout d'outil n'atteste aucune fin JNI ou libération. La démonstration est
+réelle sur SQLite/FTS5, CSV et DOCX fictifs mais reste JVM, sans connexion APK,
+LLM ou mémoire personnelle. CORE-03 global reste PARTIAL. Tout `app/`, fixture,
+modèle, budget et fichier de build Android de MEM-02 doit rester identique.
