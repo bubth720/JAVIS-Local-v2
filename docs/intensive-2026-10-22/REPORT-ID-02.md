@@ -67,3 +67,18 @@ conversation native ni appareil physique testé. Garde protège337 fichiers amon
 Suite : MEM-02 (rappel borné/export volontaire du laboratoire), puis portions
 CORE-03 compatibles. NEXUS est JVM/JDBC, son raccordement Android API24 demeure
 bloqué ; aucun JDBC desktop ne doit être intégré à l'APK.
+
+## Reprise et correctif de revue
+
+Le commit initial `7a54f85adc5143bf8c7710de81942d49f3b901d0` et sa validation
+de 400 tests restent préservés. Les modifications locales interrompues ont été
+reprises sans recommencer la mission : DiffService expose maintenant les valeurs
+par défaut et la présence/retrait des overrides même lorsque les paramètres
+résolus des trois contextes sont identiques. Aucun changement caché dans l'aperçu
+d'approbation. Test de retrait sélectif des goûts fictifs également conservé.
+
+Suite debug finale forcée par `:app:testDebugUnitTest --rerun` : **406 tests
+réexécutés, zéro échec/erreur/ignoré** (les 400 anciens plus six cas API24/25/35).
+Build debug, Lint debug et fixture /2 vérifiés en première commande : PASS avec
+résultats majoritairement UP-TO-DATE, non présentés comme réexécutés. Garde ID-02
+PASS, 337 fichiers protégés ; diff sans erreur. Aucun contrat/JNI/persona activé.

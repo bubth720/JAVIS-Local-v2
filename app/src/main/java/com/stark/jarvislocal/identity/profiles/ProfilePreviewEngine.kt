@@ -9,7 +9,10 @@ object DiffService {
         val changes = mutableListOf<ProfileDifference>()
         if (before.name != after.name) changes += ProfileDifference("name", before.name, after.name)
         if (before.preset != after.preset) changes += ProfileDifference("preset", before.preset.name, after.preset.name)
+        if (before.defaults != after.defaults) changes += ProfileDifference("defaults", before.defaults.toString(), after.defaults.toString())
         for (context in PersonaContext.entries) {
+            val oldOverride = before.overrides[context]; val newOverride = after.overrides[context]
+            if (oldOverride != newOverride) changes += ProfileDifference("override:${context.name}", oldOverride?.toString() ?: "INHERIT_DEFAULTS", newOverride?.toString() ?: "INHERIT_DEFAULTS")
             val a = before.parameters(context); val b = after.parameters(context)
             if (a != b) changes += ProfileDifference(context.name, a.toString(), b.toString())
         }

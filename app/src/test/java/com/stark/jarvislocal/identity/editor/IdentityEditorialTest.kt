@@ -49,6 +49,30 @@ class IdentityEditorialTest {
         assertEquals(3, profiles.history(first.reference.id).size)
         println("ID-02 synthetic demo: ${original.after} -> ${preview.after} -> ${TemplateRealizer().preview(restored.draft, PersonaContext.DAILY).after}")
     }
+    @Test fun hiddenDefaultsAndExplicitOverridesAreAlwaysIncludedInApprovalDiff() {
+        val base = ProfileDraft.preset(PersonaPreset.ATHENA)
+        val allOverrides = PersonaContext.entries.associateWith { base.defaults }
+        val first = profiles.create(ProfileDraft(base.name, base.preset, base.defaults, allOverrides))
+        val journal = IdentityChangeJournal(profiles)
+        val changedDefaults = ProfileDraft(base.name, base.preset, base.defaults.copy(humour = 15), allOverrides)
+        val proposal = journal.propose(first.reference, changedDefaults)
+        assertTrue(proposal.differences.any { it.field == "defaults" })
+        assertEquals(60, proposal.preview.first().effective.humour)
+        val approved = journal.approve(proposal.id, proposal.approvalDigest)
+        assertEquals(15, approved.draft.defaults.humour)
+        val noOverride = ProfileDraft(base.name, base.preset, base.defaults, allOverrides - PersonaContext.DAILY)
+        assertTrue(DiffService.compare(first.draft, noOverride).any { it.field == "override:DAILY" })
+    }
+    @Test fun selectiveTasteRemovalPreservesOtherTastesAndDoesNotDeletePersonalData() {
+        val base = ProfileDraft.preset(PersonaPreset.ATHENA)
+        val first = profiles.create(changed(base, setOf(PersonaInterest.ARTS, PersonaInterest.SCIENCE)))
+        val journal = IdentityChangeJournal(profiles)
+        val proposal = journal.propose(first.reference, changed(base, setOf(PersonaInterest.SCIENCE)))
+        val approved = journal.approve(proposal.id, proposal.approvalDigest)
+        assertEquals(setOf(PersonaInterest.SCIENCE), approved.draft.interests)
+        assertEquals(2, profiles.read(first.reference.id, 1).draft.interests.size)
+        assertFalse(memoryPath.exists())
+    }
     @Test fun fictionNeverBecomesPersonalMemoryAndCategoriesRemainSeparate() {
         val draft = changed(ProfileDraft.preset(PersonaPreset.ATHENA))
         val catalog = PreferencesCatalog().read(draft, PersonaContext.DAILY)
