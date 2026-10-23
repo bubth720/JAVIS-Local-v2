@@ -513,3 +513,16 @@ L'extraction pure IdentityStyleFormatter conserve exactement les octets du
 renderer B ; `tools/check-id-01.py` impose ce diff précis et protège les autres
 fichiers historiques. Preview : six configurations synthétiques, pas une réponse
 LLM ; aperçu SYSTEM uniquement de la référence B, aucun permis de génération.
+
+## Actualisation — MEM-01 intensive
+
+Namespace SQLite de laboratoire explicite `confirmed_memory_lab.sqlite`, même
+moteur Android SQLiteOpenHelper ; aucune migration/copie de LocalDatabase.
+Candidats uniquement RAM, contenu exact + session + nonce + deadline avant
+transaction mémoire/reçu/audit. Les imports, documents, LLM et événements ne
+peuvent approuver. Conflit de préférence => nouvelle revue/remplacement explicite
+lié à la révision ; jamais d'auto-arbitrage. MemoryLookupPort refuse par défaut
+et n'exporte jamais SENSITIVE ; l'UI propriétaire seule consulte le catalogue.
+Le nouvel écran MVP2/MVP3 est opt-in et isolé, l'écran historique reste intact.
+Aucun chiffrement/effacement cryptographique revendiqué ; gardes/contrats/JNI et
+règles de mémoire historique conservés. `tools/check-mem-01.py` protège ID-01.

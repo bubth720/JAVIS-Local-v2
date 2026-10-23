@@ -24,6 +24,11 @@ internal class Mvp2Graph(app: Mvp2Application, controller: InferenceController) 
         com.stark.jarvislocal.orchestration.IntentPermissions(setOf(
             "core.history", "core.documents", "core.search", "core.time", "core.conversation")))
     val intentSessionId: String = java.util.UUID.randomUUID().toString()
+    private val memoryStore = lazy { com.stark.jarvislocal.memory.ConfirmedMemoryStore(app) }
+    val confirmedMemory get() = memoryStore.value
+    private val approval = lazy { com.stark.jarvislocal.memory.MemoryApprovalWorkflow(confirmedMemory) }
+    val memoryApproval get() = approval.value
+    fun revokePendingMemory() { if (approval.isInitialized()) approval.value.revokeSession(intentSessionId) }
     val speech = Mvp2Speech(LocalTts(app)) {
         android.provider.Settings.Global.getInt(app.contentResolver, android.provider.Settings.Global.AIRPLANE_MODE_ON, 0) == 1
     }

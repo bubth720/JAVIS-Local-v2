@@ -102,6 +102,10 @@ class Mvp2Activity : MvpActivity() {
             renderSpeech()
         }
         button("Arrêter et désactiver la lecture") { graph.speech.disable(); renderSpeech() }
+        button("Mémoire confirmée — laboratoire isolé") {
+            if (!graph.intentFacade.isEnabled || runtime.state.value.busy) toast("Active le laboratoire et attends la fin de l’opération")
+            else MemoryLabUi(this, runtime, graph.confirmedMemory, graph.memoryApproval, graph.intentSessionId).show()
+        }
         button("Ajouter un souvenir confirmé") {
             val input = EditText(this).apply { hint = "Souvenir explicite (maximum 1500 caractères)" }
             AlertDialog.Builder(this).setTitle("Confirmer l'enregistrement local").setView(input)
@@ -195,7 +199,7 @@ class Mvp2Activity : MvpActivity() {
     }
     override fun onStop() {
         graph.speech.stop()
-        if (!isChangingConfigurations) graph.speech.disable()
+        if (!isChangingConfigurations) { graph.speech.disable(); graph.revokePendingMemory() }
         super.onStop()
     }
 }

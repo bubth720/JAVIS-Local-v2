@@ -1081,3 +1081,18 @@ les mêmes exigences de politique/tokenizer ; Athéna/variantes restent refusée
 par CONTRACT_EXTENSION_REQUIRED. PersonaExpressionPort ne donne que contexte,
 style et tutoiement, aucun texte libre, souvenir ou permission. Aucun runtime
 activé ni nouveau stockage de données utilisateur effectué par cette livraison.
+
+## MEM-01 — consentement et mémoire de laboratoire
+
+MemoryApprovalWorkflow prépare des candidats RAM bornés, approuvables seulement
+par le contenu affiché exact, la session et une nonce fraîche valable90s. SQLite
+confirme mémoire/reçu/audit atomiquement, refuse replays et révisions périmées.
+La suppression retire aussi les reçus, pas l'historique de conversation ; suspendre
+invalide les anciennes références. Le port de projection est sans cache, expire
+immédiatement les vues et exclut toute portée SENSITIVE, même demandée. L'audit
+ne conserve ni texte ni digest personnel après suppression. Aucune mémoire
+historique importée, requalifiée ou effacée ; pas d'activation dans AppGraph.
+La palette MVP2/MVP3 offre un laboratoire isolé après opt-in, avec aperçu, refus,
+confirmation positive puis consultation/édition/effacement. Les tests se limitent
+aux bases synthétiques et distinguent rollback/restauration manuelle de fixture
+d'un service de sauvegarde Android qui n'est pas livré ici.

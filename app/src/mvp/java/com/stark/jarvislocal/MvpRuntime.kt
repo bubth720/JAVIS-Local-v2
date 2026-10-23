@@ -54,6 +54,8 @@ internal class MvpRuntime(private val store: MvpModelStore, private val engine: 
     }
     /** Explicit read-only UI extensions use the existing operation gate, never another engine gate. */
     fun inspect(task: suspend (() -> Unit) -> Unit) = start("Inspection locale explicite…", block = task)
+    /** The caller still needs exact consent or explicit owner deletion confirmation; this only shares the operation gate. */
+    fun confirmedMemoryAction(task: suspend (() -> Unit) -> Unit) = start("Mémoire confirmée de laboratoire…", block = task)
     fun unload() = start("Déchargement : attente du retour natif…") {
         require(engine.unload() == UnloadResult.CONFIRMED) { "Libération non confirmée ; aucune nouvelle admission" }
     }
