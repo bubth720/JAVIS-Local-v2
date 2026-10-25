@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:39:42" hostname="9405d059b27a" time="0.12">
+  <properties/>
+  <testcase name="callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses[24]" classname="com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest" time="0.02"/>
+  <testcase name="callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses[25]" classname="com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest" time="0.021"/>
+  <testcase name="callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses" classname="com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest" time="0.02"/>
+  <testcase name="hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented[24]" classname="com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest" time="0.019"/>
+  <testcase name="hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented[25]" classname="com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest" time="0.018"/>
+  <testcase name="hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented" classname="com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest" time="0.022"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

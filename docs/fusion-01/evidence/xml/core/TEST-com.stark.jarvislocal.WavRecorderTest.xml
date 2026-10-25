@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.WavRecorderTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:39:40" hostname="9405d059b27a" time="0.051">
+  <properties/>
+  <testcase name="permissionRevokedDuringDeviceCreationDoesNotLeaveCaptureActive" classname="com.stark.jarvislocal.WavRecorderTest" time="0.009"/>
+  <testcase name="emptyCaptureIsNotPresentedAsValidWav" classname="com.stark.jarvislocal.WavRecorderTest" time="0.015"/>
+  <testcase name="readErrorIsReportedAndDoesNotProduceValidAudio" classname="com.stark.jarvislocal.WavRecorderTest" time="0.002"/>
+  <testcase name="unavailableDeviceIsReleasedAndNextAttemptCanSucceed" classname="com.stark.jarvislocal.WavRecorderTest" time="0.002"/>
+  <testcase name="aSecondCaptureCannotStartWhileFirstIsActive" classname="com.stark.jarvislocal.WavRecorderTest" time="0.002"/>
+  <testcase name="permissionRefusalDoesNotCreateAnAudioDevice" classname="com.stark.jarvislocal.WavRecorderTest" time="0.001"/>
+  <testcase name="finalizationFailureDoesNotReturnAudioForTranscription" classname="com.stark.jarvislocal.WavRecorderTest" time="0.003"/>
+  <testcase name="normalStopFinalizesWavAndRepeatedStopIsSafe" classname="com.stark.jarvislocal.WavRecorderTest" time="0.002"/>
+  <testcase name="startupCleanupRemovesOnlyJarvisTemporaryAudio" classname="com.stark.jarvislocal.WavRecorderTest" time="0.0"/>
+  <testcase name="openFileFailureReleasesAudioDevice" classname="com.stark.jarvislocal.WavRecorderTest" time="0.002"/>
+  <testcase name="stopWaitsForReleaseAndWriterTerminationBeforeReturningFile" classname="com.stark.jarvislocal.WavRecorderTest" time="0.003"/>
+  <testcase name="startFailureReleasesDeviceAndDeletesFile" classname="com.stark.jarvislocal.WavRecorderTest" time="0.001"/>
+  <testcase name="writeFailureDeletesIncompleteWavAndReleasesDevice" classname="com.stark.jarvislocal.WavRecorderTest" time="0.002"/>
+  <testcase name="releaseFailureQuarantinesAudioAndNeverReturnsAValidRecording" classname="com.stark.jarvislocal.WavRecorderTest" time="0.003"/>
+  <testcase name="discardedCaptureIsDeletedAndNeverReturnedAsValid" classname="com.stark.jarvislocal.WavRecorderTest" time="0.002"/>
+  <testcase name="deviceFactoryFailureDoesNotLeaveRecordingFlagSet" classname="com.stark.jarvislocal.WavRecorderTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

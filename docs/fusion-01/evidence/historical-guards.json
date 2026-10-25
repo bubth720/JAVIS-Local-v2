@@ -1,0 +1,10 @@
+{
+  "check-core-03.py": {
+    "exit_code": 1,
+    "classification": "HISTORICAL_SCOPE_GUARD_NOT_RELAXED"
+  },
+  "check-mem-02.py": {
+    "exit_code": 1,
+    "classification": "HISTORICAL_SCOPE_GUARD_NOT_RELAXED"
+  }
+}

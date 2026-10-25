@@ -1,0 +1,163 @@
+[
+  {
+    "module": "CORE",
+    "path": "app/build.gradle.kts",
+    "sha256": "be358aa8ded614ff4b21053835c278f864b9a64a808cfb828e3a255068ebcefa",
+    "bytes": 3324,
+    "status": "READ"
+  },
+  {
+    "module": "CORE",
+    "path": "build.gradle.kts",
+    "sha256": "50425357e4449207a6e3098fa4f4dc66864a870859025051fc809589ddb858df",
+    "bytes": 142,
+    "status": "READ"
+  },
+  {
+    "module": "CORE",
+    "path": "settings.gradle.kts",
+    "sha256": "2d895395ecb9cd468e3afda7a610ee1a6c3270e4d1c1313e723792779dd323fb",
+    "bytes": 449,
+    "status": "READ"
+  },
+  {
+    "module": "LLM",
+    "path": "app/build.gradle.kts",
+    "sha256": "7d0a2cb3bf904eb17b2aad81c6ac13a77ca3d5ec646920ea9e674110e0af45b4",
+    "bytes": 3596,
+    "status": "READ"
+  },
+  {
+    "module": "LLM",
+    "path": "build.gradle.kts",
+    "sha256": "874d1149813c03edd010c3b5a96bf8090cc50556c763b70e34bb4f138b7b9e58",
+    "bytes": 232,
+    "status": "READ"
+  },
+  {
+    "module": "LLM",
+    "path": "settings.gradle.kts",
+    "sha256": "73d92496184d445909336facb82607ece12518e8b6fce670878524d618df05ec",
+    "bytes": 538,
+    "status": "READ"
+  },
+  {
+    "module": "VOICE",
+    "path": "app/build.gradle.kts",
+    "sha256": "d14dc2a93aced9bea3e07a005e359796a7e2002ab3345be32f1015a820a5e03d",
+    "bytes": 548,
+    "status": "READ"
+  },
+  {
+    "module": "VOICE",
+    "path": "build.gradle.kts",
+    "sha256": "41ea3c3fdceb3f06c39a0375efec91327f0d4888790c7bb1064f4bd3d36f8e38",
+    "bytes": 206,
+    "status": "READ"
+  },
+  {
+    "module": "VOICE",
+    "path": "settings.gradle.kts",
+    "sha256": "023603fab89deb790e22d125a5ac082aab4643ad41eaa791811792c1363b5bf3",
+    "bytes": 996,
+    "status": "READ"
+  },
+  {
+    "module": "VOICE",
+    "path": "voiceStudio/build.gradle.kts",
+    "sha256": "de67330e9a1067dc8149f66dac26353a8319bf35f32b547f0aebe76b8b889925",
+    "bytes": 2219,
+    "status": "READ"
+  },
+  {
+    "module": "INTERFACE",
+    "path": "app/build.gradle.kts",
+    "sha256": "8cd089ba5868aee5d92355c0e57f33b61ce3d2c07182f5b61e9f2e82151b6bb2",
+    "bytes": 1510,
+    "status": "READ"
+  },
+  {
+    "module": "INTERFACE",
+    "path": "build.gradle.kts",
+    "sha256": "7af865aea3e2dde810363caa1c3f9eed33324aa47f1c7e281034d4bd69129b3d",
+    "bytes": 170,
+    "status": "READ"
+  },
+  {
+    "module": "INTERFACE",
+    "path": "gradle/libs.versions.toml",
+    "sha256": "808a3ebcfe393e42a0b4addcccd2aa78f96406cc936948810d527dcd68d4ccce",
+    "bytes": 1828,
+    "status": "READ"
+  },
+  {
+    "module": "INTERFACE",
+    "path": "settings.gradle.kts",
+    "sha256": "0be8db4611e68305288440bfc19b2e822a2ad956aac851b7e22e51c082bdc051",
+    "bytes": 285,
+    "status": "READ"
+  },
+  {
+    "module": "NEXUS",
+    "path": "build.gradle.kts",
+    "sha256": "38614212f7666af2d963c75b1a6cecb7bdd4947c002f5803e84b81efbf1064f1",
+    "bytes": 116,
+    "status": "READ"
+  },
+  {
+    "module": "NEXUS",
+    "path": "nexus-core/build.gradle.kts",
+    "sha256": "e141f8b555f1084160af0cd733887456aa1601a6a490f260a625f5003fb80da2",
+    "bytes": 251,
+    "status": "READ"
+  },
+  {
+    "module": "NEXUS",
+    "path": "settings.gradle.kts",
+    "sha256": "cd2ac9db3e7367a29590fa47543c15c5d62380e3830582765fd075d056e934dd",
+    "bytes": 652,
+    "status": "READ"
+  },
+  {
+    "module": "SERVICES",
+    "path": "build.gradle",
+    "sha256": "88224c6709891a88c82a040ff4da2496a87020f115312c03d84e6cdb2bc8a86a",
+    "bytes": 64,
+    "status": "READ"
+  },
+  {
+    "module": "SERVICES",
+    "path": "gradle/verification-metadata.xml",
+    "sha256": "5b2f2e8280a892862774b9d2b966b3b94d020f1f841e8a30940dc5b15dfb4929",
+    "bytes": 136775,
+    "status": "READ"
+  },
+  {
+    "module": "SERVICES",
+    "path": "settings.gradle",
+    "sha256": "4eed094b0d8c9494a78a44b8abc3a442e47c662cee724334b0b5327f21a30b21",
+    "bytes": 413,
+    "status": "READ"
+  },
+  {
+    "module": "EVOLUTION",
+    "path": "build.gradle.kts",
+    "sha256": "c5ec24119d252f9e974f5bc1f3954e755e1d52aa6a60f64b7824630d8870a99e",
+    "bytes": 120,
+    "status": "READ"
+  },
+  {
+    "module": "EVOLUTION",
+    "path": "settings.gradle.kts",
+    "sha256": "1d1020ed5e3a432484bdf81d100e340b33f799eb375cc14e48238e12d0918bca",
+    "bytes": 252,
+    "status": "READ"
+  },
+  {
+    "module": "UNIFIED",
+    "path": "contracts/generated/manifest.json",
+    "sha256": "d86ed0d4797a79362064f11cbc049eecf88b00f8d9bb1cb71ec13e0eec4a50c9",
+    "bytes": 10948,
+    "status": "READ"
+  }
+]

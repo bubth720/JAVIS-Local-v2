@@ -1,0 +1,9 @@
+{
+  "html_url": "https://github.com/bubth720/JAVIS-Local-v2/pull/16",
+  "number": 16,
+  "draft": true,
+  "state": "open",
+  "base": "feat/core-03-intensive",
+  "observed_head_sha": "0d41e6f3f412386371a81fe0d1a862fc87ae22cf",
+  "note": "Initial publication snapshot; PR head follows subsequent commits on the same branch."
+}

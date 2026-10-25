@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.WhisperLocalEngineTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:39:40" hostname="9405d059b27a" time="0.02">
+  <properties/>
+  <testcase name="successfulTranscriptionReleasesTheModelAndTrimsText" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.002"/>
+  <testcase name="cancellationDoesNotReleaseNativeResourcesBeforeActualReturn" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.002"/>
+  <testcase name="absentOrTruncatedWavIsRejectedBeforeNativeLoad" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.003"/>
+  <testcase name="incompleteHeaderAndWrongPcmFormatAreRejected" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.002"/>
+  <testcase name="emptyTranscriptionStillReleasesTheModel" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.001"/>
+  <testcase name="loadingFailureAllowsRetryWithoutReleasingUnknownHandle" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.003"/>
+  <testcase name="missingModelDoesNotLoadNativeResources" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.001"/>
+  <testcase name="concurrentAttemptIsRejectedUntilFirstNativeCallEnds" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.002"/>
+  <testcase name="transcriptionFailureReleasesTheModelAndAllowsRetry" classname="com.stark.jarvislocal.WhisperLocalEngineTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1150,3 +1150,17 @@ Annuler/timeout d'outil n'atteste aucune fin JNI ou libération. La démonstrati
 réelle sur SQLite/FTS5, CSV et DOCX fictifs mais reste JVM, sans connexion APK,
 LLM ou mémoire personnelle. CORE-03 global reste PARTIAL. Tout `app/`, fixture,
 modèle, budget et fichier de build Android de MEM-02 doit rester identique.
+
+## Actualisation FUSION-01 — laboratoire CORE C0/C1
+
+Base CORE03 aea5ac859ac551d54fe16187c1883a487dbee9d6, descendante de MEM02/ID02 ;
+CORE–VOICE reste divergent et non importé. Voir docs/fusion-01/REPORT.md et le verrou
+local (pas un GO global UNIFIED). DocumentToolWorkflow relie réellement les bibliothèques
+JVM épinglées NEXUS777e6afa/SERVICES3decdc47 : TXT cité, CSV/décimaux, revue/consentement
+FIXTURE, export CSV/DOCX réel. Le registre SERVICES existant est utilisé ; les reçus
+techniques sont dans son Store, aucune nouvelle mémoire/base CORE. Annulation, timeout
+et révocation refusent les résultats tardifs ; états inconnus persistants sans retry.
+La révocation n'est pas atomique avec le début d'une écriture producteur, et aucun
+rollback n'est garanti : C1 PARTIAL. Android/API24, Binder, LLM et VOICE non raccordés.
+Toutes les validations et leurs limites sont détaillées dans le rapport versionné.
+Actualiser ces connaissances lors des futures qualifications de producteurs.

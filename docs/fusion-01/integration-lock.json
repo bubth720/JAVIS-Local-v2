@@ -1,0 +1,191 @@
+{
+  "schema": "jarvis.core.fusion-lock/1",
+  "base": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+  "global_f0": "NOT_ATTESTED",
+  "android_integration": "BLOCKED",
+  "observed_candidates": [
+    {
+      "module": "CORE",
+      "repository": "bubth720/JAVIS-Local-v2",
+      "reference": "feat/core-03-intensive",
+      "sha": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+      "parents": [
+        "49ad428e94edd75c2a1d115c8c2504f26609eace"
+      ],
+      "git_tree": "01af2b46b3b5fa99e820589fa4ae6b21224aa794",
+      "role": "BASE",
+      "root_agents": "PRESENT_READ",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    },
+    {
+      "module": "LLM",
+      "repository": "bubth720/JARVIS-LLM",
+      "reference": "feat/llm-03-runtime",
+      "sha": "2efb3f7aa6205062ab71f570212019fd1d9885b6",
+      "parents": [
+        "895a067ffc860d56a2dbb1ce22cb274096f8e3a2"
+      ],
+      "git_tree": "824cb98d1ebf9f115adedb5ec285e0394f87fbc8",
+      "role": "READ_ONLY_REFERENCE",
+      "root_agents": "ABSENT",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    },
+    {
+      "module": "VOICE",
+      "repository": "bubth720/JARVIS-VOICE",
+      "reference": "feat/voice-final-01",
+      "sha": "fe57452fcb33f5b6870070f30ba6c5f1d349c4ba",
+      "parents": [
+        "a59a9c5a6e95cdd645ad09661b6172e98af5323c"
+      ],
+      "git_tree": "65035f97cdaccfea6ab2fff91faf63416986f43d",
+      "role": "READ_ONLY_REFERENCE",
+      "root_agents": "ABSENT",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    },
+    {
+      "module": "INTERFACE",
+      "repository": "bubth720/JARVIS-INTERFACE",
+      "reference": "feat/interface-final-01",
+      "sha": "db459ba388a3fea992d80320c3989be0edda8500",
+      "parents": [
+        "011c9c0520fda8415193138b762b7def665391b4"
+      ],
+      "git_tree": "5433e0d2e2a0513de41de60956d5d5d730ceb22c",
+      "role": "READ_ONLY_REFERENCE",
+      "root_agents": "ABSENT",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    },
+    {
+      "module": "NEXUS",
+      "repository": "bubth720/JARVIS-NEXUS",
+      "reference": "feat/nexus-final-01",
+      "sha": "d903bf04f497ab0dc7f40e9708ed057e4f24c6ee",
+      "parents": [
+        "bbccac2ff2cc052f897c7f5015f234507e047b95"
+      ],
+      "git_tree": "85f3dd8d83d1a08c6fbcec97b6548582dda310a4",
+      "role": "READ_ONLY_REFERENCE",
+      "root_agents": "ABSENT",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    },
+    {
+      "module": "SERVICES",
+      "repository": "bubth720/JARVIS-SERVICES",
+      "reference": "feat/services-final-01",
+      "sha": "d16dd84f27881460ec9f02d2a54d9ddff23187dc",
+      "parents": [
+        "edfa044321ff09697ae9bec40a6e31aa76a77370"
+      ],
+      "git_tree": "1e72fc5707d00aed891e4d0820103723465926e4",
+      "role": "READ_ONLY_REFERENCE",
+      "root_agents": "ABSENT",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    },
+    {
+      "module": "EVOLUTION",
+      "repository": "bubth720/JARVIS-VOLUTION-",
+      "reference": "feat/evol-03-atelier-de-correctifs-isoles-e",
+      "sha": "c0180181804338d21f3bf9d4b537b709595902f7",
+      "parents": [
+        "0abd5f96caa27ee1e73a623d538e48555a02ce76"
+      ],
+      "git_tree": "ff925c2836010226ffa1981a5de1c1d47854483b",
+      "role": "READ_ONLY_REFERENCE",
+      "root_agents": "ABSENT",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    },
+    {
+      "module": "UNIFIED",
+      "repository": "bubth720/JARVIS-UNIFIED",
+      "reference": "feat/uni-02-tooling",
+      "sha": "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c",
+      "parents": [
+        "7d9909978c64b4ebd7eafd42dc52b23fb3a552b7"
+      ],
+      "git_tree": "d30a6f69260f364c18b6e6d90cc8bff8bce3b1e8",
+      "role": "READ_ONLY_REFERENCE",
+      "root_agents": "PRESENT_READ",
+      "license_status": "ROOT_LICENSE_NOT_FOUND_DISTRIBUTION_REVIEW_REQUIRED"
+    }
+  ],
+  "consumed_jvm_sources": {
+    "nexus": {
+      "repository": "bubth720/JARVIS-NEXUS",
+      "commit": "777e6afa75ecb99b85e52d68837cb0fefcf161cd",
+      "git_tree": "b534f8a7f7e441cf264097773afb042103aefd36",
+      "source_files": 46,
+      "tree_sha256": "4a1a3cfcafe50e7f56d985a02e7017ec7d47b11d431202d3a21259d63f87521e"
+    },
+    "services": {
+      "repository": "bubth720/JARVIS-SERVICES",
+      "commit": "3decdc47d82f9b43713c48cab244762941770a81",
+      "git_tree": "56f5214de9a0d1d164638e9e128bb3335ee23499",
+      "source_files": 189,
+      "tree_sha256": "975a2dcafa3b90ed4f3216da0d1fba98410f5a940b058e55c2eb2ece2b646dbb"
+    }
+  },
+  "preserved_contract_files": {
+    "fixtures/p2-client/REFERENCE.json": "657a2d4aab5c838854ab199b0684d59ee70d47b3e43bbf8330b7ca9fecf4c2f8",
+    "fixtures/p2-client/CONTRACT.txt": "7a850a58aed04511fb3104931e4109f76b87a13304222f5197c14d9b7c403cb6",
+    "fixtures/p2-client/src/main/aidl/fr/jarvis/fixture/p2/IP2Endpoint.aidl": "2a52d720e93e7781fd7828ca5a0928d1acf94c11c61b18ab5a3de68286b976bc",
+    "fixtures/p2-client/src/main/aidl/fr/jarvis/fixture/p2/IP2Arbiter.aidl": "088fb472e7ef8072906b1305bd1317cb679fb8dea2574ba8f47e164595efdf6a",
+    "fixtures/p2-client/src/main/aidl/fr/jarvis/fixture/p2/IP2AuthorizationCallback.aidl": "0d132b9034aeb076636f4c85e5869f9752848824b719d04d1e0a2f19282d7cf5"
+  },
+  "gates": {
+    "C2": "BLOCKED",
+    "C3": "DESIGN_ONLY",
+    "C4": "BLOCKED"
+  },
+  "dependency_edges": [
+    [
+      "UNIFIED_F0",
+      "ANDROID_C2"
+    ],
+    [
+      "NEXUS_API24_INSTRUMENTED",
+      "ANDROID_C2"
+    ],
+    [
+      "SERVICES_API24_INSTRUMENTED",
+      "ANDROID_C2"
+    ],
+    [
+      "NATIVE_F3B",
+      "LLM_CONNECTION"
+    ],
+    [
+      "ANDROID_C2",
+      "ANDROID_CONTENT_TRANSPORT"
+    ],
+    [
+      "LLM_CONNECTION",
+      "VOICE_CONNECTION"
+    ]
+  ],
+  "ports_api24": {
+    "NEXUS-API24": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+    "SERVICES-API24": "f00091a639612b91eca1a301580c8f531249f1e3"
+  },
+  "unified_f0_delivery": {
+    "repository": "bubth720/JARVIS-UNIFIED",
+    "branch": "feat/fusion-01-integration-lock",
+    "commit": "3caa57d91ce0dba31043e7cb6373a5e2df8b9fa4",
+    "status": "PUBLISHED_REPORT_READ_NOT_REEXECUTED",
+    "reported_tests": 147,
+    "files": {
+      "docs/fusion-01/reference/UNIFIED-integration-lock.json": "145ecec0bd2ca24bd92ce244359b6f8b23c2ddb393d6e40fc7730469f5a0bf6f",
+      "docs/fusion-01/reference/UNIFIED-REPORT.md": "e6b6ffa3d37eee5d0dfc30fd9fbe9e45e17d88de8a7bb005ce32788d6ba80cbf"
+    }
+  },
+  "primary_candidate_composition": {
+    "core": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+    "evolution": "c0180181804338d21f3bf9d4b537b709595902f7",
+    "interface": "db459ba388a3fea992d80320c3989be0edda8500",
+    "llm": "2efb3f7aa6205062ab71f570212019fd1d9885b6",
+    "nexus": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+    "services": "f00091a639612b91eca1a301580c8f531249f1e3",
+    "unified": "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c",
+    "voice": "fe57452fcb33f5b6870070f30ba6c5f1d349c4ba"
+  }
+}

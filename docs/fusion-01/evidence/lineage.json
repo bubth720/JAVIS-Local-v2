@@ -1,0 +1,27 @@
+{
+  "CORE02": {
+    "sha": "e86107b8213b0aeaf9d22025cf6bef91a8e544a5",
+    "ancestor_of_base": true,
+    "merge_base": "e86107b8213b0aeaf9d22025cf6bef91a8e544a5"
+  },
+  "MEM02": {
+    "sha": "49ad428e94edd75c2a1d115c8c2504f26609eace",
+    "ancestor_of_base": true,
+    "merge_base": "49ad428e94edd75c2a1d115c8c2504f26609eace"
+  },
+  "ID02": {
+    "sha": "283423cb8b9d567539f33cf7f2f1fafa602cf974",
+    "ancestor_of_base": true,
+    "merge_base": "283423cb8b9d567539f33cf7f2f1fafa602cf974"
+  },
+  "COREVOICE": {
+    "sha": "7426665f2794cba83646008fa0f342d102141201",
+    "ancestor_of_base": false,
+    "merge_base": "226e2e8cc3eebd479805b89d035eb5c1cbcad540"
+  },
+  "IDENTITY002": {
+    "sha": "8adec3e0e8dfdce685a33ef796fc3150facc7f0a",
+    "ancestor_of_base": true,
+    "merge_base": "8adec3e0e8dfdce685a33ef796fc3150facc7f0a"
+  }
+}

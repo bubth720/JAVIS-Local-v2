@@ -1,0 +1,86 @@
+{
+  "format": "jarvis.core.fusion-results/1",
+  "module": "CORE",
+  "mission": "FUSION-01 C0/C1",
+  "branch": "feat/fusion-01-core-integration",
+  "base": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+  "delivery_commit": "commit containing this file; use git rev-parse HEAD",
+  "generated_at": "2026-10-25T17:11:23.937868+00:00",
+  "status": "PARTIAL",
+  "executed_tests": {
+    "core": {
+      "passed": 448,
+      "failed": 0,
+      "skipped": 0
+    },
+    "mvp2": {
+      "passed": 53,
+      "failed": 0,
+      "skipped": 0
+    },
+    "p2_fixture": {
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0
+    },
+    "integration_jvm": {
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "historical": 10,
+      "new": 20
+    }
+  },
+  "unique_passed": 567,
+  "checks": {
+    "lock_negative_vectors": 6,
+    "android_builds": [
+      "debug",
+      "mvp2",
+      "mvp3"
+    ],
+    "lint": {
+      "debug": {
+        "errors": 0,
+        "warnings": 27
+      },
+      "mvp2": {
+        "errors": 0,
+        "warnings": 37
+      }
+    },
+    "apk_min_sdk": 24,
+    "apk_network_permissions": false,
+    "production_files_modified": false,
+    "jni_executed": false,
+    "models_downloaded": false
+  },
+  "expected_failures": [
+    {
+      "kind": "REGRESSION_ON_ORIGINAL_CODE",
+      "count": 1,
+      "evidence": "evidence/regression-before-fix.xml"
+    }
+  ],
+  "historical_scope_failures": [
+    "check-core-03.py",
+    "check-mem-02.py"
+  ],
+  "not_run": [
+    "Android instrumented API24/25/26/29/35",
+    "physical Android",
+    "GGUF/JNI inference",
+    "Binder LLM/VOICE",
+    "physical thermal battery PSS",
+    "actual Android process death/rotation/SAF",
+    "lintMvp3"
+  ],
+  "gates": {
+    "C0": "LOCAL_VERIFIED",
+    "C1": "PARTIAL_REVOCATION_FENCE_MISSING",
+    "C2": "BLOCKED_FTS5_AND_INSTRUMENTATION",
+    "C3": "DESIGN_ONLY",
+    "C4": "BLOCKED_NATIVE_QUALIFICATION"
+  },
+  "next_action": "Review lab delta and producer revocation fence; qualify API24/25 producer ports before Android integration."
+}

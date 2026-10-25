@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.Mvp2ActivityTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:39:58" hostname="9405d059b27a" time="0.994">
+  <properties/>
+  <testcase name="networkAndUninstalledVoicesAreRejectedWithoutDownloading[24]" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.033"/>
+  <testcase name="networkAndUninstalledVoicesAreRejectedWithoutDownloading[25]" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.019"/>
+  <testcase name="networkAndUninstalledVoicesAreRejectedWithoutDownloading" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.022"/>
+  <testcase name="cancellingMemoryDialogWritesNoMemoryOrConversation[24]" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.149"/>
+  <testcase name="cancellingMemoryDialogWritesNoMemoryOrConversation[25]" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.144"/>
+  <testcase name="cancellingMemoryDialogWritesNoMemoryOrConversation" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.219"/>
+  <testcase name="isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch[24]" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.126"/>
+  <testcase name="isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch[25]" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.119"/>
+  <testcase name="isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch" classname="com.stark.jarvislocal.Mvp2ActivityTest" time="0.163"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[System.logW: A resource was acquired at attached stack trace but never released. See java.io.Closeable for information on avoiding resource leaks.
+java.lang.Throwable: Explicit termination method 'close' not called
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$open(CloseGuard.java:180)
+	at jdk.internal.reflect.GeneratedMethodAccessor33.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.robolectric.shadows.ShadowCloseGuard$CloseGuardReflector$$Reflector12.open(Unknown Source)
+	at org.robolectric.shadows.ShadowCloseGuard.open(ShadowCloseGuard.java:38)
+	at dalvik.system.CloseGuard.open(CloseGuard.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openInner(SQLiteDatabase.java:809)
+	at android.database.sqlite.SQLiteDatabase.openInner(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$open(SQLiteDatabase.java:793)
+	at android.database.sqlite.SQLiteDatabase.open(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:696)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.app.ContextImpl.$$robo$$android_app_ContextImpl$openOrCreateDatabase(ContextImpl.java:680)
+	at android.app.ContextImpl.openOrCreateDatabase(ContextImpl.java)
+	at android.content.ContextWrapper.$$robo$$android_content_ContextWrapper$openOrCreateDatabase(ContextWrapper.java:289)
+	at android.content.ContextWrapper.openOrCreateDatabase(ContextWrapper.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getDatabaseLocked(SQLiteOpenHelper.java:223)
+	at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getReadableDatabase(SQLiteOpenHelper.java:187)
+	at android.database.sqlite.SQLiteOpenHelper.getReadableDatabase(SQLiteOpenHelper.java)
+	at com.stark.jarvislocal.LocalDatabase.recentMessages(LocalDatabase.kt:32)
+	at com.stark.jarvislocal.CoreConversationAdapter.recent(CoreConversationAdapter.kt:6)
+	at com.stark.jarvislocal.MvpRuntime$restore$1.invokeSuspend(MvpRuntime.kt:33)
+	at com.stark.jarvislocal.MvpRuntime$restore$1.invoke(MvpRuntime.kt)
+	at com.stark.jarvislocal.MvpRuntime$restore$1.invoke(MvpRuntime.kt)
+	at com.stark.jarvislocal.MvpRuntime$start$operation$1$2.invokeSuspend(MvpRuntime.kt:117)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:101)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:113)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:589)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:823)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:720)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:707)
+
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+]]></system-err>
+</testsuite>

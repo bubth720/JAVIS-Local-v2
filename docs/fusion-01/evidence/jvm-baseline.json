@@ -1,0 +1,65 @@
+{
+  "count": 10,
+  "cases": [
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "realNexusSourceIsResolvedAndAllCitationFieldsArePreserved",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "revokedSessionCannotExposeACompletedToolResult",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "mutationRequiresExactApprovalAndRealDocxIsVerifiedWithoutReplay",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "assemblyRefusesWithoutCurrentHostAuthorityEvenAfterSuccessfulRetrieval",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "defaultDenyAndUnauthorizedScopeNeverReturnSources",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "unicodeByteBudgetAndManipulativeContentRemainData",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "expiredPreviewAndRepeatedRequestNeverCreateMutation",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "changedCitationOrTextIsRejectedByActualNexusResolver",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "realServicesCsvRunsAndCoreDenyCannotBeOverriddenByArguments",
+      "status": "PASS"
+    },
+    {
+      "target": "test",
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "sourceRevocationAndWrongCorrelationRefuseLateResults",
+      "status": "PASS"
+    }
+  ]
+}

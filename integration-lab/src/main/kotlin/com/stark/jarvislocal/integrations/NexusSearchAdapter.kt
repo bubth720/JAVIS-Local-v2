@@ -23,7 +23,8 @@ data class SourceSearchRequest(val correlation: Correlation, val question: Strin
     init { require(question.isNotBlank() && strictBytes(question).size <= 1024); require(budgetBytes in 256..16000) }
 }
 data class CitationBinding(val correlation: Correlation, val bundle: ContextBundle)
-interface SourceSearchPort { fun search(request: SourceSearchRequest): CitationBinding }
+interface KnowledgeReadPort { fun search(request: SourceSearchRequest): CitationBinding }
+interface SourceSearchPort : KnowledgeReadPort
 
 /** JVM adapter over the actual delivered NEXUS port; nothing is linked into an Android APK. */
 class NexusSearchAdapter(private val nexus: RagContextPort,

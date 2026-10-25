@@ -38,3 +38,23 @@ Annulation/timeout ne libèrent aucun moteur et n'autorisent pas un rejeu automa
 Limite bloquante : NEXUS est JVM17/JDBC ; SERVICES utilise java.nio.file et n'est
 pas qualifié API24. Aucun de ces modules ne doit être ajouté à l'APK historique,
 ni le minSdk augmenté pour les faire fonctionner. CORE-03 reste **PARTIAL**.
+
+## FUSION-01 — workflow JVM isolé
+
+`DocumentToolWorkflow` relie recherche citée, CSV réel et revue d'export. La cible
+CSV utilise Documents.export via **le registre SERVICES existant**, comme DOCX.
+`WorkflowReceipts` conserve des métadonnées dans le Store SERVICES existant,
+sans nouvelle base mémoire/autorité. Reprise après propriétaire arrêté uniquement :
+PREPARED/DISPATCHED deviennent UNKNOWN, jamais retry ; ce n'est pas un journal natif.
+Les tests de crash/ACK sont des injections contrôlées, pas des crash Android.
+
+La confirmation des tests/CLI est **FIXTURE**. Les exports restent sous le dossier
+temporaire créé par le laboratoire, puis sont supprimés à sa fermeture. Aucun
+fichier utilisateur n'est lu. Le source TXT est un vrai fichier dont l'URI et le
+SHA sont conservés et relus. Timeout/cancel/révocation rendent le résultat inconnu
+sans autoriser une seconde attente positive. L'autorité `confirm` est revalidée.
+
+La révocation et le début d'une mutation ne sont pas linéarisés dans le worker
+SERVICES épinglé : un résultat peut être rejeté alors que le fichier a déjà été
+créé. Aucun rollback promis ; **PARTIAL**, pas une intégration Android ou de production.
+Voir [le rapport FUSION-01](../docs/fusion-01/REPORT.md).

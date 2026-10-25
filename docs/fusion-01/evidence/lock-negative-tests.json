@@ -1,0 +1,8 @@
+{
+  "bad_base": "REFUSED",
+  "missing_module": "REFUSED",
+  "floating_sha": "REFUSED",
+  "wrong_contract_hash": "REFUSED",
+  "dependency_cycle": "REFUSED",
+  "false_android_go": "REFUSED"
+}
