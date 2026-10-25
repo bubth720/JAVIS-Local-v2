@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   qualification:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +26,6 @@ jobs:
         with: {distribution: temurin, java-version: '17'}
       - uses: gradle/actions/setup-gradle@v4
         with: {gradle-version: '8.10.2'}
-      - uses: android-actions/setup-android@v3
       - name: Verify local lock and isolated dependency snapshots
         working-directory: core
         run: |
@@ -39,6 +38,9 @@ jobs:
           gradle -p integration-lab
           -PcoreNexusSource="$RUNNER_TEMP/nexus" -PcoreServicesSource="$RUNNER_TEMP/services"
           test run --no-daemon --max-workers=2 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Pinned repository SDK tooling, after independent JVM checks
+        working-directory: core
+        run: python3 tools/setup-preview-android.py
       - name: Historical 501 cases plus 36 fixture cases, builds and Lint
         working-directory: core
         run: >-

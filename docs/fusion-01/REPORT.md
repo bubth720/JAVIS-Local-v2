@@ -170,7 +170,16 @@ et exclu de la livraison. Aucun modèle chargé/téléchargé pour FUSION-01.
 
 ## Livraison et prochaine action
 
-Publier uniquement cette branche, PR **brouillon vers feat/core-03-intensive** afin
+Branche publiée : premier commit **0d41e6f3f412386371a81fe0d1a862fc87ae22cf**.
+PR brouillon ouverte : https://github.com/bubth720/JAVIS-Local-v2/pull/16.
+La première CI40215415459 a échoué dans setup-android avant les tests ; les logs
+complets redirigent vers Azure et sont refusés HTTP403 par le proxy. La cause
+interne n’est donc pas affirmée. Correction de CI seulement : script SDK35
+épinglé du dépôt, déjà utilisé par MEM02, runner ubuntu-24.04 stable et contrôles
+JVM placés avant SDK. La nouvelle exécution reste à constater au SHA suivant ;
+les567 résultats locaux restent distincts des checks GitHub.
+
+Livraison uniquement sur cette branche, PR **brouillon vers feat/core-03-intensive** afin
 de montrer la tranche sans importer implicitement tout l'historique dans main.
 Aucun merge, installation, activation, changement de données personnelles,
 signature, budget ou protection. Les APK contrôlées ne sont pas distribuées comme

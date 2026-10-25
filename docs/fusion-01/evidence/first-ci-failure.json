@@ -1,0 +1,10 @@
+{
+  "sha": "0d41e6f3f412386371a81fe0d1a862fc87ae22cf",
+  "run": 40215415459,
+  "url": "https://github.com/bubth720/JAVIS-Local-v2/actions/runs/40215415459",
+  "status": "FAILURE_BEFORE_TESTS",
+  "failed_step": "android-actions/setup-android@v3",
+  "test_steps": "SKIPPED",
+  "root_cause": "NOT_CONFIRMED: full job logs redirect to Azure blob denied by environment proxy HTTP403",
+  "correction": "Use unchanged pinned tools/setup-preview-android.py, stable ubuntu-24.04; move SDK setup after independent JVM tests. Rerun pending at this documentation commit."
+}
