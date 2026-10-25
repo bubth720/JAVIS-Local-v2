@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.TextLabConversationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:39:40" hostname="9405d059b27a" time="0.016">
+  <properties/>
+  <testcase name="oversizedInputCannotRemainInVolatileHistory" classname="com.stark.jarvislocal.TextLabConversationTest" time="0.004"/>
+  <testcase name="requiresExplicitOptInAndErasesHistoryAtExit" classname="com.stark.jarvislocal.TextLabConversationTest" time="0.001"/>
+  <testcase name="modeReadinessCannotChangeWhileCoordinatorIsBusy" classname="com.stark.jarvislocal.TextLabConversationTest" time="0.003"/>
+  <testcase name="boundedHistoryContainsOnlyCompletedPairs" classname="com.stark.jarvislocal.TextLabConversationTest" time="0.002"/>
+  <testcase name="failedOrEmptyAnswerNeverEntersFollowupContext" classname="com.stark.jarvislocal.TextLabConversationTest" time="0.001"/>
+  <testcase name="cancellationRejectsLateAnswerAndKeepsReservationUntilReturn" classname="com.stark.jarvislocal.TextLabConversationTest" time="0.002"/>
+  <testcase name="cancellationBeforeWorkerEntryNeverCallsInference" classname="com.stark.jarvislocal.TextLabConversationTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

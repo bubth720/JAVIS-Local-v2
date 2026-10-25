@@ -1,0 +1,62 @@
+name: FUSION-01 CORE JVM and preserved Android
+on:
+  push:
+    branches: [feat/fusion-01-core-integration]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qualification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {path: core, fetch-depth: 0}
+      - uses: actions/checkout@v4
+        with:
+          repository: bubth720/JARVIS-NEXUS
+          ref: 777e6afa75ecb99b85e52d68837cb0fefcf161cd
+          path: dependencies/nexus
+      - uses: actions/checkout@v4
+        with:
+          repository: bubth720/JARVIS-SERVICES
+          ref: 3decdc47d82f9b43713c48cab244762941770a81
+          path: dependencies/services
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.10.2'}
+      - uses: android-actions/setup-android@v3
+      - name: Verify local lock and isolated dependency snapshots
+        working-directory: core
+        run: |
+          python3 tools/check-fusion-01.py
+          python3 tools/prepare-core03-sources.py nexus "$RUNNER_TEMP/nexus" --checkout ../dependencies/nexus
+          python3 tools/prepare-core03-sources.py services "$RUNNER_TEMP/services" --checkout ../dependencies/services
+      - name: Real JVM producers, synthetic files and consent, no models
+        working-directory: core
+        run: >-
+          gradle -p integration-lab
+          -PcoreNexusSource="$RUNNER_TEMP/nexus" -PcoreServicesSource="$RUNNER_TEMP/services"
+          test run --no-daemon --max-workers=2 -Pkotlin.compiler.execution.strategy=in-process
+      - name: Historical 501 cases plus 36 fixture cases, builds and Lint
+        working-directory: core
+        run: >-
+          gradle -PincludeP2Fixture=true :app:testDebugUnitTest
+          :app:testMvp2UnitTest --tests '*Mvp*' --tests '*MemoryLabUiTest*'
+          :p2-client:testDebugUnitTest :app:assembleDebug :app:assembleMvp2 :app:assembleMvp3
+          :app:lintDebug :app:lintMvp2 --no-daemon --max-workers=2
+          -Pkotlin.compiler.execution.strategy=in-process
+      - name: Compare executed cases with immutable baseline inventory
+        working-directory: core
+        run: python3 tools/check-fusion-01.py --verify-results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: FUSION-01-CORE-software-evidence
+          path: |
+            core/integration-lab/build/test-results/test/TEST-*.xml
+            core/app/build/test-results/**/TEST-*.xml
+            core/fixtures/p2-client/build/test-results/**/TEST-*.xml
+            core/app/build/reports/lint-results-*.xml
+          if-no-files-found: error

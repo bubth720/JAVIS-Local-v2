@@ -1,0 +1,32 @@
+[
+  {
+    "file": "evidence/jvm-final.log",
+    "original_sha256": "d9db10004fc896101b4e952068c04077e4f4f11bd201ae69792081384ed540c9",
+    "exact_original_gzip": "evidence/jvm-final.log.gz",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "file": "evidence/jvm-baseline.log",
+    "original_sha256": "fd806379f167d64abba4087d2fdf0782b3315cd975dbb80726ba46211897770f",
+    "exact_original_gzip": "evidence/jvm-baseline.log.gz",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "file": "evidence/regression-before-fix.log",
+    "original_sha256": "fbff6bcb294e84372b76e9f18b623bd9e6b693422a8212c9faa46d0392e09161",
+    "exact_original_gzip": "evidence/regression-before-fix.log.gz",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "file": "evidence/jvm-offline-failed.log",
+    "original_sha256": "9176f672241908d7e742b9df003d5e26c2dc6613a10634338be67a99400978f8",
+    "exact_original_gzip": "evidence/jvm-offline-failed.log.gz",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "file": "evidence/core-baseline.log",
+    "original_sha256": "492c806bcf6bf7a76440bebf1627356b2c411739a2cfeef364cbea126988389f",
+    "exact_original_gzip": "evidence/core-baseline.log.gz",
+    "normalization": "trailing ASCII whitespace only"
+  }
+]

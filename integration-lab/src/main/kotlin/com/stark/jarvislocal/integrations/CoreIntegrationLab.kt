@@ -28,7 +28,7 @@ internal class SyntheticLab : AutoCloseable {
     @Volatile var generation = 0L
     val access = HostAccessPort { c, capability -> authorized && c.sessionId == session && c.generation == generation && capability in setOf("nexus.read", "data.read", "documents.read", "documents.export", "confirm") }
     private val servicesDb = JdbcDatabase(root.resolve("services.sqlite"))
-    private val store = Store(servicesDb)
+    val store = Store(servicesDb)
     private val guard = Guard(root.resolve("documents"), store)
     val host = Guard.Context("synthetic-core03", setOf("data.read", "documents.read", "documents.export", "confirm"))
     val tools = ToolRegistry(store)
@@ -36,13 +36,21 @@ internal class SyntheticLab : AutoCloseable {
     val dispatcher: ToolDispatcher
     val services: ServicesToolAdapter
     init {
-        ServicesTools.register(tools, Documents(guard, store, null), Data(), guard)
+        val documents = Documents(guard, store, null)
+        ServicesTools.register(tools, documents, Data(), guard)
+        // One additional binding in the existing SERVICES registry, using its real CSV writer.
+        tools.register(ServicesTools.descriptor("documents.csv.export", "documents", "documents.export", true,
+            "file_digest", "path", "text")) { ctx, args, task ->
+            documents.export(ctx, args.getValue("path"), "csv", args.getValue("text"), task)
+        }
         dispatcher = ToolDispatcher(tools, guard, approvals)
         services = ServicesToolAdapter(tools, dispatcher, approvals, host, access)
     }
     fun correlation() = Correlation(session, UUID.randomUUID().toString(), generation)
-    fun addText(text: String) {
+    fun addText(text: String): java.nio.file.Path {
         val bytes = strictBytes(text)
+        val source = Files.createDirectories(root.resolve("sources")).resolve("${UUID.randomUUID()}.txt")
+        Files.write(source, bytes)
         // Real bounded UTF-8 text decoding through NEXUS's delivered parser port; no fake search engine.
         val parser = ParserPort { _, data, stop ->
             stop.check()
@@ -50,8 +58,9 @@ internal class SyntheticLab : AutoCloseable {
             listOf(ExtractedPage(1, decoded))
         }
         val importer = ImportCoordinator(nexusDb, catalog, ParserRegistry(mapOf("txt" to parser)))
-        val job = ok(importer.enqueue(ImportSource(collection.id, "opaque:synthetic-${UUID.randomUUID()}", "source.txt", "Synthetic source"), bytes.inputStream()))
-        check(ok(importer.process(job.id, bytes.inputStream())).state == ImportState.COMPLETED)
+        val job = ok(importer.enqueue(ImportSource(collection.id, source.toUri().toString(), "source.txt", "Synthetic source"), bytes.inputStream()))
+        Files.newInputStream(source).use { check(ok(importer.process(job.id, it)).state == ImportState.COMPLETED) }
+        return source
     }
     override fun close() {
         dispatcher.close()
@@ -82,5 +91,16 @@ fun main() {
         check(Documents.readDocx(Files.readAllBytes(lab.root.resolve("documents/synthetic.docx"))).trim() == "Synthetic explicit fixture approval")
         check(lab.nexusDb.integrityCheck())
         println("CORE03 JVM: real_nexus_citations=${evidence.bundle.items.flatMap { it.citations }.size} csv_tool=SUCCESS mutation_without_approval=REFUSED docx_readback=VERIFIED android_connected=false native_inference=false")
+        val workflow = DocumentToolWorkflow(NexusSearchAdapter(lab.rag, lab.access), lab.services,
+            WorkflowReceipts(lab.store), lab.access)
+        val preview = workflow.prepare(lab.correlation(), "science", lab.scope,
+            "name,value\na,0.10\nb,0.20\n", "value", "fusion.csv", DocumentToolWorkflow.Format.CSV,
+            System.nanoTime() / 1_000_000 + 20_000)
+        check(preview.statistics["sum"] == "0.30")
+        check(!Files.exists(lab.root.resolve("documents/fusion.csv")))
+        workflow.approve(preview.correlation, preview.review.digest) // SYNTHETIC owner consent only
+        check(workflow.finish(preview.correlation).status == ToolDispatcher.Status.SUCCESS)
+        check(Files.readString(lab.root.resolve("documents/fusion.csv")) == preview.normalizedCsv)
+        println("FUSION01 JVM: source_resolved=true csv_exact_sum=0.30 export_readback=VERIFIED consent=FIXTURE android_connected=false native_inference=false")
     }
 }

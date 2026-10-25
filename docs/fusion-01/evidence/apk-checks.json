@@ -1,0 +1,71 @@
+[
+  {
+    "variant": "debug",
+    "sha256": "abe97a4fe09ef446b3e70fd0af149c095a4208b970c8a89e92bd5072f96e5b55",
+    "bytes": 18330029,
+    "min_sdk": 24,
+    "network_permissions": false,
+    "signer": [
+      "Signer #1 certificate DN: C=US, O=Android, CN=Android Debug",
+      "Signer #1 certificate SHA-256 digest: 9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3",
+      "Signer #1 certificate SHA-1 digest: 52b591846986f6780a0a469f0b2793fa92ec6cb2",
+      "Signer #1 certificate MD5 digest: 2260d0be8001bf376257d16262265b46"
+    ],
+    "native_libraries": [
+      "lib/arm64-v8a/libc++_shared.so",
+      "lib/arm64-v8a/libggml-base.so",
+      "lib/arm64-v8a/libggml-cpu.so",
+      "lib/arm64-v8a/libggml.so",
+      "lib/arm64-v8a/libllama.so",
+      "lib/arm64-v8a/libllama_jni.so",
+      "lib/arm64-v8a/libwhisper.so"
+    ],
+    "gguf_in_apk": false
+  },
+  {
+    "variant": "mvp2",
+    "sha256": "223122e9260c6c822f74eb60604946f3c87338e4df387ef18f6bc9d1f84a6f88",
+    "bytes": 18413064,
+    "min_sdk": 24,
+    "network_permissions": false,
+    "signer": [
+      "Signer #1 certificate DN: C=US, O=Android, CN=Android Debug",
+      "Signer #1 certificate SHA-256 digest: 9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3",
+      "Signer #1 certificate SHA-1 digest: 52b591846986f6780a0a469f0b2793fa92ec6cb2",
+      "Signer #1 certificate MD5 digest: 2260d0be8001bf376257d16262265b46"
+    ],
+    "native_libraries": [
+      "lib/arm64-v8a/libc++_shared.so",
+      "lib/arm64-v8a/libggml-base.so",
+      "lib/arm64-v8a/libggml-cpu.so",
+      "lib/arm64-v8a/libggml.so",
+      "lib/arm64-v8a/libllama.so",
+      "lib/arm64-v8a/libllama_jni.so",
+      "lib/arm64-v8a/libwhisper.so"
+    ],
+    "gguf_in_apk": false
+  },
+  {
+    "variant": "mvp3",
+    "sha256": "5f080a94bf1ae6ad4d695528b8e5c8daa2aa9b35ec5887348513e04ade2ad21a",
+    "bytes": 18413108,
+    "min_sdk": 24,
+    "network_permissions": false,
+    "signer": [
+      "Signer #1 certificate DN: C=US, O=Android, CN=Android Debug",
+      "Signer #1 certificate SHA-256 digest: 9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3",
+      "Signer #1 certificate SHA-1 digest: 52b591846986f6780a0a469f0b2793fa92ec6cb2",
+      "Signer #1 certificate MD5 digest: 2260d0be8001bf376257d16262265b46"
+    ],
+    "native_libraries": [
+      "lib/arm64-v8a/libc++_shared.so",
+      "lib/arm64-v8a/libggml-base.so",
+      "lib/arm64-v8a/libggml-cpu.so",
+      "lib/arm64-v8a/libggml.so",
+      "lib/arm64-v8a/libllama.so",
+      "lib/arm64-v8a/libllama_jni.so",
+      "lib/arm64-v8a/libwhisper.so"
+    ],
+    "gguf_in_apk": false
+  }
+]

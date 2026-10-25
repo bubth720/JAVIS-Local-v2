@@ -4,35 +4,53 @@ import fr.jarvis.services.modules.guard.Guard
 import fr.jarvis.services.tools.*
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.CompletableFuture
 
 class ToolReview internal constructor(val id: String, val correlation: Correlation, val invocation: ToolInvocation,
     val descriptor: ToolDescriptor, internal val createdMs: Long, internal val deadlineMs: Long) {
     val digest: String get() = invocation.contentDigest()
     override fun toString() = "ToolReview(tool=${descriptor.id}, content=REDACTED)"
 }
-class ToolOperation internal constructor(val correlation: Correlation, private val handle: ToolDispatcher.Handle,
+class ToolOperation internal constructor(val correlation: Correlation,
+    private val resultFuture: CompletableFuture<ToolDispatcher.Result>, private val requestCancel: () -> Unit,
     private val permission: String, private val access: HostAccessPort) {
-    fun cancel() { handle.cancel() } // logical cancellation, never a native release proof
+    internal constructor(correlation: Correlation, handle: ToolDispatcher.Handle, permission: String, access: HostAccessPort)
+        : this(correlation, handle.result, { handle.cancel() }, permission, access)
+    private var unknown = false
+    @Synchronized fun cancel() { unknown = true; requestCancel() } // not a native release proof
+    @Synchronized private fun invalidate(): Nothing { unknown = true; throw IntegrationRefused("TOOL_RESULT_UNKNOWN") }
+    @Synchronized private fun checkKnown() { if (unknown) throw IntegrationRefused("TOOL_RESULT_UNKNOWN") }
     fun await(timeoutMs: Long = 5000): ToolDispatcher.Result {
         require(timeoutMs in 1..90000)
-        val result = try { handle.result.get(timeoutMs, TimeUnit.MILLISECONDS) }
-        catch (_: InterruptedException) { Thread.currentThread().interrupt(); throw IntegrationRefused("TOOL_RESULT_UNKNOWN") }
-        catch (_: Exception) { throw IntegrationRefused("TOOL_RESULT_UNKNOWN") }
-        if (result.requestId != correlation.requestId || !access.allows(correlation, permission))
-            throw IntegrationRefused("RESPONSE_CORRELATION_MISMATCH_OR_REVOKED")
-        return result
+        checkKnown()
+        val result = try { resultFuture.get(timeoutMs, TimeUnit.MILLISECONDS) }
+        catch (_: InterruptedException) { Thread.currentThread().interrupt(); invalidate() }
+        catch (_: Exception) { invalidate() }
+        return synchronized(this) {
+            checkKnown()
+            if (result.requestId != correlation.requestId || !access.allows(correlation, permission)) {
+                unknown = true
+                throw IntegrationRefused("RESPONSE_CORRELATION_MISMATCH_OR_REVOKED")
+            }
+            if (result.status == ToolDispatcher.Status.UNKNOWN) invalidate()
+            result
+        }
     }
 }
 interface ToolExecutionPort {
     fun prepare(correlation: Correlation, id: String, version: String, arguments: Map<String, String>): ToolReview
     fun executeReadOnly(reviewId: String, exactDigest: String): ToolOperation
 }
+/** Owner-side mutation surface; never exposed to documents or model text. */
+interface ServicesToolPort : ToolExecutionPort {
+    fun confirmAndExecute(reviewId: String, exactDisplayedDigest: String): ToolOperation
+}
 
 /** Reuses SERVICES Guard/ApprovalGate; creates no second durable authority or executable tool catalogue. */
 class ServicesToolAdapter(private val registry: ToolRegistry, private val dispatcher: ToolDispatcher,
     private val approvals: ApprovalGate, private val host: Guard.Context,
     private val access: HostAccessPort = HostAccessPort { _, _ -> false },
-    private val elapsedMs: () -> Long = { System.nanoTime() / 1_000_000 }) : ToolExecutionPort {
+    private val elapsedMs: () -> Long = { System.nanoTime() / 1_000_000 }) : ServicesToolPort {
     private val pending = linkedMapOf<String, ToolReview>()
     private val seenRequests = mutableSetOf<String>()
     @Synchronized override fun prepare(correlation: Correlation, id: String, version: String, arguments: Map<String, String>): ToolReview {
@@ -49,7 +67,7 @@ class ServicesToolAdapter(private val registry: ToolRegistry, private val dispat
     }
     override fun executeReadOnly(reviewId: String, exactDigest: String): ToolOperation = launch(reviewId, exactDigest, false)
     /** Only trusted owner UI may invoke this after displaying and approving the exact operation and digest. */
-    fun confirmAndExecute(reviewId: String, exactDisplayedDigest: String): ToolOperation = launch(reviewId, exactDisplayedDigest, true)
+    override fun confirmAndExecute(reviewId: String, exactDisplayedDigest: String): ToolOperation = launch(reviewId, exactDisplayedDigest, true)
     @Synchronized private fun launch(id: String, digest: String, confirmed: Boolean): ToolOperation {
         val p = pending[id] ?: throw IntegrationRefused("REVIEW_ABSENT_OR_CONSUMED")
         if (digest != p.digest) throw IntegrationRefused("PREVIEW_MISMATCH")
@@ -57,6 +75,7 @@ class ServicesToolAdapter(private val registry: ToolRegistry, private val dispat
         val now = elapsedMs()
         if (now < p.createdMs || now >= p.deadlineMs) { pending.remove(id); throw IntegrationRefused("REVIEW_EXPIRED") }
         if (p.descriptor.mutating && !confirmed) throw IntegrationRefused("CONFIRMATION_REQUIRED")
+        if (p.descriptor.mutating && !access.allows(p.correlation, "confirm")) throw IntegrationRefused("CORE_CONFIRM_DENIED")
         pending.remove(id) // no replay or automatic retry, even if dispatch/ACK fails
         val raw = p.invocation
         val approved = if (p.descriptor.mutating) {

@@ -1,0 +1,1425 @@
+{
+  "format": "jarvis.integration-lock/1",
+  "mission": "FUSION-01/F0",
+  "composition": "CANDIDATE_NOT_INTEGRATED",
+  "observed_at": "2026-10-25T16:54:54Z",
+  "components": [
+    {
+      "id": "core",
+      "repository": "bubth720/JAVIS-Local-v2",
+      "owner": "core",
+      "primary": {
+        "branch": "feat/core-03-intensive",
+        "commit": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+        "parents": [
+          "49ad428e94edd75c2a1d115c8c2504f26609eace"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "91b13afaf897faec74d347a58b03607bb9489e780ddf27be567b68b84a628b4a"
+          },
+          {
+            "path": "AGENTS.md",
+            "sha256": "9634af41a7689876d50340edd10dcc084b7ded92beb3d4606f77fc44e1f2b373"
+          },
+          {
+            "path": "build.gradle.kts",
+            "sha256": "50425357e4449207a6e3098fa4f4dc66864a870859025051fc809589ddb858df"
+          },
+          {
+            "path": "settings.gradle.kts",
+            "sha256": "2d895395ecb9cd468e3afda7a610ee1a6c3270e4d1c1313e723792779dd323fb"
+          },
+          {
+            "path": "app/build.gradle.kts",
+            "sha256": "be358aa8ded614ff4b21053835c278f864b9a64a808cfb828e3a255068ebcefa"
+          },
+          {
+            "path": "integration-lab/src/main/kotlin/com/stark/jarvislocal/integrations/NexusSearchAdapter.kt",
+            "sha256": "22a8acadabbdb7eda7aa828f5566c42f6b7affa484fdfb5b0b9f9abcef719de5"
+          },
+          {
+            "path": "integration-lab/src/main/kotlin/com/stark/jarvislocal/integrations/ServicesToolAdapter.kt",
+            "sha256": "6422a37754dc454eb587fc67c90466850ede6b46fd9fa542d6221681a2977fb0"
+          },
+          {
+            "path": "integration-lab/build.gradle.kts",
+            "sha256": "208cd095ce3db2f237842c2a716238d87bc6d6cb4b915977fbc2cd477b04c6ed"
+          },
+          {
+            "path": "app/src/main/java/com/stark/jarvislocal/InferenceContract.kt",
+            "sha256": "4588606d1f403fa04d770d1d7f51adb168efb7eb26c7fb98e1826dfda779b997"
+          },
+          {
+            "path": "app/src/main/java/com/stark/jarvislocal/LlamaLocalEngine.kt",
+            "sha256": "5cb8dc75c9cc17ded1d3ff3af5c7e53fc0b33dcd1c8efb0b1e1dcc45a7015ac2"
+          },
+          {
+            "path": "app/src/main/java/com/stark/jarvislocal/SessionCoordinator.kt",
+            "sha256": "6610fca9c2c4d3c1cef18c9f2521527468a3d81b99cfc4400958bfea768e0a50"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/REPORT-CORE-03.md",
+            "sha256": "9aa6232782e3a74897b896a01fe85aea867969455631762e6e1ec258d6cc995d"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/VALIDATION-CORE-03.json",
+            "sha256": "3f8f5743895d20d233f8d26cb307c5455b802320a8e268bf839fbd6b3f38c012"
+          }
+        ]
+      },
+      "alternatives": [
+        {
+          "branch": "feat/mem-02-intensive",
+          "commit": "49ad428e94edd75c2a1d115c8c2504f26609eace",
+          "parents": [
+            "283423cb8b9d567539f33cf7f2f1fafa602cf974"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "91b13afaf897faec74d347a58b03607bb9489e780ddf27be567b68b84a628b4a"
+            },
+            {
+              "path": "AGENTS.md",
+              "sha256": "888818edae65551a68f94cf0f122874b6d1d76b7f9c991cd95d9b73ba0442c08"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "50425357e4449207a6e3098fa4f4dc66864a870859025051fc809589ddb858df"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "2d895395ecb9cd468e3afda7a610ee1a6c3270e4d1c1313e723792779dd323fb"
+            },
+            {
+              "path": "app/build.gradle.kts",
+              "sha256": "be358aa8ded614ff4b21053835c278f864b9a64a808cfb828e3a255068ebcefa"
+            },
+            {
+              "path": "docs/intensive-2026-10-22/VALIDATION-MEM-02.json",
+              "sha256": "5cf786bcf731363dad6591d5e7f9d3dcccee036769e41b667b31ef9af3dc4968"
+            }
+          ]
+        },
+        {
+          "branch": "feat/id-02-intensive",
+          "commit": "283423cb8b9d567539f33cf7f2f1fafa602cf974",
+          "parents": [
+            "7a54f85adc5143bf8c7710de81942d49f3b901d0"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "91b13afaf897faec74d347a58b03607bb9489e780ddf27be567b68b84a628b4a"
+            },
+            {
+              "path": "AGENTS.md",
+              "sha256": "3d5416b061ea34b1bbd5d1f40011b152abf4c0d5f0e7c9507a80a8341601189d"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "50425357e4449207a6e3098fa4f4dc66864a870859025051fc809589ddb858df"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "2d895395ecb9cd468e3afda7a610ee1a6c3270e4d1c1313e723792779dd323fb"
+            },
+            {
+              "path": "app/build.gradle.kts",
+              "sha256": "be358aa8ded614ff4b21053835c278f864b9a64a808cfb828e3a255068ebcefa"
+            }
+          ]
+        },
+        {
+          "branch": "feat/core-voice-pilot",
+          "commit": "7426665f2794cba83646008fa0f342d102141201",
+          "parents": [
+            "ee4a1bf3b8af9e07ed95d58040af248713ceb14c"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "91b13afaf897faec74d347a58b03607bb9489e780ddf27be567b68b84a628b4a"
+            },
+            {
+              "path": "AGENTS.md",
+              "sha256": "b72ead6bc11e0b30d321396751901ac9de7167fc0cb91bbb2487df69dc38e46c"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "50425357e4449207a6e3098fa4f4dc66864a870859025051fc809589ddb858df"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "1c62754deb03e601b3dc0041fa7471cb37338e127f22cbcc93a42b60506d2c68"
+            },
+            {
+              "path": "app/build.gradle.kts",
+              "sha256": "8f9baccff2e0b9c35d144e3bbf74b90bc279dbf54c2f9eda8012e156e5ccd369"
+            }
+          ]
+        }
+      ],
+      "ci": {
+        "status": "unknown",
+        "commit": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+        "url": "NOT_OBSERVED",
+        "reason": "No reliable exact-SHA CI observation; no status inherited from another commit."
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "SUPPORTED",
+          "basis": "Historical min24 software builds/Robolectric; not the new Android composition."
+        },
+        {
+          "target": "android25",
+          "status": "SUPPORTED",
+          "basis": "Historical min24 software builds/Robolectric; not the new Android composition."
+        },
+        {
+          "target": "android26",
+          "status": "SUPPORTED",
+          "basis": "Historical min24 software builds/Robolectric; not the new Android composition."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "SUPPORTED",
+          "basis": "Historical min24 software builds/Robolectric; not the new Android composition."
+        },
+        {
+          "target": "linux",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        }
+      ]
+    },
+    {
+      "id": "evolution",
+      "repository": "bubth720/JARVIS-VOLUTION-",
+      "owner": "evolution",
+      "primary": {
+        "branch": "feat/evol-03-atelier-de-correctifs-isoles-e",
+        "commit": "c0180181804338d21f3bf9d4b537b709595902f7",
+        "parents": [
+          "0abd5f96caa27ee1e73a623d538e48555a02ce76"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "f269b583d6169bf39d9e80922c00c78ee40fda7b7767b02bb9042ee4779a5464"
+          },
+          {
+            "path": "build.gradle.kts",
+            "sha256": "c5ec24119d252f9e974f5bc1f3954e755e1d52aa6a60f64b7824630d8870a99e"
+          },
+          {
+            "path": "settings.gradle.kts",
+            "sha256": "1d1020ed5e3a432484bdf81d100e340b33f799eb375cc14e48238e12d0918bca"
+          },
+          {
+            "path": "gradle/wrapper/gradle-wrapper.properties",
+            "sha256": "c040b6ef2fb893ff5beea5a281614f2848f1c3996a7886f650b713f8240656a2"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/REPORT-EVOL-03.md",
+            "sha256": "7c4a74ab86e75c693b527f3189476e32ae509a278be3fe7bb28c3064fdb2daff"
+          }
+        ]
+      },
+      "alternatives": [],
+      "ci": {
+        "status": "success",
+        "commit": "c0180181804338d21f3bf9d4b537b709595902f7",
+        "url": "https://github.com/bubth720/JARVIS-VOLUTION-/actions/runs/39996031251",
+        "reason": "GitHub HTML workflow list embedded JSON and run summary"
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "BLOCKED",
+          "basis": "JVM17/JDBC, no Android adapter; unsafe runner never enabled."
+        },
+        {
+          "target": "android25",
+          "status": "BLOCKED",
+          "basis": "JVM17/JDBC, no Android adapter; unsafe runner never enabled."
+        },
+        {
+          "target": "android26",
+          "status": "BLOCKED",
+          "basis": "JVM17/JDBC, no Android adapter; unsafe runner never enabled."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "BLOCKED",
+          "basis": "JVM17/JDBC, no Android adapter; unsafe runner never enabled."
+        },
+        {
+          "target": "linux",
+          "status": "SUPPORTED",
+          "basis": "Historical software tests of isolated JVM library/tooling, not new composed E2E or sandbox approval."
+        }
+      ]
+    },
+    {
+      "id": "interface",
+      "repository": "bubth720/JARVIS-INTERFACE",
+      "owner": "interface",
+      "primary": {
+        "branch": "feat/interface-final-01",
+        "commit": "db459ba388a3fea992d80320c3989be0edda8500",
+        "parents": [
+          "011c9c0520fda8415193138b762b7def665391b4"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "6385956612882b57c6927868d00834ddfbb3a0453fb9db36c910f9a52896e502"
+          },
+          {
+            "path": "build.gradle.kts",
+            "sha256": "7af865aea3e2dde810363caa1c3f9eed33324aa47f1c7e281034d4bd69129b3d"
+          },
+          {
+            "path": "settings.gradle.kts",
+            "sha256": "0be8db4611e68305288440bfc19b2e822a2ad956aac851b7e22e51c082bdc051"
+          },
+          {
+            "path": "app/build.gradle.kts",
+            "sha256": "8cd089ba5868aee5d92355c0e57f33b61ce3d2c07182f5b61e9f2e82151b6bb2"
+          },
+          {
+            "path": "gradle/wrapper/gradle-wrapper.properties",
+            "sha256": "c040b6ef2fb893ff5beea5a281614f2848f1c3996a7886f650b713f8240656a2"
+          },
+          {
+            "path": "docs/interface-final-01/ARCHITECTURE.md",
+            "sha256": "4a9e3c57805e398e215d614442ee67a683cb641bf8a267c9b5d9c7a9ab9680e5"
+          },
+          {
+            "path": "docs/interface-final-01/VALIDATION.md",
+            "sha256": "60c6dfbdba74a1ad0da447367c4512e6c31e31f16b6b22f65c0e949d6654b961"
+          }
+        ]
+      },
+      "alternatives": [
+        {
+          "branch": "feat/ava-04-delivery",
+          "commit": "283ed2f3cd361d5b0b6bc927432bf836af8db1f6",
+          "parents": [
+            "1d10ddb52e1df4b609824d5666a095df4b361a63"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "094b191b8d657bf56faf44c0710e0a636df0787e8602954958de695cbd00e789"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "7af865aea3e2dde810363caa1c3f9eed33324aa47f1c7e281034d4bd69129b3d"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "0be8db4611e68305288440bfc19b2e822a2ad956aac851b7e22e51c082bdc051"
+            },
+            {
+              "path": "app/build.gradle.kts",
+              "sha256": "8cd089ba5868aee5d92355c0e57f33b61ce3d2c07182f5b61e9f2e82151b6bb2"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "c040b6ef2fb893ff5beea5a281614f2848f1c3996a7886f650b713f8240656a2"
+            }
+          ]
+        }
+      ],
+      "ci": {
+        "status": "success",
+        "commit": "db459ba388a3fea992d80320c3989be0edda8500",
+        "url": "https://github.com/bubth720/JARVIS-INTERFACE/actions/runs/40182654910",
+        "reason": "GitHub HTML workflow list embedded JSON and run summary; logs not independently rerun"
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "BLOCKED",
+          "basis": "Selected autonomous application min26; not loadable in CORE min24."
+        },
+        {
+          "target": "android25",
+          "status": "BLOCKED",
+          "basis": "Selected autonomous application min26; not loadable in CORE min24."
+        },
+        {
+          "target": "android26",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        },
+        {
+          "target": "linux",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "repository": "bubth720/JARVIS-LLM",
+      "owner": "llm",
+      "primary": {
+        "branch": "feat/llm-03-runtime",
+        "commit": "2efb3f7aa6205062ab71f570212019fd1d9885b6",
+        "parents": [
+          "895a067ffc860d56a2dbb1ce22cb274096f8e3a2"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "92ff5af637db98d47aa35ec3eebe757de3da60df1abae0df81fb77e3e800824c"
+          },
+          {
+            "path": "build.gradle.kts",
+            "sha256": "874d1149813c03edd010c3b5a96bf8090cc50556c763b70e34bb4f138b7b9e58"
+          },
+          {
+            "path": "settings.gradle.kts",
+            "sha256": "73d92496184d445909336facb82607ece12518e8b6fce670878524d618df05ec"
+          },
+          {
+            "path": "app/build.gradle.kts",
+            "sha256": "7d0a2cb3bf904eb17b2aad81c6ac13a77ca3d5ec646920ea9e674110e0af45b4"
+          },
+          {
+            "path": "gradle/wrapper/gradle-wrapper.properties",
+            "sha256": "fe90ff0d9944879f591a8c37b6dbaf5046d1051ccbb6b26b22081692c321f432"
+          },
+          {
+            "path": "domain/src/main/kotlin/fr/jarvis/domain/generation/P2Contract.kt",
+            "sha256": "740441c8ee4a0001e91744ade5eb5f5343480c4d491979ec1019d38fbd20d696"
+          },
+          {
+            "path": "domain/src/main/kotlin/fr/jarvis/domain/generation/P2Prompt.kt",
+            "sha256": "1cf0784c6e4f83a4752fd4c981d79773aa5f2696795844149c230f824703a70f"
+          },
+          {
+            "path": "domain/src/main/kotlin/fr/jarvis/domain/generation/Core004BMapping.kt",
+            "sha256": "a64a818e7d4891db8ec30c28d9f93a6e6acd0e1f9dcd58d00acd49ad23c1c7b3"
+          },
+          {
+            "path": "domain/src/main/kotlin/fr/jarvis/domain/prompt/ContextPlanner.kt",
+            "sha256": "a4a3b3d2d640781c3712247dcf19c48123fb0c7d2958e9a93bc9a24351bec500"
+          },
+          {
+            "path": "domain/src/main/kotlin/fr/jarvis/domain/runtime/RuntimePolicyProfiles.kt",
+            "sha256": "16d71c641546b02407dc5d7aeff5622d753797e8fbb05ba5d931ee373fcc881b"
+          },
+          {
+            "path": "app/src/main/java/fr/jarvis/llm/runtime/ProcessRuntimeObservationPort.kt",
+            "sha256": "c4ce3a7db798fdd76d059da4034beaa3027d2f8f5bb8e1057f0ef91718163aa1"
+          },
+          {
+            "path": "docs/THIRD_PARTY.md",
+            "sha256": "8354bc0a9b1d20cee05bba2046faed5bb8b268bf6e0ee4cd76eb0281470e1f7c"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/REPORT-LLM-03.md",
+            "sha256": "1f31d6e8aec0a2b59f9de353f2fd2cd73e4f9442430e03c8913d84eff4ec4cba"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/RECEIPT-LLM-03.json",
+            "sha256": "1f47fc879598403cb98da5d929049aef0270814b1b7b64fd7376192fc4cf002d"
+          },
+          {
+            "path": "domain/build.gradle.kts",
+            "sha256": "ddf1debf802a10dbe9178ad597268b39f938deb89c67b6e1ba6a9f5d7a27932c"
+          }
+        ]
+      },
+      "alternatives": [
+        {
+          "branch": "feat/llm-02-runtime",
+          "commit": "895a067ffc860d56a2dbb1ce22cb274096f8e3a2",
+          "parents": [
+            "062054edcbf47ba96408f751f25189d86b0b023d"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "92ff5af637db98d47aa35ec3eebe757de3da60df1abae0df81fb77e3e800824c"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "874d1149813c03edd010c3b5a96bf8090cc50556c763b70e34bb4f138b7b9e58"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "73d92496184d445909336facb82607ece12518e8b6fce670878524d618df05ec"
+            },
+            {
+              "path": "app/build.gradle.kts",
+              "sha256": "7d0a2cb3bf904eb17b2aad81c6ac13a77ca3d5ec646920ea9e674110e0af45b4"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "fe90ff0d9944879f591a8c37b6dbaf5046d1051ccbb6b26b22081692c321f432"
+            }
+          ]
+        }
+      ],
+      "ci": {
+        "status": "unknown",
+        "commit": "2efb3f7aa6205062ab71f570212019fd1d9885b6",
+        "url": "NOT_OBSERVED",
+        "reason": "No reliable exact-SHA CI observation; no status inherited from another commit."
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "BLOCKED",
+          "basis": "LLM application min29 and native/tokenizer admission unqualified."
+        },
+        {
+          "target": "android25",
+          "status": "BLOCKED",
+          "basis": "LLM application min29 and native/tokenizer admission unqualified."
+        },
+        {
+          "target": "android26",
+          "status": "BLOCKED",
+          "basis": "LLM application min29 and native/tokenizer admission unqualified."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        },
+        {
+          "target": "linux",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        }
+      ]
+    },
+    {
+      "id": "nexus",
+      "repository": "bubth720/JARVIS-NEXUS",
+      "owner": "nexus",
+      "primary": {
+        "branch": "feat/nex-06a-android-api24",
+        "commit": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+        "parents": [
+          "3acec55616ff8e3b1666091780fca59261377e18"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "44d659ea7c7578b14b138c96c1461a9023ff93c1654ad392317777e2ebd04705"
+          },
+          {
+            "path": "build.gradle.kts",
+            "sha256": "755238d2e0adaaf91bc6afabb626c62f0d9d45dbe8fdae194dbab844c76a5d93"
+          },
+          {
+            "path": "settings.gradle.kts",
+            "sha256": "6c248c0542313f0938db74ea5a5a198f10a8290744a21be6b564404596fcd6ab"
+          },
+          {
+            "path": "gradle/wrapper/gradle-wrapper.properties",
+            "sha256": "09debb2fbd9878414d0632cc40a7e285966bfd0625c0d430bfa11e3cab173335"
+          },
+          {
+            "path": "nexus-core/build.gradle.kts",
+            "sha256": "1e0f77d58c3622d3d257673a07af18ddd827c94c78644e018345135955c5ad82"
+          },
+          {
+            "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/store/NexusStoragePort.kt",
+            "sha256": "4fdb50f5562b611bc6b6c724a128d36f7e484aeae772f6896e3d9046ae4279d5"
+          },
+          {
+            "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/store/NexusSchema.kt",
+            "sha256": "abb34ecd7079402643c004ea197ffcb3b79174d1acfb977671f97cebb841c568"
+          },
+          {
+            "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/rag/RagTypes.kt",
+            "sha256": "c2512a2aa774c080ca0bb8ae2d96f6283b5ca1f6364aab1809dc3bfe7fec4e32"
+          },
+          {
+            "path": "nexus-android-store/build.gradle.kts",
+            "sha256": "bab8378c67bbd1d0097effa33fffbb16b487138f68764298b1098d4426ff2351"
+          },
+          {
+            "path": "nexus-android-store/src/main/kotlin/fr/jarvis/nexus/android/AndroidNexusStorage.kt",
+            "sha256": "ce3fec3a94e909c0f4007b517fcdd58dec5846242a5818ec3b73a9e932bb5617"
+          },
+          {
+            "path": "nexus-android-store/src/main/kotlin/fr/jarvis/nexus/android/SelectedDocumentImporter.kt",
+            "sha256": "a57a252bb43482cd829d682c1b36b9634b3ede8c80a2cf48141034292514e815"
+          },
+          {
+            "path": "docs/dev/NEX-06A.md",
+            "sha256": "779e121a8a7c449460e21408b867fa5bc119b3e555a8216d7b9ecf61a7ab91c8"
+          },
+          {
+            "path": "docs/dev/NEX-06A-VALIDATION.json",
+            "sha256": "37e9f7d97b92bc7861c933ed2458a1e8c43b1b055eac53b41d763670c0b2a5b2"
+          }
+        ]
+      },
+      "alternatives": [
+        {
+          "branch": "feat/nexus-final-01",
+          "commit": "d903bf04f497ab0dc7f40e9708ed057e4f24c6ee",
+          "parents": [
+            "bbccac2ff2cc052f897c7f5015f234507e047b95"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "3e15b24724a34a9d7380eab2e0d2b4f44c3d9d3a381d29f4ac180b5c4d68835c"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "38614212f7666af2d963c75b1a6cecb7bdd4947c002f5803e84b81efbf1064f1"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "cd2ac9db3e7367a29590fa47543c15c5d62380e3830582765fd075d056e934dd"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "09debb2fbd9878414d0632cc40a7e285966bfd0625c0d430bfa11e3cab173335"
+            },
+            {
+              "path": "nexus-core/build.gradle.kts",
+              "sha256": "e141f8b555f1084160af0cd733887456aa1601a6a490f260a625f5003fb80da2"
+            },
+            {
+              "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/store/NexusDatabase.kt",
+              "sha256": "36b337b0380bcad73600275449e3fcbca952f2a7fa73dd60f1209e09fd468f4c"
+            },
+            {
+              "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/rag/RagTypes.kt",
+              "sha256": "544ef2a30c331f8f47ed296ea18d1beb66ecff11774c9d94b05a8613e8809341"
+            },
+            {
+              "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/library/LibraryService.kt",
+              "sha256": "a76b2a3ba77cba35c0ab03feb01470cc6153f192d7ca41b90039484e2da5a18a"
+            },
+            {
+              "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/archive/ArchiveReader.kt",
+              "sha256": "9ee3a3ee5e8e0b09c1751fdbc0db19fe9cde27ab4c70b0b7a6d2dc2217cb8975"
+            },
+            {
+              "path": "nexus-core/src/main/kotlin/fr/jarvis/nexus/graph/GraphService.kt",
+              "sha256": "0fb9fde4c5cd834c99bbcf6161d2590ae4d82137d7861cd540ed5bfd8b7cb668"
+            },
+            {
+              "path": "docs/dev/NEXUS-FINAL-01.md",
+              "sha256": "d64c13ccf74eddb0b93d52fc43083c46f573e7bb848da331dee62d3b0bfac8f5"
+            },
+            {
+              "path": "docs/dev/NEXUS-FINAL-01-VALIDATION.json",
+              "sha256": "a8dfe111173552b46ef52d824b60e32e11a7dd415d1d070641fd6ca62f7f0fb8"
+            },
+            {
+              "path": "docs/dev/ZIM-DEPENDENCIES.md",
+              "sha256": "2a38bc5047910d7003c801429518e05d0754d29643d96bbd2833f98850b87f20"
+            }
+          ]
+        },
+        {
+          "branch": "feat/nex-03-recherche-de-connaissances-cit",
+          "commit": "777e6afa75ecb99b85e52d68837cb0fefcf161cd",
+          "parents": [
+            "bfa46e1fe08d4943fe864ac53d0c0ba56109ea9c"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "6b4d048308d54c9421fb4919adf41a69e818f2f9bb518642e472d4ca00cca39f"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "38614212f7666af2d963c75b1a6cecb7bdd4947c002f5803e84b81efbf1064f1"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "cd2ac9db3e7367a29590fa47543c15c5d62380e3830582765fd075d056e934dd"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "09debb2fbd9878414d0632cc40a7e285966bfd0625c0d430bfa11e3cab173335"
+            },
+            {
+              "path": "docs/dev/NEX-03.md",
+              "sha256": "4c7536c7b352d8e4f4057e557439cd1431181a719a6fc9e1ca813c02767ad23d"
+            }
+          ]
+        },
+        {
+          "branch": "feat/nex-05-sauvegarde-chiffrable-restaura",
+          "commit": "3acec55616ff8e3b1666091780fca59261377e18",
+          "parents": [
+            "777e6afa75ecb99b85e52d68837cb0fefcf161cd"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "a74994abeb70d09006f1c26efebb0f711b46e875618a7673e13bf20505becc69"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "38614212f7666af2d963c75b1a6cecb7bdd4947c002f5803e84b81efbf1064f1"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "cd2ac9db3e7367a29590fa47543c15c5d62380e3830582765fd075d056e934dd"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "09debb2fbd9878414d0632cc40a7e285966bfd0625c0d430bfa11e3cab173335"
+            },
+            {
+              "path": "docs/dev/NEX-05.md",
+              "sha256": "4f9716cd915187522a6e109c78485ed8183900c4c9424a4a23bba8b4dc8dc5d3"
+            }
+          ]
+        }
+      ],
+      "ci": {
+        "status": "failure",
+        "commit": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+        "url": "https://github.com/bubth720/JARVIS-NEXUS/actions/runs/40115049468",
+        "reason": "storage JVM job succeeded; android-adapter job failed at android-actions/setup-android@v3 before build/tests/Lint; underlying log unavailable anonymously"
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "BLOCKED",
+          "basis": "FTS5+vocab+BM25 required; unavailable on tested host SQLite; device implementation not qualified."
+        },
+        {
+          "target": "android25",
+          "status": "BLOCKED",
+          "basis": "FTS5+vocab+BM25 required; unavailable on tested host SQLite; device implementation not qualified."
+        },
+        {
+          "target": "android26",
+          "status": "BLOCKED",
+          "basis": "FTS5+vocab+BM25 required; unavailable on tested host SQLite; device implementation not qualified."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "BLOCKED",
+          "basis": "FTS5+vocab+BM25 required; unavailable on tested host SQLite; device implementation not qualified."
+        },
+        {
+          "target": "linux",
+          "status": "SUPPORTED",
+          "basis": "Historical software tests of isolated JVM library/tooling, not new composed E2E or sandbox approval."
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "repository": "bubth720/JARVIS-SERVICES",
+      "owner": "services",
+      "primary": {
+        "branch": "feat/serv-04a-android-tool-port",
+        "commit": "f00091a639612b91eca1a301580c8f531249f1e3",
+        "parents": [
+          "3decdc47d82f9b43713c48cab244762941770a81"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "b46c434c29f634a480e7b52e8906d2c62ae929132790745a6699b7ca895997db"
+          },
+          {
+            "path": "build.gradle",
+            "sha256": "88224c6709891a88c82a040ff4da2496a87020f115312c03d84e6cdb2bc8a86a"
+          },
+          {
+            "path": "settings.gradle",
+            "sha256": "ad6516078e1abb656017e36168d47f6f12bf6e53ea3a328b713b51e025992dfc"
+          },
+          {
+            "path": "android/build.gradle",
+            "sha256": "f39f386b715f34b7300eec30d112e6029b0fdc3c5864eaa09c6f899542dbef61"
+          },
+          {
+            "path": "gradle/wrapper/gradle-wrapper.properties",
+            "sha256": "1bb6d43ff8af30abb0eaf03fe58f636ed9b37f758a748bf30a9cebd809639c9d"
+          },
+          {
+            "path": "services-portable-api/build.gradle",
+            "sha256": "6e91374570a90aff307d49dac109155c1979dbd40011223bedb522b99dd385f0"
+          },
+          {
+            "path": "services-portable-api/src/main/java/fr/jarvis/services/api/ServicesToolPort.java",
+            "sha256": "89eddc1ed68eeae39d20e1d0867aff59399a415b6f728ed4a50685456cef163c"
+          },
+          {
+            "path": "services-portable-api/src/main/java/fr/jarvis/services/tools/ToolInvocation.java",
+            "sha256": "1cf08ae672450ed5aa25e3c973736d48fa68355ec1f828c408a46721a544bd42"
+          },
+          {
+            "path": "services-portable-api/src/main/java/fr/jarvis/services/tools/ApprovalGate.java",
+            "sha256": "5dfdce971a550d8fc689cf4eea1f93e17dd934c89e0af57fc31285fe583e66a8"
+          },
+          {
+            "path": "services-android-adapter/build.gradle",
+            "sha256": "fb8b8b3c4ea9a9c1e0eb1f806483bb49589489e493740e86d3ca87f340a089fc"
+          },
+          {
+            "path": "services-android-adapter/src/main/java/fr/jarvis/services/android/adapter/ServicesAndroidToolPort.java",
+            "sha256": "99649b2adb9dcad59db7173abc04ab79ab359c758808c2d9ed64b86e6a043de7"
+          },
+          {
+            "path": "services-android-adapter/src/main/java/fr/jarvis/services/android/adapter/JournalDatabase.java",
+            "sha256": "8e0def95a73e567feb7b2a40affca150f5d58ad8452a47c8eff05af67727c85a"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/REPORT-SERV-04A.md",
+            "sha256": "7d5cce98e46b386cdda35ae8c2e0d458d3c71cb613f5db5b91e053d9d9339368"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/VALIDATION-SERV-04A.json",
+            "sha256": "7d849c611082f22bf181ae1cfaa1b22316734760efa014c2280d7ddc2374b847"
+          },
+          {
+            "path": "docs/DEPENDENCIES.md",
+            "sha256": "c55e9cc00be5cfba47e857e6daeeec0bddbfc66ec7c1e3a04e5db8a4b76c20e9"
+          }
+        ]
+      },
+      "alternatives": [
+        {
+          "branch": "feat/services-final-01",
+          "commit": "d16dd84f27881460ec9f02d2a54d9ddff23187dc",
+          "parents": [
+            "edfa044321ff09697ae9bec40a6e31aa76a77370"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "d2aebe071d5add7fbf12d7547b8c82a2f63e50a7a90f1c800103fc348a8ac6a5"
+            },
+            {
+              "path": "build.gradle",
+              "sha256": "88224c6709891a88c82a040ff4da2496a87020f115312c03d84e6cdb2bc8a86a"
+            },
+            {
+              "path": "settings.gradle",
+              "sha256": "4eed094b0d8c9494a78a44b8abc3a442e47c662cee724334b0b5327f21a30b21"
+            },
+            {
+              "path": "android/build.gradle",
+              "sha256": "f39f386b715f34b7300eec30d112e6029b0fdc3c5864eaa09c6f899542dbef61"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "1bb6d43ff8af30abb0eaf03fe58f636ed9b37f758a748bf30a9cebd809639c9d"
+            },
+            {
+              "path": "shared-runtime/build.gradle",
+              "sha256": "6e91374570a90aff307d49dac109155c1979dbd40011223bedb522b99dd385f0"
+            },
+            {
+              "path": "shared-runtime/src/main/java/fr/jarvis/services/tools/ToolInvocation.java",
+              "sha256": "5cf74f6be5c792a13a0468c080c303861f5ecd329ed40175ede7f040f14eb7f2"
+            },
+            {
+              "path": "shared-runtime/src/main/java/fr/jarvis/services/tools/ToolDispatcher.java",
+              "sha256": "397dd608cada7602013877092ee0247048bdd3ce8dd75c384267c65cf68bafa1"
+            },
+            {
+              "path": "shared-runtime/src/main/java/fr/jarvis/services/finalization/FinalToolCatalogue.java",
+              "sha256": "15392433535621940fd6687feda6288aa1dbc160b21bb5f101619a9a65926d4a"
+            },
+            {
+              "path": "contracts/services-final/v1/tool-catalogue.json",
+              "sha256": "9f3cd175d24a3930f21bee3c7e31f898005c28eeb5ec6b0508212624b1c11429"
+            },
+            {
+              "path": "contracts/services-final/v1/tool-arguments.schema.json",
+              "sha256": "ac64e2c7da3c3a23786f7cf23dad1a0ec8124189acf8e27f46e1780645df75aa"
+            },
+            {
+              "path": "docs/services-final-01/CONTRACTS.md",
+              "sha256": "cac518f000089bdb47039eedff7e92325951a3eb66b195f0f68c9c37697d915a"
+            },
+            {
+              "path": "reports/services-final-01/REPORT.md",
+              "sha256": "f3c8c008fbac893bdd245e15fa3b130706100e27f2eff569dca507fef1d6a965"
+            },
+            {
+              "path": "reports/services-final-01/validation.json",
+              "sha256": "62b704392e0304b82972b1693413bcec26c59694a2b47b2b54300012ffb0fc80"
+            },
+            {
+              "path": "reports/services-final-01/ci.json",
+              "sha256": "143b6bcf9c46de91897f11bcc403319e6eee183bee0c8f517068ee2ecceff532"
+            },
+            {
+              "path": "reports/services-final-01/packaging.json",
+              "sha256": "f79ee3767e7e681cbef5c8fe34106a4a8bc7dea876bb584478f433e5671665ce"
+            }
+          ]
+        },
+        {
+          "branch": "feat/serv-03-services",
+          "commit": "3decdc47d82f9b43713c48cab244762941770a81",
+          "parents": [
+            "f7681707e7308d4b967e642d2f807f3e354209cc"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "a04cba080a73c9993ec89b9d644206d286c981f019bf6e734af21ae0f70bbe27"
+            },
+            {
+              "path": "build.gradle",
+              "sha256": "88224c6709891a88c82a040ff4da2496a87020f115312c03d84e6cdb2bc8a86a"
+            },
+            {
+              "path": "settings.gradle",
+              "sha256": "4eed094b0d8c9494a78a44b8abc3a442e47c662cee724334b0b5327f21a30b21"
+            },
+            {
+              "path": "android/build.gradle",
+              "sha256": "f39f386b715f34b7300eec30d112e6029b0fdc3c5864eaa09c6f899542dbef61"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "1bb6d43ff8af30abb0eaf03fe58f636ed9b37f758a748bf30a9cebd809639c9d"
+            },
+            {
+              "path": "docs/intensive-2026-10-22/REPORT-SERV-03.md",
+              "sha256": "1bb71574ffe18f44ddc76b815091fb06b83a72ddd29130b8392b2efa58adbb59"
+            }
+          ]
+        }
+      ],
+      "ci": {
+        "status": "failure",
+        "commit": "f00091a639612b91eca1a301580c8f531249f1e3",
+        "url": "https://github.com/bubth720/JARVIS-SERVICES/actions/runs/40115305244",
+        "reason": "JVM and historical API26 instrumentation jobs succeeded; android-build failed at SERV-04A Android24 adapter regressions and library; subsequent API24 boot compile skipped. Exact Gradle/test error logs unavailable anonymously"
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "SUPPORTED",
+          "basis": "Historical API24 compilation and Robolectric; selected document search/CSV only, CI failure and DOCX disabled."
+        },
+        {
+          "target": "android25",
+          "status": "SUPPORTED",
+          "basis": "Historical API24 compilation and Robolectric; selected document search/CSV only, CI failure and DOCX disabled."
+        },
+        {
+          "target": "android26",
+          "status": "SUPPORTED",
+          "basis": "Historical API24 compilation and Robolectric; selected document search/CSV only, CI failure and DOCX disabled."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "SUPPORTED",
+          "basis": "Historical API24 compilation and Robolectric; selected document search/CSV only, CI failure and DOCX disabled."
+        },
+        {
+          "target": "linux",
+          "status": "SUPPORTED",
+          "basis": "Historical software tests of isolated JVM library/tooling, not new composed E2E or sandbox approval."
+        }
+      ]
+    },
+    {
+      "id": "unified",
+      "repository": "bubth720/JARVIS-UNIFIED",
+      "owner": "unified",
+      "primary": {
+        "branch": "feat/uni-02-tooling",
+        "commit": "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c",
+        "parents": [
+          "7d9909978c64b4ebd7eafd42dc52b23fb3a552b7"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "05f0c8db03db8306ef11c8c0f396fb36dbc95b159ece36cd92c2e2778bb52017"
+          },
+          {
+            "path": "AGENTS.md",
+            "sha256": "52d6adbc91d62ce35369b444eae4ef857f75721a757cf303883469ca45040687"
+          },
+          {
+            "path": "docs/DECISIONS/ADR-001-CORE-LLM-UNIFIED.md",
+            "sha256": "ce3da28ac610f045211b61a3cf028c825d0594a5ade9044642741776a8c05efe"
+          },
+          {
+            "path": "docs/intensive-2026-10-22/CAMPAIGN_REPORT.md",
+            "sha256": "fd2b16ad444c0b10ec4c89b0ce3000492980489b8c5943b4254a5e606e373797"
+          }
+        ]
+      },
+      "alternatives": [],
+      "ci": {
+        "status": "unknown",
+        "commit": "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c",
+        "url": "NOT_OBSERVED",
+        "reason": "No reliable exact-SHA CI observation; no status inherited from another commit."
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "BLOCKED",
+          "basis": "Python development tooling only; UNIFIED is not an Android runtime."
+        },
+        {
+          "target": "android25",
+          "status": "BLOCKED",
+          "basis": "Python development tooling only; UNIFIED is not an Android runtime."
+        },
+        {
+          "target": "android26",
+          "status": "BLOCKED",
+          "basis": "Python development tooling only; UNIFIED is not an Android runtime."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "BLOCKED",
+          "basis": "Python development tooling only; UNIFIED is not an Android runtime."
+        },
+        {
+          "target": "linux",
+          "status": "SUPPORTED",
+          "basis": "Python development tooling only; UNIFIED is not an Android runtime."
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "repository": "bubth720/JARVIS-VOICE",
+      "owner": "voice",
+      "primary": {
+        "branch": "feat/voice-final-01",
+        "commit": "fe57452fcb33f5b6870070f30ba6c5f1d349c4ba",
+        "parents": [
+          "a59a9c5a6e95cdd645ad09661b6172e98af5323c"
+        ],
+        "files": [
+          {
+            "path": "README.md",
+            "sha256": "26132334b7f0362252d7bdd6d89a7f38b437f4cfb77ee317942257f9557f1d65"
+          },
+          {
+            "path": "build.gradle.kts",
+            "sha256": "41ea3c3fdceb3f06c39a0375efec91327f0d4888790c7bb1064f4bd3d36f8e38"
+          },
+          {
+            "path": "settings.gradle.kts",
+            "sha256": "023603fab89deb790e22d125a5ac082aab4643ad41eaa791811792c1363b5bf3"
+          },
+          {
+            "path": "app/build.gradle.kts",
+            "sha256": "d14dc2a93aced9bea3e07a005e359796a7e2002ab3345be32f1015a820a5e03d"
+          },
+          {
+            "path": "gradle/wrapper/gradle-wrapper.properties",
+            "sha256": "1bb6d43ff8af30abb0eaf03fe58f636ed9b37f758a748bf30a9cebd809639c9d"
+          },
+          {
+            "path": "docs/mission-voice-final-01/REPORT.md",
+            "sha256": "0560885358b7f99935103c57bca82367be7ad62182e63f91f311e5b92d4a0706"
+          },
+          {
+            "path": "voiceFinalSdk/README.md",
+            "sha256": "61705c57f523a8752bae1e70eac140e537e642b98e5440c82fb121ba3588e1dd"
+          }
+        ]
+      },
+      "alternatives": [
+        {
+          "branch": "feat/voice-bridge-pilot",
+          "commit": "04c4ca1c050c16e097d27b08831544b66121128c",
+          "parents": [
+            "ea37d5a461b94f64f3a89a2e655a7d47b0d1150d"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "26132334b7f0362252d7bdd6d89a7f38b437f4cfb77ee317942257f9557f1d65"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "41ea3c3fdceb3f06c39a0375efec91327f0d4888790c7bb1064f4bd3d36f8e38"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "8aa6fc18f66ab4dee3fd4e7ce5d8164d7450b700e4cd03096521f78860d78431"
+            },
+            {
+              "path": "app/build.gradle.kts",
+              "sha256": "d14dc2a93aced9bea3e07a005e359796a7e2002ab3345be32f1015a820a5e03d"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "1bb6d43ff8af30abb0eaf03fe58f636ed9b37f758a748bf30a9cebd809639c9d"
+            }
+          ]
+        },
+        {
+          "branch": "feat/voice-07-voice-delivery",
+          "commit": "40cb27b1e27567ae1841e4cfb3dd2c57a7b57820",
+          "parents": [
+            "0b1d879f36e2aa61269a3841cc3e1305b394a5a0"
+          ],
+          "files": [
+            {
+              "path": "README.md",
+              "sha256": "26132334b7f0362252d7bdd6d89a7f38b437f4cfb77ee317942257f9557f1d65"
+            },
+            {
+              "path": "build.gradle.kts",
+              "sha256": "41ea3c3fdceb3f06c39a0375efec91327f0d4888790c7bb1064f4bd3d36f8e38"
+            },
+            {
+              "path": "settings.gradle.kts",
+              "sha256": "49941adb20de1c6e12fc5b2d8963513b633581bd13b7be3934ceebc3b7ccf598"
+            },
+            {
+              "path": "app/build.gradle.kts",
+              "sha256": "d14dc2a93aced9bea3e07a005e359796a7e2002ab3345be32f1015a820a5e03d"
+            },
+            {
+              "path": "gradle/wrapper/gradle-wrapper.properties",
+              "sha256": "1bb6d43ff8af30abb0eaf03fe58f636ed9b37f758a748bf30a9cebd809639c9d"
+            }
+          ]
+        }
+      ],
+      "ci": {
+        "status": "unknown",
+        "commit": "fe57452fcb33f5b6870070f30ba6c5f1d349c4ba",
+        "url": "NOT_OBSERVED",
+        "reason": "No reliable exact-SHA CI observation; no status inherited from another commit."
+      },
+      "license": {
+        "status": "UNKNOWN",
+        "expression": "UNKNOWN",
+        "basis": "No project license identified in audited pinned root; dependency licenses do not license the project or assets."
+      },
+      "platforms": [
+        {
+          "target": "android24",
+          "status": "BLOCKED",
+          "basis": "Selected autonomous application min26; not loadable in CORE min24."
+        },
+        {
+          "target": "android25",
+          "status": "BLOCKED",
+          "basis": "Selected autonomous application min26; not loadable in CORE min24."
+        },
+        {
+          "target": "android26",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        },
+        {
+          "target": "android29_arm64",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        },
+        {
+          "target": "linux",
+          "status": "NOT_TESTED",
+          "basis": "No physical qualification or complete composed product validation."
+        }
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "jvm-pins-vs-api24",
+      "components": [
+        "core",
+        "nexus",
+        "services"
+      ],
+      "reason": "CORE03 pins NEX777/SERV3de; candidate uses NEX374/SERVf000. Source hashes and JDBC module layout differ.",
+      "required_action": "Port the separate CORE JVM lab on a CORE-owned branch, preserve old pins/results and rerun complete F1.",
+      "blocks": [
+        "F1",
+        "F2",
+        "F6",
+        "F8"
+      ]
+    },
+    {
+      "id": "nexus-v3-v4",
+      "components": [
+        "nexus"
+      ],
+      "reason": "Final d903 is schema4/JDBC and divergent from API24 schema3; ArchiveReader contracts differ.",
+      "required_action": "Propose versioned shared schema/reader port, migration on synthetic copies only; no automatic merge.",
+      "blocks": [
+        "F2",
+        "F6",
+        "F8"
+      ]
+    },
+    {
+      "id": "services-17-vs-port",
+      "components": [
+        "services"
+      ],
+      "reason": "Final d16 contains seventeen tools, while selected API24 port exposes search/CSV with DOCX disabled.",
+      "required_action": "Port audited tools individually through shared permissions and exact-consent gate; do not substitute the min26 APK.",
+      "blocks": [
+        "F6",
+        "F8"
+      ]
+    },
+    {
+      "id": "native-llm-unknown",
+      "components": [
+        "core",
+        "llm"
+      ],
+      "reason": "Exact tokenization, stop and unload remain unqualified; CORE mapping rejects nonempty document sources/context.",
+      "required_action": "Review native diff and provenance-preserving prompt contract separately; leave UNSUPPORTED and CORE004D blocked.",
+      "blocks": [
+        "F3",
+        "F5",
+        "F8"
+      ]
+    },
+    {
+      "id": "core-voice-divergent",
+      "components": [
+        "core",
+        "voice"
+      ],
+      "reason": "CORE voice branch diverges and modifies AppGraph/MainActivity.",
+      "required_action": "Review explicit port before any sensitive activation; retain historical TTS.",
+      "blocks": [
+        "F5",
+        "F8"
+      ]
+    },
+    {
+      "id": "voice-parallel-contracts",
+      "components": [
+        "voice",
+        "interface"
+      ],
+      "reason": "Voice07 is parallel to final Studio; final playback events lack chat correlation and an attested clock.",
+      "required_action": "Propose a versioned mapping, distinguish PCM buffering from playback and keep unsupported emotions.",
+      "blocks": [
+        "F5",
+        "F8"
+      ]
+    },
+    {
+      "id": "ui-laboratory-only",
+      "components": [
+        "interface",
+        "core"
+      ],
+      "reason": "UI content proposal is laboratory-only and lacks complete ToolApproval/Citation bodies and authenticated real CORE transport.",
+      "required_action": "Keep NON CONNECTE; review transport, payloads, authentication and revocation before activation.",
+      "blocks": [
+        "F4",
+        "F8"
+      ]
+    },
+    {
+      "id": "distribution-licenses",
+      "components": [
+        "core",
+        "llm",
+        "voice",
+        "interface",
+        "nexus",
+        "services",
+        "evolution",
+        "unified"
+      ],
+      "reason": "Project licenses not identified; dependency licenses are not a redistribution authorization.",
+      "required_action": "Record project and asset licenses before a distributable composed build.",
+      "blocks": [
+        "F8"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "id": "F0",
+      "depends_on": [],
+      "status": "VERIFIED",
+      "blockers": [],
+      "basis": "Eight source audits and candidate inventory; only UNIFIED tooling delivered."
+    },
+    {
+      "id": "F1",
+      "depends_on": [
+        "F0"
+      ],
+      "status": "PARTIAL",
+      "blockers": [
+        "Candidate API24 ports not consumed by CORE03 lab; current-session F1 not executed."
+      ],
+      "basis": "Historical ten real JVM integration tests use older pinned NEX777/SERV3de."
+    },
+    {
+      "id": "F2",
+      "depends_on": [
+        "F1"
+      ],
+      "status": "BLOCKED",
+      "blockers": [
+        "FTS5 Android unavailable/unqualified; both selected adapter CIs failed; no approved instrumented API24/25 path."
+      ],
+      "basis": "No Android CORE wiring or data migration in UNIFIED."
+    },
+    {
+      "id": "F3",
+      "depends_on": [
+        "F0"
+      ],
+      "status": "BLOCKED",
+      "blockers": [
+        "Native F3B/tokenizer/unload evidence and separate sensitive authorization missing."
+      ],
+      "basis": "UNSUPPORTED is not replaced with estimates."
+    },
+    {
+      "id": "F4",
+      "depends_on": [
+        "F0"
+      ],
+      "status": "BLOCKED",
+      "blockers": [
+        "Real correlated CORE content transport, identity and ToolApproval/Citation mapping missing."
+      ],
+      "basis": "Independent UI remains usable; no pretend real chat."
+    },
+    {
+      "id": "F5",
+      "depends_on": [
+        "F3",
+        "F4"
+      ],
+      "status": "BLOCKED",
+      "blockers": [
+        "Voice admission, authenticated activation, playback clock and physical avatar qualification missing."
+      ],
+      "basis": "No activation of Binder/VOICE/private assets."
+    },
+    {
+      "id": "F6",
+      "depends_on": [
+        "F1"
+      ],
+      "status": "BLOCKED",
+      "blockers": [
+        "NEXUS schema4/Android port divergence; SERVICES final tools not ported with full consent."
+      ],
+      "basis": "Final libraries remain separate references."
+    },
+    {
+      "id": "F7",
+      "depends_on": [
+        "F0"
+      ],
+      "status": "PARTIAL",
+      "blockers": [
+        "Sanitized technical observation contract not yet implemented across modules; patch runner sandbox unqualified."
+      ],
+      "basis": "Read-only diagnostic exists; untrusted patch execution remains forbidden."
+    },
+    {
+      "id": "F8",
+      "depends_on": [
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7"
+      ],
+      "status": "BLOCKED",
+      "blockers": [
+        "No complete Android E2E, physical validation, license clearance or production readiness."
+      ],
+      "basis": "Candidate only, no installation/merge or final product claim."
+    }
+  ],
+  "frozen_contracts": [
+    {
+      "path": "contracts/v1/capability-manifest.schema.json",
+      "sha256": "fdeda2a14c9ea818ebfedaad43035b192ccddc8b941fa61d6c25fa8d98b03b9a"
+    },
+    {
+      "path": "contracts/v1/health-status.schema.json",
+      "sha256": "84420f0f18763f557d1f14cd7a06be9bc1d05705e11c672c91d68ecfbadf2bd0"
+    },
+    {
+      "path": "contracts/v1/request-envelope.schema.json",
+      "sha256": "9c13abea1907cccb7f01990888d4eeb4a81aad90b5d823213bb5fe75372450fc"
+    },
+    {
+      "path": "contracts/v1/resource-lease.schema.json",
+      "sha256": "0cabee9828db1ee719d5d43ab3b1e268aeafce7af49755224c78bf705595343c"
+    },
+    {
+      "path": "contracts/v1/response-envelope.schema.json",
+      "sha256": "3649f25aab483c20fc53e909a0b6486724abc050245e15acdb03f8f4b17edd38"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.integrations.CoreIntegrationTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-25T17:12:25" hostname="9405d059b27a" time="0.442">
+  <properties/>
+  <testcase name="realNexusSourceIsResolvedAndAllCitationFieldsArePreserved" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.283"/>
+  <testcase name="revokedSessionCannotExposeACompletedToolResult" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.021"/>
+  <testcase name="mutationRequiresExactApprovalAndRealDocxIsVerifiedWithoutReplay" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.047"/>
+  <testcase name="assemblyRefusesWithoutCurrentHostAuthorityEvenAfterSuccessfulRetrieval" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.016"/>
+  <testcase name="defaultDenyAndUnauthorizedScopeNeverReturnSources" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.012"/>
+  <testcase name="unicodeByteBudgetAndManipulativeContentRemainData" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.016"/>
+  <testcase name="expiredPreviewAndRepeatedRequestNeverCreateMutation" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.008"/>
+  <testcase name="changedCitationOrTextIsRejectedByActualNexusResolver" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.012"/>
+  <testcase name="realServicesCsvRunsAndCoreDenyCannotBeOverriddenByArguments" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.009"/>
+  <testcase name="sourceRevocationAndWrongCorrelationRefuseLateResults" classname="com.stark.jarvislocal.integrations.CoreIntegrationTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>

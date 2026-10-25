@@ -1,0 +1,50 @@
+[
+  {
+    "module": "core",
+    "core_observed": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+    "unified_primary": "aea5ac859ac551d54fe16187c1883a487dbee9d6",
+    "equal": true
+  },
+  {
+    "module": "evolution",
+    "core_observed": "c0180181804338d21f3bf9d4b537b709595902f7",
+    "unified_primary": "c0180181804338d21f3bf9d4b537b709595902f7",
+    "equal": true
+  },
+  {
+    "module": "interface",
+    "core_observed": "db459ba388a3fea992d80320c3989be0edda8500",
+    "unified_primary": "db459ba388a3fea992d80320c3989be0edda8500",
+    "equal": true
+  },
+  {
+    "module": "llm",
+    "core_observed": "2efb3f7aa6205062ab71f570212019fd1d9885b6",
+    "unified_primary": "2efb3f7aa6205062ab71f570212019fd1d9885b6",
+    "equal": true
+  },
+  {
+    "module": "nexus",
+    "core_observed": "d903bf04f497ab0dc7f40e9708ed057e4f24c6ee",
+    "unified_primary": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+    "equal": false
+  },
+  {
+    "module": "services",
+    "core_observed": "d16dd84f27881460ec9f02d2a54d9ddff23187dc",
+    "unified_primary": "f00091a639612b91eca1a301580c8f531249f1e3",
+    "equal": false
+  },
+  {
+    "module": "unified",
+    "core_observed": "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c",
+    "unified_primary": "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c",
+    "equal": true
+  },
+  {
+    "module": "voice",
+    "core_observed": "fe57452fcb33f5b6870070f30ba6c5f1d349c4ba",
+    "unified_primary": "fe57452fcb33f5b6870070f30ba6c5f1d349c4ba",
+    "equal": true
+  }
+]

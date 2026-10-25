@@ -1,0 +1,47 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :nexus-source:nexus-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :processResources NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :services-source:shared-runtime:compileJava UP-TO-DATE
+> Task :services-source:desktop:compileJava UP-TO-DATE
+> Task :nexus-source:nexus-core:compileKotlin UP-TO-DATE
+> Task :services-source:shared-runtime:processResources NO-SOURCE
+> Task :services-source:shared-runtime:classes UP-TO-DATE
+> Task :nexus-source:nexus-core:compileJava NO-SOURCE
+> Task :nexus-source:nexus-core:processResources NO-SOURCE
+> Task :services-source:shared-runtime:jar UP-TO-DATE
+> Task :nexus-source:nexus-core:classes UP-TO-DATE
+> Task :services-source:desktop:processResources NO-SOURCE
+> Task :services-source:desktop:classes UP-TO-DATE
+> Task :services-source:desktop:jar UP-TO-DATE
+> Task :nexus-source:nexus-core:jar UP-TO-DATE
+> Task :compileKotlin
+> Task :compileJava NO-SOURCE
+> Task :classes UP-TO-DATE
+> Task :jar
+> Task :compileTestKotlin
+> Task :compileTestJava NO-SOURCE
+> Task :testClasses UP-TO-DATE
+
+> Task :test FAILED
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+
+FusionWorkflowTest > cancellationMustRejectACompletedToolResult FAILED
+    java.lang.AssertionError at FusionWorkflowTest.kt:8
+
+1 test completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///workspace/JAVIS-Local-v2/integration-lab/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+BUILD FAILED in 18s
+10 actionable tasks: 4 executed, 6 up-to-date

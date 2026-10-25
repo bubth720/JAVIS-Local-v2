@@ -580,3 +580,22 @@ Annuler/timeout d'outil n'atteste aucune fin JNI ou libération. La démonstrati
 réelle sur SQLite/FTS5, CSV et DOCX fictifs mais reste JVM, sans connexion APK,
 LLM ou mémoire personnelle. CORE-03 global reste PARTIAL. Tout `app/`, fixture,
 modèle, budget et fichier de build Android de MEM-02 doit rester identique.
+
+## FUSION-01 — tranche CORE C0/C1 uniquement
+
+Base CORE03 aea5ac859ac551d54fe16187c1883a487dbee9d6. Lire docs/fusion-01/REPORT.md
+et COMPATIBILITY.md. Le verrou CORE local n'est pas un GO F0 UNIFIED. Ne pas
+substituer les branches finales aux snapshots NEXUS777e6afa/SERVICES3decdc47.
+DocumentToolWorkflow et WorkflowReceipts restent exclusivement dans integration-lab,
+sans dépendance APK. Les reçus techniques réutilisent le Store SERVICES, ne portent
+aucune permission, mémoire ou attestation native ; reprise après ancien propriétaire
+arrêté, jamais reset/retry. UNKNOWN ne redevient pas SUCCESS. Les consentements des
+tests/CLI sont synthétiques. L'adaptateur revalide aussi le scope confirm.
+
+La révocation n'est pas une fence atomique du worker SERVICES : ne pas promettre
+l'absence d'une écriture déjà admise ni son rollback. C1 global reste PARTIAL.
+NEXUS FTS5/API24 et instrumentation producteurs manquants bloquent C2 ; C3 est
+conception et C4 demeure bloquée. Aucun service, JNI, persona ou moteur activé.
+Exécuter tools/check-fusion-01.py --verify-results après les suites documentées ;
+ce garde protège tous les fichiers historiques hors adaptation JVM et documentation.
+Ne pas assouplir les anciens gardes : consigner leurs échecs de périmètre.
