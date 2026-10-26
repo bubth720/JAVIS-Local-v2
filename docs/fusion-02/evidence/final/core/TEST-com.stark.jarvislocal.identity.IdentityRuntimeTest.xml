@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.identity.IdentityRuntimeTest" tests="39" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:36" hostname="9405d059b27a" time="0.883">
+  <properties/>
+  <testcase name="mismatchedMeasurementCannotAuthorizeDifferentRequest[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.046"/>
+  <testcase name="mismatchedMeasurementCannotAuthorizeDifferentRequest[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.037"/>
+  <testcase name="mismatchedMeasurementCannotAuthorizeDifferentRequest" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.032"/>
+  <testcase name="simulatedCompositionChangesOnlySystemAndKeepsProvenance[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.02"/>
+  <testcase name="simulatedCompositionChangesOnlySystemAndKeepsProvenance[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.019"/>
+  <testcase name="simulatedCompositionChangesOnlySystemAndKeepsProvenance" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.023"/>
+  <testcase name="missingRealTokenizerBlocksOptIn[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.023"/>
+  <testcase name="missingRealTokenizerBlocksOptIn[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.023"/>
+  <testcase name="missingRealTokenizerBlocksOptIn" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.023"/>
+  <testcase name="manifestVersionDigestAndFalseRightsRejected[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.022"/>
+  <testcase name="manifestVersionDigestAndFalseRightsRejected[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.02"/>
+  <testcase name="manifestVersionDigestAndFalseRightsRejected" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.02"/>
+  <testcase name="revocationOrExpiryDuringMeasureRejectsLateComposition[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.018"/>
+  <testcase name="revocationOrExpiryDuringMeasureRejectsLateComposition[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.021"/>
+  <testcase name="revocationOrExpiryDuringMeasureRejectsLateComposition" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.026"/>
+  <testcase name="quarantineAndOversizeSystemFailBeforeTokenizer[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.027"/>
+  <testcase name="quarantineAndOversizeSystemFailBeforeTokenizer[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.024"/>
+  <testcase name="quarantineAndOversizeSystemFailBeforeTokenizer" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.024"/>
+  <testcase name="fixtureMeasurementsAndNoSystemCapabilityAreRefused[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.019"/>
+  <testcase name="fixtureMeasurementsAndNoSystemCapabilityAreRefused[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.016"/>
+  <testcase name="fixtureMeasurementsAndNoSystemCapabilityAreRefused" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.019"/>
+  <testcase name="snapshotIsTechnicalReadOnlyAndVersionBound[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.026"/>
+  <testcase name="snapshotIsTechnicalReadOnlyAndVersionBound[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.026"/>
+  <testcase name="snapshotIsTechnicalReadOnlyAndVersionBound" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.027"/>
+  <testcase name="exactBudgetBoundaryAndRequestedContextNotLoadedContext[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.021"/>
+  <testcase name="exactBudgetBoundaryAndRequestedContextNotLoadedContext[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.022"/>
+  <testcase name="exactBudgetBoundaryAndRequestedContextNotLoadedContext" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.023"/>
+  <testcase name="immutableManifestAndRestartHaveSameTechnicalIdentity[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.019"/>
+  <testcase name="immutableManifestAndRestartHaveSameTechnicalIdentity[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.017"/>
+  <testcase name="immutableManifestAndRestartHaveSameTechnicalIdentity" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.017"/>
+  <testcase name="rejectsMalformedDuplicateFloatSurrogateAndOversize[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.017"/>
+  <testcase name="rejectsMalformedDuplicateFloatSurrogateAndOversize[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.026"/>
+  <testcase name="rejectsMalformedDuplicateFloatSurrogateAndOversize" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.02"/>
+  <testcase name="sixApprovedVectorsMatchCanonicalBytesAndDigests[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.018"/>
+  <testcase name="sixApprovedVectorsMatchCanonicalBytesAndDigests[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.02"/>
+  <testcase name="sixApprovedVectorsMatchCanonicalBytesAndDigests" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.022"/>
+  <testcase name="disabledByDefaultNeverMeasuresOrReadsPrivateState[24]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.017"/>
+  <testcase name="disabledByDefaultNeverMeasuresOrReadsPrivateState[25]" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.019"/>
+  <testcase name="disabledByDefaultNeverMeasuresOrReadsPrivateState" classname="com.stark.jarvislocal.identity.IdentityRuntimeTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.CoreInferenceContractTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:16" hostname="9405d059b27a" time="9.812">
+  <properties/>
+  <testcase name="corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData[24]" classname="com.stark.jarvislocal.CoreInferenceContractTest" time="3.426"/>
+  <testcase name="corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData[25]" classname="com.stark.jarvislocal.CoreInferenceContractTest" time="1.742"/>
+  <testcase name="corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData" classname="com.stark.jarvislocal.CoreInferenceContractTest" time="4.523"/>
+  <testcase name="mismatchedOrUnattestedResponseNeverEntersHistory[24]" classname="com.stark.jarvislocal.CoreInferenceContractTest" time="0.044"/>
+  <testcase name="mismatchedOrUnattestedResponseNeverEntersHistory[25]" classname="com.stark.jarvislocal.CoreInferenceContractTest" time="0.035"/>
+  <testcase name="mismatchedOrUnattestedResponseNeverEntersHistory" classname="com.stark.jarvislocal.CoreInferenceContractTest" time="0.041"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.JarvisCoreConcurrencyTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:34" hostname="9405d059b27a" time="0.573">
+  <properties/>
+  <testcase name="cancellationKeepsLockUntilNativeReturnAndAddsNoErrorOrDuplicateAnswer[24]" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.068"/>
+  <testcase name="cancellationKeepsLockUntilNativeReturnAndAddsNoErrorOrDuplicateAnswer" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.07"/>
+  <testcase name="wholeConversationIsExclusiveAndHistoryIsNeverMixed[24]" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.04"/>
+  <testcase name="wholeConversationIsExclusiveAndHistoryIsNeverMixed" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.052"/>
+  <testcase name="generationFailureReleasesTheConversationLock[24]" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.056"/>
+  <testcase name="generationFailureReleasesTheConversationLock" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.053"/>
+  <testcase name="explicitRememberConfirmsOnlySuccessfulMemoryInsertAndNeverCallsTheModel[24]" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.033"/>
+  <testcase name="explicitRememberConfirmsOnlySuccessfulMemoryInsertAndNeverCallsTheModel" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.04"/>
+  <testcase name="rememberCanPersistEvenIfTheSeparateHistoryWriteFails[24]" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.035"/>
+  <testcase name="rememberCanPersistEvenIfTheSeparateHistoryWriteFails" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.046"/>
+  <testcase name="generationKeepsAllIncludedPdfNamesInPersistedSource[24]" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.04"/>
+  <testcase name="generationKeepsAllIncludedPdfNamesInPersistedSource" classname="com.stark.jarvislocal.JarvisCoreConcurrencyTest" time="0.04"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

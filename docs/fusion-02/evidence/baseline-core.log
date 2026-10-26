@@ -1,0 +1,141 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugResValues
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:parseDebugLocalResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:mergeDebugResources
+
+> Task :app:processDebugMainManifest
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:11:9-41 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:4:5-87 Warning:
+	uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:4 to remove other declarations but no other declaration present
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:5:5-99 Warning:
+	uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:5 to remove other declarations but no other declaration present
+
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:javaPreCompileDebug
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:preMvp2Build UP-TO-DATE
+> Task :app:checkMvp2AarMetadata
+> Task :app:generateMvp2ResValues
+> Task :app:mapMvp2SourceSetPaths
+> Task :app:generateMvp2Resources
+> Task :app:processDebugResources
+> Task :app:mergeMvp2Resources
+> Task :app:packageDebugUnitTestForUnitTest
+> Task :app:generateDebugUnitTestConfig
+> Task :app:packageMvp2Resources
+> Task :app:parseMvp2LocalResources
+> Task :app:createMvp2CompatibleScreenManifests
+> Task :app:extractDeepLinksMvp2
+
+> Task :app:processMvp2MainManifest
+/workspace/JAVIS-Local-v2/app/src/main/AndroidManifest.xml:11:9-41 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+/workspace/JAVIS-Local-v2/app/src/mvp2/AndroidManifest.xml Warning:
+	uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:0 to remove other declarations but no other declaration present
+/workspace/JAVIS-Local-v2/app/src/mvp2/AndroidManifest.xml Warning:
+	uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:0 to remove other declarations but no other declaration present
+
+> Task :app:processMvp2Manifest
+> Task :app:processMvp2ManifestForPackage
+> Task :app:processMvp2Resources
+> Task :app:compileDebugKotlin
+> Task :app:compileDebugJavaWithJavac NO-SOURCE
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:compileMvp2Kotlin
+> Task :app:processDebugJavaRes
+> Task :app:javaPreCompileMvp2
+> Task :app:compileMvp2JavaWithJavac NO-SOURCE
+> Task :app:bundleMvp2ClassesToRuntimeJar
+> Task :app:bundleMvp2ClassesToCompileJar
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:compileMvp2UnitTestKotlin
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+
+> Task :app:testDebugUnitTest
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+> Task :app:preMvp2UnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileMvp2UnitTest
+> Task :app:mergeMvp2Shaders
+> Task :app:compileMvp2UnitTestJavaWithJavac NO-SOURCE
+> Task :app:compileMvp2Shaders NO-SOURCE
+> Task :app:generateMvp2Assets UP-TO-DATE
+> Task :app:mergeMvp2Assets
+> Task :app:packageMvp2UnitTestForUnitTest
+> Task :app:generateMvp2UnitTestConfig
+> Task :app:processMvp2JavaRes
+> Task :app:processMvp2UnitTestJavaRes
+
+> Task :app:testMvp2UnitTest
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+> Task :p2-client:sharedCore
+> Task :p2-client:preBuild
+> Task :p2-client:preDebugBuild
+> Task :p2-client:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :p2-client:generateDebugBuildConfig
+> Task :p2-client:checkDebugAarMetadata
+> Task :p2-client:generateDebugResValues
+> Task :p2-client:mapDebugSourceSetPaths
+> Task :p2-client:generateDebugResources
+> Task :p2-client:mergeDebugResources
+> Task :p2-client:packageDebugResources
+> Task :p2-client:parseDebugLocalResources
+> Task :p2-client:createDebugCompatibleScreenManifests
+> Task :p2-client:extractDeepLinksDebug
+
+> Task :p2-client:processDebugMainManifest
+/workspace/JAVIS-Local-v2/fixtures/p2-client/src/main/AndroidManifest.xml:2:5-87 Warning:
+	uses-permission#android.permission.INTERNET was tagged at AndroidManifest.xml:2 to remove other declarations but no other declaration present
+/workspace/JAVIS-Local-v2/fixtures/p2-client/src/main/AndroidManifest.xml:3:5-99 Warning:
+	uses-permission#android.permission.ACCESS_NETWORK_STATE was tagged at AndroidManifest.xml:3 to remove other declarations but no other declaration present
+
+> Task :p2-client:processDebugManifest
+> Task :p2-client:processDebugManifestForPackage
+> Task :p2-client:compileDebugAidl
+> Task :p2-client:javaPreCompileDebug
+> Task :p2-client:preDebugUnitTestBuild
+> Task :p2-client:javaPreCompileDebugUnitTest
+> Task :p2-client:mergeDebugShaders
+> Task :p2-client:compileDebugShaders NO-SOURCE
+> Task :p2-client:generateDebugAssets UP-TO-DATE
+> Task :p2-client:mergeDebugAssets
+> Task :p2-client:processDebugResources
+> Task :p2-client:packageDebugUnitTestForUnitTest
+> Task :p2-client:generateDebugUnitTestConfig
+> Task :p2-client:compileDebugKotlin
+> Task :p2-client:compileDebugJavaWithJavac
+> Task :p2-client:bundleDebugClassesToRuntimeJar
+> Task :p2-client:bundleDebugClassesToCompileJar
+> Task :p2-client:processDebugJavaRes
+> Task :p2-client:compileDebugUnitTestKotlin
+> Task :p2-client:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :p2-client:processDebugUnitTestJavaRes
+
+> Task :p2-client:testDebugUnitTest
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Duser.home=/workspace/.setup/robolectric-home
+
+BUILD SUCCESSFUL in 2m 33s
+82 actionable tasks: 82 executed

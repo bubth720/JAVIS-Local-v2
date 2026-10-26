@@ -1,0 +1,46 @@
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :nexus-source:nexus-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :processResources NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :nexus-source:nexus-core:processResources NO-SOURCE
+
+> Task :services-source:shared-runtime:compileJava
+Note: /workspace/.setup/fusion-01/services-source/shared-runtime/src/main/java/fr/jarvis/services/shared/storage/Store.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :services-source:desktop:compileJava
+> Task :services-source:shared-runtime:processResources NO-SOURCE
+> Task :services-source:shared-runtime:classes
+> Task :services-source:shared-runtime:jar
+> Task :services-source:desktop:processResources NO-SOURCE
+> Task :services-source:desktop:classes
+> Task :services-source:desktop:jar
+> Task :nexus-source:nexus-core:compileKotlin
+> Task :nexus-source:nexus-core:compileJava NO-SOURCE
+> Task :nexus-source:nexus-core:classes UP-TO-DATE
+> Task :nexus-source:nexus-core:jar
+> Task :compileKotlin
+> Task :compileJava NO-SOURCE
+> Task :classes UP-TO-DATE
+> Task :jar
+
+> Task :run
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+CORE03 JVM: real_nexus_citations=1 csv_tool=SUCCESS mutation_without_approval=REFUSED docx_readback=VERIFIED android_connected=false native_inference=false
+FUSION01 JVM: source_resolved=true csv_exact_sum=0.30 export_readback=VERIFIED consent=FIXTURE android_connected=false native_inference=false
+
+> Task :compileTestKotlin
+> Task :compileTestJava NO-SOURCE
+> Task :testClasses UP-TO-DATE
+
+> Task :test
+Picked up JAVA_TOOL_OPTIONS:  -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
+
+BUILD SUCCESSFUL in 1m 6s
+11 actionable tasks: 11 executed

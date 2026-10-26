@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.OfflineVoiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:40" hostname="9405d059b27a" time="0.066">
+  <properties/>
+  <testcase name="nonFrenchOfflineVoiceDoesNotSilentlyReplaceFrench" classname="com.stark.jarvislocal.OfflineVoiceTest" time="0.035"/>
+  <testcase name="selectsFrenchOfflineVoiceEvenWhenNetworkVoiceComesFirst" classname="com.stark.jarvislocal.OfflineVoiceTest" time="0.017"/>
+  <testcase name="networkOnlyFrenchVoiceIsUnavailable" classname="com.stark.jarvislocal.OfflineVoiceTest" time="0.013"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

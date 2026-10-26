@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.integrations.FusionWorkflowTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:34" hostname="9405d059b27a" time="0.418">
+  <properties/>
+  <testcase name="completedReceiptSurvivesRecoveryWithoutReplayOrMutation" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.011"/>
+  <testcase name="deadlineAtApprovalCannotBeExtendedByCaller" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.018"/>
+  <testcase name="realCsvExportIsByteExactAfterSeparateFixtureConsent" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.037"/>
+  <testcase name="lostAckAfterRealWriteRecoversUnknownWithoutReexecuting" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.028"/>
+  <testcase name="responseAfterRevocationIsUnknownAndNeverTurnsIntoSuccess" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.025"/>
+  <testcase name="revokedBeforeApprovalNeverCreatesOutput" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.038"/>
+  <testcase name="timeoutThenLateRealServicesResultRemainsUnknown" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.012"/>
+  <testcase name="staleServicesHostGrantCannotReplaceCurrentCoreConfirmationScope" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.01"/>
+  <testcase name="realTxtCitationCsvExactArithmeticApprovedDocxAndOriginalsUnchanged" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.033"/>
+  <testcase name="cancellationAfterCompletedToolResultIsStillRefused" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.009"/>
+  <testcase name="oldGenerationOrWrongSessionCannotApprove" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.041"/>
+  <testcase name="cancelDuringRealRetrievalRejectsContextAndNeverPreparesMutation" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.021"/>
+  <testcase name="corruptReceiptFailsClosedAndPreservesOtherNamespaces" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.01"/>
+  <testcase name="cancelPreviewIsTerminalAndHasNoEffect" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.03"/>
+  <testcase name="noNewDispatchWhilePreviousExportIsUnreconciled" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.039"/>
+  <testcase name="wrongResponseIdIsTerminalEvenIfAuthorityReturns" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.007"/>
+  <testcase name="preparedAndDispatchedReceiptsBecomeUnknownAcrossDatabaseReopen" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.006"/>
+  <testcase name="persistedRequestAndRowKeyMismatchNeverCreatesAnotherReceipt" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.006"/>
+  <testcase name="interruptedWaitKeepsInterruptAndCannotBeRetried" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.005"/>
+  <testcase name="completedExportObservedAfterDeadlineStaysUnknownWithoutReexecution" classname="com.stark.jarvislocal.integrations.FusionWorkflowTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

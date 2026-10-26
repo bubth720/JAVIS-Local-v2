@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.TextLabCoreTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:42" hostname="9405d059b27a" time="0.442">
+  <properties/>
+  <testcase name="stopRejectsLateNativeResultWithoutFreeingResidentModel[24]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.03"/>
+  <testcase name="stopRejectsLateNativeResultWithoutFreeingResidentModel[25]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.041"/>
+  <testcase name="stopRejectsLateNativeResultWithoutFreeingResidentModel" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.032"/>
+  <testcase name="labCannotEscapeFailedUnloadOrLoadAnotherBackend[24]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.025"/>
+  <testcase name="labCannotEscapeFailedUnloadOrLoadAnotherBackend[25]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.024"/>
+  <testcase name="labCannotEscapeFailedUnloadOrLoadAnotherBackend" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.023"/>
+  <testcase name="historicalGreetingAndStorageRemainTheDefaultCorePath[24]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.02"/>
+  <testcase name="historicalGreetingAndStorageRemainTheDefaultCorePath[25]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.019"/>
+  <testcase name="historicalGreetingAndStorageRemainTheDefaultCorePath" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.02"/>
+  <testcase name="oversizedQuestionRefusesBeforeAnyModelLoad[24]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.021"/>
+  <testcase name="oversizedQuestionRefusesBeforeAnyModelLoad[25]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.019"/>
+  <testcase name="oversizedQuestionRefusesBeforeAnyModelLoad" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.027"/>
+  <testcase name="messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory[24]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.026"/>
+  <testcase name="messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory[25]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.027"/>
+  <testcase name="messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.025"/>
+  <testcase name="emptyNativeResultIsNotReplacedWithALabSuccess[24]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.019"/>
+  <testcase name="emptyNativeResultIsNotReplacedWithALabSuccess[25]" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.022"/>
+  <testcase name="emptyNativeResultIsNotReplacedWithALabSuccess" classname="com.stark.jarvislocal.TextLabCoreTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

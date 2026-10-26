@@ -1,0 +1,55 @@
+{
+  "base": "36761cea101b5f88b87cd4136dc075d28a1adb96",
+  "protected_files": 459,
+  "app_graph": "EXACT_PASSIVE_ADDITION",
+  "producer_integration_enabled": false,
+  "ignored_preexisting_untracked": [
+    "docs/identity-002n/AAR_AUDIT.json",
+    "docs/identity-002n/AUDIT.md",
+    "docs/identity-002n/JNI_CONTRACT.md",
+    "docs/identity-002n/PRESERVATION.json",
+    "docs/identity-002n/PROPOSED_MEASURED_V1_API.patch.txt",
+    "docs/identity-002n/REGRESSION_AND_DECISION.md",
+    "docs/identity-002n/REPORT.md",
+    "docs/identity-002n/REPRODUCIBILITY.md",
+    "docs/identity-002n/RESULTS.json",
+    "docs/identity-002n/RESULTS.md",
+    "docs/identity-002n/SOURCES.json",
+    "docs/identity-002n/TEST_PLAN.md",
+    "docs/identity-002n/verify_proposal.py"
+  ],
+  "tests": {
+    "core": {
+      "passed": 480,
+      "baseline": 448,
+      "failed": 0,
+      "skipped": 0
+    },
+    "mvp2": {
+      "passed": 53,
+      "baseline": 53,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fixture": {
+      "passed": 36,
+      "baseline": 36,
+      "failed": 0,
+      "skipped": 0
+    },
+    "jvm": {
+      "passed": 30,
+      "baseline": 30,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "negative_vectors_refused": [
+    "missing_refusal_port",
+    "warmup_inserted",
+    "second_registry",
+    "fake_go",
+    "enabled_flag",
+    "wrong_base"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "debug": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 27
+  },
+  "mvp2": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 37
+  },
+  "mvp3": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 37
+  }
+}

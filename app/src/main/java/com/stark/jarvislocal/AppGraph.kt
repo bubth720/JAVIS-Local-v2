@@ -21,6 +21,8 @@ class AppGraph(context: Context, sessionOverride: SessionCoordinator? = null) {
     val events = com.stark.jarvislocal.events.CoreEventBus() // disabled, volatile observation only
     val eventUi = com.stark.jarvislocal.events.UiStateProjection(events)
     val connectors = com.stark.jarvislocal.events.ConnectorRegistry.defaults()
+    val documentToolsReadiness: com.stark.jarvislocal.integrations.DocumentToolReadinessPort =
+        com.stark.jarvislocal.integrations.UnavailableDocumentToolReadiness(connectors)
     val whisper = WhisperLocalEngine(appContext, models)
     val tts = LocalTts(appContext)
     val recorder = WavRecorder(appContext)

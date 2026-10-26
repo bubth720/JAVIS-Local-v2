@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.InferenceControllerTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:26" hostname="9405d059b27a" time="0.124">
+  <properties/>
+  <testcase name="cancellationBeforeDispatchDoesNotConstructOrLoadAnything" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.054"/>
+  <testcase name="legacyGeneratePreservesExactPromptAndSeparateSystem" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.008"/>
+  <testcase name="incompatibleContractSystemCapabilityAndBudgetNeverInvokeBackend" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.006"/>
+  <testcase name="exceptionWithoutCompletionEvidenceQuarantinesInsteadOfGuessing" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.004"/>
+  <testcase name="attestedGenerationErrorCanRetrySameEngineButCannotSwitchBeforeUnload" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.003"/>
+  <testcase name="cancellationAfterCompletedGenerationDoesNotInventAnotherStop" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.002"/>
+  <testcase name="historicalIsDefaultAndUnconfiguredDelegateIsRefused" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.006"/>
+  <testcase name="negativeIsLoadedIsNotAnUnloadAcknowledgement" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.004"/>
+  <testcase name="simultaneousPreparationAndSelectionCannotDoubleLoad" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.004"/>
+  <testcase name="cancellationDuringGenerationRequestsStopAndDrainsBeforeUnlock" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.005"/>
+  <testcase name="explicitStopIsDistinctFromDoneAndDiscardsTheEventualResponse" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.002"/>
+  <testcase name="cancellationCannotEraseAFailedReleaseReportedDuringDrain" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.003"/>
+  <testcase name="structuredSystemContextSourcesAndLimitsReachBackendUnchanged" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.002"/>
+  <testcase name="timeoutDoesNotConfirmNativeDoneOrUnload" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.005"/>
+  <testcase name="selectionHappensBeforeAnyConstructionOrWarmup" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.002"/>
+  <testcase name="explicitHistoricalReturnRequiresConfirmedUnload" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.003"/>
+  <testcase name="unconfirmedNativeCompletionCannotAuthorizeAnyNewEngine" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.002"/>
+  <testcase name="cancellationAfterReservationButBeforeBackendDispatchDoesNotGenerate" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.003"/>
+  <testcase name="previousSessionAndWrongResponseIdsAreRejected" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.002"/>
+  <testcase name="failedUnloadQuarantinesAndBlocksAllNextEngineOperations" classname="com.stark.jarvislocal.InferenceControllerTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,179 @@
+{
+  "format": "jarvis.core.fusion-02-provenance/1",
+  "module": "CORE",
+  "mission": "FUSION-02 C0",
+  "base": "36761cea101b5f88b87cd4136dc075d28a1adb96",
+  "branch": "feat/fusion-02-core-readiness",
+  "observed_at": "2026-10-26T07:32:21.946270+00:00",
+  "producer_integration_enabled": false,
+  "gates": {
+    "C0": "SOFTWARE_ONLY",
+    "C1_C4": "BLOCKED_PRODUCERS"
+  },
+  "consumed_jvm_sources": {
+    "nexus": {
+      "repository": "bubth720/JARVIS-NEXUS",
+      "commit": "777e6afa75ecb99b85e52d68837cb0fefcf161cd",
+      "git_tree": "b534f8a7f7e441cf264097773afb042103aefd36",
+      "source_files": 46,
+      "tree_sha256": "4a1a3cfcafe50e7f56d985a02e7017ec7d47b11d431202d3a21259d63f87521e"
+    },
+    "services": {
+      "repository": "bubth720/JARVIS-SERVICES",
+      "commit": "3decdc47d82f9b43713c48cab244762941770a81",
+      "git_tree": "56f5214de9a0d1d164638e9e128bb3335ee23499",
+      "source_files": 189,
+      "tree_sha256": "975a2dcafa3b90ed4f3216da0d1fba98410f5a940b058e55c2eb2ece2b646dbb"
+    }
+  },
+  "read_only_references": {
+    "CORE": {
+      "repository": "bubth720/JAVIS-Local-v2",
+      "sha": "36761cea101b5f88b87cd4136dc075d28a1adb96",
+      "parents": [
+        "0d41e6f3f412386371a81fe0d1a862fc87ae22cf"
+      ],
+      "tree": "bddc6b44af5d14c774e0d30812c7448338caaf3f",
+      "runs": [
+        {
+          "id": 40215604539,
+          "head_sha": "36761cea101b5f88b87cd4136dc075d28a1adb96",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/bubth720/JAVIS-Local-v2/actions/runs/40215604539",
+          "jobs": [
+            {
+              "name": "qualification",
+              "conclusion": "success",
+              "failed_steps": []
+            }
+          ]
+        }
+      ]
+    },
+    "NEXUS_API24": {
+      "repository": "bubth720/JARVIS-NEXUS",
+      "sha": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+      "parents": [
+        "3acec55616ff8e3b1666091780fca59261377e18"
+      ],
+      "tree": "bd0aa887f206a1551c79d9b60b191947607c097e",
+      "runs": [
+        {
+          "id": 40115049468,
+          "head_sha": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/bubth720/JARVIS-NEXUS/actions/runs/40115049468",
+          "jobs": [
+            {
+              "name": "storage",
+              "conclusion": "success",
+              "failed_steps": []
+            },
+            {
+              "name": "android-adapter",
+              "conclusion": "failure",
+              "failed_steps": [
+                "Run android-actions/setup-android@v3"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NEXUS_FUSION01": {
+      "repository": "bubth720/JARVIS-NEXUS",
+      "sha": "9d6928cd8651f83fa5091bdb474b33761d366412",
+      "parents": [
+        "d903bf04f497ab0dc7f40e9708ed057e4f24c6ee"
+      ],
+      "tree": "4748a35481472faeaf51087d82672fe7669fb471",
+      "runs": []
+    },
+    "SERVICES_API24": {
+      "repository": "bubth720/JARVIS-SERVICES",
+      "sha": "f00091a639612b91eca1a301580c8f531249f1e3",
+      "parents": [
+        "3decdc47d82f9b43713c48cab244762941770a81"
+      ],
+      "tree": "812fedaa02b1c564d7705d214f43046d3bce3933",
+      "runs": [
+        {
+          "id": 40115305244,
+          "head_sha": "f00091a639612b91eca1a301580c8f531249f1e3",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/bubth720/JARVIS-SERVICES/actions/runs/40115305244",
+          "jobs": [
+            {
+              "name": "android-build",
+              "conclusion": "failure",
+              "failed_steps": [
+                "SERV-04A Android24 adapter regressions and library"
+              ]
+            },
+            {
+              "name": "jvm",
+              "conclusion": "success",
+              "failed_steps": []
+            },
+            {
+              "name": "android-instrumented",
+              "conclusion": "success",
+              "failed_steps": []
+            }
+          ]
+        }
+      ]
+    },
+    "UNIFIED_F0": {
+      "repository": "bubth720/JARVIS-UNIFIED",
+      "sha": "3caa57d91ce0dba31043e7cb6373a5e2df8b9fa4",
+      "parents": [
+        "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c"
+      ],
+      "tree": "3a34d5276ec402fd070165247fab9ba0d9565668",
+      "runs": [
+        {
+          "id": 40214722427,
+          "head_sha": "3caa57d91ce0dba31043e7cb6373a5e2df8b9fa4",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/bubth720/JARVIS-UNIFIED/actions/runs/40214722427",
+          "jobs": []
+        }
+      ]
+    }
+  },
+  "source_evidence": [
+    {
+      "relative_path": "NEXUS/docs/fusion-01/REPORT.md",
+      "sha256": "cd3ea9f99af3394bb4fc0e32af254f8e29259c751f1edefb8fbb4fd9fd1b805d"
+    },
+    {
+      "relative_path": "NEXUS/nexus-android-store/src/main/kotlin/fr/jarvis/nexus/android/AndroidNexusStorage.kt",
+      "sha256": "8f22a275b326f057999543b631e82d4af4b5ba25d7cbf0f0e30c6cf6ca273ffa"
+    },
+    {
+      "relative_path": "NEXUS/nexus-core/src/main/kotlin/fr/jarvis/nexus/store/NexusStoragePort.kt",
+      "sha256": "5ab3937518312bd3c866d2d45c039b2ec9ee4bacf883b053a023ab1ae3c31ba5"
+    },
+    {
+      "relative_path": "NEXUS_API24/nexus-android-store/src/main/kotlin/fr/jarvis/nexus/android/AndroidNexusStorage.kt",
+      "sha256": "ce3fec3a94e909c0f4007b517fcdd58dec5846242a5818ec3b73a9e932bb5617"
+    },
+    {
+      "relative_path": "NEXUS_API24/nexus-core/src/main/kotlin/fr/jarvis/nexus/store/NexusStoragePort.kt",
+      "sha256": "4fdb50f5562b611bc6b6c724a128d36f7e484aeae772f6896e3d9046ae4279d5"
+    },
+    {
+      "relative_path": "SERVICES_API24/.github/workflows/verify.yml",
+      "sha256": "242c190802eef8a4bbff93c59be46f597755845f4136ee1c914ee467b220de0f"
+    },
+    {
+      "relative_path": "SERVICES_API24/services-android-adapter/src/main/java/fr/jarvis/services/android/adapter/ServicesAndroidToolPort.java",
+      "sha256": "99649b2adb9dcad59db7173abc04ab79ab359c758808c2d9ed64b86e6a043de7"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.SettingsStoreTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:41" hostname="9405d059b27a" time="0.128">
+  <properties/>
+  <testcase name="preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice[24]" classname="com.stark.jarvislocal.SettingsStoreTest" time="0.02"/>
+  <testcase name="preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice[25]" classname="com.stark.jarvislocal.SettingsStoreTest" time="0.024"/>
+  <testcase name="preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice" classname="com.stark.jarvislocal.SettingsStoreTest" time="0.02"/>
+  <testcase name="historicalCapsDoNotRewritePersistedPreferencesOnRead[24]" classname="com.stark.jarvislocal.SettingsStoreTest" time="0.018"/>
+  <testcase name="historicalCapsDoNotRewritePersistedPreferencesOnRead[25]" classname="com.stark.jarvislocal.SettingsStoreTest" time="0.027"/>
+  <testcase name="historicalCapsDoNotRewritePersistedPreferencesOnRead" classname="com.stark.jarvislocal.SettingsStoreTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

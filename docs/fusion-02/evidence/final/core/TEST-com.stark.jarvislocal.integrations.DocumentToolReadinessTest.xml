@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" tests="32" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:38" hostname="9405d059b27a" time="2.598">
+  <properties/>
+  <testcase name="appGraphUsesItsExistingRegistryWithoutPreparingModelsOrChangingSession[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.018"/>
+  <testcase name="appGraphUsesItsExistingRegistryWithoutPreparingModelsOrChangingSession[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.016"/>
+  <testcase name="appGraphUsesItsExistingRegistryWithoutPreparingModelsOrChangingSession[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.85"/>
+  <testcase name="appGraphUsesItsExistingRegistryWithoutPreparingModelsOrChangingSession" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.018"/>
+  <testcase name="missingOrFailedHealthIsRefusedAndDoesNotExposePrivateFailureText[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.019"/>
+  <testcase name="missingOrFailedHealthIsRefusedAndDoesNotExposePrivateFailureText[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.016"/>
+  <testcase name="missingOrFailedHealthIsRefusedAndDoesNotExposePrivateFailureText[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.019"/>
+  <testcase name="missingOrFailedHealthIsRefusedAndDoesNotExposePrivateFailureText" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.02"/>
+  <testcase name="connectedOrDegradedHealthCannotManufactureAndroidQualificationOrRelease[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.013"/>
+  <testcase name="connectedOrDegradedHealthCannotManufactureAndroidQualificationOrRelease[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.014"/>
+  <testcase name="connectedOrDegradedHealthCannotManufactureAndroidQualificationOrRelease[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.014"/>
+  <testcase name="connectedOrDegradedHealthCannotManufactureAndroidQualificationOrRelease" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.018"/>
+  <testcase name="concurrentOptInsDoNotAcquireAProducerOrBecomeReady[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.024"/>
+  <testcase name="concurrentOptInsDoNotAcquireAProducerOrBecomeReady[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.018"/>
+  <testcase name="concurrentOptInsDoNotAcquireAProducerOrBecomeReady[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.017"/>
+  <testcase name="concurrentOptInsDoNotAcquireAProducerOrBecomeReady" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.021"/>
+  <testcase name="enabledDiscoveryMetadataCannotAdmitAnUnqualifiedProducer[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.016"/>
+  <testcase name="enabledDiscoveryMetadataCannotAdmitAnUnqualifiedProducer[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.015"/>
+  <testcase name="enabledDiscoveryMetadataCannotAdmitAnUnqualifiedProducer[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.015"/>
+  <testcase name="enabledDiscoveryMetadataCannotAdmitAnUnqualifiedProducer" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.018"/>
+  <testcase name="repeatedOptInIsRefusedAndNeverChangesTheFeatureFlagOrConnectorState[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.015"/>
+  <testcase name="repeatedOptInIsRefusedAndNeverChangesTheFeatureFlagOrConnectorState[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.019"/>
+  <testcase name="repeatedOptInIsRefusedAndNeverChangesTheFeatureFlagOrConnectorState[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.049"/>
+  <testcase name="repeatedOptInIsRefusedAndNeverChangesTheFeatureFlagOrConnectorState" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.018"/>
+  <testcase name="defaultGraphDependenciesAreBlockedWithoutOpeningAnyPort[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.02"/>
+  <testcase name="defaultGraphDependenciesAreBlockedWithoutOpeningAnyPort[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.024"/>
+  <testcase name="defaultGraphDependenciesAreBlockedWithoutOpeningAnyPort[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.023"/>
+  <testcase name="defaultGraphDependenciesAreBlockedWithoutOpeningAnyPort" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.026"/>
+  <testcase name="refusalAndRecreatedGraphPreserveSyntheticHistoryMemoriesDocumentsAndSettings[24]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.032"/>
+  <testcase name="refusalAndRecreatedGraphPreserveSyntheticHistoryMemoriesDocumentsAndSettings[25]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.029"/>
+  <testcase name="refusalAndRecreatedGraphPreserveSyntheticHistoryMemoriesDocumentsAndSettings[26]" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="1.131"/>
+  <testcase name="refusalAndRecreatedGraphPreserveSyntheticHistoryMemoriesDocumentsAndSettings" classname="com.stark.jarvislocal.integrations.DocumentToolReadinessTest" time="0.031"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[System.logW: A resource was acquired at attached stack trace but never released. See java.io.Closeable for information on avoiding resource leaks.
+java.lang.Throwable: Explicit termination method 'close' not called
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$openWithCallSite(CloseGuard.java:288)
+	at dalvik.system.CloseGuard.openWithCallSite(CloseGuard.java)
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$open(CloseGuard.java:257)
+	at jdk.internal.reflect.GeneratedMethodAccessor3.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.robolectric.shadows.ShadowCloseGuard$CloseGuardReflector$$Reflector89.open(Unknown Source)
+	at org.robolectric.shadows.ShadowCloseGuard.open(ShadowCloseGuard.java:38)
+	at dalvik.system.CloseGuard.open(CloseGuard.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openInner(SQLiteDatabase.java:1164)
+	at android.database.sqlite.SQLiteDatabase.openInner(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$open(SQLiteDatabase.java:1143)
+	at android.database.sqlite.SQLiteDatabase.open(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:1007)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:996)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getDatabaseLocked(SQLiteOpenHelper.java:373)
+	at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getReadableDatabase(SQLiteOpenHelper.java:340)
+	at android.database.sqlite.SQLiteOpenHelper.getReadableDatabase(SQLiteOpenHelper.java)
+	at com.stark.jarvislocal.LocalDatabase.recentMessages(LocalDatabase.kt:32)
+	at com.stark.jarvislocal.MainActivity$refreshMessages$fetched$1.invokeSuspend(MainActivity.kt:306)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:101)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:113)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:589)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:823)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:720)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:707)
+
+System.logW: A resource was acquired at attached stack trace but never released. See java.io.Closeable for information on avoiding resource leaks.
+java.lang.Throwable: Explicit termination method 'close' not called
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$open(CloseGuard.java:180)
+	at jdk.internal.reflect.GeneratedMethodAccessor6.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.robolectric.shadows.ShadowCloseGuard$CloseGuardReflector$$Reflector12.open(Unknown Source)
+	at org.robolectric.shadows.ShadowCloseGuard.open(ShadowCloseGuard.java:38)
+	at dalvik.system.CloseGuard.open(CloseGuard.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openInner(SQLiteDatabase.java:809)
+	at android.database.sqlite.SQLiteDatabase.openInner(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$open(SQLiteDatabase.java:793)
+	at android.database.sqlite.SQLiteDatabase.open(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:696)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.app.ContextImpl.$$robo$$android_app_ContextImpl$openOrCreateDatabase(ContextImpl.java:680)
+	at android.app.ContextImpl.openOrCreateDatabase(ContextImpl.java)
+	at android.content.ContextWrapper.$$robo$$android_content_ContextWrapper$openOrCreateDatabase(ContextWrapper.java:289)
+	at android.content.ContextWrapper.openOrCreateDatabase(ContextWrapper.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getDatabaseLocked(SQLiteOpenHelper.java:223)
+	at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getReadableDatabase(SQLiteOpenHelper.java:187)
+	at android.database.sqlite.SQLiteOpenHelper.getReadableDatabase(SQLiteOpenHelper.java)
+	at com.stark.jarvislocal.LocalDatabase.recentMessages(LocalDatabase.kt:32)
+	at com.stark.jarvislocal.MainActivity$refreshMessages$fetched$1.invokeSuspend(MainActivity.kt:306)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:101)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:113)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:589)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:823)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:720)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:707)
+
+System.logW: A resource was acquired at attached stack trace but never released. See java.io.Closeable for information on avoiding resource leaks.
+java.lang.Throwable: Explicit termination method 'SQLiteConnection.close' not called
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$openWithCallSite(CloseGuard.java:288)
+	at dalvik.system.CloseGuard.openWithCallSite(CloseGuard.java)
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$open(CloseGuard.java:257)
+	at jdk.internal.reflect.GeneratedMethodAccessor3.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.robolectric.shadows.ShadowCloseGuard$CloseGuardReflector$$Reflector89.open(Unknown Source)
+	at org.robolectric.shadows.ShadowCloseGuard.open(ShadowCloseGuard.java:38)
+	at dalvik.system.CloseGuard.open(CloseGuard.java)
+	at android.database.sqlite.SQLiteConnection.$$robo$$android_database_sqlite_SQLiteConnection$__constructor__(SQLiteConnection.java:195)
+	at android.database.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:186)
+	at android.database.sqlite.SQLiteConnection.$$robo$$android_database_sqlite_SQLiteConnection$open(SQLiteConnection.java:215)
+	at android.database.sqlite.SQLiteConnection.open(SQLiteConnection.java)
+	at android.database.sqlite.SQLiteConnectionPool.$$robo$$android_database_sqlite_SQLiteConnectionPool$openConnectionLocked(SQLiteConnectionPool.java:535)
+	at android.database.sqlite.SQLiteConnectionPool.openConnectionLocked(SQLiteConnectionPool.java)
+	at android.database.sqlite.SQLiteConnectionPool.$$robo$$android_database_sqlite_SQLiteConnectionPool$open(SQLiteConnectionPool.java:222)
+	at android.database.sqlite.SQLiteConnectionPool.open(SQLiteConnectionPool.java)
+	at android.database.sqlite.SQLiteConnectionPool.$$robo$$android_database_sqlite_SQLiteConnectionPool$open(SQLiteConnectionPool.java:214)
+	at android.database.sqlite.SQLiteConnectionPool.open(SQLiteConnectionPool.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openInner(SQLiteDatabase.java:1163)
+	at android.database.sqlite.SQLiteDatabase.openInner(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$open(SQLiteDatabase.java:1143)
+	at android.database.sqlite.SQLiteDatabase.open(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:1007)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:996)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getDatabaseLocked(SQLiteOpenHelper.java:373)
+	at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getReadableDatabase(SQLiteOpenHelper.java:340)
+	at android.database.sqlite.SQLiteOpenHelper.getReadableDatabase(SQLiteOpenHelper.java)
+	at com.stark.jarvislocal.LocalDatabase.recentMessages(LocalDatabase.kt:32)
+	at com.stark.jarvislocal.MainActivity$refreshMessages$fetched$1.invokeSuspend(MainActivity.kt:306)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:101)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:113)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:589)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:823)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:720)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:707)
+
+System.logW: A resource was acquired at attached stack trace but never released. See java.io.Closeable for information on avoiding resource leaks.
+java.lang.Throwable: Explicit termination method 'SQLiteConnectionPool.close' not called
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$openWithCallSite(CloseGuard.java:288)
+	at dalvik.system.CloseGuard.openWithCallSite(CloseGuard.java)
+	at dalvik.system.CloseGuard.$$robo$$dalvik_system_CloseGuard$open(CloseGuard.java:257)
+	at jdk.internal.reflect.GeneratedMethodAccessor3.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.robolectric.shadows.ShadowCloseGuard$CloseGuardReflector$$Reflector89.open(Unknown Source)
+	at org.robolectric.shadows.ShadowCloseGuard.open(ShadowCloseGuard.java:38)
+	at dalvik.system.CloseGuard.open(CloseGuard.java)
+	at android.database.sqlite.SQLiteConnectionPool.$$robo$$android_database_sqlite_SQLiteConnectionPool$open(SQLiteConnectionPool.java:233)
+	at android.database.sqlite.SQLiteConnectionPool.open(SQLiteConnectionPool.java)
+	at android.database.sqlite.SQLiteConnectionPool.$$robo$$android_database_sqlite_SQLiteConnectionPool$open(SQLiteConnectionPool.java:214)
+	at android.database.sqlite.SQLiteConnectionPool.open(SQLiteConnectionPool.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openInner(SQLiteDatabase.java:1163)
+	at android.database.sqlite.SQLiteDatabase.openInner(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$open(SQLiteDatabase.java:1143)
+	at android.database.sqlite.SQLiteDatabase.open(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:1007)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteDatabase.$$robo$$android_database_sqlite_SQLiteDatabase$openDatabase(SQLiteDatabase.java:996)
+	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getDatabaseLocked(SQLiteOpenHelper.java:373)
+	at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java)
+	at android.database.sqlite.SQLiteOpenHelper.$$robo$$android_database_sqlite_SQLiteOpenHelper$getReadableDatabase(SQLiteOpenHelper.java:340)
+	at android.database.sqlite.SQLiteOpenHelper.getReadableDatabase(SQLiteOpenHelper.java)
+	at com.stark.jarvislocal.LocalDatabase.recentMessages(LocalDatabase.kt:32)
+	at com.stark.jarvislocal.MainActivity$refreshMessages$fetched$1.invokeSuspend(MainActivity.kt:306)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:101)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:113)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:589)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:823)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:720)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:707)
+
+]]></system-err>
+</testsuite>

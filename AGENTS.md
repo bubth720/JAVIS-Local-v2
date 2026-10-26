@@ -599,3 +599,23 @@ conception et C4 demeure bloquée. Aucun service, JNI, persona ou moteur activé
 Exécuter tools/check-fusion-01.py --verify-results après les suites documentées ;
 ce garde protège tous les fichiers historiques hors adaptation JVM et documentation.
 Ne pas assouplir les anciens gardes : consigner leurs échecs de périmètre.
+
+## FUSION-02 — refus Android C0, producteurs non raccordés
+
+Base FUSION01 `36761cea101b5f88b87cd4136dc075d28a1adb96`. Lire
+`docs/fusion-02/REPORT.md`, `PROVENANCE.json` et `INTEGRATOR-CONTRACT.md`.
+AppGraph expose documentToolsReadiness avec son ConnectorRegistry existant.
+Cette projection ne découvre/connecte aucun producteur : enabled et canExecute
+restent faux, requestLabOptIn retourne uniquement un refus. CONNECTED n'est
+ni qualification API24/25 ni autorisation, DEGRADED/erreur reste UNKNOWN.
+Ne pas y ajouter d'activation, de factory réelle ou d'autorisation persistante
+sans les gates NEXUS/SERVICES et revue du protocole d'engagement.
+
+Ce n'est pas un port de recherche/export opérationnel ni le contrat UNIFIED.
+Aucun import NEXUS/JDBC/SERVICES dans l'APK, aucune nouvelle mémoire/autorité.
+Les interfaces/machines de commit proposées restent documentaires. Les tests
+Robolectric24/25/26/35 ne prouvent pas FTS5/SAF sur Android réel. Exécuter
+`python3 tools/check-fusion-02.py --self-test --verify-results` après les suites
+indiquées ; le garde impose l'unique ajout passif exact dans AppGraph et préserve
+le reste du noyau, des données, contrats et dépendances de la base FUSION01.
+Les anciens gardes restent intacts, leurs refus de périmètre sont documentés.

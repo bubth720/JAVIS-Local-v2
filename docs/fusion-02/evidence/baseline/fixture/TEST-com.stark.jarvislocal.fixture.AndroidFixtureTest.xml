@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.fixture.AndroidFixtureTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:21:22" hostname="9405d059b27a" time="4.986">
+  <properties/>
+  <testcase name="corruptJournalIsNotReset" classname="com.stark.jarvislocal.fixture.AndroidFixtureTest" time="3.395"/>
+  <testcase name="unpublishedEndpointNeverBecomesReady" classname="com.stark.jarvislocal.fixture.AndroidFixtureTest" time="1.396"/>
+  <testcase name="callerUidIsCapturedInsideLocalBinderTransactionBeforeDispatch" classname="com.stark.jarvislocal.fixture.AndroidFixtureTest" time="0.043"/>
+  <testcase name="journalReopensAndRestartRemainsBlockedWithoutNewEvidence" classname="com.stark.jarvislocal.fixture.AndroidFixtureTest" time="0.067"/>
+  <testcase name="actualArbiterStubRejectsUnenrolledCallerBeforeMalformedPayload" classname="com.stark.jarvislocal.fixture.AndroidFixtureTest" time="0.056"/>
+  <testcase name="mismatchedUidPackageCertificateAndSharedUidAreRefused" classname="com.stark.jarvislocal.fixture.AndroidFixtureTest" time="0.024"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

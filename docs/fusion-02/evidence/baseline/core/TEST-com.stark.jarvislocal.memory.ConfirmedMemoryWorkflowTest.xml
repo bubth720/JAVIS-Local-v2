@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" tests="42" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:46" hostname="9405d059b27a" time="0.979">
+  <properties/>
+  <testcase name="corruptFileIsPreservedAndIsolatedManualFixtureRestorationWorks[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.03"/>
+  <testcase name="corruptFileIsPreservedAndIsolatedManualFixtureRestorationWorks[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.032"/>
+  <testcase name="corruptFileIsPreservedAndIsolatedManualFixtureRestorationWorks" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.033"/>
+  <testcase name="failedReceiptInsertionRollsBackMemoryAndJournalThenAllowsExplicitRetry[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.02"/>
+  <testcase name="failedReceiptInsertionRollsBackMemoryAndJournalThenAllowsExplicitRetry[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.024"/>
+  <testcase name="failedReceiptInsertionRollsBackMemoryAndJournalThenAllowsExplicitRetry" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.024"/>
+  <testcase name="revocationDoesNotWaitForAnInFlightDecisionMonitor[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="revocationDoesNotWaitForAnInFlightDecisionMonitor[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.02"/>
+  <testcase name="revocationDoesNotWaitForAnInFlightDecisionMonitor" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.023"/>
+  <testcase name="staleEditingCannotOverrideARevisedMemory[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.025"/>
+  <testcase name="staleEditingCannotOverrideARevisedMemory[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.02"/>
+  <testcase name="staleEditingCannotOverrideARevisedMemory" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.024"/>
+  <testcase name="exactContentPositiveApprovalIsRequiredAndCannotReplay[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.025"/>
+  <testcase name="exactContentPositiveApprovalIsRequiredAndCannotReplay[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.022"/>
+  <testcase name="exactContentPositiveApprovalIsRequiredAndCannotReplay" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.024"/>
+  <testcase name="readPortDeniesByDefaultAndRevocationExpiryAreImmediate[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.03"/>
+  <testcase name="readPortDeniesByDefaultAndRevocationExpiryAreImmediate[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.027"/>
+  <testcase name="readPortDeniesByDefaultAndRevocationExpiryAreImmediate" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.032"/>
+  <testcase name="wrongSessionExpiryAndRevocationPreventNewMemory[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.016"/>
+  <testcase name="wrongSessionExpiryAndRevocationPreventNewMemory[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.024"/>
+  <testcase name="wrongSessionExpiryAndRevocationPreventNewMemory" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="delayedProposalCannotReuseARecreatedSessionEpoch[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.023"/>
+  <testcase name="delayedProposalCannotReuseARecreatedSessionEpoch[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="delayedProposalCannotReuseARecreatedSessionEpoch" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="tamperedContentWithoutMatchingReceiptIsNeverReturned[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="tamperedContentWithoutMatchingReceiptIsNeverReturned[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.02"/>
+  <testcase name="tamperedContentWithoutMatchingReceiptIsNeverReturned" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="concurrentPendingPreferenceRequiresNewReviewInsteadOfOverwriting[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.02"/>
+  <testcase name="concurrentPendingPreferenceRequiresNewReviewInsteadOfOverwriting[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="concurrentPendingPreferenceRequiresNewReviewInsteadOfOverwriting" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.024"/>
+  <testcase name="contradictoryPreferenceNeedsExplicitReplacementOfTheBoundRevision[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.031"/>
+  <testcase name="contradictoryPreferenceNeedsExplicitReplacementOfTheBoundRevision[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="contradictoryPreferenceNeedsExplicitReplacementOfTheBoundRevision" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.023"/>
+  <testcase name="lostAcknowledgementDoesNotImplyRollbackOrPermitNonceReplay[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="lostAcknowledgementDoesNotImplyRollbackOrPermitNonceReplay[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.02"/>
+  <testcase name="lostAcknowledgementDoesNotImplyRollbackOrPermitNonceReplay" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.023"/>
+  <testcase name="pendingAndRejectedContentNeverBecomeDurableMemory[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.017"/>
+  <testcase name="pendingAndRejectedContentNeverBecomeDurableMemory[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.017"/>
+  <testcase name="pendingAndRejectedContentNeverBecomeDurableMemory" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.019"/>
+  <testcase name="deletionSurvivesReopeningWithoutChangingChatHistory[24]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.021"/>
+  <testcase name="deletionSurvivesReopeningWithoutChangingChatHistory[25]" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.028"/>
+  <testcase name="deletionSurvivesReopeningWithoutChangingChatHistory" classname="com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest" time="0.025"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

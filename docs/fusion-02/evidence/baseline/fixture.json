@@ -1,0 +1,149 @@
+{
+  "cases": [
+    {
+      "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+      "name": "corruptJournalIsNotReset"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+      "name": "unpublishedEndpointNeverBecomesReady"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+      "name": "callerUidIsCapturedInsideLocalBinderTransactionBeforeDispatch"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+      "name": "journalReopensAndRestartRemainsBlockedWithoutNewEvidence"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+      "name": "actualArbiterStubRejectsUnenrolledCallerBeforeMalformedPayload"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.AndroidFixtureTest",
+      "name": "mismatchedUidPackageCertificateAndSharedUidAreRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "authorityCannotGrantUnknownOrReplayedQuery"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "timeoutAndDisconnectRequireSeparateReconciliation"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "strictJsonRejectsDuplicateUnknownNumberMalformedUtf8AndOversize"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "cancellationNeverPersistsLateAssistantText"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "exactSystemQuestionAndServerEpochArePreserved"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "incompatibleModelProfileDurationAndMainBudgetAreRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "lostSubmitAckHoldsLeaseWithoutReplay"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "publishedCrossRepositoryDigestVectorMatches"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "obsoleteReceiptIsRejectedWithoutReleasingOwner"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "productionStartupHasNoSyntheticRecoveryOrAdmission"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "simulatedGenerationCorrelatesAndReleases"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "authorityExpiresWithoutFreeingReservation"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "cleanupAndNativeEvidenceRequiredBeforeText"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "privateContextAndNonPilotTextNeverReachTransport"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "everyCorrelationIdentifierAndDigestMustMatch"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "effectiveNativeLimitsMayBeLowerButNeverExceedRequestedBudget"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.P2ContractTest",
+      "name": "failedUnloadNeverAdmitsNextOperation"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "unknownNativeStateAndFailedUnloadKeepReservation"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "brokerRestartPreservesOwnerAndRejectsOldRecoveryChallenge"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "clientOrServiceDeathAndLostAckRequireReconciliationNotRetry"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "coldStartRequiresAllParticipantsAndFreshChallenge"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "loadNeverStartedMayReleaseButCannotProvideANativeResponse"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "wrongOwnerExpiredMandateAndOldOperationAreRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "timeoutNeverReleasesByExpiryAlone"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "journalWriteFailureDoesNotGrantOrPretendToRelease"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "singleReservationRetainedUntilExactNativeAndCleanupEvidence"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotArbiterTest",
+      "name": "stopDoesNotReleaseAndCancelledResponseIsNotConsumable"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+      "name": "systemAndQuestionRemainSeparateBeforeTransport"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+      "name": "allContextIncludingWhitespaceAndAnySourceIsRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.fixture.PilotRequestGateTest",
+      "name": "invalidIdsUtf8LimitsAndOversizedInputsAreRefused"
+    }
+  ],
+  "passed": 36
+}

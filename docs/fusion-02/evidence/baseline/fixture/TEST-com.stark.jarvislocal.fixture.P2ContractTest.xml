@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.fixture.P2ContractTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:21:27" hostname="9405d059b27a" time="0.513">
+  <properties/>
+  <testcase name="authorityCannotGrantUnknownOrReplayedQuery" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.036"/>
+  <testcase name="timeoutAndDisconnectRequireSeparateReconciliation" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.072"/>
+  <testcase name="strictJsonRejectsDuplicateUnknownNumberMalformedUtf8AndOversize" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.023"/>
+  <testcase name="cancellationNeverPersistsLateAssistantText" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.031"/>
+  <testcase name="exactSystemQuestionAndServerEpochArePreserved" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.024"/>
+  <testcase name="incompatibleModelProfileDurationAndMainBudgetAreRefused" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.019"/>
+  <testcase name="lostSubmitAckHoldsLeaseWithoutReplay" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.022"/>
+  <testcase name="publishedCrossRepositoryDigestVectorMatches" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.025"/>
+  <testcase name="obsoleteReceiptIsRejectedWithoutReleasingOwner" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.029"/>
+  <testcase name="productionStartupHasNoSyntheticRecoveryOrAdmission" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.033"/>
+  <testcase name="simulatedGenerationCorrelatesAndReleases" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.037"/>
+  <testcase name="authorityExpiresWithoutFreeingReservation" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.023"/>
+  <testcase name="cleanupAndNativeEvidenceRequiredBeforeText" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.027"/>
+  <testcase name="privateContextAndNonPilotTextNeverReachTransport" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.032"/>
+  <testcase name="everyCorrelationIdentifierAndDigestMustMatch" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.025"/>
+  <testcase name="effectiveNativeLimitsMayBeLowerButNeverExceedRequestedBudget" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.025"/>
+  <testcase name="failedUnloadNeverAdmitsNextOperation" classname="com.stark.jarvislocal.fixture.P2ContractTest" time="0.028"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

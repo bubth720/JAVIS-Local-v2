@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.TextLabActivityTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:41" hostname="9405d059b27a" time="1.32">
+  <properties/>
+  <testcase name="explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase[24]" classname="com.stark.jarvislocal.TextLabActivityTest" time="0.083"/>
+  <testcase name="explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase[25]" classname="com.stark.jarvislocal.TextLabActivityTest" time="0.751"/>
+  <testcase name="explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase" classname="com.stark.jarvislocal.TextLabActivityTest" time="0.138"/>
+  <testcase name="labDraftIsExcludedFromAndroidSavedStateAndScreenshots[24]" classname="com.stark.jarvislocal.TextLabActivityTest" time="0.117"/>
+  <testcase name="labDraftIsExcludedFromAndroidSavedStateAndScreenshots[25]" classname="com.stark.jarvislocal.TextLabActivityTest" time="0.11"/>
+  <testcase name="labDraftIsExcludedFromAndroidSavedStateAndScreenshots" classname="com.stark.jarvislocal.TextLabActivityTest" time="0.12"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

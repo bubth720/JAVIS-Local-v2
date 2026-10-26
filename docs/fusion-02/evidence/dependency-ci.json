@@ -1,0 +1,120 @@
+{
+  "CORE": {
+    "repository": "bubth720/JAVIS-Local-v2",
+    "sha": "36761cea101b5f88b87cd4136dc075d28a1adb96",
+    "parents": [
+      "0d41e6f3f412386371a81fe0d1a862fc87ae22cf"
+    ],
+    "tree": "bddc6b44af5d14c774e0d30812c7448338caaf3f",
+    "runs": [
+      {
+        "id": 40215604539,
+        "head_sha": "36761cea101b5f88b87cd4136dc075d28a1adb96",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/bubth720/JAVIS-Local-v2/actions/runs/40215604539",
+        "jobs": [
+          {
+            "name": "qualification",
+            "conclusion": "success",
+            "failed_steps": []
+          }
+        ]
+      }
+    ]
+  },
+  "NEXUS_API24": {
+    "repository": "bubth720/JARVIS-NEXUS",
+    "sha": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+    "parents": [
+      "3acec55616ff8e3b1666091780fca59261377e18"
+    ],
+    "tree": "bd0aa887f206a1551c79d9b60b191947607c097e",
+    "runs": [
+      {
+        "id": 40115049468,
+        "head_sha": "374ea2e2fd640e78f2f5e12e60e75b493420e504",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/bubth720/JARVIS-NEXUS/actions/runs/40115049468",
+        "jobs": [
+          {
+            "name": "storage",
+            "conclusion": "success",
+            "failed_steps": []
+          },
+          {
+            "name": "android-adapter",
+            "conclusion": "failure",
+            "failed_steps": [
+              "Run android-actions/setup-android@v3"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "NEXUS_FUSION01": {
+    "repository": "bubth720/JARVIS-NEXUS",
+    "sha": "9d6928cd8651f83fa5091bdb474b33761d366412",
+    "parents": [
+      "d903bf04f497ab0dc7f40e9708ed057e4f24c6ee"
+    ],
+    "tree": "4748a35481472faeaf51087d82672fe7669fb471",
+    "runs": []
+  },
+  "SERVICES_API24": {
+    "repository": "bubth720/JARVIS-SERVICES",
+    "sha": "f00091a639612b91eca1a301580c8f531249f1e3",
+    "parents": [
+      "3decdc47d82f9b43713c48cab244762941770a81"
+    ],
+    "tree": "812fedaa02b1c564d7705d214f43046d3bce3933",
+    "runs": [
+      {
+        "id": 40115305244,
+        "head_sha": "f00091a639612b91eca1a301580c8f531249f1e3",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/bubth720/JARVIS-SERVICES/actions/runs/40115305244",
+        "jobs": [
+          {
+            "name": "android-build",
+            "conclusion": "failure",
+            "failed_steps": [
+              "SERV-04A Android24 adapter regressions and library"
+            ]
+          },
+          {
+            "name": "jvm",
+            "conclusion": "success",
+            "failed_steps": []
+          },
+          {
+            "name": "android-instrumented",
+            "conclusion": "success",
+            "failed_steps": []
+          }
+        ]
+      }
+    ]
+  },
+  "UNIFIED_F0": {
+    "repository": "bubth720/JARVIS-UNIFIED",
+    "sha": "3caa57d91ce0dba31043e7cb6373a5e2df8b9fa4",
+    "parents": [
+      "329f304115c9bc5b6dd6ccc2d68d19bf455b5e6c"
+    ],
+    "tree": "3a34d5276ec402fd070165247fab9ba0d9565668",
+    "runs": [
+      {
+        "id": 40214722427,
+        "head_sha": "3caa57d91ce0dba31043e7cb6373a5e2df8b9fa4",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/bubth720/JARVIS-UNIFIED/actions/runs/40214722427",
+        "jobs": []
+      }
+    ]
+  }
+}
