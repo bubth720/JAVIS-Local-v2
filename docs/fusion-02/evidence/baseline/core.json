@@ -1,0 +1,1797 @@
+{
+  "cases": [
+    {
+      "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+      "name": "corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+      "name": "corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+      "name": "corePassesSystemQuestionContextSourceIdsAndLimitsSeparatelyWithoutChangingData"
+    },
+    {
+      "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+      "name": "mismatchedOrUnattestedResponseNeverEntersHistory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+      "name": "mismatchedOrUnattestedResponseNeverEntersHistory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.CoreInferenceContractTest",
+      "name": "mismatchedOrUnattestedResponseNeverEntersHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "cancellationBeforeDispatchDoesNotConstructOrLoadAnything"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "legacyGeneratePreservesExactPromptAndSeparateSystem"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "incompatibleContractSystemCapabilityAndBudgetNeverInvokeBackend"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "exceptionWithoutCompletionEvidenceQuarantinesInsteadOfGuessing"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "attestedGenerationErrorCanRetrySameEngineButCannotSwitchBeforeUnload"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "cancellationAfterCompletedGenerationDoesNotInventAnotherStop"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "historicalIsDefaultAndUnconfiguredDelegateIsRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "negativeIsLoadedIsNotAnUnloadAcknowledgement"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "simultaneousPreparationAndSelectionCannotDoubleLoad"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "cancellationDuringGenerationRequestsStopAndDrainsBeforeUnlock"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "explicitStopIsDistinctFromDoneAndDiscardsTheEventualResponse"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "cancellationCannotEraseAFailedReleaseReportedDuringDrain"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "structuredSystemContextSourcesAndLimitsReachBackendUnchanged"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "timeoutDoesNotConfirmNativeDoneOrUnload"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "selectionHappensBeforeAnyConstructionOrWarmup"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "explicitHistoricalReturnRequiresConfirmedUnload"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "unconfirmedNativeCompletionCannotAuthorizeAnyNewEngine"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "cancellationAfterReservationButBeforeBackendDispatchDoesNotGenerate"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "previousSessionAndWrongResponseIdsAreRejected"
+    },
+    {
+      "class": "com.stark.jarvislocal.InferenceControllerTest",
+      "name": "failedUnloadQuarantinesAndBlocksAllNextEngineOperations"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "cancellationKeepsLockUntilNativeReturnAndAddsNoErrorOrDuplicateAnswer[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "cancellationKeepsLockUntilNativeReturnAndAddsNoErrorOrDuplicateAnswer"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "wholeConversationIsExclusiveAndHistoryIsNeverMixed[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "wholeConversationIsExclusiveAndHistoryIsNeverMixed"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "generationFailureReleasesTheConversationLock[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "generationFailureReleasesTheConversationLock"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "explicitRememberConfirmsOnlySuccessfulMemoryInsertAndNeverCallsTheModel[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "explicitRememberConfirmsOnlySuccessfulMemoryInsertAndNeverCallsTheModel"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "rememberCanPersistEvenIfTheSeparateHistoryWriteFails[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "rememberCanPersistEvenIfTheSeparateHistoryWriteFails"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "generationKeepsAllIncludedPdfNamesInPersistedSource[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.JarvisCoreConcurrencyTest",
+      "name": "generationKeepsAllIncludedPdfNamesInPersistedSource"
+    },
+    {
+      "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+      "name": "callerCancellationDoesNotReleaseModelBeforeCompletionReturns"
+    },
+    {
+      "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+      "name": "failedContextResizeReleaseCannotLoadReplacement"
+    },
+    {
+      "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+      "name": "warmupAndGenerationReuseTheHistoricalModelAndKeepSystemSeparate"
+    },
+    {
+      "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+      "name": "failedUnloadRetainsHandleAndNeverLoadsAnotherModel"
+    },
+    {
+      "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+      "name": "memoryFailureWithFailedReleaseKeepsControllerQuarantined"
+    },
+    {
+      "class": "com.stark.jarvislocal.LlamaLifecycleTest",
+      "name": "failedLoadWithoutHandleIsQuarantinedRatherThanRetriedBlindly"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "ignoredMemoryInsertIsReportedWithoutChangingStoredData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "ignoredMemoryInsertIsReportedWithoutChangingStoredData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "ignoredMemoryInsertIsReportedWithoutChangingStoredData"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unsupportedUpgradeKeepsTheOriginalVersionAndData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unsupportedUpgradeKeepsTheOriginalVersionAndData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unsupportedUpgradeKeepsTheOriginalVersionAndData"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "versionOneMigrationPreservesEveryValueAndIdentifier[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "versionOneMigrationPreservesEveryValueAndIdentifier[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "versionOneMigrationPreservesEveryValueAndIdentifier"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "freshDatabasePersistsAllFourCollectionsAfterReopening[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "freshDatabasePersistsAllFourCollectionsAfterReopening[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "freshDatabasePersistsAllFourCollectionsAfterReopening"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "ignoredSecondChunkRollsBackTheDocumentAndFirstChunk[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "ignoredSecondChunkRollsBackTheDocumentAndFirstChunk[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "ignoredSecondChunkRollsBackTheDocumentAndFirstChunk"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "existingVersionTwoPreservesEveryValueAndIdentifier[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "existingVersionTwoPreservesEveryValueAndIdentifier[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "existingVersionTwoPreservesEveryValueAndIdentifier"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedMessageInsertIsReportedWithoutChangingStoredData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedMessageInsertIsReportedWithoutChangingStoredData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedMessageInsertIsReportedWithoutChangingStoredData"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unsupportedDowngradeKeepsTheOriginalVersionAndData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unsupportedDowngradeKeepsTheOriginalVersionAndData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unsupportedDowngradeKeepsTheOriginalVersionAndData"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unversionedExistingDatabaseIsRefusedWithoutDeletingItsData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unversionedExistingDatabaseIsRefusedWithoutDeletingItsData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "unversionedExistingDatabaseIsRefusedWithoutDeletingItsData"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedSecondChunkRollsBackTheDocumentAndFirstChunk[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedSecondChunkRollsBackTheDocumentAndFirstChunk[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalDatabaseTest",
+      "name": "rejectedSecondChunkRollsBackTheDocumentAndFirstChunk"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "name": "eveningUsesTwentyFourHourFormat"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "name": "localTimeIncludesFractionalHourOffset"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "name": "nonLatinDefaultLocalePreservesAsciiTimeFormat"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "name": "singleDigitHoursAndMinutesArePaddedAndSecondsAreOmitted"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "name": "defaultTimeZoneIsReadOnEachCall"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "name": "daylightSavingTransitionUsesTheOffsetAtTheRequestedInstant"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTimeReplyTest",
+      "name": "midnightUsesZeroHours"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "synchronousInitializationCallbackIsHandled"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "missingOfflineFrenchVoiceDoesNotFallBackToNetwork"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "releasedEngineIsNotUsedAndCanBeRecreatedForNextScreen"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "initializationFailureCanBeRetriedWithOneNewEngine"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "factoryFailureLeavesClearUnavailableState"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "failedSpeakIsReportedWithoutThrowingIntoConversation"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "asynchronousInitializationDoesNotSpeakUntilReady"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "stopPreservesReadyEngineForRotation"
+    },
+    {
+      "class": "com.stark.jarvislocal.LocalTtsTest",
+      "name": "lateCallbackAfterShutdownCannotReviveReleasedEngine"
+    },
+    {
+      "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+      "name": "memoryDialogPersistsOnWorkerAndReportsRejectedInsertWithoutSuccess[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+      "name": "memoryDialogPersistsOnWorkerAndReportsRejectedInsertWithoutSuccess"
+    },
+    {
+      "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+      "name": "rotationKeepsPreparationAndDestroysOldObserver[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+      "name": "rotationKeepsPreparationAndDestroysOldObserver"
+    },
+    {
+      "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+      "name": "rotationKeepsGenerationAndRejectedInputIsNotCleared[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MainActivityLifecycleTest",
+      "name": "rotationKeepsGenerationAndRejectedInputIsNotCleared"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelInstallationTest",
+      "name": "interruptedCopyPreservesOldDestinationAndCanRetryAfterRecreation"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelInstallationTest",
+      "name": "wrongMagicAndOversizedAssetCannotReplaceExistingData"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelInstallationTest",
+      "name": "abandonedPartialFileIsRestartedAndNeverPromotedBlindly"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelInstallationTest",
+      "name": "failedAtomicReplacementNeverDeletesPreviousFile"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelInstallationTest",
+      "name": "completeFilesArePreservedWithoutOpeningTheirAssetsAgain"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelInstallationTest",
+      "name": "truncatedAssetCannotBeInstalledOrReportedReady"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelManagerConcurrencyTest",
+      "name": "copyErrorReleasesLockForRetry"
+    },
+    {
+      "class": "com.stark.jarvislocal.ModelManagerConcurrencyTest",
+      "name": "twoCallersCannotWriteTheSamePartFileConcurrently"
+    },
+    {
+      "class": "com.stark.jarvislocal.OfflineVoiceTest",
+      "name": "nonFrenchOfflineVoiceDoesNotSilentlyReplaceFrench"
+    },
+    {
+      "class": "com.stark.jarvislocal.OfflineVoiceTest",
+      "name": "selectsFrenchOfflineVoiceEvenWhenNetworkVoiceComesFirst"
+    },
+    {
+      "class": "com.stark.jarvislocal.OfflineVoiceTest",
+      "name": "networkOnlyFrenchVoiceIsUnavailable"
+    },
+    {
+      "class": "com.stark.jarvislocal.PdfImporterTest",
+      "name": "imageOnlyOrEmptyPdfDoesNotAlterExistingCorpus[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.PdfImporterTest",
+      "name": "imageOnlyOrEmptyPdfDoesNotAlterExistingCorpus"
+    },
+    {
+      "class": "com.stark.jarvislocal.PdfImporterTest",
+      "name": "syntheticPdfKeepsDocumentAndPageOnEveryChunkAfterReopening[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.PdfImporterTest",
+      "name": "syntheticPdfKeepsDocumentAndPageOnEveryChunkAfterReopening"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "nativeLoadFailureAndReleaseFailureKeepProcessReserved"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "contextResizeDoesNotOpenAnAdmissionGapBetweenReleaseAndReload"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "timeoutAndCancellationDoNotFreeAdmissionAtNativeReturn"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "failedLoadWithUnknownResourcesCannotFallbackToHistorical"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "failedOrUnknownReleaseBlocksAReplacementControllerAndSameBackend"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "independentControllersCannotWarmTwoBackendsUntilConfirmedRelease"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "factoriesShareProductionAdmissionByDefault"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "staleConfirmationForSameBackendCannotFreeItsNewReservation"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "controllerConfirmationCannotFreeReservationReacquiredDuringUnload"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "controlledFallbackAfterLoadFailureRequiresReleaseAcknowledgement"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "concurrentPreparationReservesBeforeBackendStarts"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "directHistoricalInstancesUseSameAdmissionAndCannotBypassController"
+    },
+    {
+      "class": "com.stark.jarvislocal.ProcessInferenceAdmissionTest",
+      "name": "staleReleaseCannotReleaseTheNextOwner"
+    },
+    {
+      "class": "com.stark.jarvislocal.PromptBudgetTest",
+      "name": "oversizedQuestionOrSystemPromptIsRefusedRatherThanSilentlyCut"
+    },
+    {
+      "class": "com.stark.jarvislocal.PromptBudgetTest",
+      "name": "omittedChunksNeverBecomeDisplayedSourcesAndDuplicateNamesRemainTraceable"
+    },
+    {
+      "class": "com.stark.jarvislocal.PromptBudgetTest",
+      "name": "historyIsRecentAndChronologicalAndMemoryStillIncluded"
+    },
+    {
+      "class": "com.stark.jarvislocal.PromptBudgetTest",
+      "name": "largeContextIsBoundedInUtf8WithoutTruncatingQuestionOrSources"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "operationCancellationIsNotRecordedAsFailure"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "failedPreparationDoesNotPretendToBeReadyAndCanBeRetried"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "microphoneFailureDoesNotLeaveSessionStuck"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "rapidDoubleSendIsRejectedWithoutDuplicatingWork"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "disabledSpeechDoesNotAffectTextualConversation"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "preparationIsSingleFlightAndNotRepeatedAfterRotation"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "recordingIsExclusiveAndTranscribesOnlyAfterConfirmedStop"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "rotationRetainsConversationAndSharedSpeechEngine"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "backgroundDoesNotSpeakAndPermanentDestroyReleasesSpeech"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "timeoutKeepsGateUntilActualNativeCompletion"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "conversationErrorReleasesGateAndReportsExactlyOneError"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "pdfCannotInterleaveWithConversationHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "cancellationDrainsNativeWorkWithoutLoggingAnApplicationError"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "transcriptionTimeoutBlocksNewWorkUntilNativeReturnAndDeletesAudio"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "emptyTranscriptionIsNotSentAsConversation"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "backgroundDiscardsMicrophoneInsteadOfTranscribingIt"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionCoordinatorTest",
+      "name": "cancellationBeforeFirstInstructionDoesNotLeaveGateLocked"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionInferenceLifecycleTest",
+      "name": "closureDuringUnknownCompletionCannotDisplayReadyOrUnloaded"
+    },
+    {
+      "class": "com.stark.jarvislocal.SessionInferenceLifecycleTest",
+      "name": "timeoutRequestsStopButKeepsSessionBusyAndRejectsTheLateAnswer"
+    },
+    {
+      "class": "com.stark.jarvislocal.SettingsStoreTest",
+      "name": "preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.SettingsStoreTest",
+      "name": "preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.SettingsStoreTest",
+      "name": "preferencesSurviveStoreRecreationWithoutResettingPromptOrVoice"
+    },
+    {
+      "class": "com.stark.jarvislocal.SettingsStoreTest",
+      "name": "historicalCapsDoNotRewritePersistedPreferencesOnRead[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.SettingsStoreTest",
+      "name": "historicalCapsDoNotRewritePersistedPreferencesOnRead[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.SettingsStoreTest",
+      "name": "historicalCapsDoNotRewritePersistedPreferencesOnRead"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabActivityTest",
+      "name": "explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabActivityTest",
+      "name": "explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabActivityTest",
+      "name": "explicitLabLaunchRefusesMissingModelAndNeverOpensConversationDatabase"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabActivityTest",
+      "name": "labDraftIsExcludedFromAndroidSavedStateAndScreenshots[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabActivityTest",
+      "name": "labDraftIsExcludedFromAndroidSavedStateAndScreenshots[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabActivityTest",
+      "name": "labDraftIsExcludedFromAndroidSavedStateAndScreenshots"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "name": "oversizedInputCannotRemainInVolatileHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "name": "requiresExplicitOptInAndErasesHistoryAtExit"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "name": "modeReadinessCannotChangeWhileCoordinatorIsBusy"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "name": "boundedHistoryContainsOnlyCompletedPairs"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "name": "failedOrEmptyAnswerNeverEntersFollowupContext"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "name": "cancellationRejectsLateAnswerAndKeepsReservationUntilReturn"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabConversationTest",
+      "name": "cancellationBeforeWorkerEntryNeverCallsInference"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "stopRejectsLateNativeResultWithoutFreeingResidentModel[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "stopRejectsLateNativeResultWithoutFreeingResidentModel[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "stopRejectsLateNativeResultWithoutFreeingResidentModel"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "labCannotEscapeFailedUnloadOrLoadAnotherBackend[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "labCannotEscapeFailedUnloadOrLoadAnotherBackend[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "labCannotEscapeFailedUnloadOrLoadAnotherBackend"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "historicalGreetingAndStorageRemainTheDefaultCorePath[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "historicalGreetingAndStorageRemainTheDefaultCorePath[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "historicalGreetingAndStorageRemainTheDefaultCorePath"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "oversizedQuestionRefusesBeforeAnyModelLoad[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "oversizedQuestionRefusesBeforeAnyModelLoad[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "oversizedQuestionRefusesBeforeAnyModelLoad"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "messageAndFollowupUseOneExistingBackendWithoutReadingOrWritingPersonalHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "emptyNativeResultIsNotReplacedWithALabSuccess[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "emptyNativeResultIsNotReplacedWithALabSuccess[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.TextLabCoreTest",
+      "name": "emptyNativeResultIsNotReplacedWithALabSuccess"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "permissionRevokedDuringDeviceCreationDoesNotLeaveCaptureActive"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "emptyCaptureIsNotPresentedAsValidWav"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "readErrorIsReportedAndDoesNotProduceValidAudio"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "unavailableDeviceIsReleasedAndNextAttemptCanSucceed"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "aSecondCaptureCannotStartWhileFirstIsActive"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "permissionRefusalDoesNotCreateAnAudioDevice"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "finalizationFailureDoesNotReturnAudioForTranscription"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "normalStopFinalizesWavAndRepeatedStopIsSafe"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "startupCleanupRemovesOnlyJarvisTemporaryAudio"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "openFileFailureReleasesAudioDevice"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "stopWaitsForReleaseAndWriterTerminationBeforeReturningFile"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "startFailureReleasesDeviceAndDeletesFile"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "writeFailureDeletesIncompleteWavAndReleasesDevice"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "releaseFailureQuarantinesAudioAndNeverReturnsAValidRecording"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "discardedCaptureIsDeletedAndNeverReturnedAsValid"
+    },
+    {
+      "class": "com.stark.jarvislocal.WavRecorderTest",
+      "name": "deviceFactoryFailureDoesNotLeaveRecordingFlagSet"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "successfulTranscriptionReleasesTheModelAndTrimsText"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "cancellationDoesNotReleaseNativeResourcesBeforeActualReturn"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "absentOrTruncatedWavIsRejectedBeforeNativeLoad"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "incompleteHeaderAndWrongPcmFormatAreRejected"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "emptyTranscriptionStillReleasesTheModel"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "loadingFailureAllowsRetryWithoutReleasingUnknownHandle"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "missingModelDoesNotLoadNativeResources"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "concurrentAttemptIsRejectedUntilFirstNativeCallEnds"
+    },
+    {
+      "class": "com.stark.jarvislocal.WhisperLocalEngineTest",
+      "name": "transcriptionFailureReleasesTheModelAndAllowsRetry"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "concurrentPublishersKeepOneSequenceAndBoundedReplay"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "stopRequestRejectsLateCompletionAndDoesNotUnlockBeforeFinish"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "orderDeduplicationOverflowAndProjectionAreObservable"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "invalidVersionIsRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "disablingDuringRequestPreventsOldTerminalAfterReenable"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "cancellationIsBusyUntilFinishedAndNeverAssertsRelease"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "completedTraceIsNotReplayedAsCancellation"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "disabledDefaultAndOldGenerationRemainRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "resubscribingUiDoesNotPublishOrStartAnyNewOperation"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "invalidCorrelationIsRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "diagnosticJournalIsBoundedDeduplicatedAndContainsOnlyTechnicalFields"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "absentModulesNeverConnectAndDistinguishDisabledFromUnavailable"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreEventBusTest",
+      "name": "lateThinkingCannotOverrideCancellation"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "realCoreDocumentCommandEmitsCorrelatedMetadataWithoutAnyNativeCall[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "realCoreDocumentCommandEmitsCorrelatedMetadataWithoutAnyNativeCall[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "realCoreDocumentCommandEmitsCorrelatedMetadataWithoutAnyNativeCall"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "cancelRetainsExistingSessionGateUntilWorkerReallyReturns[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "cancelRetainsExistingSessionGateUntilWorkerReallyReturns[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "cancelRetainsExistingSessionGateUntilWorkerReallyReturns"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "disabledObserverLeavesHistoricalChatPathAvailable[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "disabledObserverLeavesHistoricalChatPathAvailable[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.events.CoreSessionEventsTest",
+      "name": "disabledObserverLeavesHistoricalChatPathAvailable"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "mismatchedMeasurementCannotAuthorizeDifferentRequest[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "mismatchedMeasurementCannotAuthorizeDifferentRequest[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "mismatchedMeasurementCannotAuthorizeDifferentRequest"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "simulatedCompositionChangesOnlySystemAndKeepsProvenance[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "simulatedCompositionChangesOnlySystemAndKeepsProvenance[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "simulatedCompositionChangesOnlySystemAndKeepsProvenance"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "missingRealTokenizerBlocksOptIn[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "missingRealTokenizerBlocksOptIn[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "missingRealTokenizerBlocksOptIn"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "manifestVersionDigestAndFalseRightsRejected[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "manifestVersionDigestAndFalseRightsRejected[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "manifestVersionDigestAndFalseRightsRejected"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "revocationOrExpiryDuringMeasureRejectsLateComposition[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "revocationOrExpiryDuringMeasureRejectsLateComposition[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "revocationOrExpiryDuringMeasureRejectsLateComposition"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "quarantineAndOversizeSystemFailBeforeTokenizer[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "quarantineAndOversizeSystemFailBeforeTokenizer[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "quarantineAndOversizeSystemFailBeforeTokenizer"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "fixtureMeasurementsAndNoSystemCapabilityAreRefused[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "fixtureMeasurementsAndNoSystemCapabilityAreRefused[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "fixtureMeasurementsAndNoSystemCapabilityAreRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "snapshotIsTechnicalReadOnlyAndVersionBound[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "snapshotIsTechnicalReadOnlyAndVersionBound[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "snapshotIsTechnicalReadOnlyAndVersionBound"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "exactBudgetBoundaryAndRequestedContextNotLoadedContext[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "exactBudgetBoundaryAndRequestedContextNotLoadedContext[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "exactBudgetBoundaryAndRequestedContextNotLoadedContext"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "immutableManifestAndRestartHaveSameTechnicalIdentity[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "immutableManifestAndRestartHaveSameTechnicalIdentity[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "immutableManifestAndRestartHaveSameTechnicalIdentity"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "rejectsMalformedDuplicateFloatSurrogateAndOversize[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "rejectsMalformedDuplicateFloatSurrogateAndOversize[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "rejectsMalformedDuplicateFloatSurrogateAndOversize"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "sixApprovedVectorsMatchCanonicalBytesAndDigests[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "sixApprovedVectorsMatchCanonicalBytesAndDigests[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "sixApprovedVectorsMatchCanonicalBytesAndDigests"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "disabledByDefaultNeverMeasuresOrReadsPrivateState[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "disabledByDefaultNeverMeasuresOrReadsPrivateState[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityRuntimeTest",
+      "name": "disabledByDefaultNeverMeasuresOrReadsPrivateState"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+      "name": "callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+      "name": "callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+      "name": "callerCannotMutateCapturedSourceProvenanceWhileMeasurementRefuses"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+      "name": "hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+      "name": "hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.IdentityTokenizerBoundaryTest",
+      "name": "hostilePayloadNeverBecomesSystemAndNoNativeCountIsInvented"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "lexicalPreviewAndExplicitApprovalCanBeRestoredWithoutRewritingHistory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "lexicalPreviewAndExplicitApprovalCanBeRestoredWithoutRewritingHistory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "lexicalPreviewAndExplicitApprovalCanBeRestoredWithoutRewritingHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "urgentContextSuppressesHumourAndVariantsWithoutChangingTheStoredProfile[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "urgentContextSuppressesHumourAndVariantsWithoutChangingTheStoredProfile[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "urgentContextSuppressesHumourAndVariantsWithoutChangingTheStoredProfile"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "staleExpiredAndRevokedProposalsCannotChangeProfiles[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "staleExpiredAndRevokedProposalsCannotChangeProfiles[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "staleExpiredAndRevokedProposalsCannotChangeProfiles"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "oldEditorRevisionBytesRemainReadableAndUnmodifiedAfterNewRevision[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "oldEditorRevisionBytesRemainReadableAndUnmodifiedAfterNewRevision[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "oldEditorRevisionBytesRemainReadableAndUnmodifiedAfterNewRevision"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "fictionNeverBecomesPersonalMemoryAndCategoriesRemainSeparate[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "fictionNeverBecomesPersonalMemoryAndCategoriesRemainSeparate[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "fictionNeverBecomesPersonalMemoryAndCategoriesRemainSeparate"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "selectiveTasteRemovalPreservesOtherTastesAndDoesNotDeletePersonalData[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "selectiveTasteRemovalPreservesOtherTastesAndDoesNotDeletePersonalData[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "selectiveTasteRemovalPreservesOtherTastesAndDoesNotDeletePersonalData"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "readOnlyPreferencePortRequiresActualConfirmedScopeAndTracksSuspension[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "readOnlyPreferencePortRequiresActualConfirmedScopeAndTracksSuspension[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "readOnlyPreferencePortRequiresActualConfirmedScopeAndTracksSuspension"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "hiddenDefaultsAndExplicitOverridesAreAlwaysIncludedInApprovalDiff[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "hiddenDefaultsAndExplicitOverridesAreAlwaysIncludedInApprovalDiff[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "hiddenDefaultsAndExplicitOverridesAreAlwaysIncludedInApprovalDiff"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "approvalIsBoundToPreviewAndRejectionNeverPersistsTheDraft[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "approvalIsBoundToPreviewAndRejectionNeverPersistsTheDraft[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "approvalIsBoundToPreviewAndRejectionNeverPersistsTheDraft"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "duplicateChainedAndInstructionLikeLexicalRulesAreRejected[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "duplicateChainedAndInstructionLikeLexicalRulesAreRejected[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.editor.IdentityEditorialTest",
+      "name": "duplicateChainedAndInstructionLikeLexicalRulesAreRejected"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "staleRevisionCannotOverwriteAnotherChange[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "staleRevisionCannotOverwriteAnotherChange[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "staleRevisionCannotOverwriteAnotherChange"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "invalidSQLiteFileIsNeverAutomaticallyDeletedOrReinitialized[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "invalidSQLiteFileIsNeverAutomaticallyDeletedOrReinitialized[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "invalidSQLiteFileIsNeverAutomaticallyDeletedOrReinitialized"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "technicalPreviewMatchesActualComposerCandidateButNoMeasurementIsFabricated[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "technicalPreviewMatchesActualComposerCandidateButNoMeasurementIsFabricated[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "technicalPreviewMatchesActualComposerCandidateButNoMeasurementIsFabricated"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "contextOverridesAreImmutableAndSixPreviewsAreClearlyNotInference[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "contextOverridesAreImmutableAndSixPreviewsAreClearlyNotInference[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "contextOverridesAreImmutableAndSixPreviewsAreClearlyNotInference"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "twoProfilesSelectionRevisionAndReopeningUseRealSQLite[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "twoProfilesSelectionRevisionAndReopeningUseRealSQLite[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "twoProfilesSelectionRevisionAndReopeningUseRealSQLite"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "corruptionFailsClosedWithoutResettingOriginal[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "corruptionFailsClosedWithoutResettingOriginal[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "corruptionFailsClosedWithoutResettingOriginal"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "profileWritesNeverTouchHistoricalConversationMemoryOrPreferences[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "profileWritesNeverTouchHistoricalConversationMemoryOrPreferences[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "profileWritesNeverTouchHistoricalConversationMemoryOrPreferences"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "unsupportedNumericalTuningIsRejected[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "unsupportedNumericalTuningIsRejected[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "unsupportedNumericalTuningIsRejected"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "restoreAppendsRevisionAndNeverRewritesHistory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "restoreAppendsRevisionAndNeverRewritesHistory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "restoreAppendsRevisionAndNeverRewritesHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "proposedAthenaCannotSilentlyEnterFrozenContractOrBypassUnavailableTokenizer[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "proposedAthenaCannotSilentlyEnterFrozenContractOrBypassUnavailableTokenizer[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.identity.profiles.IdentityProfilesTest",
+      "name": "proposedAthenaCannotSilentlyEnterFrozenContractOrBypassUnavailableTokenizer"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "corruptFileIsPreservedAndIsolatedManualFixtureRestorationWorks[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "corruptFileIsPreservedAndIsolatedManualFixtureRestorationWorks[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "corruptFileIsPreservedAndIsolatedManualFixtureRestorationWorks"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "failedReceiptInsertionRollsBackMemoryAndJournalThenAllowsExplicitRetry[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "failedReceiptInsertionRollsBackMemoryAndJournalThenAllowsExplicitRetry[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "failedReceiptInsertionRollsBackMemoryAndJournalThenAllowsExplicitRetry"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "revocationDoesNotWaitForAnInFlightDecisionMonitor[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "revocationDoesNotWaitForAnInFlightDecisionMonitor[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "revocationDoesNotWaitForAnInFlightDecisionMonitor"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "staleEditingCannotOverrideARevisedMemory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "staleEditingCannotOverrideARevisedMemory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "staleEditingCannotOverrideARevisedMemory"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "exactContentPositiveApprovalIsRequiredAndCannotReplay[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "exactContentPositiveApprovalIsRequiredAndCannotReplay[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "exactContentPositiveApprovalIsRequiredAndCannotReplay"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "readPortDeniesByDefaultAndRevocationExpiryAreImmediate[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "readPortDeniesByDefaultAndRevocationExpiryAreImmediate[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "readPortDeniesByDefaultAndRevocationExpiryAreImmediate"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "wrongSessionExpiryAndRevocationPreventNewMemory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "wrongSessionExpiryAndRevocationPreventNewMemory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "wrongSessionExpiryAndRevocationPreventNewMemory"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "delayedProposalCannotReuseARecreatedSessionEpoch[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "delayedProposalCannotReuseARecreatedSessionEpoch[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "delayedProposalCannotReuseARecreatedSessionEpoch"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "tamperedContentWithoutMatchingReceiptIsNeverReturned[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "tamperedContentWithoutMatchingReceiptIsNeverReturned[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "tamperedContentWithoutMatchingReceiptIsNeverReturned"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "concurrentPendingPreferenceRequiresNewReviewInsteadOfOverwriting[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "concurrentPendingPreferenceRequiresNewReviewInsteadOfOverwriting[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "concurrentPendingPreferenceRequiresNewReviewInsteadOfOverwriting"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "contradictoryPreferenceNeedsExplicitReplacementOfTheBoundRevision[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "contradictoryPreferenceNeedsExplicitReplacementOfTheBoundRevision[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "contradictoryPreferenceNeedsExplicitReplacementOfTheBoundRevision"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "lostAcknowledgementDoesNotImplyRollbackOrPermitNonceReplay[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "lostAcknowledgementDoesNotImplyRollbackOrPermitNonceReplay[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "lostAcknowledgementDoesNotImplyRollbackOrPermitNonceReplay"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "pendingAndRejectedContentNeverBecomeDurableMemory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "pendingAndRejectedContentNeverBecomeDurableMemory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "pendingAndRejectedContentNeverBecomeDurableMemory"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "deletionSurvivesReopeningWithoutChangingChatHistory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "deletionSurvivesReopeningWithoutChangingChatHistory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.ConfirmedMemoryWorkflowTest",
+      "name": "deletionSurvivesReopeningWithoutChangingChatHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "unavailableEncryptionRefusesInsteadOfWritingPlaintext[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "unavailableEncryptionRefusesInsteadOfWritingPlaintext[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "unavailableEncryptionRefusesInsteadOfWritingPlaintext"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "failedProviderReadbackKeepsPrivateCopyAndNeverClaimsRollbackOrReusesConsent[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "failedProviderReadbackKeepsPrivateCopyAndNeverClaimsRollbackOrReusesConsent[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "failedProviderReadbackKeepsPrivateCopyAndNeverClaimsRollbackOrReusesConsent"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "contextQuotesUntrustedContentAndCountsUtf8WithoutTruncating[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "contextQuotesUntrustedContentAndCountsUtf8WithoutTruncating[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "contextQuotesUntrustedContentAndCountsUtf8WithoutTruncating"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "deletionOrEditingAfterPreviewRequiresANewPreview[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "deletionOrEditingAfterPreviewRequiresANewPreview[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "deletionOrEditingAfterPreviewRequiresANewPreview"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "revocationDoesNotWaitForABlockedProviderAndPreventsFurtherCopying[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "revocationDoesNotWaitForABlockedProviderAndPreventsFurtherCopying[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "revocationDoesNotWaitForABlockedProviderAndPreventsFurtherCopying"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "corruptUnsupportedDuplicatedOrAuthorityBearingImportsAreRejected[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "corruptUnsupportedDuplicatedOrAuthorityBearingImportsAreRejected[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "corruptUnsupportedDuplicatedOrAuthorityBearingImportsAreRejected"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "wrongPreviewSessionExpiredConsentAndReplayNeverCreateAnExport[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "wrongPreviewSessionExpiredConsentAndReplayNeverCreateAnExport[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "wrongPreviewSessionExpiredConsentAndReplayNeverCreateAnExport"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "voluntaryExportCreatesRealFileAndSandboxNeverWritesOrTrustsImportedConsent[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "voluntaryExportCreatesRealFileAndSandboxNeverWritesOrTrustsImportedConsent[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "voluntaryExportCreatesRealFileAndSandboxNeverWritesOrTrustsImportedConsent"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "selectedFreshDestinationIsReadBackAndExistingDestinationIsNeverOpenedForWriting[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "selectedFreshDestinationIsReadBackAndExistingDestinationIsNeverOpenedForWriting[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "selectedFreshDestinationIsReadBackAndExistingDestinationIsNeverOpenedForWriting"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "sessionRecreationCannotAuthorizeAnOldExportPreview[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "sessionRecreationCannotAuthorizeAnOldExportPreview[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "sessionRecreationCannotAuthorizeAnOldExportPreview"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "onlyConfirmedAuthorizedPreferencesAreRecalledWithProvenanceAndNfc[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "onlyConfirmedAuthorizedPreferencesAreRecalledWithProvenanceAndNfc[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "onlyConfirmedAuthorizedPreferencesAreRecalledWithProvenanceAndNfc"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "sensitiveExpiredAndUnconfirmedRowsCannotBeExported[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "sensitiveExpiredAndUnconfirmedRowsCannotBeExported[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "sensitiveExpiredAndUnconfirmedRowsCannotBeExported"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "suppressionSuspensionExpiryAndSessionExclusionImmediatelyBlockRecallAndExport[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "suppressionSuspensionExpiryAndSessionExclusionImmediatelyBlockRecallAndExport[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "suppressionSuspensionExpiryAndSessionExclusionImmediatelyBlockRecallAndExport"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "ambiguousLexicalRecallRequiresExplicitCurrentSelectionBeforeAssembly[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "ambiguousLexicalRecallRequiresExplicitCurrentSelectionBeforeAssembly[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.memory.MemoryRecallExportTest",
+      "name": "ambiguousLexicalRecallRequiresExplicitCurrentSelectionBeforeAssembly"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.CoreIntentRouterTest",
+      "name": "unknownCategoryAndEmptySearchRefuseWithoutWrites[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.CoreIntentRouterTest",
+      "name": "unknownCategoryAndEmptySearchRefuseWithoutWrites[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.CoreIntentRouterTest",
+      "name": "unknownCategoryAndEmptySearchRefuseWithoutWrites"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.CoreIntentRouterTest",
+      "name": "fourRealCommandsPreserveSQLiteAndNeverInvokeModel[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.CoreIntentRouterTest",
+      "name": "fourRealCommandsPreserveSQLiteAndNeverInvokeModel[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.CoreIntentRouterTest",
+      "name": "fourRealCommandsPreserveSQLiteAndNeverInvokeModel"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "deadlineAfterReturnRejectsLateResult"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "disableIsRefusedWhileTaskActive"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "duplicateRequestAndQuotaAreExplicit"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "duplicateCapabilitiesCannotOverrideOwner"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "deadlineBeforeDispatchDoesNotCallAdapter"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "coroutineCancellationDoesNotProveUnderlyingCompletion"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "logicalCancellationRetainsGateUntilAdapterReturns"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "boundedOutputRejectsOversizeWithoutReturningPayload"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "confirmationCannotGrantHostPermission"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "unsupportedVersionIsRejected"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "callerCannotMutateDocumentScopeAfterConstruction"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "errorsDoNotExposeExceptionDetailsOrKeepGateClosed"
+    },
+    {
+      "class": "com.stark.jarvislocal.orchestration.TaskCoordinatorTest",
+      "name": "unboundedRequestIsRejected"
+    }
+  ],
+  "passed": 448
+}

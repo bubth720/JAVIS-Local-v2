@@ -1,0 +1,32 @@
+[
+  {
+    "log": "evidence/baseline-core.log",
+    "exact_original": "evidence/baseline-core.log.gz",
+    "original_sha256": "51e01f7cadf82604bc1d3c6e85f16dc7002e2f92f55bc8c658a846e0fdd58a13",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "log": "evidence/baseline-jvm.log",
+    "exact_original": "evidence/baseline-jvm.log.gz",
+    "original_sha256": "e5b96864eb7c553b649b9f18376fb16a18ee0065914296eee19b19444a30fb77",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "log": "evidence/final-android.log",
+    "exact_original": "evidence/final-android.log.gz",
+    "original_sha256": "15d982773cbe473d7f78dbabbb7a0d1a45718a3683d84f6b52efef1eac633336",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "log": "evidence/readiness-initial-type-error.log",
+    "exact_original": "evidence/readiness-initial-type-error.log.gz",
+    "original_sha256": "f715256275c6386e2018e1ae9c230c9acfed480de051c1cfbd518f90e1ba2dd2",
+    "normalization": "trailing ASCII whitespace only"
+  },
+  {
+    "log": "evidence/readiness-tests.log",
+    "exact_original": "evidence/readiness-tests.log.gz",
+    "original_sha256": "c3371b60929715fa3c7858dc62789f52ebb3e1965f9b58fcf122bd53f3d370f8",
+    "normalization": "trailing ASCII whitespace only"
+  }
+]

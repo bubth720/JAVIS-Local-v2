@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.Mvp2CoreAdapterTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:58" hostname="9405d059b27a" time="0.558">
+  <properties/>
+  <testcase name="adapterSessionSurvivesRuntimeCompositionAndRestoresHistory[24]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.098"/>
+  <testcase name="adapterSessionSurvivesRuntimeCompositionAndRestoresHistory[25]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.077"/>
+  <testcase name="adapterSessionSurvivesRuntimeCompositionAndRestoresHistory" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.098"/>
+  <testcase name="cancelledInferenceCannotWriteLateAssistantToSqlite[24]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.035"/>
+  <testcase name="cancelledInferenceCannotWriteLateAssistantToSqlite[25]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.045"/>
+  <testcase name="cancelledInferenceCannotWriteLateAssistantToSqlite" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.031"/>
+  <testcase name="explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages[24]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.029"/>
+  <testcase name="explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages[25]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.028"/>
+  <testcase name="explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.03"/>
+  <testcase name="realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen[24]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.027"/>
+  <testcase name="realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen[25]" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.025"/>
+  <testcase name="realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen" classname="com.stark.jarvislocal.Mvp2CoreAdapterTest" time="0.033"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.LocalDatabaseTest" tests="39" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:35" hostname="9405d059b27a" time="1.253">
+  <properties/>
+  <testcase name="migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.055"/>
+  <testcase name="migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.054"/>
+  <testcase name="migrationPreservesAutoincrementHighWaterMarksAndAllowsNewWrites" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.042"/>
+  <testcase name="ignoredMemoryInsertIsReportedWithoutChangingStoredData[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.04"/>
+  <testcase name="ignoredMemoryInsertIsReportedWithoutChangingStoredData[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.028"/>
+  <testcase name="ignoredMemoryInsertIsReportedWithoutChangingStoredData" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.026"/>
+  <testcase name="interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.037"/>
+  <testcase name="interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.03"/>
+  <testcase name="interruptedMigrationRollsBackWritesAndVersionThenAllowsNormalRetry" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.032"/>
+  <testcase name="unsupportedUpgradeKeepsTheOriginalVersionAndData[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.029"/>
+  <testcase name="unsupportedUpgradeKeepsTheOriginalVersionAndData[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.045"/>
+  <testcase name="unsupportedUpgradeKeepsTheOriginalVersionAndData" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.033"/>
+  <testcase name="versionOneMigrationPreservesEveryValueAndIdentifier[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.035"/>
+  <testcase name="versionOneMigrationPreservesEveryValueAndIdentifier[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.04"/>
+  <testcase name="versionOneMigrationPreservesEveryValueAndIdentifier" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.03"/>
+  <testcase name="freshDatabasePersistsAllFourCollectionsAfterReopening[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.027"/>
+  <testcase name="freshDatabasePersistsAllFourCollectionsAfterReopening[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.029"/>
+  <testcase name="freshDatabasePersistsAllFourCollectionsAfterReopening" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.029"/>
+  <testcase name="ignoredSecondChunkRollsBackTheDocumentAndFirstChunk[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.032"/>
+  <testcase name="ignoredSecondChunkRollsBackTheDocumentAndFirstChunk[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.025"/>
+  <testcase name="ignoredSecondChunkRollsBackTheDocumentAndFirstChunk" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.036"/>
+  <testcase name="existingVersionTwoPreservesEveryValueAndIdentifier[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.038"/>
+  <testcase name="existingVersionTwoPreservesEveryValueAndIdentifier[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.031"/>
+  <testcase name="existingVersionTwoPreservesEveryValueAndIdentifier" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.033"/>
+  <testcase name="rejectedMessageInsertIsReportedWithoutChangingStoredData[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.025"/>
+  <testcase name="rejectedMessageInsertIsReportedWithoutChangingStoredData[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.024"/>
+  <testcase name="rejectedMessageInsertIsReportedWithoutChangingStoredData" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.027"/>
+  <testcase name="rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.024"/>
+  <testcase name="rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.031"/>
+  <testcase name="rejectedDocumentInsertDoesNotCreateChunksOrChangeExistingData" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.031"/>
+  <testcase name="unsupportedDowngradeKeepsTheOriginalVersionAndData[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.03"/>
+  <testcase name="unsupportedDowngradeKeepsTheOriginalVersionAndData[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.033"/>
+  <testcase name="unsupportedDowngradeKeepsTheOriginalVersionAndData" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.031"/>
+  <testcase name="unversionedExistingDatabaseIsRefusedWithoutDeletingItsData[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.024"/>
+  <testcase name="unversionedExistingDatabaseIsRefusedWithoutDeletingItsData[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.026"/>
+  <testcase name="unversionedExistingDatabaseIsRefusedWithoutDeletingItsData" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.029"/>
+  <testcase name="rejectedSecondChunkRollsBackTheDocumentAndFirstChunk[24]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.026"/>
+  <testcase name="rejectedSecondChunkRollsBackTheDocumentAndFirstChunk[25]" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.024"/>
+  <testcase name="rejectedSecondChunkRollsBackTheDocumentAndFirstChunk" classname="com.stark.jarvislocal.LocalDatabaseTest" time="0.026"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

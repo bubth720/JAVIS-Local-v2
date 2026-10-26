@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.memory.MemoryRecallExportTest" tests="42" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:42" hostname="9405d059b27a" time="1.048">
+  <properties/>
+  <testcase name="unavailableEncryptionRefusesInsteadOfWritingPlaintext[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.028"/>
+  <testcase name="unavailableEncryptionRefusesInsteadOfWritingPlaintext[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.03"/>
+  <testcase name="unavailableEncryptionRefusesInsteadOfWritingPlaintext" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.026"/>
+  <testcase name="failedProviderReadbackKeepsPrivateCopyAndNeverClaimsRollbackOrReusesConsent[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.019"/>
+  <testcase name="failedProviderReadbackKeepsPrivateCopyAndNeverClaimsRollbackOrReusesConsent[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.022"/>
+  <testcase name="failedProviderReadbackKeepsPrivateCopyAndNeverClaimsRollbackOrReusesConsent" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.023"/>
+  <testcase name="contextQuotesUntrustedContentAndCountsUtf8WithoutTruncating[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.031"/>
+  <testcase name="contextQuotesUntrustedContentAndCountsUtf8WithoutTruncating[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.026"/>
+  <testcase name="contextQuotesUntrustedContentAndCountsUtf8WithoutTruncating" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.032"/>
+  <testcase name="deletionOrEditingAfterPreviewRequiresANewPreview[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="deletionOrEditingAfterPreviewRequiresANewPreview[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.026"/>
+  <testcase name="deletionOrEditingAfterPreviewRequiresANewPreview" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="revocationDoesNotWaitForABlockedProviderAndPreventsFurtherCopying[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="revocationDoesNotWaitForABlockedProviderAndPreventsFurtherCopying[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.025"/>
+  <testcase name="revocationDoesNotWaitForABlockedProviderAndPreventsFurtherCopying" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.023"/>
+  <testcase name="corruptUnsupportedDuplicatedOrAuthorityBearingImportsAreRejected[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="corruptUnsupportedDuplicatedOrAuthorityBearingImportsAreRejected[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.022"/>
+  <testcase name="corruptUnsupportedDuplicatedOrAuthorityBearingImportsAreRejected" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.02"/>
+  <testcase name="wrongPreviewSessionExpiredConsentAndReplayNeverCreateAnExport[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="wrongPreviewSessionExpiredConsentAndReplayNeverCreateAnExport[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="wrongPreviewSessionExpiredConsentAndReplayNeverCreateAnExport" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.023"/>
+  <testcase name="voluntaryExportCreatesRealFileAndSandboxNeverWritesOrTrustsImportedConsent[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.026"/>
+  <testcase name="voluntaryExportCreatesRealFileAndSandboxNeverWritesOrTrustsImportedConsent[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="voluntaryExportCreatesRealFileAndSandboxNeverWritesOrTrustsImportedConsent" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.023"/>
+  <testcase name="selectedFreshDestinationIsReadBackAndExistingDestinationIsNeverOpenedForWriting[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.023"/>
+  <testcase name="selectedFreshDestinationIsReadBackAndExistingDestinationIsNeverOpenedForWriting[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.023"/>
+  <testcase name="selectedFreshDestinationIsReadBackAndExistingDestinationIsNeverOpenedForWriting" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.022"/>
+  <testcase name="sessionRecreationCannotAuthorizeAnOldExportPreview[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.017"/>
+  <testcase name="sessionRecreationCannotAuthorizeAnOldExportPreview[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.02"/>
+  <testcase name="sessionRecreationCannotAuthorizeAnOldExportPreview" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.02"/>
+  <testcase name="onlyConfirmedAuthorizedPreferencesAreRecalledWithProvenanceAndNfc[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.02"/>
+  <testcase name="onlyConfirmedAuthorizedPreferencesAreRecalledWithProvenanceAndNfc[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.02"/>
+  <testcase name="onlyConfirmedAuthorizedPreferencesAreRecalledWithProvenanceAndNfc" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.022"/>
+  <testcase name="sensitiveExpiredAndUnconfirmedRowsCannotBeExported[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.027"/>
+  <testcase name="sensitiveExpiredAndUnconfirmedRowsCannotBeExported[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.032"/>
+  <testcase name="sensitiveExpiredAndUnconfirmedRowsCannotBeExported" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.022"/>
+  <testcase name="suppressionSuspensionExpiryAndSessionExclusionImmediatelyBlockRecallAndExport[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.034"/>
+  <testcase name="suppressionSuspensionExpiryAndSessionExclusionImmediatelyBlockRecallAndExport[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.024"/>
+  <testcase name="suppressionSuspensionExpiryAndSessionExclusionImmediatelyBlockRecallAndExport" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.04"/>
+  <testcase name="ambiguousLexicalRecallRequiresExplicitCurrentSelectionBeforeAssembly[24]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.025"/>
+  <testcase name="ambiguousLexicalRecallRequiresExplicitCurrentSelectionBeforeAssembly[25]" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.039"/>
+  <testcase name="ambiguousLexicalRecallRequiresExplicitCurrentSelectionBeforeAssembly" classname="com.stark.jarvislocal.memory.MemoryRecallExportTest" time="0.022"/>
+  <system-out><![CDATA[MEM-02 synthetic demo: private export verified; sandbox preview only; no automatic import
+MEM-02 synthetic demo: private export verified; sandbox preview only; no automatic import
+MEM-02 synthetic demo: private export verified; sandbox preview only; no automatic import
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

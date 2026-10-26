@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.events.CoreSessionEventsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:35" hostname="9405d059b27a" time="0.242">
+  <properties/>
+  <testcase name="realCoreDocumentCommandEmitsCorrelatedMetadataWithoutAnyNativeCall[24]" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.044"/>
+  <testcase name="realCoreDocumentCommandEmitsCorrelatedMetadataWithoutAnyNativeCall[25]" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.037"/>
+  <testcase name="realCoreDocumentCommandEmitsCorrelatedMetadataWithoutAnyNativeCall" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.032"/>
+  <testcase name="cancelRetainsExistingSessionGateUntilWorkerReallyReturns[24]" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.02"/>
+  <testcase name="cancelRetainsExistingSessionGateUntilWorkerReallyReturns[25]" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.018"/>
+  <testcase name="cancelRetainsExistingSessionGateUntilWorkerReallyReturns" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.022"/>
+  <testcase name="disabledObserverLeavesHistoricalChatPathAvailable[24]" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.019"/>
+  <testcase name="disabledObserverLeavesHistoricalChatPathAvailable[25]" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.032"/>
+  <testcase name="disabledObserverLeavesHistoricalChatPathAvailable" classname="com.stark.jarvislocal.events.CoreSessionEventsTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

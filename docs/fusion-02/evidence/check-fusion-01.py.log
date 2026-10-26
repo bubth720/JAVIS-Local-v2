@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/JAVIS-Local-v2/tools/check-fusion-01.py", line 102, in <module>
+    result = validate(json.loads(args.lock.read_text()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/JAVIS-Local-v2/tools/check-fusion-01.py", line 62, in validate
+    assert not (changed & protected), "Protected existing files modified: " + str(sorted(changed & protected))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Protected existing files modified: ['app/src/main/java/com/stark/jarvislocal/AppGraph.kt']

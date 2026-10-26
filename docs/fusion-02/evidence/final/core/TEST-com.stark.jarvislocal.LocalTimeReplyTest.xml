@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.LocalTimeReplyTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:28" hostname="9405d059b27a" time="0.016">
+  <properties/>
+  <testcase name="eveningUsesTwentyFourHourFormat" classname="com.stark.jarvislocal.LocalTimeReplyTest" time="0.007"/>
+  <testcase name="localTimeIncludesFractionalHourOffset" classname="com.stark.jarvislocal.LocalTimeReplyTest" time="0.001"/>
+  <testcase name="nonLatinDefaultLocalePreservesAsciiTimeFormat" classname="com.stark.jarvislocal.LocalTimeReplyTest" time="0.004"/>
+  <testcase name="singleDigitHoursAndMinutesArePaddedAndSecondsAreOmitted" classname="com.stark.jarvislocal.LocalTimeReplyTest" time="0.0"/>
+  <testcase name="defaultTimeZoneIsReadOnEachCall" classname="com.stark.jarvislocal.LocalTimeReplyTest" time="0.001"/>
+  <testcase name="daylightSavingTransitionUsesTheOffsetAtTheRequestedInstant" classname="com.stark.jarvislocal.LocalTimeReplyTest" time="0.002"/>
+  <testcase name="midnightUsesZeroHours" classname="com.stark.jarvislocal.LocalTimeReplyTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

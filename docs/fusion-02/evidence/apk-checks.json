@@ -1,0 +1,68 @@
+[
+  {
+    "variant": "debug",
+    "sha256": "f4355a5f8b00a24640c23637d182abc77a7caae26e0a1dc2ae434c8a3149e211",
+    "bytes": 18334707,
+    "min_sdk": 24,
+    "network_permissions": false,
+    "native_libraries": {
+      "lib/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "lib/arm64-v8a/libggml-base.so": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+      "lib/arm64-v8a/libggml-cpu.so": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+      "lib/arm64-v8a/libggml.so": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+      "lib/arm64-v8a/libllama.so": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+      "lib/arm64-v8a/libllama_jni.so": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+      "lib/arm64-v8a/libwhisper.so": "f9dc0706abf2264eaa6acca6012ee0ae3dacfa4388b60c4870071e1c631103be"
+    },
+    "native_payload_unchanged": true,
+    "certificate": [
+      "Signer #1 certificate SHA-256 digest: 9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3"
+    ],
+    "certificate_matches_fusion01_local": true,
+    "gguf_or_whisper_weights": false
+  },
+  {
+    "variant": "mvp2",
+    "sha256": "1709da7038f7b88bcb0d04f0c41f69990f57c791beb4059a1be6be541ac9991f",
+    "bytes": 18417754,
+    "min_sdk": 24,
+    "network_permissions": false,
+    "native_libraries": {
+      "lib/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "lib/arm64-v8a/libggml-base.so": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+      "lib/arm64-v8a/libggml-cpu.so": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+      "lib/arm64-v8a/libggml.so": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+      "lib/arm64-v8a/libllama.so": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+      "lib/arm64-v8a/libllama_jni.so": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+      "lib/arm64-v8a/libwhisper.so": "f9dc0706abf2264eaa6acca6012ee0ae3dacfa4388b60c4870071e1c631103be"
+    },
+    "native_payload_unchanged": true,
+    "certificate": [
+      "Signer #1 certificate SHA-256 digest: 9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3"
+    ],
+    "certificate_matches_fusion01_local": true,
+    "gguf_or_whisper_weights": false
+  },
+  {
+    "variant": "mvp3",
+    "sha256": "6f9e35f8a18f7a583866ea3bf53e734ba500028d43cb7bb0039b71dc7f45e487",
+    "bytes": 18417810,
+    "min_sdk": 24,
+    "network_permissions": false,
+    "native_libraries": {
+      "lib/arm64-v8a/libc++_shared.so": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "lib/arm64-v8a/libggml-base.so": "6fdaa940c697551fdc57f97f3500780577b7b3970c817acda45d34691f3aacd7",
+      "lib/arm64-v8a/libggml-cpu.so": "3cea945dd36f07e24b5a8ed01de1e2e985ef530a3e4a91b59bb7412289d8961e",
+      "lib/arm64-v8a/libggml.so": "e15535d2adb4b34de6d1df701bd2765b01c30164402ac7b4b47b56c49e302b65",
+      "lib/arm64-v8a/libllama.so": "3d5997d85444f46b6659ab1db9967212ac7221ecbbe7323bbfb64fdcdcff7993",
+      "lib/arm64-v8a/libllama_jni.so": "4d139d2d95569d8d9336c9687f70eb4b5b8d2daf23ca4cfa7ce5a75721c8de20",
+      "lib/arm64-v8a/libwhisper.so": "f9dc0706abf2264eaa6acca6012ee0ae3dacfa4388b60c4870071e1c631103be"
+    },
+    "native_payload_unchanged": true,
+    "certificate": [
+      "Signer #1 certificate SHA-256 digest: 9ce9577cfcbc8b5afe5bd85451728d868f1cba86b010b27e99bbddb75c4834a3"
+    ],
+    "certificate_matches_fusion01_local": true,
+    "gguf_or_whisper_weights": false
+  }
+]

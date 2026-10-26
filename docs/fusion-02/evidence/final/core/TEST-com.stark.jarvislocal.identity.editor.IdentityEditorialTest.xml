@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" tests="30" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:37" hostname="9405d059b27a" time="0.863">
+  <properties/>
+  <testcase name="lexicalPreviewAndExplicitApprovalCanBeRestoredWithoutRewritingHistory[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.057"/>
+  <testcase name="lexicalPreviewAndExplicitApprovalCanBeRestoredWithoutRewritingHistory[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.049"/>
+  <testcase name="lexicalPreviewAndExplicitApprovalCanBeRestoredWithoutRewritingHistory" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.062"/>
+  <testcase name="urgentContextSuppressesHumourAndVariantsWithoutChangingTheStoredProfile[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.023"/>
+  <testcase name="urgentContextSuppressesHumourAndVariantsWithoutChangingTheStoredProfile[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.022"/>
+  <testcase name="urgentContextSuppressesHumourAndVariantsWithoutChangingTheStoredProfile" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.023"/>
+  <testcase name="staleExpiredAndRevokedProposalsCannotChangeProfiles[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.03"/>
+  <testcase name="staleExpiredAndRevokedProposalsCannotChangeProfiles[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.03"/>
+  <testcase name="staleExpiredAndRevokedProposalsCannotChangeProfiles" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.035"/>
+  <testcase name="oldEditorRevisionBytesRemainReadableAndUnmodifiedAfterNewRevision[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.028"/>
+  <testcase name="oldEditorRevisionBytesRemainReadableAndUnmodifiedAfterNewRevision[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.029"/>
+  <testcase name="oldEditorRevisionBytesRemainReadableAndUnmodifiedAfterNewRevision" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.032"/>
+  <testcase name="fictionNeverBecomesPersonalMemoryAndCategoriesRemainSeparate[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.018"/>
+  <testcase name="fictionNeverBecomesPersonalMemoryAndCategoriesRemainSeparate[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.017"/>
+  <testcase name="fictionNeverBecomesPersonalMemoryAndCategoriesRemainSeparate" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.017"/>
+  <testcase name="selectiveTasteRemovalPreservesOtherTastesAndDoesNotDeletePersonalData[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.024"/>
+  <testcase name="selectiveTasteRemovalPreservesOtherTastesAndDoesNotDeletePersonalData[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.021"/>
+  <testcase name="selectiveTasteRemovalPreservesOtherTastesAndDoesNotDeletePersonalData" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.028"/>
+  <testcase name="readOnlyPreferencePortRequiresActualConfirmedScopeAndTracksSuspension[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.05"/>
+  <testcase name="readOnlyPreferencePortRequiresActualConfirmedScopeAndTracksSuspension[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.034"/>
+  <testcase name="readOnlyPreferencePortRequiresActualConfirmedScopeAndTracksSuspension" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.034"/>
+  <testcase name="hiddenDefaultsAndExplicitOverridesAreAlwaysIncludedInApprovalDiff[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.027"/>
+  <testcase name="hiddenDefaultsAndExplicitOverridesAreAlwaysIncludedInApprovalDiff[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.025"/>
+  <testcase name="hiddenDefaultsAndExplicitOverridesAreAlwaysIncludedInApprovalDiff" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.022"/>
+  <testcase name="approvalIsBoundToPreviewAndRejectionNeverPersistsTheDraft[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.021"/>
+  <testcase name="approvalIsBoundToPreviewAndRejectionNeverPersistsTheDraft[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.024"/>
+  <testcase name="approvalIsBoundToPreviewAndRejectionNeverPersistsTheDraft" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.022"/>
+  <testcase name="duplicateChainedAndInstructionLikeLexicalRulesAreRejected[24]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.017"/>
+  <testcase name="duplicateChainedAndInstructionLikeLexicalRulesAreRejected[25]" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.017"/>
+  <testcase name="duplicateChainedAndInstructionLikeLexicalRulesAreRejected" classname="com.stark.jarvislocal.identity.editor.IdentityEditorialTest" time="0.016"/>
+  <system-out><![CDATA[ID-02 synthetic demo: Bonjour. Merci pour cette question. Explorons cette idée ensemble. -> Salut. Merci pour cette question. Explorons cette idée ensemble. -> Bonjour. Merci pour cette question. Explorons cette idée ensemble.
+ID-02 synthetic demo: Bonjour. Merci pour cette question. Explorons cette idée ensemble. -> Salut. Merci pour cette question. Explorons cette idée ensemble. -> Bonjour. Merci pour cette question. Explorons cette idée ensemble.
+ID-02 synthetic demo: Bonjour. Merci pour cette question. Explorons cette idée ensemble. -> Salut. Merci pour cette question. Explorons cette idée ensemble. -> Bonjour. Merci pour cette question. Explorons cette idée ensemble.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

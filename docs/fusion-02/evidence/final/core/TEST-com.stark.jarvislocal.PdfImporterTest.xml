@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.PdfImporterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:33" hostname="9405d059b27a" time="0.488">
+  <properties/>
+  <testcase name="imageOnlyOrEmptyPdfDoesNotAlterExistingCorpus[24]" classname="com.stark.jarvislocal.PdfImporterTest" time="0.1"/>
+  <testcase name="imageOnlyOrEmptyPdfDoesNotAlterExistingCorpus" classname="com.stark.jarvislocal.PdfImporterTest" time="0.078"/>
+  <testcase name="syntheticPdfKeepsDocumentAndPageOnEveryChunkAfterReopening[24]" classname="com.stark.jarvislocal.PdfImporterTest" time="0.171"/>
+  <testcase name="syntheticPdfKeepsDocumentAndPageOnEveryChunkAfterReopening" classname="com.stark.jarvislocal.PdfImporterTest" time="0.139"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.MemoryLabUiTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:49" hostname="9405d059b27a" time="12.316">
+  <properties/>
+  <testcase name="previewRejectionAndPositiveConfirmationAreSeparateAndDoNotWriteChat[24]" classname="com.stark.jarvislocal.MemoryLabUiTest" time="3.417"/>
+  <testcase name="previewRejectionAndPositiveConfirmationAreSeparateAndDoNotWriteChat[25]" classname="com.stark.jarvislocal.MemoryLabUiTest" time="2.142"/>
+  <testcase name="previewRejectionAndPositiveConfirmationAreSeparateAndDoNotWriteChat" classname="com.stark.jarvislocal.MemoryLabUiTest" time="4.535"/>
+  <testcase name="backgroundRevokesPendingPreviewAndCannotApplyAStaleConfirmation[24]" classname="com.stark.jarvislocal.MemoryLabUiTest" time="0.378"/>
+  <testcase name="backgroundRevokesPendingPreviewAndCannotApplyAStaleConfirmation[25]" classname="com.stark.jarvislocal.MemoryLabUiTest" time="0.309"/>
+  <testcase name="backgroundRevokesPendingPreviewAndCannotApplyAStaleConfirmation" classname="com.stark.jarvislocal.MemoryLabUiTest" time="0.412"/>
+  <testcase name="recallToolsDisplayARealConfirmedMemoryWithoutActivatingInference[24]" classname="com.stark.jarvislocal.MemoryLabUiTest" time="0.315"/>
+  <testcase name="recallToolsDisplayARealConfirmedMemoryWithoutActivatingInference[25]" classname="com.stark.jarvislocal.MemoryLabUiTest" time="0.338"/>
+  <testcase name="recallToolsDisplayARealConfirmedMemoryWithoutActivatingInference" classname="com.stark.jarvislocal.MemoryLabUiTest" time="0.469"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+]]></system-err>
+</testsuite>

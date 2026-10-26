@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.fixture.PilotArbiterTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:32:30" hostname="9405d059b27a" time="0.009">
+  <properties/>
+  <testcase name="unknownNativeStateAndFailedUnloadKeepReservation" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.003"/>
+  <testcase name="brokerRestartPreservesOwnerAndRejectsOldRecoveryChallenge" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.0"/>
+  <testcase name="clientOrServiceDeathAndLostAckRequireReconciliationNotRetry" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.002"/>
+  <testcase name="coldStartRequiresAllParticipantsAndFreshChallenge" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.0"/>
+  <testcase name="loadNeverStartedMayReleaseButCannotProvideANativeResponse" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.0"/>
+  <testcase name="wrongOwnerExpiredMandateAndOldOperationAreRefused" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.001"/>
+  <testcase name="timeoutNeverReleasesByExpiryAlone" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.0"/>
+  <testcase name="journalWriteFailureDoesNotGrantOrPretendToRelease" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.0"/>
+  <testcase name="singleReservationRetainedUntilExactNativeAndCleanupEvidence" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.0"/>
+  <testcase name="stopDoesNotReleaseAndCancelledResponseIsNotConsumable" classname="com.stark.jarvislocal.fixture.PilotArbiterTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

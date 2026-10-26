@@ -1,0 +1,84 @@
+{
+  "format": "jarvis.core.fusion-02-validation/1",
+  "module": "CORE",
+  "mission": "FUSION-02 C0",
+  "branch": "feat/fusion-02-core-readiness",
+  "base": "36761cea101b5f88b87cd4136dc075d28a1adb96",
+  "head": "commit containing this file; verify publication HEAD",
+  "at": "2026-10-26T07:39:48.960022+00:00",
+  "status": "PARTIAL_BLOCKED_PRODUCERS",
+  "tests": {
+    "core": {
+      "passed": 480,
+      "baseline": 448,
+      "failed": 0,
+      "skipped": 0
+    },
+    "mvp2": {
+      "passed": 53,
+      "baseline": 53,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fixture": {
+      "passed": 36,
+      "baseline": 36,
+      "failed": 0,
+      "skipped": 0
+    },
+    "jvm": {
+      "passed": 30,
+      "baseline": 30,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "unique_passed": 599,
+  "new_robolectric_tests": 32,
+  "baseline_rerun": 567,
+  "failed_final": 0,
+  "skipped_final": 0,
+  "lint": {
+    "debug": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 27
+    },
+    "mvp2": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 37
+    },
+    "mvp3": {
+      "Error": 0,
+      "Fatal": 0,
+      "Warning": 37
+    }
+  },
+  "builds": [
+    "debug",
+    "mvp2",
+    "mvp3"
+  ],
+  "models_downloaded": false,
+  "native_inference_executed": false,
+  "personal_device_used": false,
+  "producer_integration_enabled": false,
+  "historical_guard_failures": [
+    "check-core-03.py",
+    "check-fusion-01.py"
+  ],
+  "initial_failures_corrected": [
+    "non-generic RuntimeEnvironment.getApplication typing",
+    "internal data-class copy visibility warning"
+  ],
+  "not_run": [
+    "Android instrumented API24/25/26/35",
+    "real SAF/FTS5 pilot",
+    "physical devices",
+    "JNI GGUF generation",
+    "RAM PSS thermal battery qualification",
+    "actual process-kill/rotation of integrated pilot"
+  ],
+  "next_action": "Review C0; receive qualified NEXUS and SERVICES ports plus authority fence before C1-C4."
+}

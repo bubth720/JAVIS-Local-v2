@@ -1164,3 +1164,20 @@ La révocation n'est pas atomique avec le début d'une écriture producteur, et 
 rollback n'est garanti : C1 PARTIAL. Android/API24, Binder, LLM et VOICE non raccordés.
 Toutes les validations et leurs limites sont détaillées dans le rapport versionné.
 Actualiser ces connaissances lors des futures qualifications de producteurs.
+
+## FUSION-02 — état C0 de préparation Android
+
+Base FUSION01 `36761cea101b5f88b87cd4136dc075d28a1adb96` ; voir docs/fusion-02/.
+Les producteurs Android n'ont pas encore de GO NEXUS FTS5/API24-25 et SERVICES
+SAF/fence. Le NEXUS FUSION01 `9d6928c` réconcilie v4/API24 mais ne revendique
+aucune instrumentation exécutée ; ne pas confondre avec NEX374 ou NEX777 compilé
+par integration-lab. Le job SERVICES instrumenté vert au SHA f00091a concerne
+l'ancienne application API26, pas le SDK API24.
+
+Ajout passif documentToolsReadiness dans AppGraph, réutilisant connectors sans
+registre supplémentaire. Les seules sorties sont BLOCKED, UNAVAILABLE et UNKNOWN,
+aucune admission/activation même après opt-in demandé ou CONNECTED annoncé.
+Aucun fichier/URI, texte, consentement ou modèle n'est transmis. Les données et
+réglages historiques, SessionCoordinator, PromptBuilder et moteurs restent intacts.
+Le laboratoire JVM demeure distinct ; cet ajout ne constitue pas l'intégration
+Android. Actualiser ces constats à partir de nouvelles preuves de producteurs.

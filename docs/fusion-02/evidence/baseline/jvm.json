@@ -1,0 +1,125 @@
+{
+  "cases": [
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "realNexusSourceIsResolvedAndAllCitationFieldsArePreserved"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "revokedSessionCannotExposeACompletedToolResult"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "mutationRequiresExactApprovalAndRealDocxIsVerifiedWithoutReplay"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "assemblyRefusesWithoutCurrentHostAuthorityEvenAfterSuccessfulRetrieval"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "defaultDenyAndUnauthorizedScopeNeverReturnSources"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "unicodeByteBudgetAndManipulativeContentRemainData"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "expiredPreviewAndRepeatedRequestNeverCreateMutation"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "changedCitationOrTextIsRejectedByActualNexusResolver"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "realServicesCsvRunsAndCoreDenyCannotBeOverriddenByArguments"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.CoreIntegrationTest",
+      "name": "sourceRevocationAndWrongCorrelationRefuseLateResults"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "completedReceiptSurvivesRecoveryWithoutReplayOrMutation"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "deadlineAtApprovalCannotBeExtendedByCaller"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "realCsvExportIsByteExactAfterSeparateFixtureConsent"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "lostAckAfterRealWriteRecoversUnknownWithoutReexecuting"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "responseAfterRevocationIsUnknownAndNeverTurnsIntoSuccess"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "revokedBeforeApprovalNeverCreatesOutput"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "timeoutThenLateRealServicesResultRemainsUnknown"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "staleServicesHostGrantCannotReplaceCurrentCoreConfirmationScope"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "realTxtCitationCsvExactArithmeticApprovedDocxAndOriginalsUnchanged"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "cancellationAfterCompletedToolResultIsStillRefused"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "oldGenerationOrWrongSessionCannotApprove"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "cancelDuringRealRetrievalRejectsContextAndNeverPreparesMutation"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "corruptReceiptFailsClosedAndPreservesOtherNamespaces"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "cancelPreviewIsTerminalAndHasNoEffect"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "noNewDispatchWhilePreviousExportIsUnreconciled"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "wrongResponseIdIsTerminalEvenIfAuthorityReturns"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "preparedAndDispatchedReceiptsBecomeUnknownAcrossDatabaseReopen"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "persistedRequestAndRowKeyMismatchNeverCreatesAnotherReceipt"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "interruptedWaitKeepsInterruptAndCannotBeRetried"
+    },
+    {
+      "class": "com.stark.jarvislocal.integrations.FusionWorkflowTest",
+      "name": "completedExportObservedAfterDeadlineStaysUnknownWithoutReexecution"
+    }
+  ],
+  "passed": 30
+}

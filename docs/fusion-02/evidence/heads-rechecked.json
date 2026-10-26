@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-26T07:30:32.897073+00:00",
+  "heads": {
+    "NEXUS": [
+      {
+        "branch": "feat/fusion-01-nexus-integration",
+        "sha": "9d6928cd8651f83fa5091bdb474b33761d366412"
+      },
+      {
+        "branch": "feat/nex-06a-android-api24",
+        "sha": "374ea2e2fd640e78f2f5e12e60e75b493420e504"
+      }
+    ],
+    "SERVICES": [
+      {
+        "branch": "feat/serv-04a-android-tool-port",
+        "sha": "f00091a639612b91eca1a301580c8f531249f1e3"
+      }
+    ],
+    "UNIFIED": [
+      {
+        "branch": "feat/fusion-01-integration-lock",
+        "sha": "3caa57d91ce0dba31043e7cb6373a5e2df8b9fa4"
+      }
+    ]
+  }
+}

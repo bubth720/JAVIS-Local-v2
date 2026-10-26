@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.SessionCoordinatorTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-10-25T22:20:41" hostname="9405d059b27a" time="0.049">
+  <properties/>
+  <testcase name="operationCancellationIsNotRecordedAsFailure" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.011"/>
+  <testcase name="failedPreparationDoesNotPretendToBeReadyAndCanBeRetried" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.002"/>
+  <testcase name="microphoneFailureDoesNotLeaveSessionStuck" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.01"/>
+  <testcase name="rapidDoubleSendIsRejectedWithoutDuplicatingWork" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.002"/>
+  <testcase name="disabledSpeechDoesNotAffectTextualConversation" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.001"/>
+  <testcase name="preparationIsSingleFlightAndNotRepeatedAfterRotation" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.001"/>
+  <testcase name="recordingIsExclusiveAndTranscribesOnlyAfterConfirmedStop" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.004"/>
+  <testcase name="rotationRetainsConversationAndSharedSpeechEngine" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.001"/>
+  <testcase name="backgroundDoesNotSpeakAndPermanentDestroyReleasesSpeech" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.002"/>
+  <testcase name="timeoutKeepsGateUntilActualNativeCompletion" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.001"/>
+  <testcase name="conversationErrorReleasesGateAndReportsExactlyOneError" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.003"/>
+  <testcase name="pdfCannotInterleaveWithConversationHistory" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.001"/>
+  <testcase name="cancellationDrainsNativeWorkWithoutLoggingAnApplicationError" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.003"/>
+  <testcase name="transcriptionTimeoutBlocksNewWorkUntilNativeReturnAndDeletesAudio" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.002"/>
+  <testcase name="emptyTranscriptionIsNotSentAsConversation" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.002"/>
+  <testcase name="backgroundDiscardsMicrophoneInsteadOfTranscribingIt" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.001"/>
+  <testcase name="cancellationBeforeFirstInstructionDoesNotLeaveGateLocked" classname="com.stark.jarvislocal.SessionCoordinatorTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

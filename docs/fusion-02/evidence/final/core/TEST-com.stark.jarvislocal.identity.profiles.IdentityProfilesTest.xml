@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" tests="30" skipped="0" failures="0" errors="0" timestamp="2026-10-26T07:31:37" hostname="9405d059b27a" time="0.69">
+  <properties/>
+  <testcase name="staleRevisionCannotOverwriteAnotherChange[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.021"/>
+  <testcase name="staleRevisionCannotOverwriteAnotherChange[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.023"/>
+  <testcase name="staleRevisionCannotOverwriteAnotherChange" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.024"/>
+  <testcase name="invalidSQLiteFileIsNeverAutomaticallyDeletedOrReinitialized[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.024"/>
+  <testcase name="invalidSQLiteFileIsNeverAutomaticallyDeletedOrReinitialized[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.029"/>
+  <testcase name="invalidSQLiteFileIsNeverAutomaticallyDeletedOrReinitialized" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.025"/>
+  <testcase name="technicalPreviewMatchesActualComposerCandidateButNoMeasurementIsFabricated[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.019"/>
+  <testcase name="technicalPreviewMatchesActualComposerCandidateButNoMeasurementIsFabricated[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.02"/>
+  <testcase name="technicalPreviewMatchesActualComposerCandidateButNoMeasurementIsFabricated" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.019"/>
+  <testcase name="contextOverridesAreImmutableAndSixPreviewsAreClearlyNotInference[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.022"/>
+  <testcase name="contextOverridesAreImmutableAndSixPreviewsAreClearlyNotInference[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.022"/>
+  <testcase name="contextOverridesAreImmutableAndSixPreviewsAreClearlyNotInference" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.028"/>
+  <testcase name="twoProfilesSelectionRevisionAndReopeningUseRealSQLite[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.029"/>
+  <testcase name="twoProfilesSelectionRevisionAndReopeningUseRealSQLite[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.026"/>
+  <testcase name="twoProfilesSelectionRevisionAndReopeningUseRealSQLite" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.029"/>
+  <testcase name="corruptionFailsClosedWithoutResettingOriginal[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.026"/>
+  <testcase name="corruptionFailsClosedWithoutResettingOriginal[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.022"/>
+  <testcase name="corruptionFailsClosedWithoutResettingOriginal" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.024"/>
+  <testcase name="profileWritesNeverTouchHistoricalConversationMemoryOrPreferences[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.025"/>
+  <testcase name="profileWritesNeverTouchHistoricalConversationMemoryOrPreferences[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.021"/>
+  <testcase name="profileWritesNeverTouchHistoricalConversationMemoryOrPreferences" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.023"/>
+  <testcase name="unsupportedNumericalTuningIsRejected[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.022"/>
+  <testcase name="unsupportedNumericalTuningIsRejected[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.015"/>
+  <testcase name="unsupportedNumericalTuningIsRejected" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.016"/>
+  <testcase name="restoreAppendsRevisionAndNeverRewritesHistory[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.027"/>
+  <testcase name="restoreAppendsRevisionAndNeverRewritesHistory[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.022"/>
+  <testcase name="restoreAppendsRevisionAndNeverRewritesHistory" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.022"/>
+  <testcase name="proposedAthenaCannotSilentlyEnterFrozenContractOrBypassUnavailableTokenizer[24]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.021"/>
+  <testcase name="proposedAthenaCannotSilentlyEnterFrozenContractOrBypassUnavailableTokenizer[25]" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.019"/>
+  <testcase name="proposedAthenaCannotSilentlyEnterFrozenContractOrBypassUnavailableTokenizer" classname="com.stark.jarvislocal.identity.profiles.IdentityProfilesTest" time="0.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,217 @@
+{
+  "cases": [
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "previewRejectionAndPositiveConfirmationAreSeparateAndDoNotWriteChat[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "previewRejectionAndPositiveConfirmationAreSeparateAndDoNotWriteChat[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "previewRejectionAndPositiveConfirmationAreSeparateAndDoNotWriteChat"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "backgroundRevokesPendingPreviewAndCannotApplyAStaleConfirmation[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "backgroundRevokesPendingPreviewAndCannotApplyAStaleConfirmation[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "backgroundRevokesPendingPreviewAndCannotApplyAStaleConfirmation"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "recallToolsDisplayARealConfirmedMemoryWithoutActivatingInference[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "recallToolsDisplayARealConfirmedMemoryWithoutActivatingInference[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MemoryLabUiTest",
+      "name": "recallToolsDisplayARealConfirmedMemoryWithoutActivatingInference"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "networkAndUninstalledVoicesAreRejectedWithoutDownloading[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "networkAndUninstalledVoicesAreRejectedWithoutDownloading[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "networkAndUninstalledVoicesAreRejectedWithoutDownloading"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "cancellingMemoryDialogWritesNoMemoryOrConversation[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "cancellingMemoryDialogWritesNoMemoryOrConversation[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "cancellingMemoryDialogWritesNoMemoryOrConversation"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2ActivityTest",
+      "name": "isolatedUnifiedScreenHasStaticAvatarAndVoiceDisabledAtLaunch"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "adapterSessionSurvivesRuntimeCompositionAndRestoresHistory[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "adapterSessionSurvivesRuntimeCompositionAndRestoresHistory[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "adapterSessionSurvivesRuntimeCompositionAndRestoresHistory"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "cancelledInferenceCannotWriteLateAssistantToSqlite[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "cancelledInferenceCannotWriteLateAssistantToSqlite[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "cancelledInferenceCannotWriteLateAssistantToSqlite"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "explicitMemoryUsesExistingCommandAndNeverLearnsNormalMessages"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2CoreAdapterTest",
+      "name": "realCorePersistsSyntheticBackendAnswerAndDistinctSystemAcrossReopen"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "shutdownRevokesProofAndRecreationDoesNotReplay"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "metadataReadyDoesNotAuthorizeReplyWithoutHumanCheck"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "observedAirplaneOffRevokesProbeAndProofPermanently"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "playbackFailureRevokesProofRatherThanFallback"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "explicitProbeAndConfirmationAuthorizeOnlyBoundedUnmodifiedReply"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "missingLocalVoiceCannotBeConfirmedOrUsed"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "futureCapabilitiesAreDisabledAndCannotReturnFakeData"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2SpeechTest",
+      "name": "airplaneOffPreventsEngineInitializationAndRevokesPreviousProof"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "cancellationRetainsPreviousVoiceFileAndManifest[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "cancellationRetainsPreviousVoiceFileAndManifest[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "cancellationRetainsPreviousVoiceFileAndManifest"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "wrongHeaderAndHashAreRefusedWithoutSelectingModel[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "wrongHeaderAndHashAreRefusedWithoutSelectingModel[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "wrongHeaderAndHashAreRefusedWithoutSelectingModel"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "ggufStoreCannotSelectWhisperMetadataAndNoThresholdLowered[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "ggufStoreCannotSelectWhisperMetadataAndNoThresholdLowered[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "ggufStoreCannotSelectWhisperMetadataAndNoThresholdLowered"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "privateVoiceImportDoesNotImplyWhisperNativeQualification[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "privateVoiceImportDoesNotImplyWhisperNativeQualification[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.Mvp2WhisperStoreTest",
+      "name": "privateVoiceImportDoesNotImplyWhisperNativeQualification"
+    },
+    {
+      "class": "com.stark.jarvislocal.MvpIntentUiTest",
+      "name": "explicitReadOnlyLaboratoryUsesRealDatabaseWithoutLoadingModelOrWritingChat[24]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MvpIntentUiTest",
+      "name": "explicitReadOnlyLaboratoryUsesRealDatabaseWithoutLoadingModelOrWritingChat[25]"
+    },
+    {
+      "class": "com.stark.jarvislocal.MvpIntentUiTest",
+      "name": "explicitReadOnlyLaboratoryUsesRealDatabaseWithoutLoadingModelOrWritingChat"
+    }
+  ],
+  "passed": 53
+}
