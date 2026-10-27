@@ -1181,3 +1181,10 @@ Aucun fichier/URI, texte, consentement ou modèle n'est transmis. Les données e
 réglages historiques, SessionCoordinator, PromptBuilder et moteurs restent intacts.
 Le laboratoire JVM demeure distinct ; cet ajout ne constitue pas l'intégration
 Android. Actualiser ces constats à partir de nouvelles preuves de producteurs.
+
+## PRE-FUSION lot 2
+
+Projection PinnedDocumentReadiness ajoutée hors AppGraph : lecture de l'existant
+DocumentToolReadinessPort, références NEXUS/SERVICES du premier lot, refus constant
+d'exécution. Aucun import de producteur, registre, session, modèle ou stockage ajouté.
+Le succès logiciel des producteurs ne constitue pas une autorité d'écriture CORE.
