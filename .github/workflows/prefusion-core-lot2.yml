@@ -1,0 +1,57 @@
+name: CORE pre-fusion passive gate and regressions
+on:
+  push:
+    branches: ['codex/prefusion-lot2-core-passive']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  passive-core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Provision declared Android preview SDK
+        run: python3 tools/setup-preview-android.py
+      - name: Run full CORE JVM regressions and new refusal tests
+        run: >-
+          gradle -PincludeP2Fixture=true :app:testDebugUnitTest :app:assembleDebug
+          :app:lintDebug --no-daemon --max-workers=2
+          -Pkotlin.compiler.execution.strategy=in-process
+      - name: Require real passing test results (separate from historical frozen count)
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          files = list(Path('app/build/test-results/testDebugUnitTest').glob('TEST-*.xml'))
+          assert files, 'no JVM tests were run'
+          totals = {k: 0 for k in ('tests','failures','errors','skipped')}
+          for f in files:
+              r = ET.parse(f).getroot()
+              for k in totals: totals[k] += int(r.attrib.get(k,0))
+          print('CORE pre-fusion app JVM:', totals)
+          assert totals['tests'] >= 483, 'less than 480 C0 baseline + 3 new cases'
+          assert totals['failures'] == totals['errors'] == totals['skipped'] == 0
+          PY
+      - name: Confirm C0 production wiring remains OFF
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          src = Path('app/src/main/java/com/stark/jarvislocal/integrations/DocumentToolReadiness.kt').read_text()
+          assert 'override val enabled: Boolean get() = false' in src
+          assert 'val canExecute: Boolean get() = false' in src
+          p = Path('app/src/main/java/com/stark/jarvislocal/integrations/DocumentToolGateSnapshot.kt').read_text()
+          assert 'val canExecute: Boolean = false' in p
+          print('OFF-only API, no producer initialization')
+          PY
