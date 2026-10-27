@@ -619,3 +619,10 @@ Robolectric24/25/26/35 ne prouvent pas FTS5/SAF sur Android réel. Exécuter
 indiquées ; le garde impose l'unique ajout passif exact dans AppGraph et préserve
 le reste du noyau, des données, contrats et dépendances de la base FUSION01.
 Les anciens gardes restent intacts, leurs refus de périmètre sont documentés.
+
+## PRE-FUSION lot 2 — références diagnostiques passives
+
+PinnedDocumentReadiness expose uniquement les SHA du lot producteur pour revue,
+sans changer les dépendances consommées ni composer un adaptateur dans AppGraph.
+canExecute reste faux. Le garde tools/check-prefusion-lot2.py protège la base mission
+et vérifie les inventaires historiques sans modifier les gardes FUSION-02.
