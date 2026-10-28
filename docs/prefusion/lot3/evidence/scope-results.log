@@ -1,0 +1,2 @@
+PASS: mission base preserved byte-for-byte except append-only instructions; no production composition
+{"totals": {"core": 510, "mvp2": 53, "fixture": 36, "jvm": 30}, "historical_baseline_at_least": 602, "new_readonly_lab": 27, "scope": "JVM/Robolectric only; no real UID/IPC/native release"}

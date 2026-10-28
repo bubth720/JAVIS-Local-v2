@@ -626,3 +626,14 @@ PinnedDocumentReadiness expose uniquement les SHA du lot producteur pour revue,
 sans changer les dépendances consommées ni composer un adaptateur dans AppGraph.
 canExecute reste faux. Le garde tools/check-prefusion-lot2.py protège la base mission
 et vérifie les inventaires historiques sans modifier les gardes FUSION-02.
+
+## PRE-FUSION lot 3 — lecture CORE→UI de laboratoire
+
+`coreui/lab/ReadOnlyCoreUiLabPort` est non composé, OFF par défaut. L'opt-in de
+fixture ne produit que LABORATORY/UNTRUSTED et des métadonnées CoreEventBus : jamais
+READY, réponse/citation, preuve UID réelle, permission ou unload. Le port ne crée
+ni moteur, journal, coordinateur, connexion ni DB. AppGraph/SessionCoordinator
+historiques restent inchangés. Assertions d'identité synthétiques != Binder ou
+certificat Android. Lire docs/prefusion/lot3/PROTOCOL-REVIEW.md avant tout adaptateur.
+`tools/check-prefusion-lot3.py --results` contrôle la base mission af6fe97, les602
+cas historiques et27 nouveaux ; les gardes historiques ne sont pas assouplis.

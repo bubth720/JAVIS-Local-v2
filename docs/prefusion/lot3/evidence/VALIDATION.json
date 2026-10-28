@@ -1,0 +1,80 @@
+{
+  "format": "jarvis.core-prefusion-lot3.validation/1",
+  "observed_at": "2026-10-28T09:48:30.061374+00:00",
+  "module": "CORE",
+  "mission": "CORE-PF-02",
+  "branch": "codex/prefusion-lot3-core",
+  "base": "af6fe97e2d3f1cded76a4c0e28754b2c21272692",
+  "status": "PROPOSED_OFF",
+  "runtime_connected": false,
+  "tests": {
+    "core": {
+      "tests": 510,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "mvp2": {
+      "tests": 53,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "fixture": {
+      "tests": 36,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm": {
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "lint": {
+    "debug": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 27,
+      "Information": 0
+    },
+    "mvp2": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 37,
+      "Information": 0
+    },
+    "mvp3": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 37,
+      "Information": 0
+    }
+  },
+  "not_run": [
+    "Android instrumentation",
+    "physical device",
+    "system UID/certificate attestation",
+    "Binder transport",
+    "GGUF native inference/unload",
+    "PSS/thermal/battery measurement"
+  ],
+  "code_sha256": {
+    "app/src/main/java/com/stark/jarvislocal/coreui/lab/ReadOnlyCoreUiLabPort.kt": "ff20d295d4ad5a03b0339cdcbaba032889d0198acd431e2d1a79d4e1795cc0ce",
+    "app/src/test/java/com/stark/jarvislocal/coreui/lab/ReadOnlyCoreUiLabPortTest.kt": "c4994d1ea0a2f091794fb2534d12988c68b59768d94bb65c216857b4cab51ffe",
+    "tools/check-prefusion-lot3.py": "7a6d2b36f762d56cdae47ebb6617ba22c7896ca7fc853b52fc7e8db5dfb427c9",
+    ".github/workflows/prefusion-lot3-core.yml": "17d5d11722c4635d18f520a5e5506f87578379a6488e942401e35e49497bc8a5"
+  },
+  "evidence_sha256": {
+    "APK-CHECKS.json": "10d8faf235d2a090f20d514116c86738b81f570a425b0894bcb8cdfb0804ec67",
+    "CASE-INVENTORY.json": "38f28633e80d679960cc5baf31b0a88b9e38c76a1ed06db30f46fe83e1f84baa",
+    "full-android.log.gz": "f6388f63f5b3976d27f6204a69ead1ba13221c47d66448d24e633437dda7c896",
+    "integration-jvm.log.gz": "66ab49a1c70ed9fd201f6b51f11f5f751f914a75de1f9d68722bcb73be92ad7e",
+    "scope-results.log": "9bb26b9d9e77f3bef1b2c6c30560213cb1fc1aec479062083f24304562f5c1f2"
+  },
+  "total_unique_cases": 629,
+  "historical_cases_preserved": 602,
+  "new_cases": 27
+}

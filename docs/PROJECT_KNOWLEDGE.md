@@ -1188,3 +1188,15 @@ Projection PinnedDocumentReadiness ajoutée hors AppGraph : lecture de l'existan
 DocumentToolReadinessPort, références NEXUS/SERVICES du premier lot, refus constant
 d'exécution. Aucun import de producteur, registre, session, modèle ou stockage ajouté.
 Le succès logiciel des producteurs ne constitue pas une autorité d'écriture CORE.
+
+## PRE-FUSION lot 3 — métadonnées lecture seule, aucune connexion réelle
+
+API locale candidate jarvis.core-ui.readonly-lab/1-draft : lecture bornée du bus
+existant et des références pinned passives, sans changement AppGraph/SessionCoordinator.
+OFF par défaut ; activation de fixture seulement, résultat toujours UNTRUSTED avec
+origine LABORATORY, aucun texte/réponse/citation ou autorité native. Identités de
+payload refusées ; UUID/epoch/génération/séquence/TTL/replay contrôlés. UNKNOWN reste
+terminal par instance, pas d'autoretry ni reset. La validation Android UID/certificat
+est uniquement une proposition de revue ; aucun service/permission/transport activé.
+Les tests nouveaux sont JUnit hôte ; voir docs/prefusion/lot3/ pour résultats exacts
+et limites, sans déduire qualification physique ni suppression des blocages.
