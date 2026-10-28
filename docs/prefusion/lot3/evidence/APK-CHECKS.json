@@ -1,0 +1,35 @@
+{
+  "debug": {
+    "path": "app/build/outputs/apk/debug/app-debug.apk",
+    "sha256": "e333e491fd0e70a4e23ca04bc829896be027ae42b458a9269c42f0834fa619db",
+    "size_bytes": 18347263,
+    "minSdk": 24,
+    "signature_verified": true,
+    "signature_scope": "local debug only, no release/personal deployment qualification",
+    "INTERNET": false,
+    "ACCESS_NETWORK_STATE": false,
+    "bundled_model_files": []
+  },
+  "mvp2": {
+    "path": "app/build/outputs/apk/mvp2/app-mvp2.apk",
+    "sha256": "d3da82024c4f04a200f96c4a1e180aeab0a019c1d0e1797cd7a20a03190d4105",
+    "size_bytes": 18430322,
+    "minSdk": 24,
+    "signature_verified": true,
+    "signature_scope": "local debug only, no release/personal deployment qualification",
+    "INTERNET": false,
+    "ACCESS_NETWORK_STATE": false,
+    "bundled_model_files": []
+  },
+  "mvp3": {
+    "path": "app/build/outputs/apk/mvp3/app-mvp3.apk",
+    "sha256": "22bbc9e50dbbeeb6bf22e38932b6fad5d4762a7ff08dbaad63caec69c6d96d26",
+    "size_bytes": 18430366,
+    "minSdk": 24,
+    "signature_verified": true,
+    "signature_scope": "local debug only, no release/personal deployment qualification",
+    "INTERNET": false,
+    "ACCESS_NETWORK_STATE": false,
+    "bundled_model_files": []
+  }
+}
